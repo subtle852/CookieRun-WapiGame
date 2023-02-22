@@ -41,8 +41,10 @@ namespace ya
 	{
 		for (Scene* scene : mScenes)
 		{
-			if (scene == nullptr) continue;
-			scene->Release();
+			if (scene == nullptr) continue;// nullptr인 경우도 있으니 예외처리
+
+			delete scene;
+			scene = nullptr;
 		}
 	}
 }

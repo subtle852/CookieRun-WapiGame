@@ -44,6 +44,9 @@
     <Filter Include="Engine\High Level Interface">
       <UniqueIdentifier>{62286d2a-1f35-42fb-acc3-aa249ca5d0cc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Resource">
+      <UniqueIdentifier>{1b7cf8b0-508d-4e42-bfe0-935d8e352bd8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -103,6 +106,13 @@
     <ClInclude Include="yaPlayScene.h">
       <Filter>Contents\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="yaResource.h">
+      <Filter>Engine\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="yaResources.h">
+      <Filter>Engine\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="yaImage.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="small.ico">
@@ -157,5 +167,12 @@
     <ClCompile Include="yaPlayScene.cpp">
       <Filter>Contents\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="yaResource.cpp">
+      <Filter>Engine\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="yaResources.cpp">
+      <Filter>Engine\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="yaImage.cpp" />
   </ItemGroup>
 </Project>
