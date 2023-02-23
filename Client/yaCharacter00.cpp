@@ -15,7 +15,7 @@ namespace ya
 	}
 	void Character00::Initialize()
 	{
-		mImage = Resources::Load<Image>(L"Cuphead", L"..\\Resources\\Idle.bmp");
+		mImage = Resources::Load<Image>(L"Char00", L"..\\Resources\\Play\\idle.bmp");
 
 		GameObject::Initialize();
 	}

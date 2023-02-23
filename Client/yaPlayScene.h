@@ -4,6 +4,7 @@
 namespace ya
 {
 	class Character00;
+	class PlayBackGround;
 	class PlayScene : public Scene
 	{
 	public:
@@ -20,6 +21,7 @@ namespace ya
 
 	private:
 		Character00* mCharacter00;
+		PlayBackGround* mPlayBackGround;
 	};
 }
 

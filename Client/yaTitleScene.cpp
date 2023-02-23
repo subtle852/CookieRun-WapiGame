@@ -1,6 +1,9 @@
 #include "yaTitleScene.h"
+
 #include "yaInput.h"
 #include "yaSceneManager.h"
+
+#include "yaTitleBackGround.h"
 
 namespace ya
 {
@@ -14,6 +17,12 @@ namespace ya
 
 	void TitleScene::Initialize()
 	{
+		mTitleBackGround = new TitleBackGround();
+		// cuphead->SetPos(Vector2{0.0f, 0.0f + i});
+		mTitleBackGround->SetName(L"Player");
+		AddGameObject(mTitleBackGround, eLayerType::BG);
+
+		//Scene::Initialize();
 	}
 
 	void TitleScene::Update()

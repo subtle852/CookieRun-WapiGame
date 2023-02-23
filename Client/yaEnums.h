@@ -5,6 +5,7 @@ enum class eSceneType
 	Title,
 	Tutorial,
 	Main,// ÁÂ, ¿ì ºÐÇÒ
+	StageLoading,
 	Play,
 	Result,
 	Max,

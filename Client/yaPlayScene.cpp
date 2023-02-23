@@ -1,7 +1,10 @@
 #include "yaPlayScene.h"
-#include "yaCharacter00.h"
+
 #include "yaInput.h"
 #include "yaSceneManager.h"
+
+#include "yaCharacter00.h"
+#include "yaPlayBackGround.h"
 
 ya::PlayScene::PlayScene()
 {
@@ -19,6 +22,11 @@ void ya::PlayScene::Initialize()
 		// cuphead->SetPos(Vector2{0.0f, 0.0f + i});
 		mCharacter00->SetName(L"Player");
 		AddGameObject(mCharacter00, eLayerType::Player);
+
+		mPlayBackGround = new PlayBackGround();
+		// cuphead->SetPos(Vector2{0.0f, 0.0f + i});
+		mPlayBackGround->SetName(L"Player");
+		AddGameObject(mPlayBackGround, eLayerType::BG);
 	}
 
 	Scene::Initialize();

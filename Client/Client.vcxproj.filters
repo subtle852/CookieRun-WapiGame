@@ -47,6 +47,12 @@
     <Filter Include="Engine\Component">
       <UniqueIdentifier>{36bf74c8-adf6-48ca-ba83-71ead37dc48a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Object">
+      <UniqueIdentifier>{8187c5cd-5214-4de7-bc06-2fd0a09a1fd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Object\BackGround">
+      <UniqueIdentifier>{bd40cff2-d801-4f04-b4d4-062ad4c64710}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -85,9 +91,6 @@
     <ClInclude Include="yaApplication.h">
       <Filter>Engine\High Level Interface</Filter>
     </ClInclude>
-    <ClInclude Include="yaInput.h">
-      <Filter>Engine\Input</Filter>
-    </ClInclude>
     <ClInclude Include="yaLayer.h">
       <Filter>Engine\Layer</Filter>
     </ClInclude>
@@ -118,6 +121,24 @@
     </ClInclude>
     <ClInclude Include="yaTransform.h">
       <Filter>Engine\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="yaTutorialScene.h">
+      <Filter>Contents\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="yaMainScene.h">
+      <Filter>Contents\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="yaResultScene.h">
+      <Filter>Contents\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="yaPlayBackGround.h">
+      <Filter>Contents\Object\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="yaInput.h">
+      <Filter>Engine\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="yaTitleBackGround.h">
+      <Filter>Contents\Object\BackGround</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -185,6 +206,21 @@
     </ClCompile>
     <ClCompile Include="yaTransform.cpp">
       <Filter>Engine\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="yaTutorialScene.cpp">
+      <Filter>Contents\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="yaMainScene.cpp">
+      <Filter>Contents\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="yaResultScene.cpp">
+      <Filter>Contents\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="yaPlayBackGround.cpp">
+      <Filter>Contents\Object\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="yaTitleBackGround.cpp">
+      <Filter>Contents\Object\BackGround</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
