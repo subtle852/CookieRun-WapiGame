@@ -13,9 +13,13 @@ ya::PlayScene::~PlayScene()
 
 void ya::PlayScene::Initialize()
 {
-	mCharacter00 = new Character00();
-	mCharacter00->SetName(L"Player");
-	AddGameObject(mCharacter00, eLayerType::Player);
+	//for (size_t i = 0; i < 5000; i++)
+	{
+		mCharacter00 = new Character00();
+		// cuphead->SetPos(Vector2{0.0f, 0.0f + i});
+		mCharacter00->SetName(L"Player");
+		AddGameObject(mCharacter00, eLayerType::Player);
+	}
 
 	Scene::Initialize();
 }
