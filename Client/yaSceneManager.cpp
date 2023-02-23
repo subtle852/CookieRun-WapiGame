@@ -1,16 +1,22 @@
 #include "yaSceneManager.h"
 #include "yaPlayScene.h"
+#include "yaTitleScene.h"
 
 namespace ya
 {
 	std::vector<Scene*> SceneManager::mScenes = {}; // static 변수 초기화
+	Scene* SceneManager::mActiveScene = nullptr;
 
 	void ya::SceneManager::Initialize()
 	{
 		mScenes.resize((UINT)eSceneType::Max);
 
+		mScenes[(UINT)eSceneType::Title] = new TitleScene();
 		mScenes[(UINT)eSceneType::Play] = new PlayScene();
-		// mScenes[(UINT)eSceneType::Play]->SetName(L"PLAYER"); Entity 활용법
+		
+		//mScenes[(UINT)eSceneType::Play]->SetName(L"PLAYER"); //Entity 활용법
+
+		mActiveScene = mScenes[(UINT)eSceneType::Play];
 
 		for (Scene* scene : mScenes)
 		{
@@ -26,6 +32,7 @@ namespace ya
 			if (scene == nullptr) continue;
 			scene->Update();
 		}
+		mActiveScene->Update();
 	}
 
 	void ya::SceneManager::Render(HDC hdc)
@@ -35,6 +42,7 @@ namespace ya
 			if (scene == nullptr) continue;
 			scene->Render(hdc);
 		}
+		mActiveScene->Render(hdc);
 	}
 
 	void ya::SceneManager::Release()
@@ -46,5 +54,15 @@ namespace ya
 			delete scene;
 			scene = nullptr;
 		}
+	}
+
+	void SceneManager::LoadScene(eSceneType type)
+	{
+		// 현재 씬 나가면서
+		mActiveScene->OnExit();
+
+		// 새로운 씬 들어오면서
+		mActiveScene = mScenes[(UINT)type];
+		mActiveScene->OnEnter();
 	}
 }

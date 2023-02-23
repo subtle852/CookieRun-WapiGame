@@ -23,9 +23,6 @@
     <Filter Include="Engine\Common">
       <UniqueIdentifier>{be24eab6-64f6-4eae-8d25-5ec1da4892cd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Component">
-      <UniqueIdentifier>{36bf74c8-adf6-48ca-ba83-71ead37dc48a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\GameObject">
       <UniqueIdentifier>{947a5e69-f70c-4de7-8b87-ca94ae585678}</UniqueIdentifier>
     </Filter>
@@ -46,6 +43,9 @@
     </Filter>
     <Filter Include="Engine\Resource">
       <UniqueIdentifier>{1b7cf8b0-508d-4e42-bfe0-935d8e352bd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component">
+      <UniqueIdentifier>{36bf74c8-adf6-48ca-ba83-71ead37dc48a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -113,6 +113,12 @@
       <Filter>Engine\Resource</Filter>
     </ClInclude>
     <ClInclude Include="yaImage.h" />
+    <ClInclude Include="yaTitleScene.h">
+      <Filter>Contents\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="yaTransform.h">
+      <Filter>Engine\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="small.ico">
@@ -174,5 +180,11 @@
       <Filter>Engine\Resource</Filter>
     </ClCompile>
     <ClCompile Include="yaImage.cpp" />
+    <ClCompile Include="yaTitleScene.cpp">
+      <Filter>Contents\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="yaTransform.cpp">
+      <Filter>Engine\Component</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
