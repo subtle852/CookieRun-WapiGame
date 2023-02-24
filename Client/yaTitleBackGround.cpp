@@ -7,33 +7,37 @@
 
 namespace ya
 {
-	TitleBackGround::TitleBackGround()
-	{
+    TitleBackGround::TitleBackGround()
+    {
+    }
 
-	}
-	TitleBackGround::~TitleBackGround()
-	{
-	}
-	void TitleBackGround::Initialize()
-	{
-		mImage = Resources::Load<Image>(L"BG", L"..\\Resources\\Title\\TitleBG.bmp");
+    TitleBackGround::~TitleBackGround()
+    {
+    }
 
-		GameObject::Initialize();
-	}
-	void TitleBackGround::Update()
-	{
-		GameObject::Update();
-	}
-	void TitleBackGround::Render(HDC hdc)
-	{
-		Transform* tr = GetComponent<Transform>();
-		Vector2 pos = tr->GetPos();
-		BitBlt(hdc, pos.x, pos.y, mImage->GetWidth(), mImage->GetHeight(), mImage->GetHdc(), 0, 0, SRCCOPY);
+    void TitleBackGround::Initialize()
+    {
+        mImage = Resources::Load<Image>(L"TitleBG", L"..\\Resources\\Title\\TitleBG.bmp");
 
-		GameObject::Render(hdc);
-	}
-	void TitleBackGround::Release()
-	{
-		GameObject::Release();
-	}
+        GameObject::Initialize();
+    }
+
+    void TitleBackGround::Update()
+    {
+        GameObject::Update();
+    }
+
+    void TitleBackGround::Render(HDC hdc)
+    {
+        Transform* tr = GetComponent<Transform>();
+        Vector2 pos = tr->GetPos();
+        BitBlt(hdc, pos.x, pos.y, mImage->GetWidth(), mImage->GetHeight(), mImage->GetHdc(), 0, 0, SRCCOPY);
+
+        GameObject::Render(hdc);
+    }
+
+    void TitleBackGround::Release()
+    {
+        GameObject::Release();
+    }
 }
