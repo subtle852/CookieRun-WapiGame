@@ -19,4 +19,3 @@ namespace ya
 		Image* mImage;
 	};
 }
-

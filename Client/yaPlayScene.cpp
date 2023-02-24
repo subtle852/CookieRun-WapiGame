@@ -1,64 +1,62 @@
 #include "yaPlayScene.h"
-
+#include "yaCharacter00.h"
+#include "yaPlayBackGround.h"
 #include "yaInput.h"
 #include "yaSceneManager.h"
 
-#include "yaCharacter00.h"
-#include "yaPlayBackGround.h"
 
-ya::PlayScene::PlayScene()
-{
-}
 
-ya::PlayScene::~PlayScene()
+namespace ya
 {
-}
-
-void ya::PlayScene::Initialize()
-{
-	//for (size_t i = 0; i < 5000; i++)
+	PlayScene::PlayScene()
 	{
+	}
+	PlayScene::~PlayScene()
+	{
+	}
+
+	void PlayScene::Initialize()
+	{
+
 		mCharacter00 = new Character00();
-		// cuphead->SetPos(Vector2{0.0f, 0.0f + i});
-		mCharacter00->SetName(L"Player");
+		PlayBackGround* bg = new PlayBackGround();
+		////cuphead->SetPos(Vector2(0.0f, 0.0f));
+		/*mSonic->SetName(L"Player");*/
 		AddGameObject(mCharacter00, eLayerType::Player);
+		AddGameObject(bg, eLayerType::BG);
 
-		mPlayBackGround = new PlayBackGround();
-		// cuphead->SetPos(Vector2{0.0f, 0.0f + i});
-		mPlayBackGround->SetName(L"Player");
-		AddGameObject(mPlayBackGround, eLayerType::BG);
+		Scene::Initialize();
+
 	}
 
-	Scene::Initialize();
-}
-
-void ya::PlayScene::Update()
-{
-	if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
+	void PlayScene::Update()
 	{
-		SceneManager::LoadScene(eSceneType::Title);
+		if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
+		{
+			SceneManager::LoadScene(eSceneType::Title);
+		}
+
+		Scene::Update();
+
 	}
 
-	Scene::Update();
-}
 
-void ya::PlayScene::Render(HDC hdc)
-{
-	Scene::Render(hdc);
-}
+	void PlayScene::Render(HDC hdc)
+	{
+		Scene::Render(hdc);
+	}
 
-void ya::PlayScene::Release()
-{
-	Scene::Release();
-}
 
-void ya::PlayScene::OnEnter()
-{
-}
+	void PlayScene::Release()
+	{
+		Scene::Release();
+	}
+	void PlayScene::OnEnter()
+	{
+	}
+	void PlayScene::OnExit()
+	{
+		//mSonic->SetPos(Vector2{ 0.0f, 0.0f }); (씬넘길때 원상복귀 시키는것(매스와 지금 문제가 이써안됨)
 
-void ya::PlayScene::OnExit()
-{
-	// OnExit할 때 이동이라던가 여러가지 요소들을 초기화 시키러면 여기서 이렇게 해줘야 하고 
-	// 그렇지 않다면 Initialize에 그 객체들을 만들어 줘야함
-	// mCuphead->SetPos(Vector2{ 0.0f, 0.0f });
+	}
 }

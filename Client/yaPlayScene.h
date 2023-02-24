@@ -1,10 +1,10 @@
 #pragma once
 #include "yaScene.h"
+#include "yaImage.h"
 
 namespace ya
 {
 	class Character00;
-	class PlayBackGround;
 	class PlayScene : public Scene
 	{
 	public:
@@ -19,9 +19,8 @@ namespace ya
 		virtual void OnEnter() override;
 		virtual void OnExit() override;
 
+
 	private:
 		Character00* mCharacter00;
-		PlayBackGround* mPlayBackGround;
 	};
 }
-

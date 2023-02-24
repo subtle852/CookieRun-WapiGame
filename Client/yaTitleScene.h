@@ -4,8 +4,6 @@
 
 namespace ya
 {
-	class TitleBackGround;
-
 	class TitleScene : public Scene
 	{
 	public:
@@ -19,7 +17,9 @@ namespace ya
 
 		virtual void OnEnter() override;
 		virtual void OnExit() override;
+
+
 	private:
-		TitleBackGround* mTitleBackGround;
+		Image* mScenImage;
 	};
 }
