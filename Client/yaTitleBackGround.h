@@ -15,10 +15,7 @@ namespace ya
 		virtual void Render(HDC hdc) override;
 		virtual void Release() override;
 
-
 	private:
 		Image* mImage;
-
 	};
-
 }

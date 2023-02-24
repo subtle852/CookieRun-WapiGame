@@ -10,14 +10,12 @@ namespace ya
 		PlayBackGround();
 		~PlayBackGround();
 
-		virtual void Initialize() override;
-		virtual void Update() override;
-		virtual void Render(HDC hdc) override;
-		virtual void Release() override;
+		virtual void Initialize();
+		virtual void Update();
+		virtual void Render(HDC hdc);
+		virtual void Release();
 
 	private:
 		Image* mImage;
-
 	};
-
 }
