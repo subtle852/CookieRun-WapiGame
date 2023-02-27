@@ -8,6 +8,8 @@
 namespace ya
 {
 	Character00::Character00()
+		: mTime(0.0f)
+		, mIdx(0)
 	{
 	}
 	Character00::~Character00()
@@ -15,7 +17,7 @@ namespace ya
 	}
 	void Character00::Initialize()
 	{
-		mImage = Resources::Load<Image>(L"Char00", L"..\\Resources\\Play\\idle.bmp");
+		mImage = Resources::Load<Image>(L"Char00", L"..\\Resources\\idle.bmp");
 
 		GameObject::Initialize();
 	}
@@ -63,7 +65,24 @@ namespace ya
 		Transform* tr = GetComponent<Transform>();
 		Vector2 pos = tr->GetPos();
 
-		BitBlt(hdc, pos.x, pos.y, mImage->GetWidth(), mImage->GetHeight(), mImage->GetHdc(), 0, 0, SRCCOPY);
+		mTime += Time::DeltaTime();
+
+		if (mIdx >= 8)
+		{
+			mIdx = 0;
+		}
+
+		if (mTime > 0.1f)
+		{
+			mIdx++;
+			mTime = 0.0f;
+		}
+
+		int a = 392;
+		TransparentBlt(hdc, pos.x, pos.y, a, 392
+			, mImage->GetHdc(), (a * mIdx),0, a, 392, RGB(170,0,0));
+
+		//BitBlt(hdc, pos.x, pos.y, mImage->GetWidth(), mImage->GetHeight(), mImage->GetHdc(), 0, 0, SRCCOPY);
 	}
 	void Character00::Release()
 	{

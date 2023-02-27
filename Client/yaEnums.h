@@ -3,10 +3,11 @@
 enum class eSceneType
 {
 	Title,
-	Tutorial,
-	Main,// ÁÂ, ¿ì ºÐÇÒ
-	StageLoading,
-	Play,
+	Main,
+	SelectChar,
+	//PetSelect,
+	SelectStage,
+	Play, //Stage00,
 	Result,
 	Max,
 };

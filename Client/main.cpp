@@ -14,6 +14,7 @@
 #include "yaApplication.h"
 #include "yaSceneManager.h"
 #include "yaResources.h"
+#include "resource.h"
 
 #define MAX_LOADSTRING 100
 
@@ -115,12 +116,12 @@ ATOM MyRegisterClass(HINSTANCE hInstance)// 윈도우 구성요소 설정
     wcex.cbClsExtra = 0;
     wcex.cbWndExtra = 0;
     wcex.hInstance = hInstance;
-    wcex.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_CLIENT)); // 리소스 파일의 Client.ico를 바꾸면 아이콘 모습 변경
+    wcex.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_ICON1)); // 리소스 파일의 Client.ico를 바꾸면 아이콘 모습 변경
     wcex.hCursor = LoadCursor(nullptr, IDC_ARROW); // 커서 변경
     wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
     wcex.lpszMenuName = MAKEINTRESOURCEW(IDC_CLIENT);
     wcex.lpszClassName = szWindowClass;
-    wcex.hIconSm = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
+    wcex.hIconSm = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_ICON1));
 
     return RegisterClassExW(&wcex);
 }
