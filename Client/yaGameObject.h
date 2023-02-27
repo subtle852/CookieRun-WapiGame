@@ -21,6 +21,8 @@ namespace ya
 			T* comp = new T();
 			UINT compType = (UINT)comp->GetType();
 			mComponents[compType] = comp;
+			comp->SetOwner(this);
+
 			return comp;
 		}
 
@@ -29,13 +31,11 @@ namespace ya
 		{
 			for (Component* comp : mComponents)
 			{
-				if (dynamic_cast<T*>(comp))// 바뀔 수 있는 애들만 바꿔지고 조건이 참으로 반환
-				{
+				if (dynamic_cast<T*>(comp))
 					return dynamic_cast<T*>(comp);
-				}// RTTI 방식(실행시간에 타입정보를 식별)
-
-				return nullptr;
 			}
+
+			return nullptr;
 		}
 
 	private:

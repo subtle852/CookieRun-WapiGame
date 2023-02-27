@@ -16,8 +16,5 @@ namespace ya
 		virtual void Release();
 
 	private:
-		Image* mImage;
-		float mTime;
-		int mIdx;
 	};
 }

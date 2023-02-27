@@ -3,6 +3,7 @@
 
 namespace ya
 {
+	class GameObject;
 	class Component : public Entity
 	{
 	public:
@@ -16,7 +17,11 @@ namespace ya
 
 		eComponentType GetType() { return mType; }
 
+		void SetOwner(GameObject* owner) { mOwner = owner; }
+		GameObject* GetOwner() { return mOwner; }
+
 	private:
 		const eComponentType mType;
+		GameObject* mOwner;
 	};
 }
