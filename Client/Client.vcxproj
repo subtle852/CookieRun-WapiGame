@@ -132,7 +132,14 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="yaAnimation.h" />
+    <ClInclude Include="yaAnimator.h" />
+    <ClInclude Include="yaMainBackGround.h" />
     <ClInclude Include="yaPlayBackGround.h" />
+    <ClInclude Include="yaSelectCharBackGround.h" />
+    <ClInclude Include="yaSelectCharScene.h" />
+    <ClInclude Include="yaSelectStageBackGround.h" />
+    <ClInclude Include="yaSelectStageScene.h" />
     <ClInclude Include="yaTitleBackGround.h" />
     <ClInclude Include="yaTutorialScene.h" />
     <ClInclude Include="yaApplication.h" />
@@ -159,7 +166,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="yaAnimation.cpp" />
+    <ClCompile Include="yaAnimator.cpp" />
+    <ClCompile Include="yaMainBackGround.cpp" />
     <ClCompile Include="yaPlayBackGround.cpp" />
+    <ClCompile Include="yaSelectCharBackGround.cpp" />
+    <ClCompile Include="yaSelectCharScene.cpp" />
+    <ClCompile Include="yaSelectStageBackGround.cpp" />
+    <ClCompile Include="yaSelectStageScene.cpp" />
     <ClCompile Include="yaTitleBackGround.cpp" />
     <ClCompile Include="yaTutorialScene.cpp" />
     <ClCompile Include="yaApplication.cpp" />
@@ -187,6 +201,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico" />
+    <Image Include="Icon.ico" />
     <Image Include="small.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

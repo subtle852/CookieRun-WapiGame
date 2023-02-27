@@ -16,7 +16,7 @@ namespace ya
 	}
 	void PlayBackGround::Initialize()
 	{
-		mImage = Resources::Load<Image>(L"BG", L"..\\Resources\\Play\\PlayBG.bmp");
+		mImage = Resources::Load<Image>(L"PlayBG", L"..\\Resources\\stage00.bmp");
 
 		GameObject::Initialize();
 	}
@@ -30,7 +30,9 @@ namespace ya
 
 		Transform* tr = GetComponent<Transform>();
 		Vector2 pos = tr->GetPos();
-		BitBlt(hdc, pos.x, pos.y, mImage->GetWidth(), mImage->GetHeight(), mImage->GetHdc(), 0, 0, SRCCOPY);
+		//BitBlt(hdc, pos.x, pos.y, mImage->GetWidth(), mImage->GetHeight(), mImage->GetHdc(), 0, 0, SRCCOPY);
+		TransparentBlt(hdc, pos.x, pos.y, 1600, 900
+			, mImage->GetHdc(), 0, 0, mImage->GetWidth(), mImage->GetHeight(), RGB(170, 0, 0));
 	}
 	void PlayBackGround::Release()
 	{

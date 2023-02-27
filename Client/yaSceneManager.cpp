@@ -1,6 +1,10 @@
 #include "yaSceneManager.h"
-#include "yaPlayScene.h"
+
 #include "yaTitleScene.h"
+#include "yaMainScene.h"
+#include "yaSelectCharScene.h"
+#include "yaSelectStageScene.h"
+#include "yaPlayScene.h"
 
 namespace ya
 {
@@ -12,6 +16,9 @@ namespace ya
 		mScenes.resize((UINT)eSceneType::Max);
 
 		mScenes[(UINT)eSceneType::Title] = new TitleScene();
+		mScenes[(UINT)eSceneType::Main] = new MainScene();
+		mScenes[(UINT)eSceneType::SelectChar] = new SelectCharScene();
+		mScenes[(UINT)eSceneType::SelectStage] = new SelectStageScene();
 		mScenes[(UINT)eSceneType::Play] = new PlayScene();
 		//mScenes[(UINT)eSceneType::Play]->SetName(L"PLAYER"); //Entity È°¿ë¹ý
 
