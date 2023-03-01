@@ -4,9 +4,20 @@
 
 namespace ya
 {
+	class Animator;
 	class Character00 : public GameObject
 	{
 	public:
+		enum class eChar00State
+		{
+			Run,
+			Jump,
+			Slide,
+			Death,
+			Idle,
+		};
+
+
 		Character00();
 		~Character00();
 
@@ -16,5 +27,14 @@ namespace ya
 		virtual void Release();
 
 	private:
+		void run();
+		void jump();
+		void slide();
+		void death();
+		void idle();
+
+	private:
+		eChar00State mState;
+		Animator* mAnimator;
 	};
 }

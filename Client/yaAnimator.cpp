@@ -1,4 +1,5 @@
 #include "yaAnimator.h"
+#include "yaResources.h"
 
 namespace ya
 {
@@ -43,6 +44,7 @@ namespace ya
 	void Animator::Release()
 	{
 	}
+
 	void Animator::CreateAnimation(const std::wstring& name
 		, Image* sheet, Vector2 leftTop
 		, UINT coulmn, UINT row, UINT spriteLength
@@ -60,8 +62,46 @@ namespace ya
 
 		mAnimations.insert(std::make_pair(name, animation));
 	}
-	void Animator::CreateAnimations()
+
+	void Animator::CreateAnimations(const std::wstring& path, Vector2 offset, float duration)
 	{
+		UINT width = 0;
+		UINT height = 0;
+		UINT fileCount = 0;
+
+
+		std::filesystem::path fs(path);
+		std::vector<Image*> images = {};
+		for (const auto& p : std::filesystem::recursive_directory_iterator(path))
+		{
+			std::wstring fileName = p.path().filename();
+			std::wstring fullName = path + L"\\" + fileName;
+
+			const std::wstring ext = p.path().extension();
+			if (ext == L".png")
+				continue;
+
+			Image* image = Resources::Load<Image>(fileName, fullName);
+			images.push_back(image);
+
+			//width와 height에 최대값
+			if (width < image->GetWidth())
+			{
+				width = image->GetWidth();
+			}
+			if (height < image->GetHeight())
+			{
+				height = image->GetHeight();
+			}
+			fileCount++;
+		}
+
+		std::wstring key = fs.parent_path().filename();
+		key += fs.filename();
+		mSpriteSheet = Image::Create(key, width * fileCount, height);
+
+		//
+
 	}
 	Animation* Animator::FindAnimation(const std::wstring& name)
 	{

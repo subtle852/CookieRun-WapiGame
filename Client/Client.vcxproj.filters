@@ -133,9 +133,6 @@
     <ClInclude Include="yaPlayBackGround.h">
       <Filter>Contents\Object\BackGround</Filter>
     </ClInclude>
-    <ClInclude Include="yaInput.h">
-      <Filter>Engine\Common</Filter>
-    </ClInclude>
     <ClInclude Include="yaTitleBackGround.h">
       <Filter>Contents\Object\BackGround</Filter>
     </ClInclude>
@@ -162,6 +159,9 @@
     </ClInclude>
     <ClInclude Include="yaImage.h">
       <Filter>Engine\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="yaInput.h">
+      <Filter>Engine\Input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

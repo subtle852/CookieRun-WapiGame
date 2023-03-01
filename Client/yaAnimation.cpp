@@ -50,13 +50,17 @@ namespace ya
     {
         Transform* tr
             = mAnimator->GetOwner()->GetComponent<Transform>();
+        Vector2 scale = tr->GetScale();
 
-        TransparentBlt(hdc, tr->GetPos().x, tr->GetPos().y
-            , mSpriteSheet[mSpriteIndex].size.x, mSpriteSheet[mSpriteIndex].size.y
+        TransparentBlt(hdc
+            , tr->GetPos().x //+ mSpriteSheet[mSpriteIndex].offset.x
+            , tr->GetPos().y //+ mSpriteSheet[mSpriteIndex].offset.y
+            , mSpriteSheet[mSpriteIndex].size.x * scale.x
+            , mSpriteSheet[mSpriteIndex].size.y * scale.y
             , mSheetImage->GetHdc()
             , mSpriteSheet[mSpriteIndex].leftTop.x, mSpriteSheet[mSpriteIndex].leftTop.y
             , mSpriteSheet[mSpriteIndex].size.x, mSpriteSheet[mSpriteIndex].size.y,
-            RGB(255, 0, 255));
+            RGB(170, 0 ,0));
     }
 
     void Animation::Create(Image* sheet, Vector2 leftTop
