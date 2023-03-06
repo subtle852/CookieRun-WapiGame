@@ -5,6 +5,7 @@
 #include "yaResources.h"
 #include "yaTransform.h"
 #include "yaAnimator.h"
+#include "yaCollider.h"
 
 namespace ya
 {
@@ -16,15 +17,23 @@ namespace ya
 	}
 	void Character00::Initialize()
 	{
+		Transform* tr = GetComponent<Transform>();
+		tr->SetPos(Vector2(500.0f, 500.0f));
+		//tr->SetScale(Vector2(1.5f, 1.5f));
+
 		Image* mImage = Resources::Load<Image>(L"Char00", L"..\\Resources\\idle.bmp");
 		mAnimator = AddComponent<Animator>();
-		mAnimator->CreateAnimation(L"idle", mImage, Vector2::Zero, 11, 6, 1, Vector2::Zero, 0.1);
-		mAnimator->CreateAnimation(L"Roll", mImage, Vector2::Zero, 11, 6, 6, Vector2::Zero, 0.1);
-		mAnimator->CreateAnimation(L"Run", mImage, Vector2(0.0f, (290.0f * 1)), 11, 6, 4, Vector2::Zero, 0.1);
-		mAnimator->CreateAnimation(L"Jump", mImage, Vector2(0.0f, (290.0f * 5)), 11, 6, 4, Vector2::Zero, 0.1);
-		mAnimator->CreateAnimation(L"Slide", mImage, Vector2((290.0f * 8), (290.0f * 0)), 11, 6, 3, Vector2::Zero, 0.1);
+		mAnimator->CreateAnimation(L"idle", mImage, Vector2::Zero, 11, 6, 1, Vector2::Zero, 0.15);
+		mAnimator->CreateAnimation(L"Roll", mImage, Vector2::Zero, 11, 6, 6, Vector2::Zero, 0.15);
+		mAnimator->CreateAnimation(L"Run", mImage, Vector2(0.0f, (290.0f * 1)), 11, 6, 4, Vector2::Zero, 0.15);
+		mAnimator->CreateAnimation(L"Jump", mImage, Vector2((290.0f * 0), (290.0f * 0)), 11, 6, 8, Vector2::Zero, 0.15);
+		mAnimator->CreateAnimation(L"Slide", mImage, Vector2((290.0f * 8), (290.0f * 0)), 11, 6, 3, Vector2::Zero, 0.15);
+		//mAnimator->CreateAnimations(L"..\\Resorces\\Chalise\\Idle", Vector2::Zero, 0.1f);
 
 		mAnimator->Play(L"Run", true);
+
+		Collider* collider = AddComponent<Collider>();
+		collider->SetCenter(Vector2(-50.0f, -100.0f));
 
 		mState = eChar00State::Run;
 
@@ -104,6 +113,7 @@ namespace ya
 		Vector2 pos = tr->GetPos();
 		if (Input::GetKeyDown(eKeyCode::W))
 		{
+			pos.y -= 100.0f; //* Time::DeltaTime();
 			mState = eChar00State::Jump;
 			mAnimator->Play(L"Jump", true);
 		}
@@ -126,11 +136,17 @@ namespace ya
 	}
 	void Character00::jump()
 	{
+		Transform* tr = GetComponent<Transform>();
+		Vector2 pos = tr->GetPos();
+
 		if (Input::GetKeyUp(eKeyCode::W))
 		{
+			pos.y += 100.0f; //* Time::DeltaTime();
 			mState = eChar00State::Run;
 			mAnimator->Play(L"Run", true);
 		}
+
+		tr->SetPos(pos);
 	}
 	void Character00::slide()
 	{
@@ -139,6 +155,8 @@ namespace ya
 			mState = eChar00State::Run;
 			mAnimator->Play(L"Run", true);
 		}
+		//mState = eChar00State::Idle;
+		//mAnimator->Play(L"Idle", true);
 	}
 	void Character00::death()
 	{

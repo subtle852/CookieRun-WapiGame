@@ -17,6 +17,11 @@ namespace ya
 
 		void AddGameObject(GameObject* obj, eLayerType layer);
 
+		const std::vector<GameObject*>& GetGameObjects(eLayerType layer)
+		{
+			return mLayers[(UINT)layer].GetGameObjects();
+		}
+
 		virtual void OnEnter();
 		virtual void OnExit();
 

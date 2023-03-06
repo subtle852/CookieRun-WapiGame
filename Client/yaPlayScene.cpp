@@ -3,8 +3,8 @@
 #include "yaPlayBackGround.h"
 #include "yaInput.h"
 #include "yaSceneManager.h"
-
-
+#include "yaObstacle.h"
+#include "yaCollisionManager.h"
 
 namespace ya
 {
@@ -19,11 +19,17 @@ namespace ya
 	{
 
 		mCharacter00 = new Character00();
+		AddGameObject(mCharacter00, eLayerType::Player);
+		Obstacle* obstacle = new Obstacle();
+		AddGameObject(obstacle, eLayerType::Obstacle);
+
+
 		PlayBackGround* bg = new PlayBackGround();
 		////cuphead->SetPos(Vector2(0.0f, 0.0f));
 		/*mSonic->SetName(L"Player");*/
-		AddGameObject(mCharacter00, eLayerType::Player);
 		AddGameObject(bg, eLayerType::BG);
+
+		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Obstacle, true);
 
 		Scene::Initialize();
 

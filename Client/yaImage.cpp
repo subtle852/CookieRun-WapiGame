@@ -30,6 +30,9 @@ namespace ya
 		image->SetKey(name);
 		Resources::Insert<Image>(name, image);
 
+		Rectangle(image->GetHdc(), -1, -1, image->mWidth + 1, image->mHeight + 1);
+		// 하얀 배경 생성되도록
+
 		return image;
 	}
 	Image::Image()

@@ -135,7 +135,10 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="yaAnimation.h" />
     <ClInclude Include="yaAnimator.h" />
+    <ClInclude Include="yaCollider.h" />
+    <ClInclude Include="yaCollisionManager.h" />
     <ClInclude Include="yaMainBackGround.h" />
+    <ClInclude Include="yaObstacle.h" />
     <ClInclude Include="yaPlayBackGround.h" />
     <ClInclude Include="yaSelectCharBackGround.h" />
     <ClInclude Include="yaSelectCharScene.h" />
@@ -169,7 +172,10 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="yaAnimation.cpp" />
     <ClCompile Include="yaAnimator.cpp" />
+    <ClCompile Include="yaCollider.cpp" />
+    <ClCompile Include="yaCollisionManager.cpp" />
     <ClCompile Include="yaMainBackGround.cpp" />
+    <ClCompile Include="yaObstacle.cpp" />
     <ClCompile Include="yaPlayBackGround.cpp" />
     <ClCompile Include="yaSelectCharBackGround.cpp" />
     <ClCompile Include="yaSelectCharScene.cpp" />

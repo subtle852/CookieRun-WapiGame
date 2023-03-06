@@ -15,19 +15,20 @@ enum class eSceneType
 enum class eLayerType // layer 그리는 순서
 {
 	BG,
-	Opponent,
+	Obstacle,
+	Item,
 	Player,
 	Effect,
 	UI,
-	End,
+	End = 16,
 };
 
 enum class eComponentType
 {
 	Transform,
-	Collider,
 	SpriteRenderer,
 	Animator,
+	Collider,
 	Audio,
 	End,
 };

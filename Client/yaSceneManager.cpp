@@ -22,7 +22,7 @@ namespace ya
 		mScenes[(UINT)eSceneType::Play] = new PlayScene();
 		//mScenes[(UINT)eSceneType::Play]->SetName(L"PLAYER"); //Entity È°¿ë¹ý
 
-		mActiveScene = mScenes[(UINT)eSceneType::Title];
+		mActiveScene = mScenes[(UINT)eSceneType::Play];
 
 		for (Scene* scene : mScenes)
 		{
