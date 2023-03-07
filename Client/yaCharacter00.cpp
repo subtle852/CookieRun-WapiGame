@@ -30,6 +30,9 @@ namespace ya
 		mAnimator->CreateAnimation(L"Slide", mImage, Vector2((290.0f * 8), (290.0f * 0)), 11, 6, 3, Vector2::Zero, 0.15);
 		//mAnimator->CreateAnimations(L"..\\Resorces\\Chalise\\Idle", Vector2::Zero, 0.1f);
 
+
+		mAnimator->GetStartEvent(L"Run") = std::bind(&Character00::idleCompleteEvent, this);
+
 		mAnimator->Play(L"Run", true);
 
 		Collider* collider = AddComponent<Collider>();
@@ -164,5 +167,9 @@ namespace ya
 	void Character00::idle()
 	{
 		
+	}
+	void Character00::idleCompleteEvent(/*const Cuphead* this*/)
+	{
+		int a = 0;
 	}
 }

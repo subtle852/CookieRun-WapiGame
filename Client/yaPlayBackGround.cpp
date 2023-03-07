@@ -31,7 +31,7 @@ namespace ya
 		Transform* tr = GetComponent<Transform>();
 		Vector2 pos = tr->GetPos();
 		//BitBlt(hdc, pos.x, pos.y, mImage->GetWidth(), mImage->GetHeight(), mImage->GetHdc(), 0, 0, SRCCOPY);
-		TransparentBlt(hdc, pos.x, pos.y, 1600, 900
+		TransparentBlt(hdc, pos.x, pos.y, 500, 500
 			, mImage->GetHdc(), 0, 0, mImage->GetWidth(), mImage->GetHeight(), RGB(170, 0, 0));
 	}
 	void PlayBackGround::Release()

@@ -33,6 +33,8 @@ namespace ya
 		void death();
 		void idle();
 
+		void idleCompleteEvent();
+
 	private:
 		eChar00State mState;
 		Animator* mAnimator;
