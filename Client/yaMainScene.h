@@ -6,6 +6,7 @@ namespace ya
 {
 	class Character00;
 	class Pet00;
+
 	class MainScene : public Scene
 	{
 	public:
@@ -19,7 +20,6 @@ namespace ya
 
 		virtual void OnEnter() override;
 		virtual void OnExit() override;
-
 
 	private:
 		Character00* mCh00;

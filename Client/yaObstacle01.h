@@ -8,7 +8,6 @@ namespace ya
 	{
 	public:
 		Obstacle01();
-		Obstacle01(Vector2 pos);
 		~Obstacle01();
 
 		virtual void Initialize() override;

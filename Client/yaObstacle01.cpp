@@ -14,15 +14,14 @@ namespace ya
 {
 	Obstacle01::Obstacle01()
 	{
+
 	}
-	Obstacle01::Obstacle01(Vector2 pos)
-	{
-		Transform* tr = GetComponent<Transform>();
-		tr->SetPos(Vector2(pos.x, pos.y));
-	}
+
 	Obstacle01::~Obstacle01()
 	{
+
 	}
+
 	void Obstacle01::Initialize()
 	{
 		mImage = Resources::Load<Image>(L"Land1Slide01", L"..\\Resources\\land1\\land1_sl_0001.bmp");
@@ -33,6 +32,7 @@ namespace ya
 
 		GameObject::Initialize();
 	}
+
 	void Obstacle01::Update()
 	{
 		Transform* tr = GetComponent<Transform>();
@@ -43,6 +43,7 @@ namespace ya
 
 		GameObject::Update();
 	}
+
 	void Obstacle01::Render(HDC hdc)
 	{
 		GameObject::Render(hdc);
@@ -53,6 +54,7 @@ namespace ya
 		TransparentBlt(hdc, pos.x, pos.y, mImage->GetWidth(), mImage->GetHeight()
 			, mImage->GetHdc(), 0, 0, mImage->GetWidth(), mImage->GetHeight(), RGB(170, 0, 0));
 	}
+
 	void Obstacle01::Release()
 	{
 		GameObject::Release();

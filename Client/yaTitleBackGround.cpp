@@ -10,10 +10,12 @@ namespace ya
 {
     TitleBackGround::TitleBackGround()
     {
+
     }
 
     TitleBackGround::~TitleBackGround()
     {
+
     }
 
     void TitleBackGround::Initialize()

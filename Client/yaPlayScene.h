@@ -9,6 +9,7 @@ namespace ya
 	class Pet00;
 	class Obstacle;
 	class Obstacle01;
+
 	class PlayScene : public Scene
 	{
 	public:
@@ -22,7 +23,6 @@ namespace ya
 
 		virtual void OnEnter() override;
 		virtual void OnExit() override;
-
 
 	private:
 		PlayBackGround* mBG;

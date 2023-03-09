@@ -11,14 +11,16 @@ namespace ya
 {
 	Character00::Character00()
 	{
+
 	}
 	Character00::~Character00()
 	{
+
 	}
 	void Character00::Initialize()
 	{
-		Transform* tr = GetComponent<Transform>();
-		tr->SetPos(Vector2(200.0f, 500.0f));
+		//Transform* tr = GetComponent<Transform>();
+		//tr->SetPos(Vector2(200.0f, 500.0f));
 		//tr->SetScale(Vector2(1.5f, 1.5f));
 
 		Image* mImage = Resources::Load<Image>(L"Char00", L"..\\Resources\\idle.bmp");
@@ -36,13 +38,22 @@ namespace ya
 		mAnimator->GetCompleteEvent(L"Slide") = std::bind(&Character00::SlideCompleteEvent, this);
 		//mAnimator->GetCompleteEvent(L"Jump") = std::bind(&Character00::JumpCompleteEvent, this);
 
+		Scene* scn = SceneManager::GetActiveScene();
 
-		mAnimator->Play(L"Run", true);
+		if (scn->GetName() == L"Main")
+		{
+			mAnimator->Play(L"idle", true);
+		}
+		
+		if (scn->GetName() == L"Play")
+		{
+			mAnimator->Play(L"Run", true);
 
-		Collider* collider = AddComponent<Collider>();
-		collider->SetCenter(Vector2(-50.0f, -100.0f));
+			Collider* collider = AddComponent<Collider>();
+			collider->SetCenter(Vector2(-50.0f, -100.0f));
 
-		mState = eChar00State::Run;
+			mState = eChar00State::Run;
+		}
 
 		GameObject::Initialize();
 	}
@@ -50,23 +61,27 @@ namespace ya
 	{
 		GameObject::Update();
 
-		switch (mState)
+		Scene* scn = SceneManager::GetActiveScene();
+		if (scn->GetName() == L"Play")
 		{
-		case ya::Character00::eChar00State::Run:
-			run();
-			break;
-		case ya::Character00::eChar00State::Jump:
-			jump();
-			break;
-		case ya::Character00::eChar00State::Slide:
-			slide();
-			break;
-		case ya::Character00::eChar00State::Death:
-			death();
-			break;
-		case ya::Character00::eChar00State::Idle:
-			idle();
-			break;
+			switch (mState)
+			{
+			case ya::Character00::eChar00State::Run:
+				run();
+				break;
+			case ya::Character00::eChar00State::Jump:
+				jump();
+				break;
+			case ya::Character00::eChar00State::Slide:
+				slide();
+				break;
+			case ya::Character00::eChar00State::Death:
+				death();
+				break;
+			case ya::Character00::eChar00State::Idle:
+				idle();
+				break;
+			}
 		}
 
 		//Transform* tr = GetComponent<Transform>();
@@ -113,10 +128,12 @@ namespace ya
 		//} 
 		// 이렇게 길이 조정 가능 2초뒤면 사라지도록(이 부분은 3월 8일 01:25 영상 참고 or Delete Object 깃 참조)
 	}
+
 	void Character00::Render(HDC hdc)
 	{
 		GameObject::Render(hdc);
 	}
+
 	void Character00::Release()
 	{
 		GameObject::Release();
@@ -224,13 +241,17 @@ namespace ya
 		//	mAnimator->Play(L"Run", true);
 		//}
 	}
+
 	void Character00::death()
 	{
+
 	}
+
 	void Character00::idle()
 	{
 		
 	}
+
 	void Character00::JumpCompleteEvent(/*const Cuphead* this*/)
 	{
 		Transform* tr = GetComponent<Transform>();

@@ -44,4 +44,12 @@ namespace ya
 
 		mDistance = mLookPosition - (mResolution / 2.0f);
 	}
+
+	void Camera::Clear()
+	{
+		mResolution.x = application.GetWidth();
+		mResolution.y = application.GetHeight();
+		mLookPosition = (mResolution / 2.0f);
+		mDistance = Vector2::Zero;
+	}
 }

@@ -9,10 +9,12 @@ namespace ya
 {
     SelectStageBackGround::SelectStageBackGround()
     {
+
     }
 
     SelectStageBackGround::~SelectStageBackGround()
     {
+
     }
 
     void SelectStageBackGround::Initialize()

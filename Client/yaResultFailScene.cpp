@@ -9,13 +9,18 @@ namespace ya
 	ResultFailScene::ResultFailScene()
 	{
 	}
+
 	ResultFailScene::~ResultFailScene()
 	{
 	}
+
 	void ResultFailScene::Initialize()
 	{
+		Scene::Initialize();
 
+		object::Instantiate<ResultFailBackGround>(eLayerType::BG);
 	}
+
 	void ResultFailScene::Update()
 	{
 		if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
@@ -23,19 +28,24 @@ namespace ya
 			SceneManager::LoadScene(eSceneType::Title);
 		}
 	}
+
 	void ResultFailScene::Render(HDC hdc)
 	{
 		Scene::Render(hdc);
 	}
+
 	void ResultFailScene::Release()
 	{
 		Scene::Release();
 	}
+
 	void ResultFailScene::OnEnter()
 	{
-		object::Instantiate<ResultFailBackGround>(eLayerType::BG);
+		
 	}
+
 	void ResultFailScene::OnExit()
 	{
+
 	}
 }

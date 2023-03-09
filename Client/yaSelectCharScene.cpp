@@ -8,14 +8,20 @@ namespace ya
 {
 	SelectCharScene::SelectCharScene()
 	{
+
 	}
 	SelectCharScene::~SelectCharScene()
 	{
-	}
-	void SelectCharScene::Initialize()
-	{
 
 	}
+
+	void SelectCharScene::Initialize()
+	{
+		Scene::Initialize();
+
+		object::Instantiate<SelectCharBackGround>(eLayerType::BG);
+	}
+
 	void SelectCharScene::Update()
 	{
 		if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
@@ -23,18 +29,22 @@ namespace ya
 			SceneManager::LoadScene(eSceneType::SelectStage);
 		}
 	}
+
 	void SelectCharScene::Render(HDC hdc)
 	{
 		Scene::Render(hdc);
 	}
+
 	void SelectCharScene::Release()
 	{
 		Scene::Release();
 	}
+
 	void SelectCharScene::OnEnter()
 	{
-		object::Instantiate<SelectCharBackGround>(eLayerType::BG);
+
 	}
+
 	void SelectCharScene::OnExit()
 	{
 	}

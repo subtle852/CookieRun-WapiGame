@@ -14,18 +14,21 @@ namespace ya
 {
 	MainScene::MainScene()
 	{
+
 	}
+
 	MainScene::~MainScene()
 	{
+
 	}
 
 	void MainScene::Initialize()
 	{
-		//mCh00 = object::Instantiate<Character00>(eLayerType::Player);
-		//mPet00 = object::Instantiate<Pet00>(Vector2(300.0f, 400.0f), eLayerType::Pet);
+		Scene::Initialize();
 
-		//Scene::Initialize();
-
+		mCh00 = object::Instantiate<Character00>(Vector2(800.0f, 620.0f), eLayerType::Player);
+		mPet00 = object::Instantiate<Pet00>(Vector2(900.0f, 520.0f), eLayerType::Pet);
+		object::Instantiate<MainBackGround>(eLayerType::BG);
 	}
 
 	void MainScene::Update()
@@ -39,24 +42,23 @@ namespace ya
 
 	}
 
-
 	void MainScene::Render(HDC hdc)
 	{
 		Scene::Render(hdc);
 	}
 
-
 	void MainScene::Release()
 	{
 		Scene::Release();
 	}
+
 	void MainScene::OnEnter()
 	{
 		object::Instantiate<MainBackGround>(eLayerType::BG);
 	}
+
 	void MainScene::OnExit()
 	{
-		//mSonic->SetPos(Vector2{ 0.0f, 0.0f }); (씬넘길때 원상복귀 시키는것(매스와 지금 문제가 이써안됨)
 
 	}
 }

@@ -11,15 +11,19 @@ namespace ya
 	{
 
 	}
+
 	PlayBackGround::~PlayBackGround()
 	{
+
 	}
+
 	void PlayBackGround::Initialize()
 	{
 		mImage = Resources::Load<Image>(L"PlayBG", L"..\\Resources\\stage00.bmp");
 
 		GameObject::Initialize();
 	}
+
 	void PlayBackGround::Update()
 	{
 		GameObject::Update();
@@ -31,6 +35,7 @@ namespace ya
 
 		tr->SetPos(pos);
 	}
+
 	void PlayBackGround::Render(HDC hdc)
 	{
 		GameObject::Render(hdc);
@@ -41,6 +46,7 @@ namespace ya
 		TransparentBlt(hdc, pos.x, pos.y, 3000, 1200
 			, mImage->GetHdc(), 0, 0, mImage->GetWidth(), mImage->GetHeight(), RGB(170, 0, 0));
 	}
+
 	void PlayBackGround::Release()
 	{
 		GameObject::Release();

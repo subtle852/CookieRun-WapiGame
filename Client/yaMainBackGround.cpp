@@ -13,17 +13,21 @@ namespace ya
 	}
 	MainBackGround::~MainBackGround()
 	{
+
 	}
+
 	void MainBackGround::Initialize()
 	{
 		mImage = Resources::Load<Image>(L"MainBG", L"..\\Resources\\main.bmp");
 
 		GameObject::Initialize();
 	}
+
 	void MainBackGround::Update()
 	{
 		GameObject::Update();
 	}
+
 	void MainBackGround::Render(HDC hdc)
 	{
 		GameObject::Render(hdc);
@@ -34,6 +38,7 @@ namespace ya
 		TransparentBlt(hdc, pos.x, pos.y, 1600, 900
 			, mImage->GetHdc(), 0, 0, mImage->GetWidth(), mImage->GetHeight(), RGB(170, 0, 0));
 	}
+
 	void MainBackGround::Release()
 	{
 		GameObject::Release();

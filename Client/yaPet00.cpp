@@ -10,10 +10,12 @@ namespace ya
 {
 	Pet00::Pet00()
 	{
+
 	}
 
 	Pet00::~Pet00()
 	{
+
 	}
 
 	void Pet00::Initialize()
@@ -37,20 +39,24 @@ namespace ya
 	{
 		GameObject::Update();
 
-		switch (mState)
+		Scene* scn = SceneManager::GetActiveScene();
+		if (scn->GetName() == L"Play")
 		{
-		case ya::Pet00::ePet00State::Run:
-			run();
-			break;
-		case ya::Pet00::ePet00State::Jump:
-			jump();
-			break;
-		case ya::Pet00::ePet00State::Slide:
-			slide();
-			break;
-		case ya::Pet00::ePet00State::Idle:
-			idle();
-			break;
+			switch (mState)
+			{
+			case ya::Pet00::ePet00State::Run:
+				run();
+				break;
+			case ya::Pet00::ePet00State::Jump:
+				jump();
+				break;
+			case ya::Pet00::ePet00State::Slide:
+				slide();
+				break;
+			case ya::Pet00::ePet00State::Idle:
+				idle();
+				break;
+			}
 		}
 	}
 
@@ -92,6 +98,7 @@ namespace ya
 		//}
 		tr->SetPos(pos);
 	}
+
 	void Pet00::jump()
 	{
 		Transform* tr = GetComponent<Transform>();
@@ -106,6 +113,7 @@ namespace ya
 
 		tr->SetPos(pos);
 	}
+
 	void Pet00::slide()
 	{
 		Transform* tr = GetComponent<Transform>();
@@ -120,6 +128,7 @@ namespace ya
 
 		tr->SetPos(pos);
 	}
+
 	void Pet00::idle()
 	{
 

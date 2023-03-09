@@ -208,6 +208,9 @@
     <ClInclude Include="yaResultSucBackGround.h">
       <Filter>Contents\Object\BackGround</Filter>
     </ClInclude>
+    <ClInclude Include="yaPortal.h">
+      <Filter>Contents\Obstacle</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="small.ico">
@@ -342,6 +345,9 @@
     </ClCompile>
     <ClCompile Include="yaResultSucBackGround.cpp">
       <Filter>Contents\Object\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="yaPortal.cpp">
+      <Filter>Contents\Obstacle</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

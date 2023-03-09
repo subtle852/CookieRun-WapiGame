@@ -1,5 +1,6 @@
 #include "yaSceneManager.h"
 #include "yaCollisionManager.h"
+#include "yaCamera.h"
 
 #include "yaTitleScene.h"
 #include "yaMainScene.h"
@@ -25,15 +26,24 @@ namespace ya
 		mScenes[(UINT)eSceneType::Play] = new PlayScene();
 		mScenes[(UINT)eSceneType::ResultS] = new ResultSucScene();
 		mScenes[(UINT)eSceneType::ResultF] = new ResultFailScene();
-		//mScenes[(UINT)eSceneType::Play]->SetName(L"PLAYER"); //Entity 활용법
 
-		mActiveScene = mScenes[(UINT)eSceneType::Title];
+		//mScenes[(UINT)eSceneType::Play]->SetName(L"PLAYER"); //Entity 활용법
+		mScenes[(UINT)eSceneType::Title]->SetName(L"Title");
+		mScenes[(UINT)eSceneType::Main]->SetName(L"Main");
+		mScenes[(UINT)eSceneType::SelectChar]->SetName(L"SelectChar");
+		mScenes[(UINT)eSceneType::SelectStage]->SetName(L"SelectStage");
+		mScenes[(UINT)eSceneType::Play]->SetName(L"Play");
+		mScenes[(UINT)eSceneType::ResultS]->SetName(L"ResultS");
+		mScenes[(UINT)eSceneType::ResultF]->SetName(L"ResultF");
+
 
 		for (Scene* scene : mScenes)
 		{
 			if (scene == nullptr) continue;
 			scene->Initialize();
 		}
+
+		mActiveScene = mScenes[(UINT)eSceneType::Title];
 	}
 
 	void SceneManager::Update()
@@ -44,6 +54,11 @@ namespace ya
 	void SceneManager::Render(HDC hdc)
 	{
 		mActiveScene->Render(hdc);
+	}
+
+	void SceneManager::Destroy()
+	{
+		mActiveScene->Destroy();
 	}
 
 	void SceneManager::Release()
@@ -58,6 +73,8 @@ namespace ya
 	}
 	void SceneManager::LoadScene(eSceneType type)
 	{
+		Camera::Clear();
+
 		// 현재 씬 나가면서
 		mActiveScene->OnExit();
 

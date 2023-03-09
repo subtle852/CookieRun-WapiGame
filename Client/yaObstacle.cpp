@@ -14,10 +14,14 @@ namespace ya
 {
 	Obstacle::Obstacle()
 	{
+
 	}
+
 	Obstacle::~Obstacle()
 	{
+
 	}
+
 	void Obstacle::Initialize()
 	{
 		//Transform* tr = GetComponent<Transform>();
@@ -36,6 +40,7 @@ namespace ya
 
 		GameObject::Initialize();
 	}
+
 	void Obstacle::Update()
 	{
 		Transform* tr = GetComponent<Transform>();
@@ -46,10 +51,12 @@ namespace ya
 
 		GameObject::Update();
 	}
+
 	void Obstacle::Render(HDC hdc)
 	{
 		GameObject::Render(hdc);
 	}
+
 	void Obstacle::Release()
 	{
 		GameObject::Release();

@@ -9,10 +9,12 @@ namespace ya
 {
     SelectCharBackGround::SelectCharBackGround()
     {
+
     }
 
     SelectCharBackGround::~SelectCharBackGround()
     {
+
     }
 
     void SelectCharBackGround::Initialize()

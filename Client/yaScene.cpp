@@ -1,5 +1,5 @@
 #include "yaScene.h"
-
+#include "yaSceneManager.h"
 
 
 namespace ya
@@ -20,6 +20,7 @@ namespace ya
 		//{
 		//	layer.Initialize();
 		//}
+		SceneManager::SetActiveScene(this);
 	}
 	void Scene::Update()
 	{

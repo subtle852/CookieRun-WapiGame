@@ -144,6 +144,7 @@
     <ClInclude Include="yaObstacle01.h" />
     <ClInclude Include="yaPet00.h" />
     <ClInclude Include="yaPlayBackGround.h" />
+    <ClInclude Include="yaPortal.h" />
     <ClInclude Include="yaResultFailBackGround.h" />
     <ClInclude Include="yaResultSucBackGround.h" />
     <ClInclude Include="yaResultSucScene.h" />
@@ -187,6 +188,7 @@
     <ClCompile Include="yaObstacle01.cpp" />
     <ClCompile Include="yaPet00.cpp" />
     <ClCompile Include="yaPlayBackGround.cpp" />
+    <ClCompile Include="yaPortal.cpp" />
     <ClCompile Include="yaResultFailBackGround.cpp" />
     <ClCompile Include="yaResultSucBackGround.cpp" />
     <ClCompile Include="yaResultSucScene.cpp" />

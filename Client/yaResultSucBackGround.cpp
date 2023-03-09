@@ -9,10 +9,12 @@ namespace ya
 {
     ResultSucBackGround::ResultSucBackGround()
     {
+
     }
 
     ResultSucBackGround::~ResultSucBackGround()
     {
+
     }
 
     void ResultSucBackGround::Initialize()

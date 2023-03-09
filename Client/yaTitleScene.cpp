@@ -9,14 +9,20 @@ namespace ya
 {
 	TitleScene::TitleScene()
 	{
+
 	}
 	TitleScene::~TitleScene()
 	{
+
 	}
+
 	void TitleScene::Initialize()
 	{
+		Scene::Initialize();
+
 		object::Instantiate<TitleBackGround>(eLayerType::BG);
 	}
+
 	void TitleScene::Update()
 	{
 		if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
@@ -25,19 +31,24 @@ namespace ya
 		}
 		Scene::Update();
 	}
+
 	void TitleScene::Render(HDC hdc)
 	{
 		Scene::Render(hdc);
 	}
+
 	void TitleScene::Release()
 	{
 		Scene::Release();
 	}
+
 	void TitleScene::OnEnter()
 	{
 
 	}
+
 	void TitleScene::OnExit()
 	{
+
 	}
 }

@@ -9,10 +9,12 @@ namespace ya
 {
     ResultFailBackGround::ResultFailBackGround()
     {
+
     }
 
     ResultFailBackGround::~ResultFailBackGround()
     {
+
     }
 
     void ResultFailBackGround::Initialize()

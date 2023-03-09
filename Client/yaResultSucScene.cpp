@@ -9,13 +9,18 @@ namespace ya
 	ResultSucScene::ResultSucScene()
 	{
 	}
+
 	ResultSucScene::~ResultSucScene()
 	{
 	}
+
 	void ResultSucScene::Initialize()
 	{
+		Scene::Initialize();
 
+		object::Instantiate<ResultSucBackGround>(eLayerType::BG);
 	}
+
 	void ResultSucScene::Update()
 	{
 		if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
@@ -23,19 +28,24 @@ namespace ya
 			SceneManager::LoadScene(eSceneType::ResultF);
 		}
 	}
+
 	void ResultSucScene::Render(HDC hdc)
 	{
 		Scene::Render(hdc);
 	}
+
 	void ResultSucScene::Release()
 	{
 		Scene::Release();
 	}
+
 	void ResultSucScene::OnEnter()
 	{
-		object::Instantiate<ResultSucBackGround>(eLayerType::BG);
+
 	}
+
 	void ResultSucScene::OnExit()
 	{
+
 	}
 }
