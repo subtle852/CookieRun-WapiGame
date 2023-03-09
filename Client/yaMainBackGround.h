@@ -4,6 +4,7 @@
 
 namespace ya
 {
+	class Animator;
 	class MainBackGround : public GameObject
 	{
 	public:

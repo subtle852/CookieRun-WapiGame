@@ -4,6 +4,7 @@
 
 namespace ya
 {
+	class TitleBackGround;
 	class TitleScene : public Scene
 	{
 	public:
@@ -20,6 +21,5 @@ namespace ya
 
 
 	private:
-		Image* mScenImage;
 	};
 }

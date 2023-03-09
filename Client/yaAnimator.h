@@ -20,7 +20,6 @@ namespace ya
 					mEvent();
 			}
 
-			//void(*name)(int, int);
 			std::function<void()> mEvent;
 		};
 
@@ -29,9 +28,6 @@ namespace ya
 			Event mStartEvent;
 			Event mCompleteEvent;
 			Event mEndEvent;
-
-			//mStartEvent();
-			//mStartEvent = test;
 		};
 
 		Animator();
@@ -59,10 +55,12 @@ namespace ya
 		std::function<void()>& GetStartEvent(const std::wstring& name);
 		std::function<void()>& GetCompleteEvent(const std::wstring& name);
 		std::function<void()>& GetEndEvent(const std::wstring& name);
+		bool IsComplte() { return mActiveAnimation->IsComplete(); }
 
 	private:
 		std::map<std::wstring, Animation*> mAnimations;
 		std::map<std::wstring, Events*> mEvents;
+
 		Animation* mActiveAnimation;
 		Image* mSpriteSheet;
 		bool mbLoop;

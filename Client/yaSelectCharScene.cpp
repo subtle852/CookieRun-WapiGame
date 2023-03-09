@@ -2,7 +2,7 @@
 #include "yaSelectCharBackGround.h"
 #include "yaInput.h"
 #include "yaSceneManager.h"
-
+#include "yaObject.h"
 
 namespace ya
 {
@@ -14,11 +14,6 @@ namespace ya
 	}
 	void SelectCharScene::Initialize()
 	{
-
-		SelectCharBackGround* title_bg = new SelectCharBackGround();
-		AddGameObject(title_bg, eLayerType::BG);
-
-		Scene::Initialize();
 
 	}
 	void SelectCharScene::Update()
@@ -38,6 +33,7 @@ namespace ya
 	}
 	void SelectCharScene::OnEnter()
 	{
+		object::Instantiate<SelectCharBackGround>(eLayerType::BG);
 	}
 	void SelectCharScene::OnExit()
 	{

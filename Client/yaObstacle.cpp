@@ -20,8 +20,9 @@ namespace ya
 	}
 	void Obstacle::Initialize()
 	{
-		Transform* tr = GetComponent<Transform>();
-		tr->SetPos(Vector2(700.0f, 500.0f));
+		//Transform* tr = GetComponent<Transform>();
+		//tr->SetPos(Vector2(1200.0f, 500.0f));
+		
 		//tr->SetScale(Vector2(1.5f, 1.5f));
 
 		mAnimator = AddComponent<Animator>();
@@ -30,12 +31,19 @@ namespace ya
 		mAnimator->Play(L"land1jump", true);
 
 		Collider* collider = AddComponent<Collider>();
-		collider->SetCenter(Vector2(-60.0f, -80.0f));
+		collider->SetSize(Vector2(120.0f, 220.0f));
+		collider->SetCenter(Vector2(-60.0f, -220.0f));
 
 		GameObject::Initialize();
 	}
 	void Obstacle::Update()
 	{
+		Transform* tr = GetComponent<Transform>();
+		Vector2 pos = tr->GetPos();
+		pos.x -= 10.0f;
+		
+		tr->SetPos(pos);
+
 		GameObject::Update();
 	}
 	void Obstacle::Render(HDC hdc)

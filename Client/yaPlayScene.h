@@ -4,7 +4,11 @@
 
 namespace ya
 {
+	class PlayBackGround;
 	class Character00;
+	class Pet00;
+	class Obstacle;
+	class Obstacle01;
 	class PlayScene : public Scene
 	{
 	public:
@@ -21,6 +25,11 @@ namespace ya
 
 
 	private:
-		Character00* mCharacter00;
+		PlayBackGround* mBG;
+		Character00* mCh00;
+		Pet00* mPet00;
+		Obstacle* mOb00;
+		Obstacle* mOb01;
+		Obstacle01* mOb02;
 	};
 }

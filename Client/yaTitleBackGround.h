@@ -4,6 +4,7 @@
 
 namespace ya
 {
+	class Animator;
 	class TitleBackGround : public GameObject
 	{
 	public:
@@ -16,6 +17,6 @@ namespace ya
 		virtual void Release() override;
 
 	private:
-		Image* mImage;
+		Animator* mAnimator;
 	};
 }

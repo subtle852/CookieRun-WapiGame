@@ -56,6 +56,18 @@
     <Filter Include="Engine\Component\Collider">
       <UniqueIdentifier>{0ffcc437-f68e-43f1-abd2-039dbd0df9cd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Obstacle">
+      <UniqueIdentifier>{3786121f-d229-4dda-b1da-1e0538e931df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Pet">
+      <UniqueIdentifier>{42e7be36-649a-46cb-977d-47aa9443bb3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\Camera">
+      <UniqueIdentifier>{5fdd6e28-9603-4d66-aae0-e337add26bed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\Result">
+      <UniqueIdentifier>{098d271d-257a-4901-a372-8e74cdf8d2a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -124,13 +136,7 @@
     <ClInclude Include="yaTransform.h">
       <Filter>Engine\Component</Filter>
     </ClInclude>
-    <ClInclude Include="yaTutorialScene.h">
-      <Filter>Contents\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="yaMainScene.h">
-      <Filter>Contents\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="yaResultScene.h">
       <Filter>Contents\Scene</Filter>
     </ClInclude>
     <ClInclude Include="yaPlayBackGround.h">
@@ -166,14 +172,41 @@
     <ClInclude Include="yaInput.h">
       <Filter>Engine\Input</Filter>
     </ClInclude>
-    <ClInclude Include="yaObstacle.h">
-      <Filter>Contents\Player</Filter>
-    </ClInclude>
     <ClInclude Include="yaCollider.h">
       <Filter>Engine\Component\Collider</Filter>
     </ClInclude>
     <ClInclude Include="yaCollisionManager.h">
       <Filter>Engine\Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="yaObstacle.h">
+      <Filter>Contents\Obstacle</Filter>
+    </ClInclude>
+    <ClInclude Include="yaPet00.h">
+      <Filter>Contents\Pet</Filter>
+    </ClInclude>
+    <ClInclude Include="yaObstacle01.h">
+      <Filter>Contents\Obstacle</Filter>
+    </ClInclude>
+    <ClInclude Include="yaCamera.h">
+      <Filter>Engine\Component\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="yaObject.h">
+      <Filter>Engine\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="yaSelectPetScene.h">
+      <Filter>Contents\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="yaResultFailScene.h">
+      <Filter>Contents\Scene\Result</Filter>
+    </ClInclude>
+    <ClInclude Include="yaResultSucScene.h">
+      <Filter>Contents\Scene\Result</Filter>
+    </ClInclude>
+    <ClInclude Include="yaResultFailBackGround.h">
+      <Filter>Contents\Object\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="yaResultSucBackGround.h">
+      <Filter>Contents\Object\BackGround</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -244,13 +277,7 @@
     <ClCompile Include="yaTransform.cpp">
       <Filter>Engine\Component</Filter>
     </ClCompile>
-    <ClCompile Include="yaTutorialScene.cpp">
-      <Filter>Contents\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="yaMainScene.cpp">
-      <Filter>Contents\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="yaResultScene.cpp">
       <Filter>Contents\Scene</Filter>
     </ClCompile>
     <ClCompile Include="yaPlayBackGround.cpp">
@@ -280,9 +307,6 @@
     <ClCompile Include="yaImage.cpp">
       <Filter>Engine\Resource</Filter>
     </ClCompile>
-    <ClCompile Include="yaObstacle.cpp">
-      <Filter>Contents\Player</Filter>
-    </ClCompile>
     <ClCompile Include="yaMainBackGround.cpp">
       <Filter>Contents\Object\BackGround</Filter>
     </ClCompile>
@@ -291,6 +315,33 @@
     </ClCompile>
     <ClCompile Include="yaCollisionManager.cpp">
       <Filter>Engine\Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="yaObstacle.cpp">
+      <Filter>Contents\Obstacle</Filter>
+    </ClCompile>
+    <ClCompile Include="yaPet00.cpp">
+      <Filter>Contents\Pet</Filter>
+    </ClCompile>
+    <ClCompile Include="yaObstacle01.cpp">
+      <Filter>Contents\Obstacle</Filter>
+    </ClCompile>
+    <ClCompile Include="yaCamera.cpp">
+      <Filter>Engine\Component\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSelectPetScene.cpp">
+      <Filter>Contents\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="yaResultFailScene.cpp">
+      <Filter>Contents\Scene\Result</Filter>
+    </ClCompile>
+    <ClCompile Include="yaResultSucScene.cpp">
+      <Filter>Contents\Scene\Result</Filter>
+    </ClCompile>
+    <ClCompile Include="yaResultFailBackGround.cpp">
+      <Filter>Contents\Object\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="yaResultSucBackGround.cpp">
+      <Filter>Contents\Object\BackGround</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -2,7 +2,8 @@
 #include "yaSelectStageBackGround.h"
 #include "yaInput.h"
 #include "yaSceneManager.h"
-
+#include "yaTransform.h"
+#include "yaObject.h"
 
 namespace ya
 {
@@ -14,12 +15,7 @@ namespace ya
 	}
 	void SelectStageScene::Initialize()
 	{
-
-		SelectStageBackGround* title_bg = new SelectStageBackGround();
-		AddGameObject(title_bg, eLayerType::BG);
-
-		Scene::Initialize();
-
+		
 	}
 	void SelectStageScene::Update()
 	{
@@ -38,6 +34,7 @@ namespace ya
 	}
 	void SelectStageScene::OnEnter()
 	{
+		object::Instantiate<SelectStageBackGround>(eLayerType::BG);
 	}
 	void SelectStageScene::OnExit()
 	{

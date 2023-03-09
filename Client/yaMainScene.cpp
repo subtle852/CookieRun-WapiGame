@@ -1,9 +1,13 @@
 #include "yaMainScene.h"
 #include "yaCharacter00.h"
+#include "yaPet00.h"
 #include "yaMainBackGround.h"
 #include "yaInput.h"
 #include "yaSceneManager.h"
-
+#include "yaCollisionManager.h"
+#include "yaTransform.h"
+#include "yaCamera.h"
+#include "yaObject.h"
 
 
 namespace ya
@@ -17,15 +21,10 @@ namespace ya
 
 	void MainScene::Initialize()
 	{
+		//mCh00 = object::Instantiate<Character00>(eLayerType::Player);
+		//mPet00 = object::Instantiate<Pet00>(Vector2(300.0f, 400.0f), eLayerType::Pet);
 
-		mCharacter00 = new Character00();
-		MainBackGround* bg = new MainBackGround();
-		////cuphead->SetPos(Vector2(0.0f, 0.0f));
-		/*mSonic->SetName(L"Player");*/
-		AddGameObject(mCharacter00, eLayerType::Player);
-		AddGameObject(bg, eLayerType::BG);
-
-		Scene::Initialize();
+		//Scene::Initialize();
 
 	}
 
@@ -53,6 +52,7 @@ namespace ya
 	}
 	void MainScene::OnEnter()
 	{
+		object::Instantiate<MainBackGround>(eLayerType::BG);
 	}
 	void MainScene::OnExit()
 	{

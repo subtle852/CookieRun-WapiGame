@@ -3,6 +3,7 @@
 #include "yaTime.h"
 #include "yaInput.h"
 #include "yaCollisionManager.h"
+#include "yaCamera.h"
 
 namespace ya
 {
@@ -14,42 +15,40 @@ namespace ya
 
 	Application::~Application()
 	{
+		//SceneManager::Release();
+		//Time::Release();
 	}
 
 	void Application::Initialize(HWND hWnd)
 	{
 		mHwnd = hWnd;
-		mHdc = GetDC(hWnd);// 핸들만 받아와서 GetDc를 통해 HDC 받아올 수 있음
+		mHdc = GetDC(hWnd);
+		mWidth = 1600;
+		mHeight = 900;
 
-		{
-			mWidth = 1600;
-			mHeight = 900;
+		//비트맵 해상도를 설정하기 위한 실제 윈도우 크기를 계산해준다.
+		RECT rect = { 0, 0, mWidth , mHeight };
+		AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
 
-			// 비트맵 해상도를 설정하기 위한 실제 윈도우 크기를 알아서 계산해줌
-			RECT rect = { 0,0, mWidth, mHeight };
-			AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
+		// 윈도우 크기 변경및 출력 설정
+		SetWindowPos(mHwnd
+			, nullptr, 100, 50
+			, rect.right - rect.left
+			, rect.bottom - rect.top
+			, 0);
+		ShowWindow(hWnd, true);
 
-			// 윈도우 크기 변경 및 출력 설정
-			SetWindowPos(mHwnd
-				, nullptr
-				, 100, 50
-				, rect.right - rect.left
-				, rect.bottom - rect.top
-				, 0);
-			ShowWindow(hWnd, true);
-		}
+		mBackBuffer = CreateCompatibleBitmap(mHdc, mWidth, mHeight);
+		mBackHDC = CreateCompatibleDC(mHdc);
 
-		{
-			mBackBuffer = CreateCompatibleBitmap(mHdc, mWidth, mHeight);
-			mBackHDC = CreateCompatibleDC(mHdc);
-			HBITMAP defaultBitmap = (HBITMAP)SelectObject(mBackHDC, mBackBuffer);
-			DeleteObject(defaultBitmap);// mBackBuffer로 바뀌기 전의 하얀 화면을 defalutBitmap으로 뱉어주고 삭제해준 것
-		}
+		HBITMAP defaultBitmap
+			= (HBITMAP)SelectObject(mBackHDC, mBackBuffer);
+		DeleteObject(defaultBitmap);
 
 		Time::Initialize();
 		Input::Initialize();
 		SceneManager::Initialize();
-		CollisionManager::Update();
+		Camera::Initiailize();
 	}
 
 	void Application::Run()
@@ -62,55 +61,30 @@ namespace ya
 	{
 		Time::Update();
 		Input::Update();
+		Camera::Update();
+
 		SceneManager::Update();
-		//if (GetAsyncKeyState(VK_LEFT) & 0x8000)
-		//{
-		//	mPos.x -= 0.01f;
-		//}
-
-		//if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
-		//{
-		//	mPos.x += 0.01f;
-		//}
-
-		//if (GetAsyncKeyState(VK_UP) & 0x8000)
-		//{
-		//	mPos.y -= 0.01f;
-		//}
-
-		//if (GetAsyncKeyState(VK_DOWN) & 0x8000)
-		//{
-		//	mPos.y += 0.01f;
-		//}
+		CollisionManager::Update();
 	}
 
 	void Application::Render()
 	{
-		Rectangle(mBackHDC, -1, -1, 1602, 902);// Reder 해준 것 지워주기
-		// 그런데 해상도가 창 크기의 완전 상단부터, 완전 왼쪽부터 측정이 된 것이라 잉여부분이 남음
-		// 그렇기에 Initialize에서 mWidth, mHeight를 정한 것
+		// clear
+		clear();
 
 		Time::Render(mBackHDC);
 		Input::Render(mBackHDC);
 		SceneManager::Render(mBackHDC);
 
-		BitBlt(mHdc, 0, 0, mWidth, mHeight, mBackHDC, 0, 0, SRCCOPY);// 백버퍼에 싹다 그리고 지우기 때문에 백버퍼에 있는 그림을 원본버퍼에 복사해줘야한다
-
-		//// hdc자리에 변수 mHdc 넣었고
-		//// 좌표나 크기도 Vector 구조체 변수로 넣음
-		//// stock 오브젝트
-		//HBRUSH brush = CreateSolidBrush(RGB(0, 0, 0));
-		//HBRUSH oldBrush = (HBRUSH)SelectObject(mHdc, brush); // SelectObject는 바꾸기 직전의 상태를 뱉어준다
-		////Rectangle(mHdc, -1, -1, 1601, 901);
-
-		//HPEN pen = CreatePen(PS_SOLID, 2, RGB(255, 0, 255));
-		//HPEN oldPen = (HPEN)SelectObject(mHdc, pen);
-
-		//Rectangle(mHdc, mPos.x, mPos.y, mPos.x + 100, mPos.y + 100);
-
-		//SelectObject(mHdc, oldPen);
-		//DeleteObject(pen);
-		//SelectObject(mHdc, oldBrush);
-		//DeleteObject(brush);
+		// 백버퍼에 있는 그림을 원본버퍼에 그려줘야한다.
+		BitBlt(mHdc, 0, 0, mWidth, mHeight, mBackHDC, 0, 0, SRCCOPY);
+	}
+	void Application::clear()
+	{
+		HBRUSH grayBrush = CreateSolidBrush(RGB(121, 121, 121));
+		HBRUSH oldBrush = (HBRUSH)SelectObject(mBackHDC, grayBrush);
+		Rectangle(mBackHDC, -1, -1, 1602, 902);
+		SelectObject(mBackHDC, oldBrush);
+		DeleteObject(grayBrush);
 	}
 }

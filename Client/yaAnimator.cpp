@@ -18,7 +18,6 @@ namespace ya
 			delete animation.second;
 			animation.second = nullptr;
 		}
-
 		for (auto events : mEvents)
 		{
 			delete events.second;
@@ -56,7 +55,6 @@ namespace ya
 	void Animator::Release()
 	{
 	}
-
 	void Animator::CreateAnimation(const std::wstring& name
 		, Image* sheet, Vector2 leftTop
 		, UINT coulmn, UINT row, UINT spriteLength
@@ -73,7 +71,6 @@ namespace ya
 		animation->SetAnimator(this);
 
 		mAnimations.insert(std::make_pair(name, animation));
-
 		Events* event = new Events();
 		mEvents.insert(std::make_pair(name, event));
 	}
@@ -83,7 +80,6 @@ namespace ya
 		UINT width = 0;
 		UINT height = 0;
 		UINT fileCount = 0;
-
 
 		std::filesystem::path fs(path);
 		std::vector<Image*> images = {};
@@ -99,7 +95,6 @@ namespace ya
 			Image* image = Resources::Load<Image>(fileName, fullName);
 			images.push_back(image);
 
-			//width와 height에 최대값
 			if (width < image->GetWidth())
 			{
 				width = image->GetWidth();
@@ -115,6 +110,7 @@ namespace ya
 		key += fs.filename();
 		mSpriteSheet = Image::Create(key, width * fileCount, height);
 
+		//
 		int index = 0;
 		for (Image* image : images)
 		{
@@ -126,13 +122,13 @@ namespace ya
 				, 0 + centerY
 				, image->GetWidth(), image->GetHeight()
 				, image->GetHdc(), 0, 0, SRCCOPY);
-			
+
 			index++;
 		}
 
 		CreateAnimation(key, mSpriteSheet, Vector2::Zero, index, 1, index, offset, duration);
-
 	}
+
 	Animation* Animator::FindAnimation(const std::wstring& name)
 	{
 		std::map<std::wstring, Animation*>::iterator iter
@@ -143,6 +139,7 @@ namespace ya
 
 		return iter->second;
 	}
+
 	void Animator::Play(const std::wstring& name, bool loop)
 	{
 		if (mActiveAnimation != nullptr)
@@ -157,7 +154,6 @@ namespace ya
 		mActiveAnimation = FindAnimation(name);
 		mActiveAnimation->Reset();
 		mbLoop = loop;
-
 
 		Animator::Events* events
 			= FindEvents(mActiveAnimation->GetName());
@@ -175,8 +171,6 @@ namespace ya
 			return nullptr;
 
 		return iter->second;
-
-		return nullptr;
 	}
 	std::function<void()>& Animator::GetStartEvent(const std::wstring& name)
 	{

@@ -1,10 +1,15 @@
 #include "yaPlayScene.h"
 #include "yaCharacter00.h"
+#include "yaPet00.h"
 #include "yaPlayBackGround.h"
 #include "yaInput.h"
 #include "yaSceneManager.h"
 #include "yaObstacle.h"
+#include "yaObstacle01.h"
 #include "yaCollisionManager.h"
+#include "yaTransform.h"
+#include "yaCamera.h"
+#include "yaObject.h"
 
 namespace ya
 {
@@ -17,21 +22,19 @@ namespace ya
 
 	void PlayScene::Initialize()
 	{
+		////mCh00 =
+		//object::Instantiate<Character00>(eLayerType::Player);
 
-		mCharacter00 = new Character00();
-		AddGameObject(mCharacter00, eLayerType::Player);
-		Obstacle* obstacle = new Obstacle();
-		AddGameObject(obstacle, eLayerType::Obstacle);
+		////Camera::SetTarget(mCh00);
 
+		//object::Instantiate<Pet00>(Vector2(300.0f, 400.0f), eLayerType::Pet);
+		//object::Instantiate<Obstacle>(Vector2(1200.0f, 500.0f), eLayerType::Obstacle);
+		//object::Instantiate<Obstacle>(Vector2(1800.0f, 500.0f), eLayerType::Obstacle);
+		//object::Instantiate<Obstacle01>(Vector2(2400.0f, -50.0f), eLayerType::Obstacle);
 
-		PlayBackGround* bg = new PlayBackGround();
-		////cuphead->SetPos(Vector2(0.0f, 0.0f));
-		/*mSonic->SetName(L"Player");*/
-		AddGameObject(bg, eLayerType::BG);
+		//object::Instantiate<PlayBackGround>(eLayerType::BG);
 
-		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Obstacle, true);
-
-		Scene::Initialize();
+		//Scene::Initialize();
 
 	}
 
@@ -39,7 +42,7 @@ namespace ya
 	{
 		if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
 		{
-			SceneManager::LoadScene(eSceneType::Title);
+			SceneManager::LoadScene(eSceneType::ResultS);
 		}
 
 		Scene::Update();
@@ -59,10 +62,24 @@ namespace ya
 	}
 	void PlayScene::OnEnter()
 	{
+		mBG = object::Instantiate<PlayBackGround>( eLayerType::BG);
+		mCh00 = object::Instantiate<Character00>(eLayerType::Player);
+		mPet00 = object::Instantiate<Pet00>(Vector2(300.0f, 400.0f), eLayerType::Pet);
+		mOb00 = object::Instantiate<Obstacle>(Vector2(1200.0f, 500.0f), eLayerType::Obstacle);
+		mOb01 = object::Instantiate<Obstacle>(Vector2(1800.0f, 500.0f), eLayerType::Obstacle);
+		mOb02 =object::Instantiate<Obstacle01>(Vector2(2400.0f, -50.0f), eLayerType::Obstacle);
+
+		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Obstacle, true);
 	}
 	void PlayScene::OnExit()
 	{
-		//mSonic->SetPos(Vector2{ 0.0f, 0.0f }); (씬넘길때 원상복귀 시키는것(매스와 지금 문제가 이써안됨)
+		ya::object::Destory(mBG);
+		ya::object::Destory(mCh00);
+		ya::object::Destory(mPet00);
+		ya::object::Destory(mOb00);
+		ya::object::Destory(mOb01);
+		ya::object::Destory(mOb02);
+		//mCuphead->SetPos(Vector2{ 0.0f, 0.0f }); 씬넘길때 원상복귀 시키는것
 
 	}
 }

@@ -23,6 +23,13 @@ namespace ya
 	void PlayBackGround::Update()
 	{
 		GameObject::Update();
+
+		Transform* tr = GetComponent<Transform>();
+		Vector2 pos = tr->GetPos();
+
+		pos.x -= 100.0f * Time::DeltaTime();
+
+		tr->SetPos(pos);
 	}
 	void PlayBackGround::Render(HDC hdc)
 	{
@@ -31,7 +38,7 @@ namespace ya
 		Transform* tr = GetComponent<Transform>();
 		Vector2 pos = tr->GetPos();
 		//BitBlt(hdc, pos.x, pos.y, mImage->GetWidth(), mImage->GetHeight(), mImage->GetHdc(), 0, 0, SRCCOPY);
-		TransparentBlt(hdc, pos.x, pos.y, 500, 500
+		TransparentBlt(hdc, pos.x, pos.y, 3000, 1200
 			, mImage->GetHdc(), 0, 0, mImage->GetWidth(), mImage->GetHeight(), RGB(170, 0, 0));
 	}
 	void PlayBackGround::Release()

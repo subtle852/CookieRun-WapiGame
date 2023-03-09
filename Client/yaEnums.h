@@ -8,7 +8,8 @@ enum class eSceneType
 	//PetSelect,
 	SelectStage,
 	Play, //Stage00,
-	Result,
+	ResultS,
+	ResultF,
 	Max,
 };
 
@@ -18,6 +19,7 @@ enum class eLayerType // layer 그리는 순서
 	Obstacle,
 	Item,
 	Player,
+	Pet,
 	Effect,
 	UI,
 	End = 16,

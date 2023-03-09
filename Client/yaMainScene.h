@@ -5,6 +5,7 @@
 namespace ya
 {
 	class Character00;
+	class Pet00;
 	class MainScene : public Scene
 	{
 	public:
@@ -21,6 +22,7 @@ namespace ya
 
 
 	private:
-		Character00* mCharacter00;
+		Character00* mCh00;
+		Pet00* mPet00;
 	};
 }

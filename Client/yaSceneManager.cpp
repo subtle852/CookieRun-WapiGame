@@ -1,10 +1,13 @@
 #include "yaSceneManager.h"
+#include "yaCollisionManager.h"
 
 #include "yaTitleScene.h"
 #include "yaMainScene.h"
 #include "yaSelectCharScene.h"
 #include "yaSelectStageScene.h"
 #include "yaPlayScene.h"
+#include "yaResultSucScene.h"
+#include "yaResultFailScene.h"
 
 namespace ya
 {
@@ -20,9 +23,11 @@ namespace ya
 		mScenes[(UINT)eSceneType::SelectChar] = new SelectCharScene();
 		mScenes[(UINT)eSceneType::SelectStage] = new SelectStageScene();
 		mScenes[(UINT)eSceneType::Play] = new PlayScene();
+		mScenes[(UINT)eSceneType::ResultS] = new ResultSucScene();
+		mScenes[(UINT)eSceneType::ResultF] = new ResultFailScene();
 		//mScenes[(UINT)eSceneType::Play]->SetName(L"PLAYER"); //Entity 활용법
 
-		mActiveScene = mScenes[(UINT)eSceneType::Play];
+		mActiveScene = mScenes[(UINT)eSceneType::Title];
 
 		for (Scene* scene : mScenes)
 		{
@@ -55,6 +60,8 @@ namespace ya
 	{
 		// 현재 씬 나가면서
 		mActiveScene->OnExit();
+
+		CollisionManager::Clear();
 
 		// 새로운 씬 들어오면서
 		mActiveScene = mScenes[(UINT)type];

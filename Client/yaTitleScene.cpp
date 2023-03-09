@@ -2,7 +2,8 @@
 #include "yaTitleBackGround.h"
 #include "yaInput.h"
 #include "yaSceneManager.h"
-
+#include "yaTransform.h"
+#include "yaObject.h"
 
 namespace ya
 {
@@ -14,12 +15,7 @@ namespace ya
 	}
 	void TitleScene::Initialize()
 	{
-
-		TitleBackGround* title_bg = new TitleBackGround();
-		AddGameObject(title_bg, eLayerType::BG);
-
-		Scene::Initialize();
-
+		object::Instantiate<TitleBackGround>(eLayerType::BG);
 	}
 	void TitleScene::Update()
 	{
@@ -27,6 +23,7 @@ namespace ya
 		{
 			SceneManager::LoadScene(eSceneType::Main);
 		}
+		Scene::Update();
 	}
 	void TitleScene::Render(HDC hdc)
 	{
@@ -38,6 +35,7 @@ namespace ya
 	}
 	void TitleScene::OnEnter()
 	{
+
 	}
 	void TitleScene::OnExit()
 	{
