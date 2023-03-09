@@ -68,6 +68,9 @@
     <Filter Include="Contents\Scene\Result">
       <UniqueIdentifier>{098d271d-257a-4901-a372-8e74cdf8d2a3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\UI">
+      <UniqueIdentifier>{a4376017-6ffe-4638-9640-4e0dec790919}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -211,6 +214,14 @@
     <ClInclude Include="yaPortal.h">
       <Filter>Contents\Obstacle</Filter>
     </ClInclude>
+    <ClInclude Include="yaPlayButton.h">
+      <Filter>Contents\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="yaDiaUI.h" />
+    <ClInclude Include="yaSilverUI.h" />
+    <ClInclude Include="yaCookiesUI.h" />
+    <ClInclude Include="yaGachaUI.h" />
+    <ClInclude Include="yaStoreUI.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="small.ico">
@@ -349,5 +360,13 @@
     <ClCompile Include="yaPortal.cpp">
       <Filter>Contents\Obstacle</Filter>
     </ClCompile>
+    <ClCompile Include="yaPlayButton.cpp">
+      <Filter>Contents\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="yaDiaUI.cpp" />
+    <ClCompile Include="yaSilverUI.cpp" />
+    <ClCompile Include="yaCookiesUI.cpp" />
+    <ClCompile Include="yaGachaUI.cpp" />
+    <ClCompile Include="yaStoreUI.cpp" />
   </ItemGroup>
 </Project>
