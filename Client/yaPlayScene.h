@@ -9,6 +9,7 @@ namespace ya
 	class Pet00;
 	class Obstacle;
 	class Obstacle01;
+	class JellyCoin;
 
 	class PlayScene : public Scene
 	{
@@ -28,8 +29,11 @@ namespace ya
 		PlayBackGround* mBG;
 		Character00* mCh00;
 		Pet00* mPet00;
-		Obstacle* mOb00;
 		Obstacle* mOb01;
 		Obstacle01* mOb02;
+		Obstacle* mOb03;
+		Obstacle01* mOb04;
+		JellyCoin* mJcoin01;
+		JellyCoin* mJcoin02;
 	};
 }

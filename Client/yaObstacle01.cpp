@@ -27,8 +27,9 @@ namespace ya
 		mImage = Resources::Load<Image>(L"Land1Slide01", L"..\\Resources\\land1\\land1_sl_0001.bmp");
 
 		Collider* collider = AddComponent<Collider>();
-		collider->SetSize(Vector2(120.0f, 200.0f));
-		collider->SetCenter(Vector2(20.0f, 300.0f));
+		collider->SetSize(Vector2(120.0f, 220.0f));
+		//collider->SetCenter(Vector2(0.0f, 250.0f));
+		collider->SetCenter(Vector2(0.0f, 300.0f));
 
 		GameObject::Initialize();
 	}
@@ -37,7 +38,7 @@ namespace ya
 	{
 		Transform* tr = GetComponent<Transform>();
 		Vector2 pos = tr->GetPos();
-		pos.x -= 10.0f;
+		pos.x -= 200.0f * Time::DeltaTime();
 
 		tr->SetPos(pos);
 

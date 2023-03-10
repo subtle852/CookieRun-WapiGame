@@ -76,13 +76,13 @@ namespace ya
 		Vector2 pos = tr->GetPos();
 		if (Input::GetKeyDown(eKeyCode::W))
 		{
-			pos.y -= 300.0f; //* Time::DeltaTime();
+			pos.y -= 5000.0f * Time::DeltaTime();
 			mState = ePet00State::Jump;
 			//mAnimator->Play(L"Jump", true);
 		}
 		if (Input::GetKeyDown(eKeyCode::S))
 		{
-			pos.y += 50.0f;
+			pos.y += 100.0f * Time::DeltaTime();
 			mState = ePet00State::Slide;
 			//mAnimator->Play(L"Slide", true);
 		}
@@ -106,7 +106,7 @@ namespace ya
 
 		if (Input::GetKeyUp(eKeyCode::W))
 		{
-			pos.y += 300.0f; //* Time::DeltaTime();
+			pos.y += 5000.0f * Time::DeltaTime();
 			mState = ePet00State::Run;
 			//mAnimator->Play(L"Run", true);
 		}
@@ -121,7 +121,7 @@ namespace ya
 
 		if (Input::GetKeyUp(eKeyCode::S))
 		{
-			pos.y -= 50.0f;
+			pos.y -= 100.0f * Time::DeltaTime();
 			mState = ePet00State::Run;
 			//mAnimator->Play(L"Run", true);
 		}

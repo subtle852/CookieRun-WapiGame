@@ -217,11 +217,39 @@
     <ClInclude Include="yaPlayButton.h">
       <Filter>Contents\UI</Filter>
     </ClInclude>
-    <ClInclude Include="yaDiaUI.h" />
-    <ClInclude Include="yaSilverUI.h" />
-    <ClInclude Include="yaCookiesUI.h" />
-    <ClInclude Include="yaGachaUI.h" />
-    <ClInclude Include="yaStoreUI.h" />
+    <ClInclude Include="yaCookiesUI.h">
+      <Filter>Contents\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="yaGachaUI.h">
+      <Filter>Contents\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="yaGuageBar.h">
+      <Filter>Contents\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="yaDiaUI.h">
+      <Filter>Contents\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="yaGuageCircle.h">
+      <Filter>Contents\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="yaJumpButton.h">
+      <Filter>Contents\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="yaSlideButton.h">
+      <Filter>Contents\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="yaStoreUI.h">
+      <Filter>Contents\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="yaSilverUI.h">
+      <Filter>Contents\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="yaPauseButton.h">
+      <Filter>Contents\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="yaJellyCoin.h">
+      <Filter>Contents\Obstacle</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="small.ico">
@@ -363,10 +391,38 @@
     <ClCompile Include="yaPlayButton.cpp">
       <Filter>Contents\UI</Filter>
     </ClCompile>
-    <ClCompile Include="yaDiaUI.cpp" />
-    <ClCompile Include="yaSilverUI.cpp" />
-    <ClCompile Include="yaCookiesUI.cpp" />
-    <ClCompile Include="yaGachaUI.cpp" />
-    <ClCompile Include="yaStoreUI.cpp" />
+    <ClCompile Include="yaGuageCircle.cpp">
+      <Filter>Contents\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="yaCookiesUI.cpp">
+      <Filter>Contents\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="yaDiaUI.cpp">
+      <Filter>Contents\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="yaGuageBar.cpp">
+      <Filter>Contents\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="yaGachaUI.cpp">
+      <Filter>Contents\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="yaJumpButton.cpp">
+      <Filter>Contents\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="yaPauseButton.cpp">
+      <Filter>Contents\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSilverUI.cpp">
+      <Filter>Contents\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="yaStoreUI.cpp">
+      <Filter>Contents\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSlideButton.cpp">
+      <Filter>Contents\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="yaJellyCoin.cpp">
+      <Filter>Contents\Obstacle</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

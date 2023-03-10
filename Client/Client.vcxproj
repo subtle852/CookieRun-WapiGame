@@ -132,6 +132,11 @@
     <ClInclude Include="CommonInclude.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="yaGuageBar.h" />
+    <ClInclude Include="yaGuageCircle.h" />
+    <ClInclude Include="yaJellyCoin.h" />
+    <ClInclude Include="yaPauseButton.h" />
+    <ClInclude Include="yaSlideButton.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="yaAnimation.h" />
     <ClInclude Include="yaAnimator.h" />
@@ -141,6 +146,7 @@
     <ClInclude Include="yaCookiesUI.h" />
     <ClInclude Include="yaDiaUI.h" />
     <ClInclude Include="yaGachaUI.h" />
+    <ClInclude Include="yaJumpButton.h" />
     <ClInclude Include="yaMainBackGround.h" />
     <ClInclude Include="yaObject.h" />
     <ClInclude Include="yaObstacle.h" />
@@ -184,6 +190,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="yaGuageBar.cpp" />
+    <ClCompile Include="yaGuageCircle.cpp" />
+    <ClCompile Include="yaJellyCoin.cpp" />
+    <ClCompile Include="yaPauseButton.cpp" />
+    <ClCompile Include="yaSlideButton.cpp" />
     <ClCompile Include="yaAnimation.cpp" />
     <ClCompile Include="yaAnimator.cpp" />
     <ClCompile Include="yaCamera.cpp" />
@@ -192,6 +203,7 @@
     <ClCompile Include="yaCookiesUI.cpp" />
     <ClCompile Include="yaDiaUI.cpp" />
     <ClCompile Include="yaGachaUI.cpp" />
+    <ClCompile Include="yaJumpButton.cpp" />
     <ClCompile Include="yaMainBackGround.cpp" />
     <ClCompile Include="yaObstacle.cpp" />
     <ClCompile Include="yaObstacle01.cpp" />

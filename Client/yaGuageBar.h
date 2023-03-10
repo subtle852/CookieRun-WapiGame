@@ -4,11 +4,11 @@
 
 namespace ya
 {
-	class PlayButton : public GameObject
+	class GuageBar : public GameObject
 	{
 	public:
-		PlayButton();
-		~PlayButton();
+		GuageBar();
+		~GuageBar();
 
 		virtual void Initialize() override;
 		virtual void Update() override;

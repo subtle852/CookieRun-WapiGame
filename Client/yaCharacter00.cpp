@@ -28,8 +28,8 @@ namespace ya
 		mAnimator->CreateAnimation(L"idle", mImage, Vector2((290.0f * 1), (290.0f * 2)), 11, 6, 4, Vector2::Zero, 0.15);
 		mAnimator->CreateAnimation(L"Roll", mImage, Vector2::Zero, 11, 6, 6, Vector2::Zero, 0.15);
 		mAnimator->CreateAnimation(L"Run", mImage, Vector2(0.0f, (290.0f * 1)), 11, 6, 4, Vector2::Zero, 0.15);
-		mAnimator->CreateAnimation(L"Jump", mImage, Vector2((290.0f * 0), (290.0f * 0)), 11, 6, 8, Vector2::Zero, 0.08); //0.08 // 똥컴은 0.2// 컴터에 따라 속도가 달라짐;; DeltaTime필요할 듯
-		mAnimator->CreateAnimation(L"Slide", mImage, Vector2((290.0f * 9), (290.0f * 0)), 11, 6, 2, Vector2::Zero, 0.3);//0.3 // 똥컴은 0.7 
+		mAnimator->CreateAnimation(L"Jump", mImage, Vector2((290.0f * 0), (290.0f * 0)), 11, 6, 8, Vector2::Zero, 0.15); //0.08 // 똥컴은 0.2// 컴터에 따라 속도가 달라짐;; DeltaTime필요할 듯
+		mAnimator->CreateAnimation(L"Slide", mImage, Vector2((290.0f * 9), (290.0f * 0)), 11, 6, 2, Vector2::Zero, 0.6);//0.3 // 똥컴은 0.7 
 		mAnimator->CreateAnimation(L"Death", mImage, Vector2((290.0f * 0), (290.0f * 4)), 11, 6, 4, Vector2::Zero, 0.15);
 		//mAnimator->CreateAnimations(L"..\\Resorces\\Chalise\\Idle", Vector2::Zero, 0.1f);
 
@@ -161,7 +161,7 @@ namespace ya
 		Vector2 pos = tr->GetPos();
 		if (Input::GetKeyDown(eKeyCode::W))
 		{
-			pos.y -= 300.0f; //* Time::DeltaTime();
+			pos.y -= 300.0f;// * Time::DeltaTime();
 			mState = eChar00State::Jump;
 			mAnimator->Play(L"Jump", true);
 		}

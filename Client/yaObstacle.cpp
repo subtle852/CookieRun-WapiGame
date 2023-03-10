@@ -45,7 +45,7 @@ namespace ya
 	{
 		Transform* tr = GetComponent<Transform>();
 		Vector2 pos = tr->GetPos();
-		pos.x -= 10.0f;
+		pos.x -= 200.0f * Time::DeltaTime();
 		
 		tr->SetPos(pos);
 

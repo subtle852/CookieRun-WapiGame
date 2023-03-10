@@ -21,6 +21,7 @@ enum class eLayerType // layer 그리는 순서
 	Player,
 	Pet,
 	Effect,
+	UIfirst,
 	UI,
 	End = 16,
 };
