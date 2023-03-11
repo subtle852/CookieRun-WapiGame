@@ -35,6 +35,8 @@ namespace ya
 	void TitleScene::Render(HDC hdc)
 	{
 		Scene::Render(hdc);
+
+		Scene::SceneText(hdc);
 	}
 
 	void TitleScene::Release()

@@ -33,6 +33,8 @@ namespace ya
 	void SelectCharScene::Render(HDC hdc)
 	{
 		Scene::Render(hdc);
+
+		Scene::SceneText(hdc);
 	}
 
 	void SelectCharScene::Release()

@@ -39,6 +39,8 @@ namespace ya
 	void SelectStageScene::Render(HDC hdc)
 	{
 		Scene::Render(hdc);
+
+		Scene::SceneText(hdc);
 	}
 
 	void SelectStageScene::Release()

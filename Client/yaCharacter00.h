@@ -12,6 +12,7 @@ namespace ya
 		{
 			Run,
 			Jump,
+			DoubleJump,
 			Slide,
 			Death,
 			Idle,
@@ -33,15 +34,19 @@ namespace ya
 	private:
 		void run();
 		void jump();
+		void djump();
 		void slide();
 		void death();
 		void idle();
 
 		void JumpCompleteEvent();
-		void SlideCompleteEvent();
+		//void SlideCompleteEvent();
+		void DJumpCompleteEvent();
 
 	private:
 		eChar00State mState;
 		Animator* mAnimator;
+
+		bool mSlideflag = false;
 	};
 }

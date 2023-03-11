@@ -19,6 +19,8 @@ namespace ya
 		virtual void OnEnter();
 		virtual void OnExit();
 
+		virtual void SceneText(HDC hdc);
+
 		void AddGameObeject(GameObject* obj, eLayerType layer);
 		std::vector<GameObject*>& GetGameObjects(eLayerType layer);
 

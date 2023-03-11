@@ -20,7 +20,7 @@ namespace ya
 	void Character00::Initialize()
 	{
 		//Transform* tr = GetComponent<Transform>();
-		//tr->SetPos(Vector2(200.0f, 500.0f));
+		//tr->SetPos(Vector2(200.0f, 600.0f));
 		//tr->SetScale(Vector2(1.5f, 1.5f));
 
 		Image* mImage = Resources::Load<Image>(L"Char00", L"..\\Resources\\idle.bmp");
@@ -28,15 +28,16 @@ namespace ya
 		mAnimator->CreateAnimation(L"idle", mImage, Vector2((290.0f * 1), (290.0f * 2)), 11, 6, 4, Vector2::Zero, 0.15);
 		mAnimator->CreateAnimation(L"Roll", mImage, Vector2::Zero, 11, 6, 6, Vector2::Zero, 0.15);
 		mAnimator->CreateAnimation(L"Run", mImage, Vector2(0.0f, (290.0f * 1)), 11, 6, 4, Vector2::Zero, 0.15);
-		mAnimator->CreateAnimation(L"Jump", mImage, Vector2((290.0f * 0), (290.0f * 0)), 11, 6, 8, Vector2::Zero, 0.15); //0.08 // 똥컴은 0.2// 컴터에 따라 속도가 달라짐;; DeltaTime필요할 듯
-		mAnimator->CreateAnimation(L"Slide", mImage, Vector2((290.0f * 9), (290.0f * 0)), 11, 6, 2, Vector2::Zero, 0.6);//0.3 // 똥컴은 0.7 
+		mAnimator->CreateAnimation(L"Jump", mImage, Vector2((290.0f * 0), (290.0f * 0)), 11, 6, 8, Vector2::Zero, 0.12); //0.08 // 똥컴은 0.2// 컴터에 따라 속도가 달라짐;; DeltaTime필요할 듯
+		mAnimator->CreateAnimation(L"DJump", mImage, Vector2((290.0f * 0), (290.0f * 0)), 11, 6, 8, Vector2::Zero, 0.1);
+		mAnimator->CreateAnimation(L"Slide", mImage, Vector2((290.0f * 9), (290.0f * 0)), 11, 6, 2, Vector2::Zero, 0.1);//0.3 // 똥컴은 0.7 
 		mAnimator->CreateAnimation(L"Death", mImage, Vector2((290.0f * 0), (290.0f * 4)), 11, 6, 4, Vector2::Zero, 0.15);
 		//mAnimator->CreateAnimations(L"..\\Resorces\\Chalise\\Idle", Vector2::Zero, 0.1f);
 
 
 		mAnimator->GetCompleteEvent(L"Jump") = std::bind(&Character00::JumpCompleteEvent, this);
-		mAnimator->GetCompleteEvent(L"Slide") = std::bind(&Character00::SlideCompleteEvent, this);
-		//mAnimator->GetCompleteEvent(L"Jump") = std::bind(&Character00::JumpCompleteEvent, this);
+		//mAnimator->GetCompleteEvent(L"Slide") = std::bind(&Character00::SlideCompleteEvent, this);
+		mAnimator->GetCompleteEvent(L"DJump") = std::bind(&Character00::DJumpCompleteEvent, this);
 
 		Scene* scn = SceneManager::GetActiveScene();
 
@@ -47,9 +48,11 @@ namespace ya
 		
 		if (scn->GetName() == L"Play")
 		{
-			mAnimator->Play(L"Run", true);
+			Transform* tr = GetComponent<Transform>();
+			tr->SetPos(Vector2(200.0f, 600.0f));
 
 			Collider* collider = AddComponent<Collider>();
+			collider->SetSize(Vector2(100.0f, 100.0f));
 			collider->SetCenter(Vector2(-50.0f, -100.0f));
 
 			mState = eChar00State::Run;
@@ -71,6 +74,9 @@ namespace ya
 				break;
 			case ya::Character00::eChar00State::Jump:
 				jump();
+				break;
+			case ya::Character00::eChar00State::DoubleJump:
+				djump();
 				break;
 			case ya::Character00::eChar00State::Slide:
 				slide();
@@ -158,22 +164,24 @@ namespace ya
 	void Character00::run()
 	{
 		Transform* tr = GetComponent<Transform>();
-		Vector2 pos = tr->GetPos();
+		tr->SetPos(Vector2(200.0f, 600.0f));
+
+		Collider* collider = GetComponent<Collider>();
+		collider->SetSize(Vector2(100.0f, 100.0f));
+		collider->SetCenter(Vector2(-50.0f, -100.0f));
+		mAnimator->Play(L"Run", true);
+
 		if (Input::GetKeyDown(eKeyCode::W))
 		{
-			pos.y -= 300.0f;// * Time::DeltaTime();
-			mState = eChar00State::Jump;
-			mAnimator->Play(L"Jump", true);
+			Transform* tr = GetComponent<Transform>();
+			Vector2 pos = tr->GetPos();
+			pos.y -= 150.0f;
+			tr->SetPos(pos);
+			mState = eChar00State::Jump;	
 		}
-		if (Input::GetKeyDown(eKeyCode::S))
+		if (Input::GetKey(eKeyCode::S))
 		{
 			mState = eChar00State::Slide;
-
-			Collider* collider = GetComponent<Collider>();
-			collider->SetSize(Vector2(100.0f, 50.0f));
-			collider->SetCenter(Vector2(-50.0f, -30.0f));
-
-			mAnimator->Play(L"Slide", true);
 		}
 
 		//if (Input::GetKey(eKeyCode::A))
@@ -217,29 +225,60 @@ namespace ya
 		//	//pos.y += 100.0f * dir.y * Time::DeltaTime();
 		//	//tr->SetPos(pos);
 		//}
-		tr->SetPos(pos);
 	}
 	void Character00::jump()
 	{
-		//Transform* tr = GetComponent<Transform>();
-		//Vector2 pos = tr->GetPos();
+		//Collider* collider = GetComponent<Collider>();
+		//collider->SetSize(Vector2(100.0f, 100.0f));
+		//collider->SetCenter(Vector2(-50.0f, -100.0f));
 
-		//if (Input::GetKeyUp(eKeyCode::W))
-		//{
-		//	pos.y += 200.0f; //* Time::DeltaTime();
-		//	mState = eChar00State::Run;
-		//	mAnimator->Play(L"Run", true);
-		//}
+		mAnimator->Play(L"Jump", true);
 
-		//tr->SetPos(pos);
+		if (!mAnimator->IsComplte())
+		{
+			if (Input::GetKeyDown(eKeyCode::W))
+			{
+				Transform* tr = GetComponent<Transform>();
+				Vector2 pos = tr->GetPos();
+				pos.y -= 150.0f;
+				tr->SetPos(pos);
+				mState = eChar00State::DoubleJump;
+			}
+		}
+
+		if (Input::GetKey(eKeyCode::S))
+		{
+			mState = eChar00State::Slide;
+		}
+		
 	}
+
+	void Character00::djump()
+	{
+		mAnimator->Play(L"DJump", true);
+
+		if (Input::GetKey(eKeyCode::S))
+		{
+			mState = eChar00State::Slide;
+		}
+	}
+
 	void Character00::slide()
 	{
-		//if (Input::GetKeyUp(eKeyCode::S))
-		//{
-		//	mState = eChar00State::Run;
-		//	mAnimator->Play(L"Run", true);
-		//}
+		Transform* tr = GetComponent<Transform>();
+		tr->SetPos(Vector2(200.0f, 600.0f));
+
+		Collider* collider = GetComponent<Collider>();
+		collider->SetSize(Vector2(100.0f, 50.0f));
+		collider->SetCenter(Vector2(-50.0f, -30.0f));
+		
+		mAnimator->Play(L"Slide", true);
+
+		if (Input::GetKeyUp(eKeyCode::S))
+		{
+			mState = eChar00State::Run;
+		}
+
 	}
 
 	void Character00::death()
@@ -254,22 +293,23 @@ namespace ya
 
 	void Character00::JumpCompleteEvent(/*const Cuphead* this*/)
 	{
-		Transform* tr = GetComponent<Transform>();
-		Vector2 pos = tr->GetPos();
+		//Transform* tr = GetComponent<Transform>();
+		//Vector2 pos = tr->GetPos();
 
-		pos.y += 300.0f; //* Time::DeltaTime();
+		//pos.y += 300.0f; //* Time::DeltaTime();
 		mState = eChar00State::Run;
-		mAnimator->Play(L"Run", true);
+		//mAnimator->Play(L"Run", true);
 
-		tr->SetPos(pos);
+		//tr->SetPos(pos);
 	}
 
-	void Character00::SlideCompleteEvent()
+	void Character00::DJumpCompleteEvent()
 	{
 		mState = eChar00State::Run;
-		Collider* collider = GetComponent<Collider>();
-		collider->SetSize(Vector2(100.0f, 100.0f));
-		collider->SetCenter(Vector2(-50.0f, -100.0f));
-		mAnimator->Play(L"Run", true);
 	}
+
+	//void Character00::SlideCompleteEvent()
+	//{
+
+	//}
 }

@@ -1,5 +1,6 @@
 #include "yaAnimator.h"
 #include "yaResources.h"
+#include "yaInput.h"
 
 namespace ya
 {
@@ -11,6 +12,7 @@ namespace ya
 	{
 
 	}
+
 	Animator::~Animator()
 	{
 		for (auto animation : mAnimations)
@@ -18,33 +20,39 @@ namespace ya
 			delete animation.second;
 			animation.second = nullptr;
 		}
+
 		for (auto events : mEvents)
 		{
 			delete events.second;
 			events.second = nullptr;
 		}
 	}
+
 	void Animator::Initialize()
 	{
+
 	}
+
 	void Animator::Update()
 	{
 		if (mActiveAnimation)
 		{
 			mActiveAnimation->Update();
 
-			if (mbLoop && mActiveAnimation->IsComplete())
+			if (mActiveAnimation->IsComplete())
 			{
 				Animator::Events* events
 					= FindEvents(mActiveAnimation->GetName());
 
 				if (events != nullptr)
 					events->mCompleteEvent();
-
-				mActiveAnimation->Reset();
 			}
+
+			if (mbLoop && mActiveAnimation->IsComplete())
+				mActiveAnimation->Reset();
 		}
 	}
+
 	void Animator::Render(HDC hdc)
 	{
 		if (mActiveAnimation)
@@ -52,9 +60,12 @@ namespace ya
 			mActiveAnimation->Render(hdc);
 		}
 	}
+
 	void Animator::Release()
 	{
+
 	}
+
 	void Animator::CreateAnimation(const std::wstring& name
 		, Image* sheet, Vector2 leftTop
 		, UINT coulmn, UINT row, UINT spriteLength
@@ -144,58 +155,74 @@ namespace ya
 	{
 		if (mActiveAnimation != nullptr)
 		{
-			Animator::Events* prevEvents
-				= FindEvents(mActiveAnimation->GetName());
+			Animator::Events* prevEvents = FindEvents(mActiveAnimation->GetName());
 
 			if (prevEvents != nullptr)
+			{
 				prevEvents->mEndEvent();
+			}
 		}
 
 		mActiveAnimation = FindAnimation(name);
-		mActiveAnimation->Reset();
+
+		// 지금 문제가 
+		// a 애니메이션 진행중인 도중에(a 애니메이션 덜 끝난 상태)
+		// 커맨드로 인해 b 동작이 실행되었어
+		// 그럴 때 a 애니메이션이 덜 끝났지만 강제로 리셋을 시켜줘야함
+
+		if (Input::GetKeyUp(eKeyCode::W) || Input::GetKeyUp(eKeyCode::S))
+		{
+			mActiveAnimation->Reset();
+		}
+
+		//애니메이션이 끝났을 때만 리셋해주어야 함
+		if (mActiveAnimation->IsComplete())
+		{
+			mActiveAnimation->Reset();
+		}
 		mbLoop = loop;
 
-		Animator::Events* events
-			= FindEvents(mActiveAnimation->GetName());
+		Animator::Events* events = FindEvents(mActiveAnimation->GetName());
 
 		if (events != nullptr)
+		{
 			events->mStartEvent();
-
+		}
 	}
+
 	Animator::Events* Animator::FindEvents(const std::wstring& name)
 	{
-		std::map<std::wstring, Events*>::iterator iter
-			= mEvents.find(name);
+		std::map<std::wstring, Events*>::iterator iter = mEvents.find(name);
 
 		if (iter == mEvents.end())
 			return nullptr;
 
 		return iter->second;
 	}
+
 	std::function<void()>& Animator::GetStartEvent(const std::wstring& name)
 	{
 		Animation* animation = FindAnimation(name);
 
-		Animator::Events* events
-			= FindEvents(animation->GetName());
+		Animator::Events* events = FindEvents(animation->GetName());
 
 		return events->mStartEvent.mEvent;
 	}
+
 	std::function<void()>& Animator::GetCompleteEvent(const std::wstring& name)
 	{
 		Animation* animation = FindAnimation(name);
 
-		Animator::Events* events
-			= FindEvents(animation->GetName());
+		Animator::Events* events = FindEvents(animation->GetName());
 
 		return events->mCompleteEvent.mEvent;
 	}
+
 	std::function<void()>& Animator::GetEndEvent(const std::wstring& name)
 	{
 		Animation* animation = FindAnimation(name);
 
-		Animator::Events* events
-			= FindEvents(animation->GetName());
+		Animator::Events* events = FindEvents(animation->GetName());
 
 		return events->mEndEvent.mEvent;
 	}

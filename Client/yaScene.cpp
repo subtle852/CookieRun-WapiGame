@@ -75,6 +75,13 @@ namespace ya
 	void Scene::OnExit()
 	{
 	}
+
+	void Scene::SceneText(HDC hdc)
+	{
+		std::wstring tmp = Scene::GetName();
+		TextOut(hdc, 0, 0, tmp.c_str(), tmp.size());
+	}
+
 	void Scene::AddGameObeject(GameObject* obj, eLayerType layer)
 	{
 		mLayers[(UINT)layer].AddGameObject(obj);
