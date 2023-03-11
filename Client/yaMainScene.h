@@ -4,8 +4,8 @@
 
 namespace ya
 {
-	class Character00;
-	class Pet00;
+	class Character01;
+	class Pet01;
 
 	class MainScene : public Scene
 	{
@@ -22,7 +22,7 @@ namespace ya
 		virtual void OnExit() override;
 
 	private:
-		Character00* mCh00;
-		Pet00* mPet00;
+		Character01* mCh00;
+		Pet01* mPet00;
 	};
 }

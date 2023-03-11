@@ -5,20 +5,12 @@
 namespace ya
 {
 	class Animator;
-	class Pet00 : public GameObject
+	class Pet01 : public GameObject
 	{
 	public:
-		enum class ePet00State
-		{
-			Run,
-			Jump,
-			Slide,
-			Idle,
-		};
 
-
-		Pet00();
-		~Pet00();
+		Pet01();
+		~Pet01();
 
 		virtual void Initialize();
 		virtual void Update();
@@ -26,15 +18,6 @@ namespace ya
 		virtual void Release();
 
 	private:
-		void run();
-		void jump();
-		void slide();
-		void idle();
-
-		//void idleCompleteEvent();
-
-	private:
-		ePet00State mState;
 		Animator* mAnimator;
 	};
 }

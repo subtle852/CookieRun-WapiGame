@@ -1,4 +1,4 @@
-#include "yaCharacter00.h"
+#include "yaCharacter01.h"
 #include "yaTime.h"
 #include "yaSceneManager.h"
 #include "yaInput.h"
@@ -9,35 +9,35 @@
 
 namespace ya
 {
-	Character00::Character00()
+	Character01::Character01()
 	{
 
 	}
-	Character00::~Character00()
+	Character01::~Character01()
 	{
 
 	}
-	void Character00::Initialize()
+	void Character01::Initialize()
 	{
 		//Transform* tr = GetComponent<Transform>();
 		//tr->SetPos(Vector2(200.0f, 600.0f));
 		//tr->SetScale(Vector2(1.5f, 1.5f));
 
-		Image* mImage = Resources::Load<Image>(L"Char00", L"..\\Resources\\idle.bmp");
+		Image* mImage = Resources::Load<Image>(L"Char01", L"..\\Resources\\idle.bmp");
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimation(L"idle", mImage, Vector2((290.0f * 1), (290.0f * 2)), 11, 6, 4, Vector2::Zero, 0.15);
 		mAnimator->CreateAnimation(L"Roll", mImage, Vector2::Zero, 11, 6, 6, Vector2::Zero, 0.15);
 		mAnimator->CreateAnimation(L"Run", mImage, Vector2(0.0f, (290.0f * 1)), 11, 6, 4, Vector2::Zero, 0.15);
-		mAnimator->CreateAnimation(L"Jump", mImage, Vector2((290.0f * 0), (290.0f * 0)), 11, 6, 8, Vector2::Zero, 0.12); //0.08 // 똥컴은 0.2// 컴터에 따라 속도가 달라짐;; DeltaTime필요할 듯
-		mAnimator->CreateAnimation(L"DJump", mImage, Vector2((290.0f * 0), (290.0f * 0)), 11, 6, 8, Vector2::Zero, 0.1);
-		mAnimator->CreateAnimation(L"Slide", mImage, Vector2((290.0f * 9), (290.0f * 0)), 11, 6, 2, Vector2::Zero, 0.1);//0.3 // 똥컴은 0.7 
+		mAnimator->CreateAnimation(L"Jump", mImage, Vector2((290.0f * 0), (290.0f * 0)), 11, 6, 8, Vector2::Zero, 0.1);// 0에 가까울수록 애니메이션 빨리 동작
+		mAnimator->CreateAnimation(L"DJump", mImage, Vector2((290.0f * 0), (290.0f * 0)), 11, 6, 8, Vector2::Zero, 0.08);
+		mAnimator->CreateAnimation(L"Slide", mImage, Vector2((290.0f * 9), (290.0f * 0)), 11, 6, 2, Vector2::Zero, 0.1);
 		mAnimator->CreateAnimation(L"Death", mImage, Vector2((290.0f * 0), (290.0f * 4)), 11, 6, 4, Vector2::Zero, 0.15);
 		//mAnimator->CreateAnimations(L"..\\Resorces\\Chalise\\Idle", Vector2::Zero, 0.1f);
 
 
-		mAnimator->GetCompleteEvent(L"Jump") = std::bind(&Character00::JumpCompleteEvent, this);
-		//mAnimator->GetCompleteEvent(L"Slide") = std::bind(&Character00::SlideCompleteEvent, this);
-		mAnimator->GetCompleteEvent(L"DJump") = std::bind(&Character00::DJumpCompleteEvent, this);
+		mAnimator->GetCompleteEvent(L"Jump") = std::bind(&Character01::JumpCompleteEvent, this);
+		//mAnimator->GetCompleteEvent(L"Slide") = std::bind(&Character01::SlideCompleteEvent, this);
+		mAnimator->GetCompleteEvent(L"DJump") = std::bind(&Character01::DJumpCompleteEvent, this);
 
 		Scene* scn = SceneManager::GetActiveScene();
 
@@ -60,7 +60,7 @@ namespace ya
 
 		GameObject::Initialize();
 	}
-	void Character00::Update()
+	void Character01::Update()
 	{
 		GameObject::Update();
 
@@ -69,22 +69,22 @@ namespace ya
 		{
 			switch (mState)
 			{
-			case ya::Character00::eChar00State::Run:
+			case ya::Character01::eChar00State::Run:
 				run();
 				break;
-			case ya::Character00::eChar00State::Jump:
+			case ya::Character01::eChar00State::Jump:
 				jump();
 				break;
-			case ya::Character00::eChar00State::DoubleJump:
+			case ya::Character01::eChar00State::DoubleJump:
 				djump();
 				break;
-			case ya::Character00::eChar00State::Slide:
+			case ya::Character01::eChar00State::Slide:
 				slide();
 				break;
-			case ya::Character00::eChar00State::Death:
+			case ya::Character01::eChar00State::Death:
 				death();
 				break;
-			case ya::Character00::eChar00State::Idle:
+			case ya::Character01::eChar00State::Idle:
 				idle();
 				break;
 			}
@@ -135,33 +135,33 @@ namespace ya
 		// 이렇게 길이 조정 가능 2초뒤면 사라지도록(이 부분은 3월 8일 01:25 영상 참고 or Delete Object 깃 참조)
 	}
 
-	void Character00::Render(HDC hdc)
+	void Character01::Render(HDC hdc)
 	{
 		GameObject::Render(hdc);
 	}
 
-	void Character00::Release()
+	void Character01::Release()
 	{
 		GameObject::Release();
 	}
 
-	void Character00::OnCollisionEnter(Collider* other)
+	void Character01::OnCollisionEnter(Collider* other)
 	{
 		// 충돌한 other의 체력이라던가 애니메이션이라던가 실행 가능
 		//mAnimator->Play(L"Death", false);
 	}
 
-	void Character00::OnCollisionStay(Collider* other)
+	void Character01::OnCollisionStay(Collider* other)
 	{
 
 	}
 
-	void Character00::OnCollisionExit(Collider* other)
+	void Character01::OnCollisionExit(Collider* other)
 	{
 
 	}
 
-	void Character00::run()
+	void Character01::run()
 	{
 		Transform* tr = GetComponent<Transform>();
 		tr->SetPos(Vector2(200.0f, 600.0f));
@@ -226,7 +226,7 @@ namespace ya
 		//	//tr->SetPos(pos);
 		//}
 	}
-	void Character00::jump()
+	void Character01::jump()
 	{
 		//Collider* collider = GetComponent<Collider>();
 		//collider->SetSize(Vector2(100.0f, 100.0f));
@@ -253,7 +253,7 @@ namespace ya
 		
 	}
 
-	void Character00::djump()
+	void Character01::djump()
 	{
 		mAnimator->Play(L"DJump", true);
 
@@ -263,7 +263,7 @@ namespace ya
 		}
 	}
 
-	void Character00::slide()
+	void Character01::slide()
 	{
 		Transform* tr = GetComponent<Transform>();
 		tr->SetPos(Vector2(200.0f, 600.0f));
@@ -281,17 +281,17 @@ namespace ya
 
 	}
 
-	void Character00::death()
+	void Character01::death()
 	{
 
 	}
 
-	void Character00::idle()
+	void Character01::idle()
 	{
 		
 	}
 
-	void Character00::JumpCompleteEvent(/*const Cuphead* this*/)
+	void Character01::JumpCompleteEvent(/*const Cuphead* this*/)
 	{
 		//Transform* tr = GetComponent<Transform>();
 		//Vector2 pos = tr->GetPos();
@@ -303,12 +303,12 @@ namespace ya
 		//tr->SetPos(pos);
 	}
 
-	void Character00::DJumpCompleteEvent()
+	void Character01::DJumpCompleteEvent()
 	{
 		mState = eChar00State::Run;
 	}
 
-	//void Character00::SlideCompleteEvent()
+	//void Character01::SlideCompleteEvent()
 	//{
 
 	//}

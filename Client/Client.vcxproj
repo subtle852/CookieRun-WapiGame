@@ -119,6 +119,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -151,7 +152,7 @@
     <ClInclude Include="yaObject.h" />
     <ClInclude Include="yaObstacle.h" />
     <ClInclude Include="yaObstacle01.h" />
-    <ClInclude Include="yaPet00.h" />
+    <ClInclude Include="yaPet01.h" />
     <ClInclude Include="yaPlayBackGround.h" />
     <ClInclude Include="yaPlayButton.h" />
     <ClInclude Include="yaPortal.h" />
@@ -167,7 +168,7 @@
     <ClInclude Include="yaStoreUI.h" />
     <ClInclude Include="yaTitleBackGround.h" />
     <ClInclude Include="yaApplication.h" />
-    <ClInclude Include="yaCharacter00.h" />
+    <ClInclude Include="yaCharacter01.h" />
     <ClInclude Include="yaComponent.h" />
     <ClInclude Include="yaEntity.h" />
     <ClInclude Include="yaEnums.h" />
@@ -207,7 +208,7 @@
     <ClCompile Include="yaMainBackGround.cpp" />
     <ClCompile Include="yaObstacle.cpp" />
     <ClCompile Include="yaObstacle01.cpp" />
-    <ClCompile Include="yaPet00.cpp" />
+    <ClCompile Include="yaPet01.cpp" />
     <ClCompile Include="yaPlayBackGround.cpp" />
     <ClCompile Include="yaPlayButton.cpp" />
     <ClCompile Include="yaPortal.cpp" />
@@ -223,7 +224,7 @@
     <ClCompile Include="yaStoreUI.cpp" />
     <ClCompile Include="yaTitleBackGround.cpp" />
     <ClCompile Include="yaApplication.cpp" />
-    <ClCompile Include="yaCharacter00.cpp" />
+    <ClCompile Include="yaCharacter01.cpp" />
     <ClCompile Include="yaComponent.cpp" />
     <ClCompile Include="yaEntity.cpp" />
     <ClCompile Include="yaGameObject.cpp" />

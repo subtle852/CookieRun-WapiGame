@@ -1,6 +1,6 @@
 #include "yaPlayScene.h"
-#include "yaCharacter00.h"
-#include "yaPet00.h"
+#include "yaCharacter01.h"
+#include "yaPet01.h"
 #include "yaPlayBackGround.h"
 #include "yaInput.h"
 #include "yaSceneManager.h"
@@ -32,7 +32,7 @@ namespace ya
 	void PlayScene::Initialize()
 	{
 		//mCh00 =
-		//object::Instantiate<Character00>(eLayerType::Player);
+		//object::Instantiate<Character01>(eLayerType::Player);
 		//Camera::SetTarget(mCh00);
 
 		Scene::Initialize();
@@ -42,6 +42,12 @@ namespace ya
 
 	void PlayScene::Update()
 	{
+		Transform* tr = mCh01->GetComponent<Transform>();
+		Vector2 pos = tr->GetPos();
+
+		Transform* trr = mPet01->GetComponent<Transform>();
+		trr->SetPos(Vector2(pos.x + 100.0f, pos.y -100.0f));
+
 		if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
 		{
 			SceneManager::LoadScene(eSceneType::ResultS);
@@ -66,8 +72,8 @@ namespace ya
 	void PlayScene::OnEnter()
 	{
 		mBG = object::Instantiate<PlayBackGround>(eLayerType::BG);
-		mCh00 = object::Instantiate<Character00>(eLayerType::Player);
-		mPet00 = object::Instantiate<Pet00>(Vector2(300.0f, 500.0f), eLayerType::Pet);
+		mCh01 = object::Instantiate<Character01>(eLayerType::Player);
+		mPet01 = object::Instantiate<Pet01>(Vector2(300.0f, 500.0f), eLayerType::Pet);
 		mOb01 = object::Instantiate<Obstacle>(Vector2(1100.0f, 600.0f), eLayerType::Obstacle);
 		mOb02 = object::Instantiate<Obstacle01>(Vector2(1700.0f, 50.0f), eLayerType::Obstacle);
 		mOb03 = object::Instantiate<Obstacle>(Vector2(2300.0f, 600.0f), eLayerType::Obstacle);
@@ -91,8 +97,8 @@ namespace ya
 	void PlayScene::OnExit()
 	{
 		ya::object::Destory(mBG);
-		ya::object::Destory(mCh00);
-		ya::object::Destory(mPet00);
+		ya::object::Destory(mCh01);
+		ya::object::Destory(mPet01);
 		ya::object::Destory(mOb01);
 		ya::object::Destory(mOb02);
 		ya::object::Destory(mOb03);

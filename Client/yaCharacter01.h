@@ -5,7 +5,7 @@
 namespace ya
 {
 	class Animator;
-	class Character00 : public GameObject
+	class Character01 : public GameObject
 	{
 	public:
 		enum class eChar00State
@@ -19,8 +19,8 @@ namespace ya
 		};
 
 
-		Character00();
-		~Character00();
+		Character01();
+		~Character01();
 
 		virtual void Initialize();
 		virtual void Update();
@@ -46,7 +46,5 @@ namespace ya
 	private:
 		eChar00State mState;
 		Animator* mAnimator;
-
-		bool mSlideflag = false;
 	};
 }

@@ -23,9 +23,9 @@ namespace ya
 		Scene::Initialize();
 
 		object::Instantiate<SelectStageBackGround>(eLayerType::BG);
-		object::Instantiate<Portal>(Vector2(170.0f, 400.0f), eLayerType::Obstacle);
-		object::Instantiate<Portal>(Vector2(670.0f, 400.0f), eLayerType::Obstacle);
-		object::Instantiate<Portal>(Vector2(1170.0f, 400.0f), eLayerType::Obstacle);
+		object::Instantiate<Portal>(Vector2(170.0f, 400.0f), eLayerType::UI);
+		object::Instantiate<Portal>(Vector2(670.0f, 400.0f), eLayerType::UI);
+		object::Instantiate<Portal>(Vector2(1170.0f, 400.0f), eLayerType::UI);
 	}
 
 	void SelectStageScene::Update()

@@ -5,8 +5,8 @@
 namespace ya
 {
 	class PlayBackGround;
-	class Character00;
-	class Pet00;
+	class Character01;
+	class Pet01;
 	class Obstacle;
 	class Obstacle01;
 	class JellyCoin;
@@ -27,8 +27,8 @@ namespace ya
 
 	private:
 		PlayBackGround* mBG;
-		Character00* mCh00;
-		Pet00* mPet00;
+		Character01* mCh01;
+		Pet01* mPet01;
 		Obstacle* mOb01;
 		Obstacle01* mOb02;
 		Obstacle* mOb03;
