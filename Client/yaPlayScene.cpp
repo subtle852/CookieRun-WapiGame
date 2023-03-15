@@ -72,7 +72,7 @@ namespace ya
 	void PlayScene::OnEnter()
 	{
 		mBG = object::Instantiate<PlayBackGround>(eLayerType::BG);
-		mCh01 = object::Instantiate<Character01>(eLayerType::Player);
+		mCh01 = object::Instantiate<Character01>(Vector2(200.0f, 600.0f), eLayerType::Player);
 		mPet01 = object::Instantiate<Pet01>(Vector2(300.0f, 500.0f), eLayerType::Pet);
 		mOb01 = object::Instantiate<Obstacle>(Vector2(1100.0f, 600.0f), eLayerType::Obstacle);
 		mOb02 = object::Instantiate<Obstacle01>(Vector2(1700.0f, 50.0f), eLayerType::Obstacle);
@@ -103,6 +103,8 @@ namespace ya
 		ya::object::Destory(mOb02);
 		ya::object::Destory(mOb03);
 		ya::object::Destory(mOb04);
+		ya::object::Destory(mJcoin01);
+		ya::object::Destory(mJcoin02);
 		//mCuphead->SetPos(Vector2{ 0.0f, 0.0f }); 씬넘길때 원상복귀 시키는것
 	}
 }

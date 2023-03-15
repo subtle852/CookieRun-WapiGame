@@ -12,7 +12,7 @@ namespace ya
 		, mPos(Vector2::Zero)
 		, mSize(100.0f, 100.0f)
 		, mID(ColliderNumber++)
-		, practice(0)
+		, mCollisionCount(0)
 	{
 
 	}
@@ -31,10 +31,13 @@ namespace ya
 
 	void Collider::Render(HDC hdc)
 	{
-		HPEN pen = CreatePen(BS_SOLID, 2, RGB(0, 255, 0));
+		HPEN pen = NULL;
 
-		if(practice)
-			pen = CreatePen(BS_SOLID, 2, RGB(255, 0, 0));
+		if(mCollisionCount <= 0 )
+			pen = CreatePen(BS_SOLID, 2, RGB(0, 255, 0));
+
+		else
+			pen = CreatePen(BS_SOLID, 2, RGB(255, 255, 255));
 
 		HPEN oldPen = (HPEN)SelectObject(hdc, pen);
 		HBRUSH brush = (HBRUSH)GetStockObject(NULL_BRUSH);
@@ -46,22 +49,23 @@ namespace ya
 		(HPEN)SelectObject(hdc, oldPen);
 		(HBRUSH)SelectObject(hdc, oldBrush);
 		DeleteObject(pen);
+
+		mCollisionCount = 0;
 	}
 	void Collider::Release()
 	{
 	}
 	void Collider::OnCollisionEnter(Collider* other)
 	{
-		++practice;
 		GetOwner()->OnCollisionEnter(other);
 	}
 	void Collider::OnCollisionStay(Collider* other)
 	{
+		mCollisionCount = 1;
 		GetOwner()->OnCollisionStay(other);
 	}
 	void Collider::OnCollisionExit(Collider* other)
 	{
-		--practice;
 		GetOwner()->OnCollisionExit(other);
 	}
 }

@@ -68,12 +68,7 @@ namespace ya
 
 	void JellyCoin::OnCollisionStay(Collider* other)
 	{
-		//object::Destory(this);
-		Transform* tr = GetComponent<Transform>();
-		Vector2 pos = tr->GetPos();
-		pos.y -= 8000.0f;
-
-		tr->SetPos(pos);
+		object::Destory(this);
 	}
 
 	void JellyCoin::OnCollisionExit(Collider* other)

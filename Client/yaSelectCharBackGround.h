@@ -17,5 +17,9 @@ namespace ya
 
 	private:
 		Image* mImage;
+		//float mTime = 50.0f;
+
+		public:
+		//static bool flag;
 	};
 }

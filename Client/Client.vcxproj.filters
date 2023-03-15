@@ -95,6 +95,15 @@
     <Filter Include="Contents\UI\CommonUI">
       <UniqueIdentifier>{e7ee6c20-436e-4c01-82c5-ea0da669cb8d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Component\Animator">
+      <UniqueIdentifier>{2692797a-1afc-453b-a50b-eef45ea788c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\Transform">
+      <UniqueIdentifier>{49224c06-ba44-4470-a14e-5b750d5e1451}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\RigidBody">
+      <UniqueIdentifier>{e78954bf-5f0a-4bc6-bcd1-3d75ec952396}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -160,9 +169,6 @@
     <ClInclude Include="yaTitleScene.h">
       <Filter>Contents\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="yaTransform.h">
-      <Filter>Engine\Component</Filter>
-    </ClInclude>
     <ClInclude Include="yaMainScene.h">
       <Filter>Contents\Scene</Filter>
     </ClInclude>
@@ -171,12 +177,6 @@
     </ClInclude>
     <ClInclude Include="yaTitleBackGround.h">
       <Filter>Contents\Object\BackGround</Filter>
-    </ClInclude>
-    <ClInclude Include="yaAnimator.h">
-      <Filter>Engine\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="yaAnimation.h">
-      <Filter>Engine\Component</Filter>
     </ClInclude>
     <ClInclude Include="yaMainBackGround.h">
       <Filter>Contents\Object\BackGround</Filter>
@@ -274,6 +274,18 @@
     <ClInclude Include="yaPortal.h">
       <Filter>Contents\UI\SelectUI</Filter>
     </ClInclude>
+    <ClInclude Include="yaAnimation.h">
+      <Filter>Engine\Component\Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="yaAnimator.h">
+      <Filter>Engine\Component\Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="yaTransform.h">
+      <Filter>Engine\Component\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="yaRigidbody.h">
+      <Filter>Engine\Component\RigidBody</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="small.ico">
@@ -340,9 +352,6 @@
     <ClCompile Include="yaTitleScene.cpp">
       <Filter>Contents\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="yaTransform.cpp">
-      <Filter>Engine\Component</Filter>
-    </ClCompile>
     <ClCompile Include="yaMainScene.cpp">
       <Filter>Contents\Scene</Filter>
     </ClCompile>
@@ -351,12 +360,6 @@
     </ClCompile>
     <ClCompile Include="yaTitleBackGround.cpp">
       <Filter>Contents\Object\BackGround</Filter>
-    </ClCompile>
-    <ClCompile Include="yaAnimator.cpp">
-      <Filter>Engine\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="yaAnimation.cpp">
-      <Filter>Engine\Component</Filter>
     </ClCompile>
     <ClCompile Include="yaSelectCharScene.cpp">
       <Filter>Contents\Scene</Filter>
@@ -447,6 +450,18 @@
     </ClCompile>
     <ClCompile Include="yaPortal.cpp">
       <Filter>Contents\UI\SelectUI</Filter>
+    </ClCompile>
+    <ClCompile Include="yaAnimation.cpp">
+      <Filter>Engine\Component\Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="yaAnimator.cpp">
+      <Filter>Engine\Component\Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="yaTransform.cpp">
+      <Filter>Engine\Component\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="yaRigidbody.cpp">
+      <Filter>Engine\Component\RigidBody</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

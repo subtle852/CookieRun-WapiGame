@@ -27,6 +27,7 @@ namespace ya
 		if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
 		{
 			SceneManager::LoadScene(eSceneType::SelectStage);
+			//SelectCharBackGround::flag = true;
 		}
 	}
 

@@ -32,6 +32,6 @@ namespace ya
 		Vector2 mSize;
 		Vector2 mPos;
 
-		UINT practice;
+		UINT mCollisionCount;
 	};
 }

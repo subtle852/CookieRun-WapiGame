@@ -5,6 +5,8 @@
 namespace ya
 {
 	class Animator;
+	class Rigidbody;
+
 	class Character01 : public GameObject
 	{
 	public:
@@ -46,5 +48,6 @@ namespace ya
 	private:
 		eChar00State mState;
 		Animator* mAnimator;
+		Rigidbody* mRigidbody;
 	};
 }
