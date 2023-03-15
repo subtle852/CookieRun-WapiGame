@@ -38,8 +38,6 @@ namespace ya
 		// 속도에 가속도를 더해준다.
 		mVelocity += mAccelation * Time::DeltaTime();
 
-		//
-		// 중력
 		if (mbGround)
 		{
 			// 땅위에 있을때
@@ -91,17 +89,11 @@ namespace ya
 				mVelocity += friction;
 			}
 		}
-		//
 
 		// 속도에 맞게끔 물체를 이동시킨다.
 		Transform* tr = GetOwner()->GetComponent<Transform>();
-
 		Vector2 pos = tr->GetPos();
 		pos = pos + mVelocity * Time::DeltaTime();
-
-		if (pos.y > 900.0f)
-			mbGround = true;
-
 		tr->SetPos(pos);
 		mForce.Clear();
 	}

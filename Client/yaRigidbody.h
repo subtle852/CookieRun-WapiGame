@@ -17,13 +17,15 @@ namespace ya
 		void SetMass(float mass) { mMass = mass; }
 		void AddForce(Vector2 force);
 		void SetGround(bool ground) { mbGround = ground; }
+		bool GetGround() { return mbGround; }
+		void SetVelocity(Vector2 velocity) { mVelocity = velocity; }
+		Vector2 GetVelocity() { return mVelocity; }
 
 	private:
-		float mMass;// 질량
-		Vector2 mForce;// 힘, 밀어주는 것
-		Vector2 mAccelation;// 가속도
-		Vector2 mVelocity;// 속도(방향 + 크기)
-
+		float mMass;
+		Vector2 mForce;
+		Vector2 mAccelation;
+		Vector2 mVelocity;
 		Vector2 mLimitedVelocity;
 
 		Vector2 mGravity;

@@ -133,6 +133,7 @@
     <ClInclude Include="CommonInclude.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="yaGround.h" />
     <ClInclude Include="yaGuageBar.h" />
     <ClInclude Include="yaGuageCircle.h" />
     <ClInclude Include="yaJellyCoin.h" />
@@ -192,6 +193,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="yaGround.cpp" />
     <ClCompile Include="yaGuageBar.cpp" />
     <ClCompile Include="yaGuageCircle.cpp" />
     <ClCompile Include="yaJellyCoin.cpp" />

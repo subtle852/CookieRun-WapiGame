@@ -10,6 +10,8 @@
 
 namespace ya
 {
+	int Character01::cnt = 0;
+
 	Character01::Character01()
 	{
 
@@ -28,10 +30,11 @@ namespace ya
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimation(L"idle", mImage, Vector2((290.0f * 1), (290.0f * 2)), 11, 6, 4, Vector2::Zero, 0.15);
 		mAnimator->CreateAnimation(L"Roll", mImage, Vector2::Zero, 11, 6, 6, Vector2::Zero, 0.15);
+		mAnimator->CreateAnimation(L"BeforeRun", mImage, Vector2((290.0f * 6), (290.0f * 0)), 11, 6, 1, Vector2::Zero, 0.15);
 		mAnimator->CreateAnimation(L"Run", mImage, Vector2(0.0f, (290.0f * 1)), 11, 6, 4, Vector2::Zero, 0.15);
-		mAnimator->CreateAnimation(L"Jump", mImage, Vector2((290.0f * 1), (290.0f * 0)), 11, 6, 7, Vector2::Zero, 0.1);// 0에 가까울수록 애니메이션 빨리 동작
-		mAnimator->CreateAnimation(L"DJump", mImage, Vector2((290.0f * 1), (290.0f * 0)), 11, 6, 7, Vector2::Zero, 0.08);
-		mAnimator->CreateAnimation(L"Slide", mImage, Vector2((290.0f * 9), (290.0f * 0)), 11, 6, 2, Vector2::Zero, 0.1);
+		mAnimator->CreateAnimation(L"Jump", mImage, Vector2((290.0f * 0), (290.0f * 0)), 11, 6, 6, Vector2::Zero, 0.15);// 0에 가까울수록 애니메이션 빨리 동작
+		mAnimator->CreateAnimation(L"DJump", mImage, Vector2((290.0f * 1), (290.0f * 0)), 11, 6, 6, Vector2::Zero, 0.15);
+		mAnimator->CreateAnimation(L"Slide", mImage, Vector2((290.0f * 9), (290.0f * 0)), 11, 6, 2, Vector2::Zero, 0.08);
 		mAnimator->CreateAnimation(L"Death", mImage, Vector2((290.0f * 0), (290.0f * 4)), 11, 6, 4, Vector2::Zero, 0.15);
 		//mAnimator->CreateAnimations(L"..\\Resorces\\Chalise\\Idle", Vector2::Zero, 0.1f);
 
@@ -72,6 +75,9 @@ namespace ya
 			{
 			case ya::Character01::eChar00State::Run:
 				run();
+				break;
+			case ya::Character01::eChar00State::BeforeRun:
+				beforerun();
 				break;
 			case ya::Character01::eChar00State::Jump:
 				jump();
@@ -164,12 +170,12 @@ namespace ya
 
 	void Character01::run()
 	{
-		//Transform* tr = GetComponent<Transform>();
-		//tr->SetPos(Vector2(200.0f, 600.0f));
-
 		Collider* collider = GetComponent<Collider>();
 		collider->SetSize(Vector2(100.0f, 100.0f));
 		collider->SetCenter(Vector2(-50.0f, -100.0f));
+		
+		cnt = 0;
+
 		mAnimator->Play(L"Run", true);
 
 		if (Input::GetKeyDown(eKeyCode::W))
@@ -181,9 +187,24 @@ namespace ya
 			//mRigidbody->AddForce(Vector2(0.0f, -150.0f));
 			mState = eChar00State::Jump;	
 		}
-		if (Input::GetKey(eKeyCode::S))
+		if (Input::GetKeyDown(eKeyCode::S))
 		{
 			mState = eChar00State::Slide;
+		}
+
+		if (Input::GetKeyDown(eKeyCode::SPACE))
+		{
+			cnt2++;
+
+			if (cnt2 == 1)
+			{
+				Vector2 velocity = mRigidbody->GetVelocity();
+				velocity.y = -700.0f;
+
+				mRigidbody->SetVelocity(velocity);
+				mRigidbody->SetGround(false);
+				mState = eChar00State::Jump;
+			}
 		}
 
 		//if (Input::GetKey(eKeyCode::A))
@@ -228,22 +249,42 @@ namespace ya
 		//	//tr->SetPos(pos);
 		//}
 	}
+
+	void Character01::beforerun()
+	{
+		mAnimator->Play(L"BeforeRun", true);
+
+		if (mRigidbody->GetGround())
+		{
+			mState = eChar00State::Run;
+		}
+
+		if (Input::GetKey(eKeyCode::S))
+		{
+			mState = eChar00State::Slide;
+		}
+	}
+
 	void Character01::jump()
 	{
 		//Collider* collider = GetComponent<Collider>();
 		//collider->SetSize(Vector2(100.0f, 100.0f));
 		//collider->SetCenter(Vector2(-50.0f, -100.0f));
+		cnt2 = 0;
 
 		mAnimator->Play(L"Jump", true);
 
-		if (!mAnimator->IsComplte())
+		if (!mAnimator->IsComplte() && Input::GetKeyDown(eKeyCode::SPACE))
 		{
-			if (Input::GetKeyDown(eKeyCode::W))
+			cnt++;
+
+			if (cnt == 1)
 			{
-				Transform* tr = GetComponent<Transform>();
-				Vector2 pos = tr->GetPos();
-				pos.y -= 150.0f;
-				tr->SetPos(pos);
+				Vector2 velocity = mRigidbody->GetVelocity();
+				velocity.y = -700.0f;
+
+				mRigidbody->SetVelocity(velocity);
+				mRigidbody->SetGround(false);
 				mState = eChar00State::DoubleJump;
 			}
 		}
@@ -257,7 +298,13 @@ namespace ya
 
 	void Character01::djump()
 	{
+		if(cnt == 1)
 		mAnimator->Play(L"DJump", true);
+
+		if (Input::GetKeyDown(eKeyCode::SPACE))
+		{
+			cnt++;
+		}
 
 		if (Input::GetKey(eKeyCode::S))
 		{
@@ -267,11 +314,11 @@ namespace ya
 
 	void Character01::slide()
 	{
-		Transform* tr = GetComponent<Transform>();
-		tr->SetPos(Vector2(200.0f, 600.0f));
+		 Transform* tr = GetComponent<Transform>();
+		 tr->SetPos(Vector2(200.0f, 800.0f));
 
 		Collider* collider = GetComponent<Collider>();
-		collider->SetSize(Vector2(100.0f, 50.0f));
+		collider->SetSize(Vector2(100.0f, 25.0f));
 		collider->SetCenter(Vector2(-50.0f, -30.0f));
 		
 		mAnimator->Play(L"Slide", true);
@@ -295,19 +342,12 @@ namespace ya
 
 	void Character01::JumpCompleteEvent(/*const Cuphead* this*/)
 	{
-		//Transform* tr = GetComponent<Transform>();
-		//Vector2 pos = tr->GetPos();
-
-		//pos.y += 300.0f; //* Time::DeltaTime();
-		mState = eChar00State::Run;
-		//mAnimator->Play(L"Run", true);
-
-		//tr->SetPos(pos);
+		mState = eChar00State::BeforeRun;
 	}
 
 	void Character01::DJumpCompleteEvent()
 	{
-		mState = eChar00State::Run;
+		mState = eChar00State::BeforeRun;
 	}
 
 	//void Character01::SlideCompleteEvent()

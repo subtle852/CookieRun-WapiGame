@@ -20,6 +20,7 @@ enum class eLayerType // layer 그리는 순서
 	Item,
 	Player,
 	Pet,
+	Ground,
 	Effect,
 	UIfirst,
 	UI,

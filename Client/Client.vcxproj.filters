@@ -104,6 +104,9 @@
     <Filter Include="Engine\Component\RigidBody">
       <UniqueIdentifier>{e78954bf-5f0a-4bc6-bcd1-3d75ec952396}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Ground">
+      <UniqueIdentifier>{f68f55f4-6417-4646-8f69-f043b6e1b664}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -286,6 +289,9 @@
     <ClInclude Include="yaRigidbody.h">
       <Filter>Engine\Component\RigidBody</Filter>
     </ClInclude>
+    <ClInclude Include="yaGround.h">
+      <Filter>Contents\Ground</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="small.ico">
@@ -462,6 +468,9 @@
     </ClCompile>
     <ClCompile Include="yaRigidbody.cpp">
       <Filter>Engine\Component\RigidBody</Filter>
+    </ClCompile>
+    <ClCompile Include="yaGround.cpp">
+      <Filter>Contents\Ground</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

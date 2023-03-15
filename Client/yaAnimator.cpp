@@ -2,6 +2,8 @@
 #include "yaResources.h"
 #include "yaInput.h"
 
+#include "yaCharacter01.h"
+
 namespace ya
 {
 	Animator::Animator()
@@ -170,7 +172,7 @@ namespace ya
 		// 커맨드로 인해 b 동작이 실행되었어
 		// 그럴 때 a 애니메이션이 덜 끝났지만 강제로 리셋을 시켜줘야함
 
-		if (Input::GetKeyUp(eKeyCode::W) || Input::GetKeyUp(eKeyCode::S))
+		if (Character01::cnt <= 1 && Input::GetKeyUp(eKeyCode::SPACE))
 		{
 			mActiveAnimation->Reset();
 		}

@@ -13,6 +13,7 @@ namespace ya
 		enum class eChar00State
 		{
 			Run,
+			BeforeRun,
 			Jump,
 			DoubleJump,
 			Slide,
@@ -35,6 +36,7 @@ namespace ya
 
 	private:
 		void run();
+		void beforerun();
 		void jump();
 		void djump();
 		void slide();
@@ -49,5 +51,9 @@ namespace ya
 		eChar00State mState;
 		Animator* mAnimator;
 		Rigidbody* mRigidbody;
+
+	public:
+		static int cnt;
+		int cnt2 = 0;
 	};
 }
