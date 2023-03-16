@@ -76,7 +76,7 @@ namespace ya
 
 		if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
 		{
-			//SceneManager::LoadScene(eSceneType::ResultS);
+			SceneManager::LoadScene(eSceneType::ResultS);
 		}
 
 		Scene::Update();

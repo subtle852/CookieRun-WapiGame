@@ -26,9 +26,10 @@ WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름�
 ya::Application application; // 총괄하는 Application을 전역변수로 생성
 
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
-ATOM                MyRegisterClass(HINSTANCE hInstance);
+ATOM                MyRegisterClass(HINSTANCE hInstance, LPCWSTR name, WNDPROC proc);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
+LRESULT CALLBACK    AtlasWndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
 // wapi도 결국 wWinMain에서 시작
@@ -46,7 +47,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, // 프로그램 핸들(id)
     // 전역 문자열을 초기화합니다.
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
     LoadStringW(hInstance, IDC_CLIENT, szWindowClass, MAX_LOADSTRING);
-    MyRegisterClass(hInstance);
+    // main window
+    MyRegisterClass(hInstance, szWindowClass, WndProc);
+
+    // tile window
+    MyRegisterClass(hInstance, L"AtlasWindow", AtlasWndProc);
 
     // 애플리케이션 초기화를 수행합니다
     // MyRegisterClass로 윈도우 정보를 등록했고
@@ -104,14 +109,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, // 프로그램 핸들(id)
 //
 //  용도: 창 클래스를 등록합니다.
 //
-ATOM MyRegisterClass(HINSTANCE hInstance)// 윈도우 구성요소 설정
+ATOM MyRegisterClass(HINSTANCE hInstance, LPCWSTR name, WNDPROC proc)// 윈도우 구성요소 설정
 {
     WNDCLASSEXW wcex;
 
     wcex.cbSize = sizeof(WNDCLASSEX);
 
     wcex.style = CS_HREDRAW | CS_VREDRAW;
-    wcex.lpfnWndProc = WndProc;  // lpfnWndProc 타고 가면 나오는 CALLBACK(__stdcall)은 함수호출 규약 중 하나
+    wcex.lpfnWndProc = proc;  // lpfnWndProc 타고 가면 나오는 CALLBACK(__stdcall)은 함수호출 규약 중 하나
     // 함수 포인터가 들어간 형태
     wcex.cbClsExtra = 0;
     wcex.cbWndExtra = 0;
@@ -120,7 +125,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)// 윈도우 구성요소 설정
     wcex.hCursor = LoadCursor(nullptr, IDC_ARROW); // 커서 변경
     wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
     wcex.lpszMenuName = MAKEINTRESOURCEW(IDC_CLIENT);
-    wcex.lpszClassName = szWindowClass;
+    wcex.lpszClassName = name;
     wcex.hIconSm = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_ICON1));
 
     return RegisterClassExW(&wcex);
@@ -147,12 +152,15 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
     // 이미지 파일(texture, bitmap)은 좌측아래가 0,0
     // dx는 정중앙이 0,0
     HWND hWnd = CreateWindowW(szWindowClass, szTitle/* 여기서 제목표시줄 수정 */, WS_OVERLAPPEDWINDOW,
-        CW_USEDEFAULT, 0, 1600, 900, nullptr/* 창 여러개일때 연결 시킬 때 사용 */, nullptr/* 디폴트 세팅 */, hInstance, nullptr);
+        0, 0, 1600, 900, nullptr/* 창 여러개일때 연결 시킬 때 사용 */, nullptr/* 디폴트 세팅 */, hInstance, nullptr);
     // 핸들을 부여하는 이유: 원자성 보장
 
     // 윈도우 정보를 2개로 만들어서 2개다 Show, Update 가능
     //HWND hWnd2 = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
     //    CW_USEDEFAULT, 0, 500, 500, nullptr, nullptr, hInstance, nullptr);
+
+    HWND hWnd2 = CreateWindowW(L"AtlasWindow", szTitle, WS_OVERLAPPEDWINDOW,
+        1600, 0, 500, 500, nullptr, nullptr, hInstance, nullptr);
 
     if (!hWnd)
     {
@@ -161,6 +169,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
     ShowWindow(hWnd, nCmdShow);
     UpdateWindow(hWnd);
+
+    ShowWindow(hWnd2, nCmdShow);
+    UpdateWindow(hWnd2);
 
     application.Initialize(hWnd); // 윈도우 처음 만들어지는 순간에 핸들 받아와서 application도 Initialize 해버림
     //ShowWindow(hWnd2, nCmdShow);

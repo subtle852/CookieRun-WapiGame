@@ -20,6 +20,10 @@
 
 #pragma comment(lib, "Msimg32.lib")
 
+// 타일 하나 크기
+#define TILE_SIZE_X 64
+#define TILE_SIZE_Y 64
+
 // 단축키
 // 문장 단위로 넘길때 ctrl누르고 좌우 
 // 문장 앞, 뒤 HOME, END버튼

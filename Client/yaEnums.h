@@ -10,12 +10,14 @@ enum class eSceneType
 	Play, //Stage00,
 	ResultS,
 	ResultF,
+	Tool,
 	Max,
 };
 
 enum class eLayerType // layer 그리는 순서
 {
 	BG,
+	Tile,
 	Obstacle,
 	Item,
 	Player,

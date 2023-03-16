@@ -9,6 +9,7 @@
 #include "yaPlayScene.h"
 #include "yaResultSucScene.h"
 #include "yaResultFailScene.h"
+#include "yaToolScene.h"
 
 namespace ya
 {
@@ -26,6 +27,7 @@ namespace ya
 		mScenes[(UINT)eSceneType::Play] = new PlayScene();
 		mScenes[(UINT)eSceneType::ResultS] = new ResultSucScene();
 		mScenes[(UINT)eSceneType::ResultF] = new ResultFailScene();
+		mScenes[(UINT)eSceneType::Tool] = new ToolScene();
 
 		//mScenes[(UINT)eSceneType::Play]->SetName(L"PLAYER"); //Entity È°¿ë¹ý
 
@@ -44,7 +46,7 @@ namespace ya
 			scene->Initialize();
 		}
 
-		mActiveScene = mScenes[(UINT)eSceneType::Play];
+		mActiveScene = mScenes[(UINT)eSceneType::Tool];
 	}
 
 	void SceneManager::Update()

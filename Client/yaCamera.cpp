@@ -26,7 +26,7 @@ namespace ya
 		mResolution.y = application.GetHeight();
 		mLookPosition = (mResolution / 2.0f);
 
-		mType = eCameraEffectType::FadeIn;// 설정
+		mType = eCameraEffectType::None;// 설정
 		mCutton = Image::Create(L"Cutton", mResolution.x, mResolution.y, RGB(0, 0, 0)/*원하는 색*/);
 	}
 
