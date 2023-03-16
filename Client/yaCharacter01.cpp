@@ -32,7 +32,7 @@ namespace ya
 		mAnimator->CreateAnimation(L"Roll", mImage, Vector2::Zero, 11, 6, 6, Vector2::Zero, 0.15);
 		mAnimator->CreateAnimation(L"BeforeRun", mImage, Vector2((290.0f * 6), (290.0f * 0)), 11, 6, 1, Vector2::Zero, 0.15);
 		mAnimator->CreateAnimation(L"Run", mImage, Vector2(0.0f, (290.0f * 1)), 11, 6, 4, Vector2::Zero, 0.15);
-		mAnimator->CreateAnimation(L"Jump", mImage, Vector2((290.0f * 0), (290.0f * 0)), 11, 6, 6, Vector2::Zero, 0.15);// 0에 가까울수록 애니메이션 빨리 동작
+		mAnimator->CreateAnimation(L"Jump", mImage, Vector2((290.0f * 0), (290.0f * 0)), 11, 6, 1, Vector2::Zero, 0.15);// 0에 가까울수록 애니메이션 빨리 동작
 		mAnimator->CreateAnimation(L"DJump", mImage, Vector2((290.0f * 1), (290.0f * 0)), 11, 6, 6, Vector2::Zero, 0.15);
 		mAnimator->CreateAnimation(L"Slide", mImage, Vector2((290.0f * 9), (290.0f * 0)), 11, 6, 2, Vector2::Zero, 0.08);
 		mAnimator->CreateAnimation(L"Death", mImage, Vector2((290.0f * 0), (290.0f * 4)), 11, 6, 4, Vector2::Zero, 0.15);
@@ -178,28 +178,19 @@ namespace ya
 
 		mAnimator->Play(L"Run", true);
 
-		if (Input::GetKeyDown(eKeyCode::W))
-		{
-			Transform* tr = GetComponent<Transform>();
-			Vector2 pos = tr->GetPos();
-			pos.y -= 150.0f;
-			tr->SetPos(pos);
-			//mRigidbody->AddForce(Vector2(0.0f, -150.0f));
-			mState = eChar00State::Jump;	
-		}
 		if (Input::GetKeyDown(eKeyCode::S))
 		{
 			mState = eChar00State::Slide;
 		}
 
-		if (Input::GetKeyDown(eKeyCode::SPACE))
+		if (Input::GetKeyDown(eKeyCode::W))
 		{
 			cnt2++;
 
 			if (cnt2 == 1)
 			{
 				Vector2 velocity = mRigidbody->GetVelocity();
-				velocity.y = -700.0f;
+				velocity.y = -600.0f;
 
 				mRigidbody->SetVelocity(velocity);
 				mRigidbody->SetGround(false);
@@ -254,6 +245,21 @@ namespace ya
 	{
 		mAnimator->Play(L"BeforeRun", true);
 
+		if (!mRigidbody->GetGround() && Input::GetKeyDown(eKeyCode::W))
+		{
+			cnt++;
+
+			if (cnt == 1)
+			{
+				Vector2 velocity = mRigidbody->GetVelocity();
+				velocity.y = -600.0f;
+
+				mRigidbody->SetVelocity(velocity);
+				mRigidbody->SetGround(false);
+				mState = eChar00State::DoubleJump;
+			}
+		}
+
 		if (mRigidbody->GetGround())
 		{
 			mState = eChar00State::Run;
@@ -274,7 +280,7 @@ namespace ya
 
 		mAnimator->Play(L"Jump", true);
 
-		if (!mAnimator->IsComplte() && Input::GetKeyDown(eKeyCode::SPACE))
+		if (!mRigidbody->GetGround() && Input::GetKeyDown(eKeyCode::W))
 		{
 			cnt++;
 
@@ -301,7 +307,7 @@ namespace ya
 		if(cnt == 1)
 		mAnimator->Play(L"DJump", true);
 
-		if (Input::GetKeyDown(eKeyCode::SPACE))
+		if (Input::GetKeyDown(eKeyCode::W))
 		{
 			cnt++;
 		}

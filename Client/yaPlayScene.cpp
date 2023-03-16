@@ -40,18 +40,18 @@ namespace ya
 
 		// ¿©±â´Ù
 
-		object::Instantiate<PlayBackGround>(eLayerType::BG);
+		//object::Instantiate<PlayBackGround>(eLayerType::BG);
 
 		object::Instantiate<Ground>(Vector2(-100.0f, 800.0f), eLayerType::Ground);
 
 		object::Instantiate<Character01>(Vector2(200.0f, 800.0f), eLayerType::Player);
 		object::Instantiate<Pet01>(Vector2(300.0f, 500.0f), eLayerType::Pet);
-		object::Instantiate<Obstacle>(Vector2(1100.0f, 600.0f), eLayerType::Obstacle);
-		object::Instantiate<Obstacle01>(Vector2(1700.0f, 50.0f), eLayerType::Obstacle);
-		object::Instantiate<Obstacle>(Vector2(2300.0f, 600.0f), eLayerType::Obstacle);
-		object::Instantiate<Obstacle01>(Vector2(2900.0f, 50.0f), eLayerType::Obstacle);
-		object::Instantiate<JellyCoin>(Vector2(1300.0f, 600.0f), eLayerType::Obstacle);
-		object::Instantiate<JellyCoin>(Vector2(2300.0f, 250.0f), eLayerType::Obstacle);
+		object::Instantiate<Obstacle>(Vector2(1100.0f, 800.0f), eLayerType::Obstacle);
+		object::Instantiate<Obstacle01>(Vector2(1700.0f, 250.0f), eLayerType::Obstacle);
+		object::Instantiate<Obstacle>(Vector2(2300.0f, 800.0f), eLayerType::Obstacle);
+		object::Instantiate<Obstacle01>(Vector2(2900.0f, 250.0f), eLayerType::Obstacle);
+		object::Instantiate<JellyCoin>(Vector2(1400.0f, 800.0f), eLayerType::Obstacle);
+		object::Instantiate<JellyCoin>(Vector2(2300.0f, 450.0f), eLayerType::Obstacle);
 
 		object::Instantiate<GuageCircle>(Vector2(-10.0f, 50.0f), eLayerType::UI);
 		object::Instantiate<GuageBar>(Vector2(59.0f, 62.0f), eLayerType::UIfirst);
@@ -61,6 +61,9 @@ namespace ya
 		object::Instantiate<PauseButton>(Vector2(1400.0f, 50.0f), eLayerType::UI);
 		//object::Instantiate<GuageCircle>(Vector2(216.0f, 50.0f), eLayerType::UI);
 		//object::Instantiate<GuageBar>(Vector2(285.0f, 62.0f), eLayerType::UIfirst);
+
+		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Ground, true);
+		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Obstacle, true);
 	}
 
 	void PlayScene::Update()
@@ -73,7 +76,7 @@ namespace ya
 
 		if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
 		{
-			SceneManager::LoadScene(eSceneType::ResultS);
+			//SceneManager::LoadScene(eSceneType::ResultS);
 		}
 
 		Scene::Update();

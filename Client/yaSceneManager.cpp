@@ -28,6 +28,7 @@ namespace ya
 		mScenes[(UINT)eSceneType::ResultF] = new ResultFailScene();
 
 		//mScenes[(UINT)eSceneType::Play]->SetName(L"PLAYER"); //Entity È°¿ë¹ý
+
 		mScenes[(UINT)eSceneType::Title]->SetName(L"Title");
 		mScenes[(UINT)eSceneType::Main]->SetName(L"Main");
 		mScenes[(UINT)eSceneType::SelectChar]->SetName(L"SelectChar");
@@ -43,7 +44,7 @@ namespace ya
 			scene->Initialize();
 		}
 
-		mActiveScene = mScenes[(UINT)eSceneType::Title];
+		mActiveScene = mScenes[(UINT)eSceneType::Play];
 	}
 
 	void SceneManager::Update()

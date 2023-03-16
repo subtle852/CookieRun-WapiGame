@@ -27,9 +27,9 @@ namespace ya
 		mImage = Resources::Load<Image>(L"Land1Slide01", L"..\\Resources\\land1\\land1_sl_0001.bmp");
 
 		Collider* collider = AddComponent<Collider>();
-		collider->SetSize(Vector2(120.0f, 220.0f));
+		collider->SetSize(Vector2(120.0f, 520.0f));
 		//collider->SetCenter(Vector2(0.0f, 250.0f));
-		collider->SetCenter(Vector2(0.0f, 300.0f));
+		collider->SetCenter(Vector2(25.0f, 0.0f));
 
 		GameObject::Initialize();
 	}
