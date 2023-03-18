@@ -155,40 +155,57 @@ namespace ya
 
 	void Animator::Play(const std::wstring& name, bool loop)
 	{
-		if (mActiveAnimation != nullptr)
-		{
-			Animator::Events* prevEvents = FindEvents(mActiveAnimation->GetName());
+		//if (mActiveAnimation != nullptr)
+		//{
+		//	Animator::Events* prevEvents = FindEvents(mActiveAnimation->GetName());
 
-			if (prevEvents != nullptr)
-			{
-				prevEvents->mEndEvent();
-			}
-		}
+		//	if (prevEvents != nullptr)
+		//	{
+		//		prevEvents->mEndEvent();
+		//	}
+		//}
+
+		//mActiveAnimation = FindAnimation(name);
+
+		//// 지금 문제가 
+		//// a 애니메이션 진행중인 도중에(a 애니메이션 덜 끝난 상태)
+		//// 커맨드로 인해 b 동작이 실행되었어
+		//// 그럴 때 a 애니메이션이 덜 끝났지만 강제로 리셋을 시켜줘야함
+
+		//if (Character01::cnt <= 1 && Input::GetKeyUp(eKeyCode::W))
+		//{
+		//	mActiveAnimation->Reset();
+		//}
+
+		////애니메이션이 끝났을 때만 리셋해주어야 함
+		//if (mActiveAnimation->IsComplete())
+		//{
+		//	mActiveAnimation->Reset();
+		//}
+		//mbLoop = loop;
+
+		//Animator::Events* events = FindEvents(mActiveAnimation->GetName());
+
+		//if (events != nullptr)
+		//{
+		//	events->mStartEvent();
+		//}
+
+		if (FindAnimation(name) == mActiveAnimation)
+			return;
+		Animator::Events* events = FindEvents(name);
+		if (events != nullptr) events->mStartEvent();
+
+
+		Animation* prevAnimation = mActiveAnimation;
 
 		mActiveAnimation = FindAnimation(name);
 
-		// 지금 문제가 
-		// a 애니메이션 진행중인 도중에(a 애니메이션 덜 끝난 상태)
-		// 커맨드로 인해 b 동작이 실행되었어
-		// 그럴 때 a 애니메이션이 덜 끝났지만 강제로 리셋을 시켜줘야함
-
-		if (Character01::cnt <= 1 && Input::GetKeyUp(eKeyCode::W))
-		{
-			mActiveAnimation->Reset();
-		}
-
-		//애니메이션이 끝났을 때만 리셋해주어야 함
-		if (mActiveAnimation->IsComplete())
-		{
-			mActiveAnimation->Reset();
-		}
+		mActiveAnimation->Reset();
 		mbLoop = loop;
 
-		Animator::Events* events = FindEvents(mActiveAnimation->GetName());
-
-		if (events != nullptr)
-		{
-			events->mStartEvent();
+		if (prevAnimation != mActiveAnimation) {
+			if (events != nullptr) events->mEndEvent();
 		}
 	}
 

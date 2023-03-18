@@ -37,33 +37,33 @@ namespace ya
 
 	void Ground::OnCollisionEnter(Collider* other)
 	{
-		//Character01* cuphead = dynamic_cast<Character01*>(other->GetOwner());
-		//if (cuphead == nullptr)
-		//	return;
+		Character01* cuphead = dynamic_cast<Character01*>(other->GetOwner());
+		if (cuphead == nullptr)
+			return;
 
-		//Rigidbody* rb = cuphead->GetComponent<Rigidbody>();
-		//rb->SetGround(true);
+		Rigidbody* rb = cuphead->GetComponent<Rigidbody>();
+		rb->SetGround(true);
 
-		//Collider* cupheadCol = cuphead->GetComponent<Collider>();
-		//Vector2 cupheadPos = cupheadCol->GetPos();
+		Collider* cupheadCol = cuphead->GetComponent<Collider>();
+		Vector2 cupheadPos = cupheadCol->GetPos();
 
-		//Collider* groundCol = this->GetComponent<Collider>();
-		//Vector2 groundPos = groundCol->GetPos();
+		Collider* groundCol = this->GetComponent<Collider>();
+		Vector2 groundPos = groundCol->GetPos();
 
-		//float fLen = fabs(cupheadPos.y - groundPos.y);
-		//float fSize = cupheadCol->GetSize().y;
+		float fLen = fabs(cupheadPos.y - groundPos.y);
+		float fSize = cupheadCol->GetSize().y;
 
-		//if (fLen < fSize)
-		//{
-		//	Transform* cupTr = cuphead->GetComponent<Transform>();
-		//	Transform* grTr = this->GetComponent<Transform>();
+		if (fLen < fSize)
+		{
+			Transform* cupTr = cuphead->GetComponent<Transform>();
+			Transform* grTr = this->GetComponent<Transform>();
 
-		//	Vector2 cupPos = cupTr->GetPos();
-		//	Vector2 grPos = grTr->GetPos();
+			Vector2 cupPos = cupTr->GetPos();
+			Vector2 grPos = grTr->GetPos();
 
-		//	cupPos.y -= fSize - fLen;
-		//	cupTr->SetPos(cupPos);
-		//}
+			cupPos.y -= fSize - fLen;
+			cupTr->SetPos(cupPos);
+		}
 	}
 
 	void Ground::OnCollisionStay(Collider* other)

@@ -49,7 +49,7 @@ namespace ya
         func.AlphaFormat = AC_SRC_ALPHA;
         func.SourceConstantAlpha = 127;
 
-        AlphaBlend(hdc, pos.x, pos.y, mImage->GetWidth(), mImage->GetHeight()
+        AlphaBlend(hdc, pos.x, pos.y, mImage->GetWidth() * 1.2, mImage->GetHeight() * 1.2
             , mImage->GetHdc(), 0, 0, mImage->GetWidth(), mImage->GetHeight(), func);
 
         GameObject::Render(hdc);

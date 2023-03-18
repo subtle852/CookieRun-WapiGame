@@ -35,8 +35,8 @@ namespace ya
 
 		object::Instantiate<MainBackGround>(eLayerType::BG);
 
-		mCh00 = object::Instantiate<Character01>(Vector2(800.0f, 620.0f), eLayerType::Player);
-		mPet00 = object::Instantiate<Pet01>(Vector2(900.0f, 520.0f), eLayerType::Pet);
+		mCh00 = object::Instantiate<Character01>(Vector2(780.0f, 580.0f), eLayerType::Player);
+		mPet00 = object::Instantiate<Pet01>(Vector2(880.0f, 480.0f), eLayerType::Pet);
 
 		object::Instantiate<PlayButton>(Vector2(1100.0f, 700.0f), eLayerType::UI);
 		object::Instantiate<DiaUI>(Vector2(1000.0f, 50.0f), eLayerType::UI);

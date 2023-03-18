@@ -15,8 +15,8 @@ namespace ya
 		mLimitedVelocity.x = 200.0f;
 		mLimitedVelocity.y = 1000.0f;
 		mbGround = false;
-		mGravity = Vector2(0.0f, 800.0f);
-		mFriction = 100.0f;
+		mGravity = Vector2(0.0f, 9000.0f); //800
+		mFriction = 500.0f;
 	}
 
 	Rigidbody::~Rigidbody()

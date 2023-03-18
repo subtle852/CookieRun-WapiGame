@@ -35,8 +35,8 @@ namespace ya
 		mAnimator->Play(L"land1jump", true);
 
 		Collider* collider = AddComponent<Collider>();
-		collider->SetSize(Vector2(120.0f, 220.0f));
-		collider->SetCenter(Vector2(-60.0f, -220.0f));
+		collider->SetSize(Vector2(120.0f, 200.0f));
+		collider->SetCenter(Vector2(-60.0f, -200.0f));
 
 		GameObject::Initialize();
 	}
@@ -45,7 +45,7 @@ namespace ya
 	{
 		Transform* tr = GetComponent<Transform>();
 		Vector2 pos = tr->GetPos();
-		pos.x -= 300.0f * Time::DeltaTime();
+		pos.x -= 700.0f * Time::DeltaTime();
 		
 		tr->SetPos(pos);
 

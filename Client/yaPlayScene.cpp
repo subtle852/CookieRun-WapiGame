@@ -42,22 +42,23 @@ namespace ya
 
 		//object::Instantiate<PlayBackGround>(eLayerType::BG);
 
-		object::Instantiate<Ground>(Vector2(-100.0f, 800.0f), eLayerType::Ground);
+		object::Instantiate<Ground>(Vector2(-100.0f, 700.0f), eLayerType::Ground);
 
-		object::Instantiate<Character01>(Vector2(200.0f, 800.0f), eLayerType::Player);
-		object::Instantiate<Pet01>(Vector2(300.0f, 500.0f), eLayerType::Pet);
-		object::Instantiate<Obstacle>(Vector2(1100.0f, 800.0f), eLayerType::Obstacle);
-		object::Instantiate<Obstacle01>(Vector2(1700.0f, 250.0f), eLayerType::Obstacle);
-		object::Instantiate<Obstacle>(Vector2(2300.0f, 800.0f), eLayerType::Obstacle);
-		object::Instantiate<Obstacle01>(Vector2(2900.0f, 250.0f), eLayerType::Obstacle);
-		object::Instantiate<JellyCoin>(Vector2(1400.0f, 800.0f), eLayerType::Obstacle);
-		object::Instantiate<JellyCoin>(Vector2(2300.0f, 450.0f), eLayerType::Obstacle);
+		mCh01 = object::Instantiate<Character01>(Vector2(300.0f, 650.0f), eLayerType::Player);
+		mPet01 = object::Instantiate<Pet01>(eLayerType::Pet);
 
-		object::Instantiate<GuageCircle>(Vector2(-10.0f, 50.0f), eLayerType::UI);
-		object::Instantiate<GuageBar>(Vector2(59.0f, 62.0f), eLayerType::UIfirst);
+		object::Instantiate<Obstacle>(Vector2(1200.0f, 700.0f), eLayerType::Obstacle);
+		object::Instantiate<Obstacle01>(Vector2(2000.0f, 100.0f), eLayerType::Obstacle);
+		object::Instantiate<Obstacle>(Vector2(2700.0f, 700.0f), eLayerType::Obstacle);
+		object::Instantiate<Obstacle01>(Vector2(3300.0f, 100.0f), eLayerType::Obstacle);
+		object::Instantiate<JellyCoin>(Vector2(2100.0f, 700.0f), eLayerType::Obstacle);
+		object::Instantiate<JellyCoin>(Vector2(2700.0f, 300.0f), eLayerType::Obstacle);
 
-		object::Instantiate<JumpButton>(Vector2(200.0f, 700.0f), eLayerType::UI);
-		object::Instantiate<SlideButton>(Vector2(1200.0f, 700.0f), eLayerType::UI);
+		object::Instantiate<GuageCircle>(Vector2(-10.0f, 20.0f), eLayerType::UI);
+		object::Instantiate<GuageBar>(Vector2(59.0f, 32.0f), eLayerType::UIfirst);
+
+		object::Instantiate<JumpButton>(Vector2(100.0f, 650.0f), eLayerType::UI);
+		object::Instantiate<SlideButton>(Vector2(1200.0f, 650.0f), eLayerType::UI);
 		object::Instantiate<PauseButton>(Vector2(1400.0f, 50.0f), eLayerType::UI);
 		//object::Instantiate<GuageCircle>(Vector2(216.0f, 50.0f), eLayerType::UI);
 		//object::Instantiate<GuageBar>(Vector2(285.0f, 62.0f), eLayerType::UIfirst);
@@ -68,11 +69,11 @@ namespace ya
 
 	void PlayScene::Update()
 	{
-		//Transform* tr = mCh01->GetComponent<Transform>();
-		//Vector2 pos = tr->GetPos();
+		Transform* tr = mCh01->GetComponent<Transform>();
+		Vector2 pos = tr->GetPos();
 
-		//Transform* trr = mPet01->GetComponent<Transform>();
-		//trr->SetPos(Vector2(pos.x + 100.0f, pos.y -100.0f));
+		Transform* trr = mPet01->GetComponent<Transform>();
+		trr->SetPos(Vector2(pos.x - 120.0f, pos.y - 0.0f));
 
 		if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
 		{

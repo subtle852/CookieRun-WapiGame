@@ -46,7 +46,7 @@ namespace ya
 			scene->Initialize();
 		}
 
-		mActiveScene = mScenes[(UINT)eSceneType::Tool];
+		mActiveScene = mScenes[(UINT)eSceneType::Play];
 	}
 
 	void SceneManager::Update()

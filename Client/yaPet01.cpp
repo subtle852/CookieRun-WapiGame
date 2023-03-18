@@ -37,6 +37,17 @@ namespace ya
 	void Pet01::Update()
 	{
 		GameObject::Update();
+
+		Transform* tr = GetComponent<Transform>();
+
+		if (Input::GetKeyUp(eKeyCode::S))
+		{
+			tr->SetPos(Vector2(180.0f, 730.0f));
+		}
+		if (Input::GetKey(eKeyCode::S))
+		{
+			tr->SetPos(Vector2(180.0f, 730.0f));
+		}
 	}
 
 	void Pet01::Render(HDC hdc)

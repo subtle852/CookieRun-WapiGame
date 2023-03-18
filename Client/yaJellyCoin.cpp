@@ -9,6 +9,8 @@
 #include "yaScene.h"
 #include "yaObject.h"
 
+#include "yaCharacter01.h"
+
 namespace ya
 {
 	JellyCoin::JellyCoin()
@@ -44,7 +46,7 @@ namespace ya
 	{
 		Transform* tr = GetComponent<Transform>();
 		Vector2 pos = tr->GetPos();
-		pos.x -= 300.0f * Time::DeltaTime();
+		pos.x -= 700.0f * Time::DeltaTime();
 
 		tr->SetPos(pos);
 
