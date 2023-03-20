@@ -25,7 +25,7 @@ namespace ya
 	{
 		if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
 		{
-			SceneManager::LoadScene(eSceneType::ResultF);
+			SceneManager::LoadScene(eSceneType::Play);
 		}
 	}
 

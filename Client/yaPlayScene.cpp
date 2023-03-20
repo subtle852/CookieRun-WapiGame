@@ -11,6 +11,8 @@
 #include "yaTransform.h"
 #include "yaCamera.h"
 #include "yaObject.h"
+#include "yaTime.h"
+#include "yaBlackOut.h"
 
 #include "yaJumpButton.h"
 #include "yaSlideButton.h"
@@ -18,6 +20,8 @@
 #include "yaGuageCircle.h"
 #include "yaGuageBar.h"
 #include "yaGround.h"
+
+#include "yaSelectCharScene.h"
 
 namespace ya
 {
@@ -34,7 +38,7 @@ namespace ya
 	{
 		//mCh00 =
 		//object::Instantiate<Character01>(eLayerType::Player);
-		//Camera::SetTarget(mCh00);
+		//Camera::SetTarget(mCh01);
 
 		Scene::Initialize();
 
@@ -44,14 +48,21 @@ namespace ya
 
 		object::Instantiate<Ground>(Vector2(-100.0f, 700.0f), eLayerType::Ground);
 
-		mCh01 = object::Instantiate<Character01>(Vector2(300.0f, 650.0f), eLayerType::Player);
+		int temp = SelectCharScene::GetCharNumber();
+		if (int temp = SelectCharScene::GetCharNumber() == 1)
+		{
+			mCh01 = object::Instantiate<Character01>(Vector2(300.0f, 650.0f), eLayerType::Player);
+		}
+
+		Camera::SetTarget(mCh01);
+
 		mPet01 = object::Instantiate<Pet01>(eLayerType::Pet);
 
 		object::Instantiate<Obstacle>(Vector2(1200.0f, 700.0f), eLayerType::Obstacle);
 		object::Instantiate<Obstacle01>(Vector2(2000.0f, 100.0f), eLayerType::Obstacle);
 		object::Instantiate<Obstacle>(Vector2(2700.0f, 700.0f), eLayerType::Obstacle);
 		object::Instantiate<Obstacle01>(Vector2(3300.0f, 100.0f), eLayerType::Obstacle);
-		object::Instantiate<JellyCoin>(Vector2(2100.0f, 700.0f), eLayerType::Obstacle);
+		mJcoin01 = object::Instantiate<JellyCoin>(Vector2(2100.0f, 700.0f), eLayerType::Obstacle);
 		object::Instantiate<JellyCoin>(Vector2(2700.0f, 300.0f), eLayerType::Obstacle);
 
 		object::Instantiate<GuageCircle>(Vector2(-10.0f, 20.0f), eLayerType::UI);
@@ -74,6 +85,23 @@ namespace ya
 
 		Transform* trr = mPet01->GetComponent<Transform>();
 		trr->SetPos(Vector2(pos.x - 120.0f, pos.y - 0.0f));
+
+		if (mJcoin01->ok && mBlackOut == nullptr)
+		{
+			//mBlackOut = object::Instantiate<BlackOut>(Vector2(0.0f, 0.0f), eLayerType::Effect);
+		}
+
+		if (mBlackOut != nullptr)
+		{
+			mTime += Time::DeltaTime();
+			if (mTime > 5.0f)
+			{
+				ya::object::Destory(mBlackOut);
+				mTime = 0.0f;
+			}
+		}
+		//Camera::mType = Camera::eCameraEffectType::ShakeH;// 설정
+		//Camera::mCutton = Image::Create(L"Cutton00", Camera::mResolution.x, Camera::mResolution.y, RGB(0, 0, 0)/*원하는 색*/);
 
 		if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
 		{
@@ -98,12 +126,14 @@ namespace ya
 
 	void PlayScene::OnEnter()
 	{
+		Camera::SetTarget(mCh01);
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Ground, true);
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Obstacle, true);
 	}
 
 	void PlayScene::OnExit()
 	{
+		Camera::Clear();
 		//ya::object::Destory(mBG);
 		//ya::object::Destory(mCh01);
 		//ya::object::Destory(mPet01);

@@ -15,7 +15,7 @@ namespace ya
 		mLimitedVelocity.x = 200.0f;
 		mLimitedVelocity.y = 1000.0f;
 		mbGround = false;
-		mGravity = Vector2(0.0f, 9000.0f); //800
+		mGravity = Vector2(0.0f, 9000.0f); //9000
 		mFriction = 500.0f;
 	}
 

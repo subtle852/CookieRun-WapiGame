@@ -5,6 +5,7 @@
 #include "yaInput.h"
 #include "yaTime.h"
 #include "yaImage.h"
+#include "yaSceneManager.h"
 
 extern ya::Application application;
 namespace ya
@@ -19,6 +20,11 @@ namespace ya
 	float Camera::mCuttonAlpha = 1.0f;
 	float Camera::mAlphaTime = 0.0f;
 	float Camera::mEndTime = 5.0f;
+
+	float Camera::mSwingATime = 0.0f;
+	float Camera::mSwingBTime = 0.0f;
+	float Camera::mSwingFTime = 0.0f;
+	float Camera::mSwingETime = 0.1f;
 
 	void Camera::Initiailize()
 	{
@@ -45,11 +51,18 @@ namespace ya
 		if (Input::GetKey(eKeyCode::DOWN))
 			mLookPosition.y += 100.0f * Time::DeltaTime();
 
-
 		if (mTarget != nullptr)
 		{
-			mLookPosition
-				= mTarget->GetComponent<Transform>()->GetPos();
+			Scene* scn = SceneManager::GetActiveScene();
+			if (scn->GetName() == L"Play")
+			{
+				mLookPosition.x = mTarget->GetComponent<Transform>()->GetPos().x + 500.0f;
+				mLookPosition.y = 450.0f;
+			}
+		}
+		else
+		{
+			//Camera::Clear();
 		}
 
 		if (mAlphaTime < mEndTime)
@@ -66,11 +79,67 @@ namespace ya
 			{
 				mCuttonAlpha = ratio;
 			}
-			else
-			{
+		}
 
+		if ((mType == eCameraEffectType::None))
+		{
+			mSwingFTime = 0.0f;
+		}
+
+		if ((mType == eCameraEffectType::ShakeH))
+		{
+			mSwingFTime += Time::DeltaTime();
+
+			if (mSwingFTime < 1.0f)
+			{
+				mSwingATime += Time::DeltaTime();
+				mSwingBTime += Time::DeltaTime();
+
+				if (mSwingATime > mSwingETime)
+				{
+					mLookPosition.y += 50.0f;
+				}
+
+				if (mSwingBTime > mSwingETime * 2)
+				{
+					mLookPosition.y -= 50.0f;
+					mSwingATime = 0.0f;
+					mSwingBTime = 0.0f;
+				}
+			}
+			if (mSwingFTime > 1.0f)
+			{
+				mType = eCameraEffectType::None;
 			}
 		}
+
+		if ((mType == eCameraEffectType::ShakeW))
+		{
+			mSwingFTime += Time::DeltaTime();
+
+			if (mSwingFTime < 1.0f)
+			{
+				mSwingATime += Time::DeltaTime();
+				mSwingBTime += Time::DeltaTime();
+
+				if (mSwingATime > mSwingETime)
+				{
+					mLookPosition.x += 50.0f;
+				}
+
+				if (mSwingBTime > mSwingETime * 2)
+				{
+					mLookPosition.x -= 50.0f;
+					mSwingATime = 0.0f;
+					mSwingBTime = 0.0f;
+				}
+			}
+			if (mSwingFTime > 1.0f)
+			{
+				mType = eCameraEffectType::None;
+			}
+		}
+
 
 		mDistance = mLookPosition - (mResolution / 2.0f);
 	}
@@ -86,11 +155,12 @@ namespace ya
 			func.AlphaFormat = 0;
 			func.SourceConstantAlpha = (BYTE)(255.0f * mCuttonAlpha);
 
-			AlphaBlend(hdc, 0, 0
+			AlphaBlend(hdc
+				, 0, 0
 				, mResolution.x, mResolution.y
 				, mCutton->GetHdc()
 				, 0, 0
-				, mCutton->GetWidth(), mCutton->GetHeight()
+				, mCutton->GetHeight(), mCutton->GetWidth()
 				, func);
 		}
 	}

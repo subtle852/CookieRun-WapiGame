@@ -8,7 +8,7 @@
 #include "yaCollider.h"
 //#include "yaBaseBullet.h"
 #include "yaScene.h"
-
+#include "yaCamera.h"
 
 namespace ya
 {
@@ -36,11 +36,11 @@ namespace ya
 
 	void Obstacle01::Update()
 	{
-		Transform* tr = GetComponent<Transform>();
-		Vector2 pos = tr->GetPos();
-		pos.x -= 700.0f * Time::DeltaTime();
+		//Transform* tr = GetComponent<Transform>();
+		//Vector2 pos = tr->GetPos();
+		//pos.x -= 700.0f * Time::DeltaTime();
 
-		tr->SetPos(pos);
+		//tr->SetPos(pos);
 
 		GameObject::Update();
 	}
@@ -59,5 +59,15 @@ namespace ya
 	void Obstacle01::Release()
 	{
 		GameObject::Release();
+	}
+	void Obstacle01::OnCollisionEnter(Collider* other)
+	{
+		//Camera::mType = Camera::eCameraEffectType::ShakeH;
+	}
+	void Obstacle01::OnCollisionStay(Collider* other)
+	{
+	}
+	void Obstacle01::OnCollisionExit(Collider* other)
+	{
 	}
 }

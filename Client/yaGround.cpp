@@ -17,7 +17,7 @@ namespace ya
 	void Ground::Initialize()
 	{
 		mCollider = AddComponent<Collider>();
-		mCollider->SetSize(Vector2(1600.0f, 50.0f));
+		mCollider->SetSize(Vector2(100000.0f, 50.0f));
 		GameObject::Initialize();
 	}
 
@@ -51,7 +51,7 @@ namespace ya
 		Vector2 groundPos = groundCol->GetPos();
 
 		float fLen = fabs(cupheadPos.y - groundPos.y);
-		float fSize = cupheadCol->GetSize().y;
+		float fSize = (cupheadCol->GetSize().y / 2.0f) + (groundCol->GetSize().y / 2.0f);
 
 		if (fLen < fSize)
 		{
@@ -61,7 +61,7 @@ namespace ya
 			Vector2 cupPos = cupTr->GetPos();
 			Vector2 grPos = grTr->GetPos();
 
-			cupPos.y -= fSize - fLen;
+			cupPos -= (fSize - fLen) - 1.0f;
 			cupTr->SetPos(cupPos);
 		}
 	}
@@ -71,9 +71,6 @@ namespace ya
 		Character01* cuphead = dynamic_cast<Character01*>(other->GetOwner());
 		if (cuphead == nullptr)
 			return;
-
-		Rigidbody* rb = cuphead->GetComponent<Rigidbody>();
-		rb->SetGround(true);
 
 		Collider* cupheadCol = cuphead->GetComponent<Collider>();
 		Vector2 cupheadPos = cupheadCol->GetPos();
@@ -92,13 +89,19 @@ namespace ya
 			Vector2 cupPos = cupTr->GetPos();
 			Vector2 grPos = grTr->GetPos();
 
-			cupPos.y -= fSize - fLen;
+			cupPos.y -= fSize - fLen - 1.0f;
 			cupTr->SetPos(cupPos);
 		}
 	}
 
 	void Ground::OnCollisionExit(Collider* other)
 	{
+		Character01* cuphead = dynamic_cast<Character01*>(other->GetOwner());
+		if (cuphead == nullptr)
+			return;
+
+		Rigidbody* rb = cuphead->GetComponent<Rigidbody>();
+		rb->SetGround(false);
 	}
 
 }

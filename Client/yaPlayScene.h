@@ -10,6 +10,7 @@ namespace ya
 	class Obstacle;
 	class Obstacle01;
 	class JellyCoin;
+	class BlackOut;
 
 	class PlayScene : public Scene
 	{
@@ -35,5 +36,9 @@ namespace ya
 		Obstacle01* mOb04;
 		JellyCoin* mJcoin01;
 		JellyCoin* mJcoin02;
+
+		BlackOut* mBlackOut;
+
+		float mTime = 0.0f;
 	};
 }

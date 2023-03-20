@@ -5,6 +5,7 @@
 namespace ya
 {
 	class TitleBackGround;
+	class Animation;
 
 	class TitleScene : public Scene
 	{
@@ -21,5 +22,6 @@ namespace ya
 		virtual void OnExit() override;
 
 	private:
+		TitleBackGround* anima;
 	};
 }

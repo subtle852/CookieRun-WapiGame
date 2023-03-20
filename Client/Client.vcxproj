@@ -136,6 +136,7 @@
     <ClInclude Include="CommonInclude.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="yaBlackOut.h" />
     <ClInclude Include="yaGround.h" />
     <ClInclude Include="yaGuageBar.h" />
     <ClInclude Include="yaGuageCircle.h" />
@@ -198,6 +199,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="yaBlackOut.cpp" />
     <ClCompile Include="yaGround.cpp" />
     <ClCompile Include="yaGuageBar.cpp" />
     <ClCompile Include="yaGuageCircle.cpp" />

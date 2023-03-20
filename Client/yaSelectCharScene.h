@@ -18,7 +18,10 @@ namespace ya
 		virtual void OnEnter() override;
 		virtual void OnExit() override;
 
+		static int GetCharNumber() { return mCharNumber; }
+
 	private:
 		Image* mScenImage;
+		static int mCharNumber;
 	};
 }

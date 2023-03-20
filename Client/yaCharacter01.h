@@ -10,7 +10,7 @@ namespace ya
 	class Character01 : public GameObject
 	{
 	public:
-		enum class eChar00State
+		enum class eChar01State
 		{
 			Run,
 			BeforeRun,
@@ -19,6 +19,9 @@ namespace ya
 			Slide,
 			Death,
 			Idle,
+			Transp1,
+			Transp2,
+			Damaged,
 		};
 
 
@@ -42,18 +45,22 @@ namespace ya
 		void slide();
 		void death();
 		void idle();
+		void transparent();
 
 		void JumpCompleteEvent();
-		//void SlideCompleteEvent();
 		void DJumpCompleteEvent();
+		void SlideStarteEvent();
+		void Transp1CompleteEvent();
+		void DamagedCompleteEvent();
+		void Transp2CompleteEvent();
+
 
 	private:
-		eChar00State mState;
+		eChar01State mState;
 		Animator* mAnimator;
 		Rigidbody* mRigidbody;
 
-	public:
-		static int cnt;
-		int cnt2 = 0;
+		int mJmpcnt = 0;
+		int mDJmpcnt = 0;
 	};
 }

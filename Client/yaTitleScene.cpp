@@ -5,6 +5,8 @@
 #include "yaTransform.h"
 #include "yaObject.h"
 
+#include "yaCamera.h"
+
 namespace ya
 {
 	TitleScene::TitleScene()
@@ -18,13 +20,18 @@ namespace ya
 
 	void TitleScene::Initialize()
 	{
+
 		Scene::Initialize();
 
-		object::Instantiate<TitleBackGround>(eLayerType::BG);
+		anima = object::Instantiate<TitleBackGround>(eLayerType::BG);
+
 	}
 
 	void TitleScene::Update()
 	{
+		//Camera::mType = Camera::eCameraEffectType::FadeIn;// 설정
+		//Camera::mCutton = Image::Create(L"Cutton00", Camera::mResolution.x, Camera::mResolution.y, RGB(0, 0, 0)/*원하는 색*/);
+
 		if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
 		{
 			SceneManager::LoadScene(eSceneType::Main);
@@ -46,7 +53,7 @@ namespace ya
 
 	void TitleScene::OnEnter()
 	{
-
+		
 	}
 
 	void TitleScene::OnExit()

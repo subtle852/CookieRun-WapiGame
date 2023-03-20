@@ -7,11 +7,13 @@
 #include "yaAnimator.h"
 #include "yaCollider.h"
 #include "yaRigidbody.h"
+#include "yaCamera.h"
+
+#include "yaObstacle.h"
+#include "yaObstacle01.h"
 
 namespace ya
 {
-	int Character01::cnt = 0;
-
 	Character01::Character01()
 	{
 
@@ -23,7 +25,6 @@ namespace ya
 	void Character01::Initialize()
 	{
 		Transform* tr = GetComponent<Transform>();
-		//tr->SetPos(Vector2(200.0f, 600.0f));
 		tr->SetScale(Vector2(1.2f, 1.2f));
 
 		Image* mImage = Resources::Load<Image>(L"Char01", L"..\\Resources\\idle.bmp");
@@ -36,12 +37,18 @@ namespace ya
 		mAnimator->CreateAnimation(L"DJump", mImage, Vector2((290.0f * 1), (290.0f * 0)), 11, 6, 6, Vector2::Zero, 0.08);
 		mAnimator->CreateAnimation(L"Slide", mImage, Vector2((290.0f * 9), (290.0f * 0)), 11, 6, 2, Vector2::Zero, 0.08);
 		mAnimator->CreateAnimation(L"Death", mImage, Vector2((290.0f * 0), (290.0f * 4)), 11, 6, 4, Vector2::Zero, 0.15);
+		mAnimator->CreateAnimation(L"Transp1", mImage, Vector2((290.0f * 9), (290.0f * 1)), 11, 6, 2, Vector2::Zero, 0.1);
+		mAnimator->CreateAnimation(L"Transp2", mImage, Vector2((290.0f * 9), (290.0f * 1)), 11, 6, 2, Vector2::Zero, 0.1);
+		mAnimator->CreateAnimation(L"Damaged", mImage, Vector2(0.0f, (290.0f * 4)), 11, 6, 1, Vector2::Zero, 0.2);
 		//mAnimator->CreateAnimations(L"..\\Resorces\\Chalise\\Idle", Vector2::Zero, 0.1f);
 
 
 		mAnimator->GetCompleteEvent(L"Jump") = std::bind(&Character01::JumpCompleteEvent, this);
-		//mAnimator->GetCompleteEvent(L"Slide") = std::bind(&Character01::SlideCompleteEvent, this);
 		mAnimator->GetCompleteEvent(L"DJump") = std::bind(&Character01::DJumpCompleteEvent, this);
+		mAnimator->GetStartEvent(L"Slide") = std::bind(&Character01::SlideStarteEvent, this);
+		mAnimator->GetCompleteEvent(L"Transp1") = std::bind(&Character01::Transp1CompleteEvent, this);
+		mAnimator->GetCompleteEvent(L"Transp2") = std::bind(&Character01::Transp2CompleteEvent, this);
+		mAnimator->GetCompleteEvent(L"Damaged") = std::bind(&Character01::DamagedCompleteEvent, this);
 
 		Scene* scn = SceneManager::GetActiveScene();
 
@@ -52,17 +59,17 @@ namespace ya
 		
 		if (scn->GetName() == L"Play")
 		{
-			//Transform* tr = GetComponent<Transform>();
-			//tr->SetPos(Vector2(300.0f, 650.0f));
+			Transform* tr = GetComponent<Transform>();
+			tr->SetScale(Vector2(1.2f, 1.2f));
 
 			Collider* collider = AddComponent<Collider>();
-			collider->SetSize(Vector2(150.0f, 150.0f));
-			collider->SetCenter(Vector2(-40.0f, -100.0f));
+			collider->SetSize(Vector2(100.0f, 100.0f));
+			collider->SetCenter(Vector2(-10.0f, -50.0f));
 
 			mRigidbody = AddComponent<Rigidbody>();
 			mRigidbody->SetMass(1.0f);
 
-			mState = eChar00State::Run;
+			mState = eChar01State::Run;
 		}
 
 		GameObject::Initialize();
@@ -74,28 +81,42 @@ namespace ya
 		Scene* scn = SceneManager::GetActiveScene();
 		if (scn->GetName() == L"Play")
 		{
+			Transform* tr = GetComponent<Transform>();
+			Vector2 pos = tr->GetPos();
+			pos.x += 500.0f * Time::DeltaTime();
+			tr->SetPos(pos);
+
 			switch (mState)
 			{
-			case ya::Character01::eChar00State::Run:
+			case ya::Character01::eChar01State::Run:
 				run();
 				break;
-			case ya::Character01::eChar00State::BeforeRun:
+			case ya::Character01::eChar01State::BeforeRun:
 				beforerun();
 				break;
-			case ya::Character01::eChar00State::Jump:
+			case ya::Character01::eChar01State::Jump:
 				jump();
 				break;
-			case ya::Character01::eChar00State::DoubleJump:
+			case ya::Character01::eChar01State::DoubleJump:
 				djump();
 				break;
-			case ya::Character01::eChar00State::Slide:
+			case ya::Character01::eChar01State::Slide:
 				slide();
 				break;
-			case ya::Character01::eChar00State::Death:
+			case ya::Character01::eChar01State::Death:
 				death();
 				break;
-			case ya::Character01::eChar00State::Idle:
+			case ya::Character01::eChar01State::Idle:
 				idle();
+				break;
+			case ya::Character01::eChar01State::Transp1:
+				transparent();
+				break;
+			case ya::Character01::eChar01State::Transp2:
+				mAnimator->Play(L"Transp2", true);
+				break;
+			case ya::Character01::eChar01State::Damaged:
+				mAnimator->Play(L"Damaged", true);
 				break;
 			}
 		}
@@ -159,6 +180,11 @@ namespace ya
 	{
 		// 충돌한 other의 체력이라던가 애니메이션이라던가 실행 가능
 		//mAnimator->Play(L"Death", false);
+
+		if (dynamic_cast<Obstacle*>(other->GetOwner()) || dynamic_cast<Obstacle01*>(other->GetOwner()))
+		{
+			mState = eChar01State::Transp1;
+		}
 	}
 
 	void Character01::OnCollisionStay(Collider* other)
@@ -168,45 +194,35 @@ namespace ya
 
 	void Character01::OnCollisionExit(Collider* other)
 	{
-
 	}
 
 	void Character01::run()
 	{
-		Transform* tr = GetComponent<Transform>();
-		tr->SetPos(Vector2(300.0f, 650.0f));
-
-		//Transform* tr = GetComponent<Transform>();
-		//Vector2 pos = tr->GetPos();
-
-		//pos.x += 100.0f * Time::DeltaTime();
-		//tr->SetPos(pos);
-	
 		Collider* collider = GetComponent<Collider>();
-		collider->SetSize(Vector2(150.0f, 150.0f));
-		collider->SetCenter(Vector2(-40.0f, -100.0f));
-		
-		cnt = 0;
+		collider->SetSize(Vector2(100.0f, 100.0f));
+		collider->SetCenter(Vector2(-10.0f, -50.0f));
+
+		mDJmpcnt = 0;
 
 		mAnimator->Play(L"Run", true);
 
 		if (Input::GetKeyDown(eKeyCode::S))
 		{
-			mState = eChar00State::Slide;
+			mState = eChar01State::Slide;
 		}
 
 		if (Input::GetKeyDown(eKeyCode::W))
 		{
-			cnt2++;
+			mJmpcnt++;
 
-			if (cnt2 == 1)
+			if (mJmpcnt == 1)
 			{
 				Vector2 velocity = mRigidbody->GetVelocity();
 				velocity.y = -2200.0f;
 
 				mRigidbody->SetVelocity(velocity);
 				mRigidbody->SetGround(false);
-				mState = eChar00State::Jump;
+				mState = eChar01State::Jump;
 			}
 		}
 
@@ -255,31 +271,34 @@ namespace ya
 
 	void Character01::beforerun()
 	{
+
 		mAnimator->Play(L"BeforeRun", false);
 
 		if (!mRigidbody->GetGround() && Input::GetKeyDown(eKeyCode::W))
 		{
-			cnt++;
+			mDJmpcnt++;
 
-			if (cnt == 1)
+			if (mDJmpcnt == 1)
 			{
 				Vector2 velocity = mRigidbody->GetVelocity();
 				velocity.y = -2200.0f;
 
 				mRigidbody->SetVelocity(velocity);
 				mRigidbody->SetGround(false);
-				mState = eChar00State::DoubleJump;
+				mState = eChar01State::DoubleJump;
 			}
 		}
 
 		if (mRigidbody->GetGround())
 		{
-			mState = eChar00State::Run;
+			mRigidbody->mVelocity = Vector2(0.0f, 0.0f);
+
+			mState = eChar01State::Run;
 		}
 
 		if (Input::GetKey(eKeyCode::S))
 		{
-			mState = eChar00State::Slide;
+			mState = eChar01State::Slide;
 		}
 	}
 
@@ -287,53 +306,63 @@ namespace ya
 	{
 		//Collider* collider = GetComponent<Collider>();
 		//collider->SetSize(Vector2(100.0f, 100.0f));
-		//collider->SetCenter(Vector2(-50.0f, -100.0f));
-		cnt2 = 0;
+		//collider->SetCenter(Vector2(-10.0f, -50.0f));
+
+		//Vector2 velocity = mRigidbody->GetVelocity();
+		//velocity.y = -1300.0f;
+
+		//mRigidbody->SetVelocity(velocity);
+		//mRigidbody->SetGround(false);
+
+		//mRigidbody->AddForce(Vector2(5500.0f, 0.0f));// 이동속도 100일 때 1500 비율
+
+		mJmpcnt = 0;
 
 		mAnimator->Play(L"Jump", true);
 
 		if (!mRigidbody->GetGround() && Input::GetKeyDown(eKeyCode::W))
 		{
-			cnt++;
+			mDJmpcnt++;
 
-			if (cnt == 1)
+			if (mDJmpcnt == 1)
 			{
 				Vector2 velocity = mRigidbody->GetVelocity();
 				velocity.y = -2200.0f;
 
 				mRigidbody->SetVelocity(velocity);
 				mRigidbody->SetGround(false);
-				mState = eChar00State::DoubleJump;
+				mState = eChar01State::DoubleJump;
 			}
 		}
 
 		if (Input::GetKey(eKeyCode::S))
 		{
-			mState = eChar00State::Slide;
+			mState = eChar01State::Slide;
 		}
 		
 	}
 
 	void Character01::djump()
 	{
-		if(cnt == 1)
-		mAnimator->Play(L"DJump", true);
+
+		if (mDJmpcnt == 1)
+		{
+			mAnimator->Play(L"DJump", true);
+		}
 
 		if (Input::GetKeyDown(eKeyCode::W))
 		{
-			cnt++;
+			mDJmpcnt++;
 		}
 
 		if (Input::GetKey(eKeyCode::S))
 		{
-			mState = eChar00State::Slide;
+			mState = eChar01State::Slide;
 		}
 	}
 
 	void Character01::slide()
 	{
-		 Transform* tr = GetComponent<Transform>();
-		 tr->SetPos(Vector2(300.0f, 650.0f));
 
 		Collider* collider = GetComponent<Collider>();
 		collider->SetSize(Vector2(150.0f, 75.0f));
@@ -343,8 +372,12 @@ namespace ya
 
 		if (Input::GetKeyUp(eKeyCode::S))
 		{
-			mState = eChar00State::Run;
+			mState = eChar01State::Run;
 		}
+		//if (Input::GetKey(eKeyCode::W))
+		//{
+		//	mState = eChar01State::Run;
+		//}
 
 	}
 
@@ -358,18 +391,39 @@ namespace ya
 		
 	}
 
+	void Character01::transparent()
+	{
+		mAnimator->Play(L"Transp1", true);
+	}
+
 	void Character01::JumpCompleteEvent(/*const Cuphead* this*/)
 	{
-		mState = eChar00State::BeforeRun;
+		mState = eChar01State::BeforeRun;
 	}
 
 	void Character01::DJumpCompleteEvent()
 	{
-		mState = eChar00State::BeforeRun;
+		mState = eChar01State::BeforeRun;
 	}
 
-	//void Character01::SlideCompleteEvent()
-	//{
+	void Character01::SlideStarteEvent()
+	{
+		Transform* tr = GetComponent<Transform>();
+		tr->SetPos(Vector2(tr->GetPos().x, 650.0f));
+	}
 
-	//}
+	void Character01::Transp1CompleteEvent()
+	{
+		mState = eChar01State::Damaged;
+	}
+
+	void Character01::DamagedCompleteEvent()
+	{
+		mState = eChar01State::Transp2;
+	}
+
+	void Character01::Transp2CompleteEvent()
+	{
+		mState = eChar01State::Run;
+	}
 }

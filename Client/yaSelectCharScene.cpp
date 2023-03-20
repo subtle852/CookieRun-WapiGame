@@ -6,6 +6,8 @@
 
 namespace ya
 {
+	int SelectCharScene::mCharNumber = 1;
+
 	SelectCharScene::SelectCharScene()
 	{
 
@@ -24,6 +26,11 @@ namespace ya
 
 	void SelectCharScene::Update()
 	{
+		//if (1번 쿠키 UI 버튼 누르면)
+		//{
+		//	mCharNumber = 1;
+		//}
+
 		if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
 		{
 			SceneManager::LoadScene(eSceneType::SelectStage);

@@ -42,11 +42,11 @@ namespace ya
 
 		if (Input::GetKeyUp(eKeyCode::S))
 		{
-			tr->SetPos(Vector2(180.0f, 730.0f));
+			tr->SetPos(Vector2(tr->GetPos().x, 730.0f));
 		}
 		if (Input::GetKey(eKeyCode::S))
 		{
-			tr->SetPos(Vector2(180.0f, 730.0f));
+			tr->SetPos(Vector2(tr->GetPos().x, 730.0f));
 		}
 	}
 

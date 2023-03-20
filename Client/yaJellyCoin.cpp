@@ -8,8 +8,7 @@
 #include "yaCollider.h"
 #include "yaScene.h"
 #include "yaObject.h"
-
-#include "yaCharacter01.h"
+#include "yaCamera.h"
 
 namespace ya
 {
@@ -44,11 +43,11 @@ namespace ya
 
 	void JellyCoin::Update()
 	{
-		Transform* tr = GetComponent<Transform>();
-		Vector2 pos = tr->GetPos();
-		pos.x -= 700.0f * Time::DeltaTime();
+		//Transform* tr = GetComponent<Transform>();
+		//Vector2 pos = tr->GetPos();
+		//pos.x -= 700.0f * Time::DeltaTime();
 
-		tr->SetPos(pos);
+		//tr->SetPos(pos);
 
 		GameObject::Update();
 	}
@@ -70,7 +69,10 @@ namespace ya
 
 	void JellyCoin::OnCollisionStay(Collider* other)
 	{
+		//Camera::mType = Camera::eCameraEffectType::ShakeH;
+		ok = true;
 		object::Destory(this);
+		ok = false;
 	}
 
 	void JellyCoin::OnCollisionExit(Collider* other)

@@ -12,7 +12,9 @@ namespace ya
 			None,
 			FadeIn,
 			FadeOut,
-			//Shake,
+			ShakeH,
+			ShakeW,
+			Rotate,
 			End,
 		};
 
@@ -24,7 +26,7 @@ namespace ya
 		static void SetTarget(GameObject* target) { mTarget = target; }
 		static Vector2 CaluatePos(Vector2 pos) { return pos - mDistance; }
 
-	private:
+	public:
 		static Vector2 mResolution;
 		static Vector2 mLookPosition;
 		static Vector2 mDistance;
@@ -35,5 +37,9 @@ namespace ya
 		static float mCuttonAlpha;
 		static float mAlphaTime;
 		static float mEndTime;
+
+		static float mSwingFTime;
+		static float mSwingATime; static float mSwingBTime;
+		static float mSwingETime;
 	};
 }

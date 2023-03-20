@@ -294,6 +294,9 @@
     </ClInclude>
     <ClInclude Include="yaToolScene.h" />
     <ClInclude Include="yaTile.h" />
+    <ClInclude Include="yaBlackOut.h">
+      <Filter>Contents\Obstacle</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="small.ico">
@@ -476,5 +479,8 @@
     </ClCompile>
     <ClCompile Include="yaToolScene.cpp" />
     <ClCompile Include="yaTile.cpp" />
+    <ClCompile Include="yaBlackOut.cpp">
+      <Filter>Contents\Obstacle</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

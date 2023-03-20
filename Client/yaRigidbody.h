@@ -21,7 +21,7 @@ namespace ya
 		void SetVelocity(Vector2 velocity) { mVelocity = velocity; }
 		Vector2 GetVelocity() { return mVelocity; }
 
-	private:
+	public:
 		float mMass;
 		Vector2 mForce;
 		Vector2 mAccelation;
