@@ -244,12 +244,6 @@
     <ClInclude Include="yaGachaUI.h">
       <Filter>Contents\UI\MainUI</Filter>
     </ClInclude>
-    <ClInclude Include="yaGuageBar.h">
-      <Filter>Contents\UI\PlayUI</Filter>
-    </ClInclude>
-    <ClInclude Include="yaGuageCircle.h">
-      <Filter>Contents\UI\MainUI</Filter>
-    </ClInclude>
     <ClInclude Include="yaStoreUI.h">
       <Filter>Contents\UI\MainUI</Filter>
     </ClInclude>
@@ -296,6 +290,12 @@
     <ClInclude Include="yaTile.h" />
     <ClInclude Include="yaBlackOut.h">
       <Filter>Contents\Obstacle</Filter>
+    </ClInclude>
+    <ClInclude Include="yaGaugeCircle.h">
+      <Filter>Contents\UI\PlayUI</Filter>
+    </ClInclude>
+    <ClInclude Include="yaGaugeBar.h">
+      <Filter>Contents\UI\PlayUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -429,10 +429,10 @@
     <ClCompile Include="yaGachaUI.cpp">
       <Filter>Contents\UI\MainUI</Filter>
     </ClCompile>
-    <ClCompile Include="yaGuageBar.cpp">
+    <ClCompile Include="yaGaugeBar.cpp">
       <Filter>Contents\UI\PlayUI</Filter>
     </ClCompile>
-    <ClCompile Include="yaGuageCircle.cpp">
+    <ClCompile Include="yaGaugeCircle.cpp">
       <Filter>Contents\UI\PlayUI</Filter>
     </ClCompile>
     <ClCompile Include="yaSlideButton.cpp">

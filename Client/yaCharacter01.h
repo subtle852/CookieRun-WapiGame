@@ -37,6 +37,8 @@ namespace ya
 		virtual void OnCollisionStay(class Collider* other) override;
 		virtual void OnCollisionExit(class Collider* other) override;
 
+		static float GetHp() { return mHp; }
+
 	private:
 		void run();
 		void beforerun();
@@ -62,5 +64,7 @@ namespace ya
 
 		int mJmpcnt = 0;
 		int mDJmpcnt = 0;
+
+		static float mHp;
 	};
 }

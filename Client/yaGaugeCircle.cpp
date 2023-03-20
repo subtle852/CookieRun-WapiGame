@@ -1,4 +1,4 @@
-#include "yaGuageBar.h"
+#include "yaGaugeCircle.h"
 #include "yaTime.h"
 #include "yaSceneManager.h"
 #include "yaInput.h"
@@ -7,35 +7,29 @@
 
 namespace ya
 {
-    GuageBar::GuageBar()
+    GaugeCircle::GaugeCircle()
     {
 
     }
 
-    GuageBar::~GuageBar()
+    GaugeCircle::~GaugeCircle()
     {
 
     }
 
-    void GuageBar::Initialize()
+    void GaugeCircle::Initialize()
     {
-        mImage = Resources::Load<Image>(L"GuageBar", L"..\\Resources\\Play\\gauge_heart_orange.bmp");
+        mImage = Resources::Load<Image>(L"GaugeCircle", L"..\\Resources\\Play\\gaugebg_heart01.bmp");
 
         GameObject::Initialize();
     }
 
-    void GuageBar::Update()
+    void GaugeCircle::Update()
     {
-        Transform* tr = GetComponent<Transform>();
-        Vector2 pos = tr->GetPos();
-        //pos.x -= 50.0f * Time::DeltaTime();
-
-        tr->SetPos(pos);
-
         GameObject::Update();
     }
 
-    void GuageBar::Render(HDC hdc)
+    void GaugeCircle::Render(HDC hdc)
     {
         Transform* tr = GetComponent<Transform>();
         Vector2 pos = tr->GetPos();
@@ -46,7 +40,7 @@ namespace ya
         GameObject::Render(hdc);
     }
 
-    void GuageBar::Release()
+    void GaugeCircle::Release()
     {
         GameObject::Release();
     }

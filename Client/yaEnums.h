@@ -24,8 +24,8 @@ enum class eLayerType // layer 그리는 순서
 	Pet,
 	Ground,
 	Effect,
-	UIfirst,
 	UI,
+	UIAbove,
 	End = 16,
 };
 

@@ -14,6 +14,8 @@
 
 namespace ya
 {
+	float Character01::mHp = 100.0f;
+
 	Character01::Character01()
 	{
 
@@ -181,10 +183,17 @@ namespace ya
 		// 충돌한 other의 체력이라던가 애니메이션이라던가 실행 가능
 		//mAnimator->Play(L"Death", false);
 
+		//if (dynamic_cast<Obstacle*>(other->GetOwner()))
+		//{
+		//	mState = eChar01State::Transp1;
+		//}
+
 		if (dynamic_cast<Obstacle*>(other->GetOwner()) || dynamic_cast<Obstacle01*>(other->GetOwner()))
 		{
-			mState = eChar01State::Transp1;
+			mHp -= 30;
 		}
+
+		// 지하바닥과 충돌할때 구현
 	}
 
 	void Character01::OnCollisionStay(Collider* other)

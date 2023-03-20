@@ -17,8 +17,8 @@
 #include "yaJumpButton.h"
 #include "yaSlideButton.h"
 #include "yaPauseButton.h"
-#include "yaGuageCircle.h"
-#include "yaGuageBar.h"
+#include "yaGaugeCircle.h"
+#include "yaGaugeBar.h"
 #include "yaGround.h"
 
 #include "yaSelectCharScene.h"
@@ -27,7 +27,7 @@ namespace ya
 {
 	PlayScene::PlayScene()
 	{
-
+		
 	}
 	PlayScene::~PlayScene()
 	{
@@ -38,12 +38,10 @@ namespace ya
 	{
 		//mCh00 =
 		//object::Instantiate<Character01>(eLayerType::Player);
-		//Camera::SetTarget(mCh01);
 
 		Scene::Initialize();
 
 		// ¿©±â´Ù
-
 		//object::Instantiate<PlayBackGround>(eLayerType::BG);
 
 		object::Instantiate<Ground>(Vector2(-100.0f, 700.0f), eLayerType::Ground);
@@ -54,8 +52,6 @@ namespace ya
 			mCh01 = object::Instantiate<Character01>(Vector2(300.0f, 650.0f), eLayerType::Player);
 		}
 
-		Camera::SetTarget(mCh01);
-
 		mPet01 = object::Instantiate<Pet01>(eLayerType::Pet);
 
 		object::Instantiate<Obstacle>(Vector2(1200.0f, 700.0f), eLayerType::Obstacle);
@@ -65,12 +61,12 @@ namespace ya
 		mJcoin01 = object::Instantiate<JellyCoin>(Vector2(2100.0f, 700.0f), eLayerType::Obstacle);
 		object::Instantiate<JellyCoin>(Vector2(2700.0f, 300.0f), eLayerType::Obstacle);
 
-		object::Instantiate<GuageCircle>(Vector2(-10.0f, 20.0f), eLayerType::UI);
-		object::Instantiate<GuageBar>(Vector2(59.0f, 32.0f), eLayerType::UIfirst);
+		object::Instantiate<GaugeCircle>(Vector2(-10.0f, 20.0f), eLayerType::UIAbove);
+		object::Instantiate<GaugeBar>(Vector2(59.0f, 32.0f), eLayerType::UI);
 
 		object::Instantiate<JumpButton>(Vector2(100.0f, 650.0f), eLayerType::UI);
 		object::Instantiate<SlideButton>(Vector2(1200.0f, 650.0f), eLayerType::UI);
-		object::Instantiate<PauseButton>(Vector2(1400.0f, 50.0f), eLayerType::UI);
+		object::Instantiate<PauseButton>(Vector2(1480.0f, 40.0f), eLayerType::UI);
 		//object::Instantiate<GuageCircle>(Vector2(216.0f, 50.0f), eLayerType::UI);
 		//object::Instantiate<GuageBar>(Vector2(285.0f, 62.0f), eLayerType::UIfirst);
 
@@ -80,6 +76,7 @@ namespace ya
 
 	void PlayScene::Update()
 	{
+		Camera::SetTarget(mCh01);
 		Transform* tr = mCh01->GetComponent<Transform>();
 		Vector2 pos = tr->GetPos();
 

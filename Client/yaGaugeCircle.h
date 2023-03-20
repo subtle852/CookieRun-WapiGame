@@ -4,11 +4,11 @@
 
 namespace ya
 {
-	class GuageCircle : public GameObject
+	class GaugeCircle : public GameObject
 	{
 	public:
-		GuageCircle();
-		~GuageCircle();
+		GaugeCircle();
+		~GaugeCircle();
 
 		virtual void Initialize() override;
 		virtual void Update() override;

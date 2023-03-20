@@ -4,11 +4,12 @@
 
 namespace ya
 {
-	class GuageBar : public GameObject
+	class Character01;
+	class GaugeBar : public GameObject
 	{
 	public:
-		GuageBar();
-		~GuageBar();
+		GaugeBar();
+		~GaugeBar();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -17,5 +18,8 @@ namespace ya
 
 	private:
 		Image* mImage;
+
+		float mHpLink;
+		int cnt;
 	};
 }
