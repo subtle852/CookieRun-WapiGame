@@ -9,6 +9,7 @@
 #include "yaScene.h"
 #include "yaObject.h"
 #include "yaCamera.h"
+#include "yaCharacter01.h"
 
 namespace ya
 {
@@ -30,9 +31,9 @@ namespace ya
 		//tr->SetScale(Vector2(1.5f, 1.5f));
 
 		mAnimator = AddComponent<Animator>();
-		mAnimator->CreateAnimations(L"..\\Resources\\Play\\Jelly\\JellyCoin", Vector2::Zero, 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\Item\\CoinJelly\\Silver", Vector2::Zero, 0.1f, 0);
 
-		mAnimator->Play(L"JellyJellyCoin", true);
+		mAnimator->Play(L"CoinJellySilver", true);
 
 		Collider* collider = AddComponent<Collider>();
 		collider->SetSize(Vector2(80.0f, 80.0f));
@@ -69,10 +70,10 @@ namespace ya
 
 	void JellyCoin::OnCollisionStay(Collider* other)
 	{
-		//Camera::mType = Camera::eCameraEffectType::ShakeH;
-		ok = true;
-		object::Destory(this);
-		ok = false;
+		if (dynamic_cast<Character01*>(other->GetOwner()))
+		{
+			object::Destory(this);
+		}
 	}
 
 	void JellyCoin::OnCollisionExit(Collider* other)

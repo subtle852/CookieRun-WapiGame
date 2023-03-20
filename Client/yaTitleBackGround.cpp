@@ -28,7 +28,7 @@ namespace ya
 
         mAnimator = AddComponent<Animator>();
 
-        mAnimator->CreateAnimations(L"..\\Resources\\Title\\Bg", Vector2::Zero, 0.1f);
+        mAnimator->CreateAnimations(L"..\\Resources\\Title\\Bg", Vector2::Zero, 0.1f, 0);
         mAnimator->Play(L"TitleBg", true);
 
         GameObject::Initialize();

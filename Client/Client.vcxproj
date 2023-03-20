@@ -44,6 +44,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <EnableUnitySupport>true</EnableUnitySupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -132,17 +133,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="yaBasicToBear.h" />
+    <ClInclude Include="yaHpItemD.h" />
+    <ClInclude Include="yaHpItemI.h" />
+    <ClInclude Include="yaBigItem.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="CommonInclude.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Resource.h" />
-    <ClInclude Include="yaBlackOut.h" />
+    <ClInclude Include="yaBlackOutM.h" />
+    <ClInclude Include="yaFastItem.h" />
     <ClInclude Include="yaGround.h" />
     <ClInclude Include="yaGaugeBar.h" />
     <ClInclude Include="yaGaugeCircle.h" />
+    <ClInclude Include="yaInputEItem.h" />
     <ClInclude Include="yaJellyCoin.h" />
+    <ClInclude Include="yaObstacleToCoin.h" />
     <ClInclude Include="yaPauseButton.h" />
     <ClInclude Include="yaRigidbody.h" />
+    <ClInclude Include="yaShakeItem.h" />
     <ClInclude Include="yaSlideButton.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="yaAnimation.h" />
@@ -171,6 +180,8 @@
     <ClInclude Include="yaSelectStageBackGround.h" />
     <ClInclude Include="yaSelectStageScene.h" />
     <ClInclude Include="yaSilverUI.h" />
+    <ClInclude Include="yaSlowItem.h" />
+    <ClInclude Include="yaSmItem.h" />
     <ClInclude Include="yaStoreUI.h" />
     <ClInclude Include="yaTile.h" />
     <ClInclude Include="yaTitleBackGround.h" />
@@ -196,16 +207,27 @@
     <ClInclude Include="yaTitleScene.h" />
     <ClInclude Include="yaToolScene.h" />
     <ClInclude Include="yaTransform.h" />
+    <ClInclude Include="yaUnderGround.h" />
+    <ClInclude Include="yaBlackOutMItem.h" />
+    <ClInclude Include="yaMagnetItem.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="yaBasicToBear.cpp" />
+    <ClCompile Include="yaHpItemD.cpp" />
+    <ClCompile Include="yaHpItemI.cpp" />
+    <ClCompile Include="yaBigItem.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="yaBlackOut.cpp" />
+    <ClCompile Include="yaBlackOutM.cpp" />
+    <ClCompile Include="yaFastItem.cpp" />
     <ClCompile Include="yaGround.cpp" />
     <ClCompile Include="yaGaugeBar.cpp" />
     <ClCompile Include="yaGaugeCircle.cpp" />
+    <ClCompile Include="yaInputEItem.cpp" />
     <ClCompile Include="yaJellyCoin.cpp" />
+    <ClCompile Include="yaObstacleToCoin.cpp" />
     <ClCompile Include="yaPauseButton.cpp" />
     <ClCompile Include="yaRigidbody.cpp" />
+    <ClCompile Include="yaShakeItem.cpp" />
     <ClCompile Include="yaSlideButton.cpp" />
     <ClCompile Include="yaAnimation.cpp" />
     <ClCompile Include="yaAnimator.cpp" />
@@ -232,6 +254,8 @@
     <ClCompile Include="yaSelectStageBackGround.cpp" />
     <ClCompile Include="yaSelectStageScene.cpp" />
     <ClCompile Include="yaSilverUI.cpp" />
+    <ClCompile Include="yaSlowItem.cpp" />
+    <ClCompile Include="yaSmItem.cpp" />
     <ClCompile Include="yaStoreUI.cpp" />
     <ClCompile Include="yaTile.cpp" />
     <ClCompile Include="yaTitleBackGround.cpp" />
@@ -255,6 +279,9 @@
     <ClCompile Include="yaTitleScene.cpp" />
     <ClCompile Include="yaToolScene.cpp" />
     <ClCompile Include="yaTransform.cpp" />
+    <ClCompile Include="yaUnderGround.cpp" />
+    <ClCompile Include="yaBlackOutMItem.cpp" />
+    <ClCompile Include="yaMagnetItem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc" />

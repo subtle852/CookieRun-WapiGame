@@ -32,7 +32,7 @@ namespace ya
 		//tr->SetScale(Vector2(1.5f, 1.5f));
 
 		mAnimator = AddComponent<Animator>();
-		mAnimator->CreateAnimations(L"..\\Resources\\land1\\jump", Vector2::Zero, 0.1f);
+		mAnimator->CreateAnimations(L"..\\Resources\\land1\\jump", Vector2::Zero, 0.1f,0);
 
 		mAnimator->Play(L"land1jump", true);
 

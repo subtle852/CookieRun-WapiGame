@@ -36,12 +36,6 @@ namespace ya
 
 	void Obstacle01::Update()
 	{
-		//Transform* tr = GetComponent<Transform>();
-		//Vector2 pos = tr->GetPos();
-		//pos.x -= 700.0f * Time::DeltaTime();
-
-		//tr->SetPos(pos);
-
 		GameObject::Update();
 	}
 
@@ -62,7 +56,6 @@ namespace ya
 	}
 	void Obstacle01::OnCollisionEnter(Collider* other)
 	{
-		//Camera::mType = Camera::eCameraEffectType::ShakeH;
 	}
 	void Obstacle01::OnCollisionStay(Collider* other)
 	{

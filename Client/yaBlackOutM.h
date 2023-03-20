@@ -4,11 +4,11 @@
 
 	namespace ya
 {
-	class BlackOut : public GameObject
+	class BlackOutM : public GameObject
 	{
 	public:
-		BlackOut();
-		~BlackOut();
+		BlackOutM();
+		~BlackOutM();
 
 		virtual void Initialize() override;
 		virtual void Update() override;

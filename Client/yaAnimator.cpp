@@ -71,15 +71,18 @@ namespace ya
 	void Animator::CreateAnimation(const std::wstring& name
 		, Image* sheet, Vector2 leftTop
 		, UINT coulmn, UINT row, UINT spriteLength
-		, Vector2 offset, float duration)
+		, Vector2 offset, float duration, bool apb)
 	{
+		mApb = apb;
+
 		Animation* animation = FindAnimation(name);
+
 
 		if (animation != nullptr)
 			return;
 
 		animation = new Animation();
-		animation->Create(sheet, leftTop, coulmn, row, spriteLength, offset, duration);
+		animation->Create(sheet, leftTop, coulmn, row, spriteLength, offset, duration, apb);
 		animation->SetName(name);
 		animation->SetAnimator(this);
 
@@ -88,8 +91,10 @@ namespace ya
 		mEvents.insert(std::make_pair(name, event));
 	}
 
-	void Animator::CreateAnimations(const std::wstring& path, Vector2 offset, float duration)
+	void Animator::CreateAnimations(const std::wstring& path, Vector2 offset, float duration, bool apb)
 	{
+		mApb = apb;
+
 		UINT width = 0;
 		UINT height = 0;
 		UINT fileCount = 0;
@@ -139,7 +144,7 @@ namespace ya
 			index++;
 		}
 
-		CreateAnimation(key, mSpriteSheet, Vector2::Zero, index, 1, index, offset, duration);
+		CreateAnimation(key, mSpriteSheet, Vector2::Zero, index, 1, index, offset, duration, apb);
 	}
 
 	Animation* Animator::FindAnimation(const std::wstring& name)

@@ -14,7 +14,9 @@
 
 namespace ya
 {
-	float Character01::mHp = 100.0f;
+	float Character01::mCurHp = 100;
+	float Character01::mMaxHp = 100;
+	float Character01::mHpPercent = (Character01::mCurHp / Character01::mMaxHp) * 100;
 
 	Character01::Character01()
 	{
@@ -29,19 +31,19 @@ namespace ya
 		Transform* tr = GetComponent<Transform>();
 		tr->SetScale(Vector2(1.2f, 1.2f));
 
-		Image* mImage = Resources::Load<Image>(L"Char01", L"..\\Resources\\idle.bmp");
+		Image* mImage = Resources::Load<Image>(L"Char01", L"..\\Resources\\Char\\idle.bmp");
 		mAnimator = AddComponent<Animator>();
-		mAnimator->CreateAnimation(L"idle", mImage, Vector2((290.0f * 1), (290.0f * 2)), 11, 6, 4, Vector2::Zero, 0.13);
-		mAnimator->CreateAnimation(L"Roll", mImage, Vector2::Zero, 11, 6, 6, Vector2::Zero, 0.15);
-		mAnimator->CreateAnimation(L"BeforeRun", mImage, Vector2((290.0f * 6), (290.0f * 0)), 11, 6, 1, Vector2::Zero, 0.1);
-		mAnimator->CreateAnimation(L"Run", mImage, Vector2(0.0f, (290.0f * 1)), 11, 6, 4, Vector2::Zero, 0.1);
-		mAnimator->CreateAnimation(L"Jump", mImage, Vector2((290.0f * 0), (290.0f * 0)), 11, 6, 1, Vector2::Zero, 0.1);// 0에 가까울수록 애니메이션 빨리 동작
-		mAnimator->CreateAnimation(L"DJump", mImage, Vector2((290.0f * 1), (290.0f * 0)), 11, 6, 6, Vector2::Zero, 0.08);
-		mAnimator->CreateAnimation(L"Slide", mImage, Vector2((290.0f * 9), (290.0f * 0)), 11, 6, 2, Vector2::Zero, 0.08);
-		mAnimator->CreateAnimation(L"Death", mImage, Vector2((290.0f * 0), (290.0f * 4)), 11, 6, 4, Vector2::Zero, 0.15);
-		mAnimator->CreateAnimation(L"Transp1", mImage, Vector2((290.0f * 9), (290.0f * 1)), 11, 6, 2, Vector2::Zero, 0.1);
-		mAnimator->CreateAnimation(L"Transp2", mImage, Vector2((290.0f * 9), (290.0f * 1)), 11, 6, 2, Vector2::Zero, 0.1);
-		mAnimator->CreateAnimation(L"Damaged", mImage, Vector2(0.0f, (290.0f * 4)), 11, 6, 1, Vector2::Zero, 0.2);
+		mAnimator->CreateAnimation(L"idle", mImage, Vector2((290.0f * 1), (290.0f * 2)), 11, 6, 4, Vector2::Zero, 0.13, 0);
+		mAnimator->CreateAnimation(L"Roll", mImage, Vector2::Zero, 11, 6, 6, Vector2::Zero, 0.15, 0);
+		mAnimator->CreateAnimation(L"BeforeRun", mImage, Vector2((290.0f * 6), (290.0f * 0)), 11, 6, 1, Vector2::Zero, 0.1, 0);
+		mAnimator->CreateAnimation(L"Run", mImage, Vector2(0.0f, (290.0f * 1)), 11, 6, 4, Vector2::Zero, 0.1, 0);
+		mAnimator->CreateAnimation(L"Jump", mImage, Vector2((290.0f * 0), (290.0f * 0)), 11, 6, 1, Vector2::Zero, 0.1, 0);// 0에 가까울수록 애니메이션 빨리 동작
+		mAnimator->CreateAnimation(L"DJump", mImage, Vector2((290.0f * 1), (290.0f * 0)), 11, 6, 6, Vector2::Zero, 0.08, 0);
+		mAnimator->CreateAnimation(L"Slide", mImage, Vector2((290.0f * 9), (290.0f * 0)), 11, 6, 2, Vector2::Zero, 0.08, 0);
+		mAnimator->CreateAnimation(L"Death", mImage, Vector2((290.0f * 0), (290.0f * 4)), 11, 6, 4, Vector2::Zero, 0.15, 0);
+		mAnimator->CreateAnimation(L"Transp1", mImage, Vector2((290.0f * 9), (290.0f * 1)), 11, 6, 2, Vector2::Zero, 0.1, 0);
+		mAnimator->CreateAnimation(L"Transp2", mImage, Vector2((290.0f * 9), (290.0f * 1)), 11, 6, 2, Vector2::Zero, 0.1, 0);
+		mAnimator->CreateAnimation(L"Damaged", mImage, Vector2(0.0f, (290.0f * 4)), 11, 6, 1, Vector2::Zero, 0.2, 0);
 		//mAnimator->CreateAnimations(L"..\\Resorces\\Chalise\\Idle", Vector2::Zero, 0.1f);
 
 
@@ -83,10 +85,21 @@ namespace ya
 		Scene* scn = SceneManager::GetActiveScene();
 		if (scn->GetName() == L"Play")
 		{
-			Transform* tr = GetComponent<Transform>();
-			Vector2 pos = tr->GetPos();
-			pos.x += 500.0f * Time::DeltaTime();
-			tr->SetPos(pos);
+			if (mState != eChar01State::Death)
+			{
+				Transform* tr = GetComponent<Transform>();
+				Vector2 pos = tr->GetPos();
+				pos.x += 550.0f * Time::DeltaTime();
+				tr->SetPos(pos);
+			}
+
+			Character01::mCurHp -= 5.0f * Time::DeltaTime();
+			if (Character01::mCurHp <= 0.0f)
+			{
+				mCurHp = 0.0f;
+				mState = eChar01State::Death;
+			}
+			Character01::mHpPercent = (Character01::mCurHp / Character01::mMaxHp) * 100;
 
 			switch (mState)
 			{
@@ -190,7 +203,7 @@ namespace ya
 
 		if (dynamic_cast<Obstacle*>(other->GetOwner()) || dynamic_cast<Obstacle01*>(other->GetOwner()))
 		{
-			mHp -= 30;
+			mCurHp -= 10;
 		}
 
 		// 지하바닥과 충돌할때 구현
@@ -392,7 +405,7 @@ namespace ya
 
 	void Character01::death()
 	{
-
+		mAnimator->Play(L"Death", false);
 	}
 
 	void Character01::idle()

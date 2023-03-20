@@ -43,10 +43,10 @@ namespace ya
 			, Image* sheet
 			, Vector2 leftTop
 			, UINT coulmn, UINT row, UINT spriteLength
-			, Vector2 offset, float duration);
+			, Vector2 offset, float duration, bool apb);
 
 		// 폴더에 들어있는 스프라이트들을 이용해서 애니메이션 제작해주는 함수
-		void CreateAnimations(const std::wstring& path, Vector2 offset, float duration);
+		void CreateAnimations(const std::wstring& path, Vector2 offset, float duration, bool apb);
 
 		Animation* FindAnimation(const std::wstring& name);
 		void Play(const std::wstring& name, bool loop);
@@ -65,5 +65,8 @@ namespace ya
 		Animation* mActiveAnimation;
 		Image* mSpriteSheet;
 		bool mbLoop;
+
+	public:
+		bool mApb;
 	};
 }

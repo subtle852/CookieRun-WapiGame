@@ -50,6 +50,7 @@ namespace ya
 
     void Animation::Render(HDC hdc)
     {
+    
         Transform* tr
             = mAnimator->GetOwner()->GetComponent<Transform>();
         Vector2 scale = tr->GetScale();
@@ -62,35 +63,42 @@ namespace ya
         pos.x -= mSpriteSheet[mSpriteIndex].size.x / 2.0f;
         pos.y -= mSpriteSheet[mSpriteIndex].size.y;
 
-        TransparentBlt(hdc, pos.x, pos.y
-            , mSpriteSheet[mSpriteIndex].size.x * scale.x
-            , mSpriteSheet[mSpriteIndex].size.y * scale.y
-            , mSheetImage->GetHdc()
-            , mSpriteSheet[mSpriteIndex].leftTop.x, mSpriteSheet[mSpriteIndex].leftTop.y
-            , mSpriteSheet[mSpriteIndex].size.x, mSpriteSheet[mSpriteIndex].size.y,
-            RGB(170, 0, 0));
+        if (mAnimator->mApb == false || mapb == false)
+        {
+            TransparentBlt(hdc, pos.x, pos.y
+                , mSpriteSheet[mSpriteIndex].size.x * scale.x
+                , mSpriteSheet[mSpriteIndex].size.y * scale.y
+                , mSheetImage->GetHdc()
+                , mSpriteSheet[mSpriteIndex].leftTop.x, mSpriteSheet[mSpriteIndex].leftTop.y
+                , mSpriteSheet[mSpriteIndex].size.x, mSpriteSheet[mSpriteIndex].size.y,
+                RGB(170, 0, 0));
+        }
 
-        // 알파블랜드는 깜빡이는 효과가 필요한 캐릭터나 반투명이 필요한 경우 사용해야함
-        // Render 두가지버전(Tblt, Abl) 만들어야함
-        //BLENDFUNCTION func = {};
-        //func.BlendOp = AC_SRC_OVER;
-        //func.BlendFlags = 0;
-        //func.AlphaFormat = AC_SRC_ALPHA;
-        //func.SourceConstantAlpha = 127;// 0(투명) ~ 255(불투명)
+        else
+		{
+			// 알파블랜드는 깜빡이는 효과가 필요한 캐릭터나 반투명이 필요한 경우 사용해야함
+		    // Render 두가지버전(Tblt, Abl) 만들어야함
+			BLENDFUNCTION func = {};
+			func.BlendOp = AC_SRC_OVER;
+			func.BlendFlags = 0;
+			func.AlphaFormat = AC_SRC_ALPHA;
+			func.SourceConstantAlpha = 200;// 0(투명) ~ 255(불투명)
 
-        //AlphaBlend(hdc, pos.x, pos.y
-        //    , mSpriteSheet[mSpriteIndex].size.x * scale.x
-        //    , mSpriteSheet[mSpriteIndex].size.y * scale.y
-        //    , mSheetImage->GetHdc()
-        //    , mSpriteSheet[mSpriteIndex].leftTop.x, mSpriteSheet[mSpriteIndex].leftTop.y
-        //    , mSpriteSheet[mSpriteIndex].size.x, mSpriteSheet[mSpriteIndex].size.y,
-        //    func);
-    }
+			AlphaBlend(hdc, pos.x, pos.y
+				, mSpriteSheet[mSpriteIndex].size.x * scale.x
+				, mSpriteSheet[mSpriteIndex].size.y * scale.y
+				, mSheetImage->GetHdc()
+				, mSpriteSheet[mSpriteIndex].leftTop.x, mSpriteSheet[mSpriteIndex].leftTop.y
+				, mSpriteSheet[mSpriteIndex].size.x, mSpriteSheet[mSpriteIndex].size.y,
+				func);
+		}
+	}
 
     void Animation::Create(Image* sheet, Vector2 leftTop
         , UINT coulmn, UINT row, UINT spriteLength
-        , Vector2 offset, float duration)
+        , Vector2 offset, float duration, bool apb)
     {
+        mapb = apb;
         mSheetImage = sheet;
 
         //UINT coulmn = mSheetImage->GetWidth() / size.x;

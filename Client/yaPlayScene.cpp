@@ -6,13 +6,26 @@
 #include "yaSceneManager.h"
 #include "yaObstacle.h"
 #include "yaObstacle01.h"
-#include "yaJellyCoin.h"
 #include "yaCollisionManager.h"
 #include "yaTransform.h"
 #include "yaCamera.h"
 #include "yaObject.h"
 #include "yaTime.h"
-#include "yaBlackOut.h"
+
+#include "yaJellyCoin.h"
+#include "yaBlackOutMItem.h"
+#include "yaBlackOutM.h"
+#include "yaShakeItem.h"
+#include "yaSmItem.h"
+#include "yaBigItem.h"
+#include "yaFastItem.h"
+#include "yaSlowItem.h"
+#include "yaHpItemI.h"
+#include "yaHpItemD.h"
+#include "yaObstacleToCoin.h"
+#include "yaBasicToBear.h"
+#include "yaMagnetItem.h"
+#include "yaInputEItem.h"
 
 #include "yaJumpButton.h"
 #include "yaSlideButton.h"
@@ -20,6 +33,7 @@
 #include "yaGaugeCircle.h"
 #include "yaGaugeBar.h"
 #include "yaGround.h"
+#include "yaUnderGround.h"
 
 #include "yaSelectCharScene.h"
 
@@ -27,7 +41,7 @@ namespace ya
 {
 	PlayScene::PlayScene()
 	{
-		
+
 	}
 	PlayScene::~PlayScene()
 	{
@@ -38,13 +52,16 @@ namespace ya
 	{
 		//mCh00 =
 		//object::Instantiate<Character01>(eLayerType::Player);
+		//Camera::SetTarget(mCh01);
 
 		Scene::Initialize();
 
 		// 여기다
+
 		//object::Instantiate<PlayBackGround>(eLayerType::BG);
 
 		object::Instantiate<Ground>(Vector2(-100.0f, 700.0f), eLayerType::Ground);
+		object::Instantiate<UnderGround>(Vector2(-100.0f, 790.0f), eLayerType::Ground);
 
 		int temp = SelectCharScene::GetCharNumber();
 		if (int temp = SelectCharScene::GetCharNumber() == 1)
@@ -59,7 +76,21 @@ namespace ya
 		object::Instantiate<Obstacle>(Vector2(2700.0f, 700.0f), eLayerType::Obstacle);
 		object::Instantiate<Obstacle01>(Vector2(3300.0f, 100.0f), eLayerType::Obstacle);
 		mJcoin01 = object::Instantiate<JellyCoin>(Vector2(2100.0f, 700.0f), eLayerType::Obstacle);
+		
+		//mBM01 = object::Instantiate<BlackOutMItem>(Vector2(4000.0f, 700.0f), eLayerType::Obstacle);
+
 		object::Instantiate<JellyCoin>(Vector2(2700.0f, 300.0f), eLayerType::Obstacle);
+		mShake01 = object::Instantiate<ShakeItem>(Vector2(5000.0f, 700.0f), eLayerType::Obstacle);
+		object::Instantiate<SmItem>(Vector2(5200.0f, 700.0f), eLayerType::Obstacle);
+		object::Instantiate<BigItem>(Vector2(5300.0f, 700.0f), eLayerType::Obstacle);
+		object::Instantiate<FastItem>(Vector2(5400.0f, 700.0f), eLayerType::Obstacle);
+		object::Instantiate<SlowItem>(Vector2(5500.0f, 700.0f), eLayerType::Obstacle);
+		object::Instantiate<HpItemI>(Vector2(5600.0f, 700.0f), eLayerType::Obstacle);
+		object::Instantiate<HpItemD>(Vector2(5700.0f, 700.0f), eLayerType::Obstacle);
+		object::Instantiate<ObstacleToCoin>(Vector2(5800.0f, 700.0f), eLayerType::Obstacle);
+		object::Instantiate<BasicToBear>(Vector2(5900.0f, 700.0f), eLayerType::Obstacle);
+		object::Instantiate<MagnetItem>(Vector2(6000.0f, 700.0f), eLayerType::Obstacle);
+		object::Instantiate<InputEItem>(Vector2(6100.0f, 700.0f), eLayerType::Obstacle);
 
 		object::Instantiate<GaugeCircle>(Vector2(-10.0f, 20.0f), eLayerType::UIAbove);
 		object::Instantiate<GaugeBar>(Vector2(59.0f, 32.0f), eLayerType::UI);
@@ -67,36 +98,34 @@ namespace ya
 		object::Instantiate<JumpButton>(Vector2(100.0f, 650.0f), eLayerType::UI);
 		object::Instantiate<SlideButton>(Vector2(1200.0f, 650.0f), eLayerType::UI);
 		object::Instantiate<PauseButton>(Vector2(1480.0f, 40.0f), eLayerType::UI);
-		//object::Instantiate<GuageCircle>(Vector2(216.0f, 50.0f), eLayerType::UI);
-		//object::Instantiate<GuageBar>(Vector2(285.0f, 62.0f), eLayerType::UIfirst);
 
-		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Ground, true);
-		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Obstacle, true);
+		//CollisionManager::SetLayer(eLayerType::Player, eLayerType::Ground, true);
+		//CollisionManager::SetLayer(eLayerType::Player, eLayerType::Obstacle, true);
 	}
 
 	void PlayScene::Update()
 	{
-		Camera::SetTarget(mCh01);
 		Transform* tr = mCh01->GetComponent<Transform>();
 		Vector2 pos = tr->GetPos();
 
 		Transform* trr = mPet01->GetComponent<Transform>();
 		trr->SetPos(Vector2(pos.x - 120.0f, pos.y - 0.0f));
 
-		if (mJcoin01->ok && mBlackOut == nullptr)
-		{
-			//mBlackOut = object::Instantiate<BlackOut>(Vector2(0.0f, 0.0f), eLayerType::Effect);
-		}
+		//if (mBM01->ok && mBME01 == nullptr)
+		//{
+		//	mBME01 = object::Instantiate<BlackOutM>(Vector2(0.0f, 0.0f), eLayerType::Effect);
+		//}
 
-		if (mBlackOut != nullptr)
-		{
-			mTime += Time::DeltaTime();
-			if (mTime > 5.0f)
-			{
-				ya::object::Destory(mBlackOut);
-				mTime = 0.0f;
-			}
-		}
+		//if (mBME01 != nullptr)
+		//{
+		//	mTime += Time::DeltaTime();
+		//	if (mTime > 5.0f)
+		//	{
+		//		ya::object::Destory(mBME01);
+		//		mTime = 0.0f;
+		//	}
+		//}
+
 		//Camera::mType = Camera::eCameraEffectType::ShakeH;// 설정
 		//Camera::mCutton = Image::Create(L"Cutton00", Camera::mResolution.x, Camera::mResolution.y, RGB(0, 0, 0)/*원하는 색*/);
 

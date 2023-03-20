@@ -27,38 +27,17 @@ namespace ya
 
     void GaugeBar::Update()
     {
+        //Vector2(59.0f, 32.0f)
+        mHpPercent = Character01::GetHpPercent();
+
+        float temp = 964.0f / (100 / mHpPercent);
+
+        mPosX = temp - 905.0f;
+        
         Transform* tr = GetComponent<Transform>();
         Vector2 pos = tr->GetPos();
-        pos.x -= 50.0f * Time::DeltaTime();
-
+        pos.x = mPosX;
         tr->SetPos(pos);
-
-        //Vector2(59.0f, 32.0f)
-        mHpLink = Character01::GetHp();
-        if (mHpLink == 70 && cnt == 0)// 장애물 한번 부딪
-        {
-            cnt++;
-            Transform* tr = GetComponent<Transform>();
-            Vector2 pos = tr->GetPos();
-            pos.x -= 200.0f;
-            tr->SetPos(pos);
-        }
-        if (mHpLink == 40 && cnt == 1)// 장애물 두번 부딪
-        {
-            cnt++;
-            Transform* tr = GetComponent<Transform>();
-            Vector2 pos = tr->GetPos();
-            pos.x -= 200.0f;
-            tr->SetPos(pos);
-        }
-        if (mHpLink == 10 && cnt == 2)// 장애물 세번 부딪
-        {
-            cnt++;
-            Transform* tr = GetComponent<Transform>();
-            Vector2 pos = tr->GetPos();
-            pos.x -= 200.0f;
-            tr->SetPos(pos);
-        }
 
         GameObject::Update();
     }

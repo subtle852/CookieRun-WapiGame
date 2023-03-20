@@ -4,7 +4,6 @@
 
 namespace ya
 {
-	class Character01;
 	class GaugeBar : public GameObject
 	{
 	public:
@@ -19,7 +18,8 @@ namespace ya
 	private:
 		Image* mImage;
 
-		float mHpLink;
-		int cnt;
+		float mPosX;
+
+		float mHpPercent;
 	};
 }

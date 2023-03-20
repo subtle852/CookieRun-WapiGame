@@ -3,7 +3,7 @@
 #include "yaInput.h"
 #include "yaSceneManager.h"
 #include "yaObject.h"
-
+#include "yaCamera.h"
 namespace ya
 {
 	int SelectCharScene::mCharNumber = 1;
@@ -36,6 +36,8 @@ namespace ya
 			SceneManager::LoadScene(eSceneType::SelectStage);
 			//SelectCharBackGround::flag = true;
 		}
+
+		Scene::Update();
 	}
 
 	void SelectCharScene::Render(HDC hdc)
@@ -52,7 +54,7 @@ namespace ya
 
 	void SelectCharScene::OnEnter()
 	{
-
+		
 	}
 
 	void SelectCharScene::OnExit()

@@ -10,7 +10,8 @@ namespace ya
 	class Obstacle;
 	class Obstacle01;
 	class JellyCoin;
-	class BlackOut;
+	class BlackOutMItem; class BlackOutM;
+	class ShakeItem;
 
 	class PlayScene : public Scene
 	{
@@ -36,9 +37,11 @@ namespace ya
 		Obstacle01* mOb04;
 		JellyCoin* mJcoin01;
 		JellyCoin* mJcoin02;
-
-		BlackOut* mBlackOut;
+		BlackOutMItem* mBM01; BlackOutM* mBME01;
+		ShakeItem* mShake01;
 
 		float mTime = 0.0f;
+
+		Image* img;
 	};
 }

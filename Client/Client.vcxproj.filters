@@ -56,9 +56,6 @@
     <Filter Include="Engine\Component\Collider">
       <UniqueIdentifier>{0ffcc437-f68e-43f1-abd2-039dbd0df9cd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents\Obstacle">
-      <UniqueIdentifier>{3786121f-d229-4dda-b1da-1e0538e931df}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Contents\Pet">
       <UniqueIdentifier>{42e7be36-649a-46cb-977d-47aa9443bb3d}</UniqueIdentifier>
     </Filter>
@@ -70,18 +67,6 @@
     </Filter>
     <Filter Include="Contents\UI">
       <UniqueIdentifier>{a4376017-6ffe-4638-9640-4e0dec790919}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contents\Obstacle\Land1">
-      <UniqueIdentifier>{e76790fc-34a3-47e9-b1d8-ae96d5f326e1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contents\Obstacle\Land2">
-      <UniqueIdentifier>{ad4b64fa-f0b5-437f-ba4c-89f11029c850}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contents\Obstacle\Land3">
-      <UniqueIdentifier>{232ac250-5cb9-4979-9dce-0270533493f5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contents\Obstacle\Common">
-      <UniqueIdentifier>{602f34a2-7f70-4c57-84a7-3d13a83fadfa}</UniqueIdentifier>
     </Filter>
     <Filter Include="Contents\UI\MainUI">
       <UniqueIdentifier>{073fc4e1-0089-441c-96fe-776836d5234c}</UniqueIdentifier>
@@ -106,6 +91,24 @@
     </Filter>
     <Filter Include="Contents\Ground">
       <UniqueIdentifier>{f68f55f4-6417-4646-8f69-f043b6e1b664}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Object\Item">
+      <UniqueIdentifier>{9f0f2e4a-95eb-4a8d-8221-41d980eb2e06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Object\Obstacle">
+      <UniqueIdentifier>{3786121f-d229-4dda-b1da-1e0538e931df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Object\Obstacle\Land1">
+      <UniqueIdentifier>{e76790fc-34a3-47e9-b1d8-ae96d5f326e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Object\Obstacle\Land2">
+      <UniqueIdentifier>{ad4b64fa-f0b5-437f-ba4c-89f11029c850}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Object\Obstacle\Land3">
+      <UniqueIdentifier>{232ac250-5cb9-4979-9dce-0270533493f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Object\Obstacle\Common">
+      <UniqueIdentifier>{602f34a2-7f70-4c57-84a7-3d13a83fadfa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -209,13 +212,13 @@
       <Filter>Engine\Component\Collider</Filter>
     </ClInclude>
     <ClInclude Include="yaObstacle.h">
-      <Filter>Contents\Obstacle</Filter>
+      <Filter>Contents\Object\Obstacle</Filter>
     </ClInclude>
     <ClInclude Include="yaPet01.h">
       <Filter>Contents\Pet</Filter>
     </ClInclude>
     <ClInclude Include="yaObstacle01.h">
-      <Filter>Contents\Obstacle</Filter>
+      <Filter>Contents\Object\Obstacle</Filter>
     </ClInclude>
     <ClInclude Include="yaCamera.h">
       <Filter>Engine\Component\Camera</Filter>
@@ -265,9 +268,6 @@
     <ClInclude Include="yaSilverUI.h">
       <Filter>Contents\UI\CommonUI</Filter>
     </ClInclude>
-    <ClInclude Include="yaJellyCoin.h">
-      <Filter>Contents\Obstacle\Common</Filter>
-    </ClInclude>
     <ClInclude Include="yaPortal.h">
       <Filter>Contents\UI\SelectUI</Filter>
     </ClInclude>
@@ -288,14 +288,56 @@
     </ClInclude>
     <ClInclude Include="yaToolScene.h" />
     <ClInclude Include="yaTile.h" />
-    <ClInclude Include="yaBlackOut.h">
-      <Filter>Contents\Obstacle</Filter>
-    </ClInclude>
     <ClInclude Include="yaGaugeCircle.h">
       <Filter>Contents\UI\PlayUI</Filter>
     </ClInclude>
     <ClInclude Include="yaGaugeBar.h">
       <Filter>Contents\UI\PlayUI</Filter>
+    </ClInclude>
+    <ClInclude Include="yaUnderGround.h">
+      <Filter>Contents\Ground</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBlackOutM.h">
+      <Filter>Contents\Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBlackOutMItem.h">
+      <Filter>Contents\Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="yaShakeItem.h">
+      <Filter>Contents\Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="yaJellyCoin.h">
+      <Filter>Contents\Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="yaHpItemD.h">
+      <Filter>Contents\Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="yaHpItemI.h">
+      <Filter>Contents\Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBigItem.h">
+      <Filter>Contents\Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="yaFastItem.h">
+      <Filter>Contents\Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="yaObstacleToCoin.h">
+      <Filter>Contents\Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="yaSlowItem.h">
+      <Filter>Contents\Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="yaSmItem.h">
+      <Filter>Contents\Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="yaInputEItem.h">
+      <Filter>Contents\Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="yaMagnetItem.h">
+      <Filter>Contents\Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBasicToBear.h">
+      <Filter>Contents\Object\Item</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -397,13 +439,13 @@
       <Filter>Engine\Component\Collider</Filter>
     </ClCompile>
     <ClCompile Include="yaObstacle.cpp">
-      <Filter>Contents\Obstacle</Filter>
+      <Filter>Contents\Object\Obstacle</Filter>
     </ClCompile>
     <ClCompile Include="yaPet01.cpp">
       <Filter>Contents\Pet</Filter>
     </ClCompile>
     <ClCompile Include="yaObstacle01.cpp">
-      <Filter>Contents\Obstacle</Filter>
+      <Filter>Contents\Object\Obstacle</Filter>
     </ClCompile>
     <ClCompile Include="yaCamera.cpp">
       <Filter>Engine\Component\Camera</Filter>
@@ -456,9 +498,6 @@
     <ClCompile Include="yaSilverUI.cpp">
       <Filter>Contents\UI\CommonUI</Filter>
     </ClCompile>
-    <ClCompile Include="yaJellyCoin.cpp">
-      <Filter>Contents\Obstacle\Common</Filter>
-    </ClCompile>
     <ClCompile Include="yaPortal.cpp">
       <Filter>Contents\UI\SelectUI</Filter>
     </ClCompile>
@@ -479,8 +518,50 @@
     </ClCompile>
     <ClCompile Include="yaToolScene.cpp" />
     <ClCompile Include="yaTile.cpp" />
-    <ClCompile Include="yaBlackOut.cpp">
-      <Filter>Contents\Obstacle</Filter>
+    <ClCompile Include="yaUnderGround.cpp">
+      <Filter>Contents\Ground</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBlackOutM.cpp">
+      <Filter>Contents\Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBlackOutMItem.cpp">
+      <Filter>Contents\Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="yaShakeItem.cpp">
+      <Filter>Contents\Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="yaJellyCoin.cpp">
+      <Filter>Contents\Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="yaHpItemD.cpp">
+      <Filter>Contents\Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="yaHpItemI.cpp">
+      <Filter>Contents\Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBigItem.cpp">
+      <Filter>Contents\Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="yaFastItem.cpp">
+      <Filter>Contents\Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="yaObstacleToCoin.cpp">
+      <Filter>Contents\Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSlowItem.cpp">
+      <Filter>Contents\Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSmItem.cpp">
+      <Filter>Contents\Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="yaInputEItem.cpp">
+      <Filter>Contents\Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="yaMagnetItem.cpp">
+      <Filter>Contents\Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBasicToBear.cpp">
+      <Filter>Contents\Object\Item</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

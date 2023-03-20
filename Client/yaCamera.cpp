@@ -19,7 +19,7 @@ namespace ya
 	class Image* Camera::mCutton = nullptr;
 	float Camera::mCuttonAlpha = 1.0f;
 	float Camera::mAlphaTime = 0.0f;
-	float Camera::mEndTime = 5.0f;
+	float Camera::mEndTime = 3.0f;
 
 	float Camera::mSwingATime = 0.0f;
 	float Camera::mSwingBTime = 0.0f;
@@ -32,7 +32,7 @@ namespace ya
 		mResolution.y = application.GetHeight();
 		mLookPosition = (mResolution / 2.0f);
 
-		mType = eCameraEffectType::None;// 설정
+		mType = eCameraEffectType::FadeIn;// 설정
 		mCutton = Image::Create(L"Cutton", mResolution.x, mResolution.y, RGB(0, 0, 0)/*원하는 색*/);
 	}
 
