@@ -21,7 +21,6 @@ namespace ya
 		Damaged,
 		BigRun,
 		BigJump,
-		BigSlide,
 	};
 
 	class Character01 : public GameObject
@@ -55,7 +54,6 @@ namespace ya
 		void transparent();
 		void bigrun();
 		void bigjump();
-		void bigslide();
 
 		void JumpCompleteEvent();
 		void DJumpCompleteEvent();
@@ -72,6 +70,7 @@ namespace ya
 
 		int mJmpcnt = 0;
 		int mDJmpcnt = 0;
+		int mBJmpcnt = 0;
 
 		//static float mCurHp;
 		static float mMaxHp;
@@ -87,7 +86,9 @@ namespace ya
 		float mSlowT = 0.0f;
 		bool mInv = false;
 		float mInvT = 0.0f;
-		bool mBig = false;
+		static bool mBig;
 		float mBigT = 0.0f;
+
+		bool mGround = false;
 	};
 }

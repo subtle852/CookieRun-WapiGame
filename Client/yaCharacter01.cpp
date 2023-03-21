@@ -20,6 +20,8 @@ namespace ya
 	float Character01::mMaxHp = 100;
 	float Character01::mHpPercent = (Character01::mCurHp / Character01::mMaxHp) * 100;
 
+	bool Character01::mBig = false;
+
 	Character01::Character01()
 	{
 
@@ -152,20 +154,28 @@ namespace ya
 			}
 
 			{
-				if (mState == eChar01State::BigRun || mState == eChar01State::BigJump || mState == eChar01State::BigSlide)// 커졌을 때
+				if (mBig == true)// 커졌을 때
 				{
-					mBig = true;
+					mState = eChar01State::BigRun;
 					mBigT += Time::DeltaTime();
 
 					if (mBigT > 5.0f)
 					{
+						Transform* tr = GetComponent<Transform>();
+						Vector2 pos = tr->GetPos();
+						pos.y = 600.0f;
+						tr->SetPos(pos);
+
+						mState = eChar01State::Run;
+
 						mBigT = 0.0f;
 						mBig = false;
-
-						Transform* tr = GetComponent<Transform>();
-						tr->SetScale(Vector2(1.2f, 1.2f));
-						mState = eChar01State::Run;
 					}
+				}
+
+				if (this->mGround == true)
+				{
+					mBJmpcnt = 0;
 				}
 			}
 
@@ -221,9 +231,6 @@ namespace ya
 				break;
 			case ya::eChar01State::BigJump:
 				bigjump();
-				break;
-			case ya::eChar01State::BigSlide:
-				bigslide();
 				break;
 			}
 		}
@@ -295,6 +302,11 @@ namespace ya
 				mCurHp = 0;
 			}
 		}
+
+		if (dynamic_cast<Ground*>(other->GetOwner()))
+		{
+			mGround = true;
+		}
 	
 	}
 
@@ -304,14 +316,27 @@ namespace ya
 		{
 			Camera::mType = Camera::eCameraEffectType::ShakeH;
 		}
+
+		if (dynamic_cast<Ground*>(other->GetOwner()))
+		{
+			mGround = true;
+		}
 	}
 
 	void Character01::OnCollisionExit(Collider* other)
 	{
+		if (dynamic_cast<Ground*>(other->GetOwner()))
+		{
+			mGround = false;
+		}
 	}
 
 	void Character01::run()
 	{
+		Transform* tr = GetComponent<Transform>();
+		//tr->SetPos(Vector2(tr->GetPos().x, 130.0f));
+		tr->SetScale(Vector2(1.2f, 1.2f));
+
 		Collider* collider = GetComponent<Collider>();
 		collider->SetSize(Vector2(100.0f, 100.0f));
 		collider->SetCenter(Vector2(-10.0f, -50.0f));
@@ -514,63 +539,33 @@ namespace ya
 	void Character01::bigrun()
 	{
 		Transform* tr = GetComponent<Transform>();
-		tr->SetPos(Vector2(tr->GetPos().x, 130.0f));
 		tr->SetScale(Vector2(3.0f, 3.0f));
 
 		Collider* collider = GetComponent<Collider>();
-		collider->SetSize(Vector2(50.0f, 150.0f));
-		collider->SetCenter(Vector2(230.0f, 410.0f));
+		collider->SetSize(Vector2(100.0f, 800.0f));
+		collider->SetCenter(Vector2(200.0f, -250.0f));
 
 		mAnimator->Play(L"Run", true);
 
+
 		if (Input::GetKeyDown(eKeyCode::W))
 		{
-			Vector2 velocity = mRigidbody->GetVelocity();
-			velocity.y = -2000.0f;
+			mBJmpcnt++;
+			if (mBJmpcnt == 1)
+			{
+				Vector2 velocity = mRigidbody->GetVelocity();
+				velocity.y = -2000.0f;
 
-			mRigidbody->SetVelocity(velocity);
-			mRigidbody->SetGround(false);
-			mState = eChar01State::BigJump;
-
-		}
-
-		if (Input::GetKey(eKeyCode::S))
-		{
-			mState = eChar01State::BigSlide;
+				mRigidbody->SetVelocity(velocity);
+				mRigidbody->SetGround(false);
+				mState = eChar01State::BigJump;
+			}
 		}
 	}
 
 	void Character01::bigjump()
 	{
 		mAnimator->Play(L"BeforeRun", false);
-
-		if (mRigidbody->GetGround())
-		{
-			mRigidbody->mVelocity = Vector2(0.0f, 0.0f);
-
-			mState = eChar01State::BigRun;
-		}
-
-		if (Input::GetKey(eKeyCode::S))
-		{
-			mState = eChar01State::BigSlide;
-		}
-	}
-	void Character01::bigslide()
-	{
-		Transform* tr = GetComponent<Transform>();
-		tr->SetPos(Vector2(tr->GetPos().x, 130.0f));
-
-		Collider* collider = GetComponent<Collider>();
-		collider->SetSize(Vector2(50.0f, 150.0f));
-		collider->SetCenter(Vector2(230.0f, 410.0f));
-
-		mAnimator->Play(L"Slide", true);
-
-		if (Input::GetKeyUp(eKeyCode::S))
-		{
-			mState = eChar01State::BigRun;
-		}
 	}
 
 	void Character01::JumpCompleteEvent(/*const Cuphead* this*/)

@@ -6,6 +6,7 @@
 #include "yaTime.h"
 #include "yaImage.h"
 #include "yaSceneManager.h"
+#include "yaCharacter01.h"
 
 extern ya::Application application;
 namespace ya

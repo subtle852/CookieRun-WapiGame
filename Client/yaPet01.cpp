@@ -42,16 +42,19 @@ namespace ya
 
 		Transform* tr = GetComponent<Transform>();
 
-		if (Input::GetKeyUp(eKeyCode::S))
+		if (Character01::mBig == false)
 		{
-			tr->SetPos(Vector2(tr->GetPos().x, 730.0f));
-		}
-		if (Input::GetKey(eKeyCode::S))
-		{
-			tr->SetPos(Vector2(tr->GetPos().x, 730.0f));
+			if (Input::GetKeyUp(eKeyCode::S))
+			{
+				tr->SetPos(Vector2(tr->GetPos().x, 730.0f));
+			}
+			if (Input::GetKey(eKeyCode::S))
+			{
+				tr->SetPos(Vector2(tr->GetPos().x, 730.0f));
+			}
 		}
 		
-		float a = Character01::GetHpPercent();
+		float tempHp = Character01::GetHpPercent();
 
 		if (Character01::GetHpPercent() == 0.0f)
 		{

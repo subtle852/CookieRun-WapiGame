@@ -66,7 +66,7 @@ namespace ya
 		if (dynamic_cast<Character01*>(other->GetOwner()))
 		{
 			Character01* ch = dynamic_cast<Character01*>(other->GetOwner());
-			ch->mState = eChar01State::BigJump;
+			ch->mBig = true;
 			object::Destory(this);
 		}
 	}
