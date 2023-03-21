@@ -17,7 +17,7 @@ namespace ya
 	void UnderGround::Initialize()
 	{
 		mCollider = AddComponent<Collider>();
-		mCollider->SetSize(Vector2(10000.0f, 50.0f));
+		mCollider->SetSize(Vector2(50000.0f, 100.0f));
 		GameObject::Initialize();
 	}
 
@@ -41,31 +41,31 @@ namespace ya
 		if (cuphead == nullptr)
 			return;
 
-		cuphead->SetHp(0.0f);
+		//cuphead->SetHp(0.0f);
 
-		Rigidbody* rb = cuphead->GetComponent<Rigidbody>();
-		rb->SetGround(true);
+		//Rigidbody* rb = cuphead->GetComponent<Rigidbody>();
+		//rb->SetGround(true);
 
-		Collider* cupheadCol = cuphead->GetComponent<Collider>();
-		Vector2 cupheadPos = cupheadCol->GetPos();
+		//Collider* cupheadCol = cuphead->GetComponent<Collider>();
+		//Vector2 cupheadPos = cupheadCol->GetPos();
 
-		Collider* groundCol = this->GetComponent<Collider>();
-		Vector2 groundPos = groundCol->GetPos();
+		//Collider* groundCol = this->GetComponent<Collider>();
+		//Vector2 groundPos = groundCol->GetPos();
 
-		float fLen = fabs(cupheadPos.y - groundPos.y);
-		float fSize = (cupheadCol->GetSize().y / 2.0f) + (groundCol->GetSize().y / 2.0f);
+		//float fLen = fabs(cupheadPos.y - groundPos.y);
+		//float fSize = (cupheadCol->GetSize().y / 2.0f) + (groundCol->GetSize().y / 2.0f);
 
-		if (fLen < fSize)
-		{
-			Transform* cupTr = cuphead->GetComponent<Transform>();
-			Transform* grTr = this->GetComponent<Transform>();
+		//if (fLen < fSize)
+		//{
+		//	Transform* cupTr = cuphead->GetComponent<Transform>();
+		//	Transform* grTr = this->GetComponent<Transform>();
 
-			Vector2 cupPos = cupTr->GetPos();
-			Vector2 grPos = grTr->GetPos();
+		//	Vector2 cupPos = cupTr->GetPos();
+		//	Vector2 grPos = grTr->GetPos();
 
-			cupPos -= (fSize - fLen) - 1.0f;
-			cupTr->SetPos(cupPos);
-		}
+		//	cupPos -= (fSize - fLen) - 1.0f;
+		//	cupTr->SetPos(cupPos);
+		//}
 	}
 
 	void UnderGround::OnCollisionStay(Collider* other)
@@ -74,28 +74,26 @@ namespace ya
 		if (cuphead == nullptr)
 			return;
 
-		cuphead->SetHp(0.0f);
+		//Collider* cupheadCol = cuphead->GetComponent<Collider>();
+		//Vector2 cupheadPos = cupheadCol->GetPos();
 
-		Collider* cupheadCol = cuphead->GetComponent<Collider>();
-		Vector2 cupheadPos = cupheadCol->GetPos();
+		//Collider* groundCol = this->GetComponent<Collider>();
+		//Vector2 groundPos = groundCol->GetPos();
 
-		Collider* groundCol = this->GetComponent<Collider>();
-		Vector2 groundPos = groundCol->GetPos();
+		//float fLen = fabs(cupheadPos.y - groundPos.y);
+		//float fSize = cupheadCol->GetSize().y;
 
-		float fLen = fabs(cupheadPos.y - groundPos.y);
-		float fSize = cupheadCol->GetSize().y;
+		//if (fLen < fSize)
+		//{
+		//	Transform* cupTr = cuphead->GetComponent<Transform>();
+		//	Transform* grTr = this->GetComponent<Transform>();
 
-		if (fLen < fSize)
-		{
-			Transform* cupTr = cuphead->GetComponent<Transform>();
-			Transform* grTr = this->GetComponent<Transform>();
+		//	Vector2 cupPos = cupTr->GetPos();
+		//	Vector2 grPos = grTr->GetPos();
 
-			Vector2 cupPos = cupTr->GetPos();
-			Vector2 grPos = grTr->GetPos();
-
-			cupPos.y -= fSize - fLen - 1.0f;
-			cupTr->SetPos(cupPos);
-		}
+		//	cupPos.y -= fSize - fLen - 1.0f;
+		//	cupTr->SetPos(cupPos);
+		//}
 	}
 
 	void UnderGround::OnCollisionExit(Collider* other)

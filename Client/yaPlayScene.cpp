@@ -26,6 +26,7 @@
 #include "yaBasicToBear.h"
 #include "yaMagnetItem.h"
 #include "yaInputEItem.h"
+#include "yaInvincibleItem.h"
 
 #include "yaJumpButton.h"
 #include "yaSlideButton.h"
@@ -71,26 +72,41 @@ namespace ya
 
 		mPet01 = object::Instantiate<Pet01>(eLayerType::Pet);
 
-		object::Instantiate<Obstacle>(Vector2(1200.0f, 700.0f), eLayerType::Obstacle);
+		object::Instantiate<BigItem>(Vector2(1200.0f, 700.0f), eLayerType::Obstacle);//
+		object::Instantiate<Obstacle>(Vector2(700.0f, 700.0f), eLayerType::Obstacle);
 		object::Instantiate<Obstacle01>(Vector2(2000.0f, 100.0f), eLayerType::Obstacle);
 		object::Instantiate<Obstacle>(Vector2(2700.0f, 700.0f), eLayerType::Obstacle);
 		object::Instantiate<Obstacle01>(Vector2(3300.0f, 100.0f), eLayerType::Obstacle);
-		mJcoin01 = object::Instantiate<JellyCoin>(Vector2(2100.0f, 700.0f), eLayerType::Obstacle);
+		object::Instantiate<Obstacle>(Vector2(5600.0f, 700.0f), eLayerType::Obstacle);
+		mJcoin01 = object::Instantiate<JellyCoin>(Vector2(2100.0f, 700.0f), eLayerType::Item);
 		
 		//mBM01 = object::Instantiate<BlackOutMItem>(Vector2(4000.0f, 700.0f), eLayerType::Obstacle);
 
-		object::Instantiate<JellyCoin>(Vector2(2700.0f, 300.0f), eLayerType::Obstacle);
-		mShake01 = object::Instantiate<ShakeItem>(Vector2(5000.0f, 700.0f), eLayerType::Obstacle);
-		object::Instantiate<SmItem>(Vector2(5200.0f, 700.0f), eLayerType::Obstacle);
-		object::Instantiate<BigItem>(Vector2(5300.0f, 700.0f), eLayerType::Obstacle);
-		object::Instantiate<FastItem>(Vector2(5400.0f, 700.0f), eLayerType::Obstacle);
-		object::Instantiate<SlowItem>(Vector2(5500.0f, 700.0f), eLayerType::Obstacle);
-		object::Instantiate<HpItemI>(Vector2(5600.0f, 700.0f), eLayerType::Obstacle);
-		object::Instantiate<HpItemD>(Vector2(5700.0f, 700.0f), eLayerType::Obstacle);
-		object::Instantiate<ObstacleToCoin>(Vector2(5800.0f, 700.0f), eLayerType::Obstacle);
-		object::Instantiate<BasicToBear>(Vector2(5900.0f, 700.0f), eLayerType::Obstacle);
-		object::Instantiate<MagnetItem>(Vector2(6000.0f, 700.0f), eLayerType::Obstacle);
-		object::Instantiate<InputEItem>(Vector2(6100.0f, 700.0f), eLayerType::Obstacle);
+		object::Instantiate<JellyCoin>(Vector2(2700.0f, 300.0f), eLayerType::Item);
+		mShake01 = object::Instantiate<ShakeItem>(Vector2(5000.0f, 700.0f), eLayerType::Item);
+		object::Instantiate<FastItem>(Vector2(5400.0f, 700.0f), eLayerType::Item);//
+		//object::Instantiate<SlowItem>(Vector2(5500.0f, 700.0f), eLayerType::Item);
+		object::Instantiate<ObstacleToCoin>(Vector2(5800.0f, 700.0f), eLayerType::Item);
+		object::Instantiate<BasicToBear>(Vector2(5900.0f, 700.0f), eLayerType::Item);
+		object::Instantiate<MagnetItem>(Vector2(6000.0f, 700.0f), eLayerType::Item);
+		object::Instantiate<InputEItem>(Vector2(6500.0f, 700.0f), eLayerType::Item);
+		object::Instantiate<InputEItem>(Vector2(7000.0f, 700.0f), eLayerType::Item);
+		object::Instantiate<InputEItem>(Vector2(7500.0f, 700.0f), eLayerType::Item);
+		object::Instantiate<InputEItem>(Vector2(8000.0f, 700.0f), eLayerType::Item);
+		object::Instantiate<InputEItem>(Vector2(8500.0f, 700.0f), eLayerType::Item);
+		object::Instantiate<InputEItem>(Vector2(9000.0f, 700.0f), eLayerType::Item);
+		object::Instantiate<SlowItem>(Vector2(9300.0f, 700.0f), eLayerType::Item);//
+		object::Instantiate<InputEItem>(Vector2(9500.0f, 700.0f), eLayerType::Item);
+		object::Instantiate<InputEItem>(Vector2(10000.0f, 700.0f), eLayerType::Item);
+		object::Instantiate<InvincibleItem>(Vector2(10100.0f, 700.0f), eLayerType::Item);//
+		object::Instantiate<InputEItem>(Vector2(10500.0f, 700.0f), eLayerType::Item);
+		object::Instantiate<InputEItem>(Vector2(11000.0f, 700.0f), eLayerType::Item);
+		object::Instantiate<InputEItem>(Vector2(11500.0f, 700.0f), eLayerType::Item);
+		object::Instantiate<HpItemI>(Vector2(11600.0f, 700.0f), eLayerType::Item);//
+		object::Instantiate<InputEItem>(Vector2(12000.0f, 700.0f), eLayerType::Item);
+		object::Instantiate<InputEItem>(Vector2(12500.0f, 700.0f), eLayerType::Item);
+		object::Instantiate<HpItemD>(Vector2(13000.0f, 700.0f), eLayerType::Item);//
+		object::Instantiate<BigItem>(Vector2(13200.0f, 700.0f), eLayerType::Item);//
 
 		object::Instantiate<GaugeCircle>(Vector2(-10.0f, 20.0f), eLayerType::UIAbove);
 		object::Instantiate<GaugeBar>(Vector2(59.0f, 32.0f), eLayerType::UI);
@@ -155,6 +171,7 @@ namespace ya
 		Camera::SetTarget(mCh01);
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Ground, true);
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Obstacle, true);
+		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Item, true);
 	}
 
 	void PlayScene::OnExit()

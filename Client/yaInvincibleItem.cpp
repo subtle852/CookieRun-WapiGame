@@ -1,4 +1,4 @@
-#include "yaHpItemD.h"
+#include "yaInvincibleItem.h"
 #include "yaTime.h"
 #include "yaSceneManager.h"
 #include "yaInput.h"
@@ -13,26 +13,26 @@
 
 namespace ya
 {
-	HpItemD::HpItemD()
+	InvincibleItem::InvincibleItem()
 	{
 
 	}
 
-	HpItemD::~HpItemD()
+	InvincibleItem::~InvincibleItem()
 	{
 
 	}
 
-	void HpItemD::Initialize()
+	void InvincibleItem::Initialize()
 	{
 		//Transform* tr = GetComponent<Transform>();
 		//tr->SetPos(Vector2(1200.0f, 500.0f));
 		//tr->SetScale(Vector2(1.5f, 1.5f));
 
 		mAnimator = AddComponent<Animator>();
-		mAnimator->CreateAnimations(L"..\\Resources\\Item\\HpItemD", Vector2::Zero, 0.1f, 0);
+		mAnimator->CreateAnimations(L"..\\Resources\\Item\\Invincible", Vector2::Zero, 0.1f, 0);
 
-		mAnimator->Play(L"ItemHpItemD", true);
+		mAnimator->Play(L"ItemInvincible", true);
 
 		Collider* collider = AddComponent<Collider>();
 		collider->SetSize(Vector2(80.0f, 80.0f));
@@ -41,37 +41,38 @@ namespace ya
 		GameObject::Initialize();
 	}
 
-	void HpItemD::Update()
+	void InvincibleItem::Update()
 	{
 		GameObject::Update();
 	}
 
-	void HpItemD::Render(HDC hdc)
+	void InvincibleItem::Render(HDC hdc)
 	{
 		GameObject::Render(hdc);
 	}
 
-	void HpItemD::Release()
+	void InvincibleItem::Release()
 	{
 		GameObject::Release();
 	}
 
-	void HpItemD::OnCollisionEnter(Collider* other)
+	void InvincibleItem::OnCollisionEnter(Collider* other)
 	{
 
 	}
 
-	void HpItemD::OnCollisionStay(Collider* other)
+	void InvincibleItem::OnCollisionStay(Collider* other)
 	{
 		if (dynamic_cast<Character01*>(other->GetOwner()))
 		{
 			Character01* ch = dynamic_cast<Character01*>(other->GetOwner());
-			ch->DecreaseHP(15.0f);
+			ch->mInv = true;
+
 			object::Destory(this);
 		}
 	}
 
-	void HpItemD::OnCollisionExit(Collider* other)
+	void InvincibleItem::OnCollisionExit(Collider* other)
 	{
 
 	}

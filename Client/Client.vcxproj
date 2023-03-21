@@ -133,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="yaInvincibleItem.h" />
     <ClInclude Include="yaBasicToBear.h" />
     <ClInclude Include="yaHpItemD.h" />
     <ClInclude Include="yaHpItemI.h" />
@@ -212,6 +213,7 @@
     <ClInclude Include="yaMagnetItem.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="yaInvincibleItem.cpp" />
     <ClCompile Include="yaBasicToBear.cpp" />
     <ClCompile Include="yaHpItemD.cpp" />
     <ClCompile Include="yaHpItemI.cpp" />

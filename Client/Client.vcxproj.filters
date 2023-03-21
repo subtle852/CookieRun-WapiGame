@@ -339,6 +339,9 @@
     <ClInclude Include="yaBasicToBear.h">
       <Filter>Contents\Object\Item</Filter>
     </ClInclude>
+    <ClInclude Include="yaInvincibleItem.h">
+      <Filter>Contents\Object\Item</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="small.ico">
@@ -561,6 +564,9 @@
       <Filter>Contents\Object\Item</Filter>
     </ClCompile>
     <ClCompile Include="yaBasicToBear.cpp">
+      <Filter>Contents\Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="yaInvincibleItem.cpp">
       <Filter>Contents\Object\Item</Filter>
     </ClCompile>
   </ItemGroup>
