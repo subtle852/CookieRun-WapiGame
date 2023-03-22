@@ -21,6 +21,7 @@ namespace ya
 	float Character01::mHpPercent = (Character01::mCurHp / Character01::mMaxHp) * 100;
 
 	bool Character01::mBig = false;
+	bool Character01::mSml = false;
 
 	Character01::Character01()
 	{
@@ -97,7 +98,7 @@ namespace ya
 				{
 					Transform* tr = GetComponent<Transform>();
 					Vector2 pos = tr->GetPos();
-					pos.x += 550.0f * Time::DeltaTime();
+					pos.x += 600.0f * Time::DeltaTime();
 					tr->SetPos(pos);
 				}
 
@@ -159,7 +160,7 @@ namespace ya
 					mState = eChar01State::BigRun;
 					mBigT += Time::DeltaTime();
 
-					if (mBigT > 5.0f)
+					if (mBigT > 3.0f)
 					{
 						Transform* tr = GetComponent<Transform>();
 						Vector2 pos = tr->GetPos();
@@ -173,9 +174,56 @@ namespace ya
 					}
 				}
 
-				if (this->mGround == true)
+				if (mSml == true)// 작아졌을 때
 				{
-					mBJmpcnt = 0;
+					mSmlT += Time::DeltaTime();
+					mSmlcnt++;
+
+					bool a = this->mGround;
+
+					if (mSmlcnt == 1)
+					{
+						Transform* tr = GetComponent<Transform>();
+						Vector2 pos = tr->GetPos();
+						pos.y = 400.0f;
+						tr->SetPos(pos);
+						tr->SetScale(Vector2(0.5f, 0.5f));
+
+						Collider* collider = GetComponent<Collider>();
+						collider->SetSize(Vector2(50.0f, 50.0f));
+						collider->SetCenter(Vector2(-70.0f, -190.0f));
+					}
+			
+					if (mSmlT > 3.0f)
+					{
+						Transform* tr = GetComponent<Transform>();
+						Vector2 pos = tr->GetPos();
+						pos.y = 600.0f;
+						tr->SetPos(pos);
+						tr->SetScale(Vector2(1.2f, 1.2f));
+
+						Collider* collider = GetComponent<Collider>();
+						collider->SetSize(Vector2(30.0f, 30.0f));
+						collider->SetCenter(Vector2(-10.0f, -50.0f));
+						//mState = eChar01State::Run;
+
+						mSmlcnt = 0;
+						mSmlT = 0.0f;
+						mSml = false;
+					}
+				}
+			}
+
+			{
+				if (mKeyError == true)// 키 에러
+				{
+					mKeyErrorT += Time::DeltaTime();
+
+					if (mKeyErrorT > 3.0f)
+					{
+						mKeyErrorT = 0.0f;
+						mKeyError = false;
+					}
 				}
 			}
 
@@ -228,9 +276,6 @@ namespace ya
 				break;
 			case ya::eChar01State::BigRun:
 				bigrun();
-				break;
-			case ya::eChar01State::BigJump:
-				bigjump();
 				break;
 			}
 		}
@@ -287,22 +332,6 @@ namespace ya
 			}
 		}
 
-		if (dynamic_cast<UnderGround*>(other->GetOwner()))
-		{
-			if (mState == eChar01State::BigRun || mState == eChar01State::BigJump)// 커질 때 콜라이더가 언더그라운드와 충돌하기에 예외처리 1
-			{
-
-			}
-			else if(mBig == false)// 커질 때 콜라이더가 언더그라운드와 충돌하기에 예외처리 2
-			{
-
-			}
-			else// 지하바닥과 충돌할때 Hp 0으로
-			{
-				mCurHp = 0;
-			}
-		}
-
 		if (dynamic_cast<Ground*>(other->GetOwner()))
 		{
 			mGround = true;
@@ -312,6 +341,7 @@ namespace ya
 
 	void Character01::OnCollisionStay(Collider* other)
 	{
+
 		if (mBig == true && dynamic_cast<Ground*>(other->GetOwner()))// 커졌을 때 바로 카메라 흔들리고, 커진 상태에서 점프하고 땅에 닿으면 카메라 흔들리게 
 		{
 			Camera::mType = Camera::eCameraEffectType::ShakeH;
@@ -333,13 +363,16 @@ namespace ya
 
 	void Character01::run()
 	{
-		Transform* tr = GetComponent<Transform>();
-		//tr->SetPos(Vector2(tr->GetPos().x, 130.0f));
-		tr->SetScale(Vector2(1.2f, 1.2f));
+		if (mSml != true)
+		{
+			Transform* tr = GetComponent<Transform>();
+			//tr->SetPos(Vector2(tr->GetPos().x, 130.0f));
+			tr->SetScale(Vector2(1.2f, 1.2f));
 
-		Collider* collider = GetComponent<Collider>();
-		collider->SetSize(Vector2(100.0f, 100.0f));
-		collider->SetCenter(Vector2(-10.0f, -50.0f));
+			Collider* collider = GetComponent<Collider>();
+			collider->SetSize(Vector2(100.0f, 100.0f));
+			collider->SetCenter(Vector2(-10.0f, -50.0f));
+		}
 
 		mDJmpcnt = 0;
 
@@ -358,26 +391,51 @@ namespace ya
 			}
 		}
 
-		if (Input::GetKeyDown(eKeyCode::S))
+		if (mKeyError == false)
 		{
-			mState = eChar01State::Slide;
-		}
-
-		if (Input::GetKeyDown(eKeyCode::W))
-		{
-			mJmpcnt++;
-
-			if (mJmpcnt == 1)
+			if (Input::GetKeyDown(eKeyCode::S))
 			{
-				Vector2 velocity = mRigidbody->GetVelocity();
-				velocity.y = -2200.0f;
+				mState = eChar01State::Slide;
+			}
 
-				mRigidbody->SetVelocity(velocity);
-				mRigidbody->SetGround(false);
-				mState = eChar01State::Jump;
+			if (Input::GetKeyDown(eKeyCode::W))
+			{
+				mJmpcnt++;
+
+				if (mJmpcnt == 1)
+				{
+					Vector2 velocity = mRigidbody->GetVelocity();
+					velocity.y = -2200.0f;
+
+					mRigidbody->SetVelocity(velocity);
+					mRigidbody->SetGround(false);
+					mState = eChar01State::Jump;
+				}
 			}
 		}
 
+		if (mKeyError == true)
+		{
+			if (Input::GetKeyDown(eKeyCode::W))
+			{
+				mState = eChar01State::Slide;
+			}
+
+			if (Input::GetKeyDown(eKeyCode::S))
+			{
+				mJmpcnt++;
+
+				if (mJmpcnt == 1)
+				{
+					Vector2 velocity = mRigidbody->GetVelocity();
+					velocity.y = -2200.0f;
+
+					mRigidbody->SetVelocity(velocity);
+					mRigidbody->SetGround(false);
+					mState = eChar01State::Jump;
+				}
+			}
+		}
 		//if (Input::GetKey(eKeyCode::A))
 		//{
 		//	pos.x -= 100.0f * Time::DeltaTime();
@@ -423,21 +481,41 @@ namespace ya
 
 	void Character01::beforerun()
 	{
-
 		mAnimator->Play(L"BeforeRun", false);
 
-		if (!mRigidbody->GetGround() && Input::GetKeyDown(eKeyCode::W))
+		if (mKeyError == false)
 		{
-			mDJmpcnt++;
-
-			if (mDJmpcnt == 1)
+			if (!mRigidbody->GetGround() && Input::GetKeyDown(eKeyCode::W))
 			{
-				Vector2 velocity = mRigidbody->GetVelocity();
-				velocity.y = -2200.0f;
+				mDJmpcnt++;
 
-				mRigidbody->SetVelocity(velocity);
-				mRigidbody->SetGround(false);
-				mState = eChar01State::DoubleJump;
+				if (mDJmpcnt == 1)
+				{
+					Vector2 velocity = mRigidbody->GetVelocity();
+					velocity.y = -2200.0f;
+
+					mRigidbody->SetVelocity(velocity);
+					mRigidbody->SetGround(false);
+					mState = eChar01State::DoubleJump;
+				}
+			}
+		}
+
+		if (mKeyError == true)
+		{
+			if (!mRigidbody->GetGround() && Input::GetKeyDown(eKeyCode::S))
+			{
+				mDJmpcnt++;
+
+				if (mDJmpcnt == 1)
+				{
+					Vector2 velocity = mRigidbody->GetVelocity();
+					velocity.y = -2200.0f;
+
+					mRigidbody->SetVelocity(velocity);
+					mRigidbody->SetGround(false);
+					mState = eChar01State::DoubleJump;
+				}
 			}
 		}
 
@@ -448,9 +526,19 @@ namespace ya
 			mState = eChar01State::Run;
 		}
 
-		if (Input::GetKey(eKeyCode::S))
+		if (mKeyError == false)
 		{
-			mState = eChar01State::Slide;
+			if (Input::GetKey(eKeyCode::S))
+			{
+				mState = eChar01State::Slide;
+			}
+		}
+		if (mKeyError == true)
+		{
+			if (Input::GetKey(eKeyCode::W))
+			{
+				mState = eChar01State::Slide;
+			}
 		}
 	}
 
@@ -460,26 +548,51 @@ namespace ya
 
 		mAnimator->Play(L"Jump", true);
 
-		if (!mRigidbody->GetGround() && Input::GetKeyDown(eKeyCode::W))
+		if (mKeyError == false)
 		{
-			mDJmpcnt++;
-
-			if (mDJmpcnt == 1)
+			if (!mRigidbody->GetGround() && Input::GetKeyDown(eKeyCode::W))
 			{
-				Vector2 velocity = mRigidbody->GetVelocity();
-				velocity.y = -2200.0f;
+				mDJmpcnt++;
 
-				mRigidbody->SetVelocity(velocity);
-				mRigidbody->SetGround(false);
-				mState = eChar01State::DoubleJump;
+				if (mDJmpcnt == 1)
+				{
+					Vector2 velocity = mRigidbody->GetVelocity();
+					velocity.y = -2200.0f;
+
+					mRigidbody->SetVelocity(velocity);
+					mRigidbody->SetGround(false);
+					mState = eChar01State::DoubleJump;
+				}
+			}
+
+			if (Input::GetKey(eKeyCode::S))
+			{
+				mState = eChar01State::Slide;
 			}
 		}
-
-		if (Input::GetKey(eKeyCode::S))
-		{
-			mState = eChar01State::Slide;
-		}
 		
+		if (mKeyError == true)
+		{
+			if (!mRigidbody->GetGround() && Input::GetKeyDown(eKeyCode::S))
+			{
+				mDJmpcnt++;
+
+				if (mDJmpcnt == 1)
+				{
+					Vector2 velocity = mRigidbody->GetVelocity();
+					velocity.y = -2200.0f;
+
+					mRigidbody->SetVelocity(velocity);
+					mRigidbody->SetGround(false);
+					mState = eChar01State::DoubleJump;
+				}
+			}
+
+			if (Input::GetKey(eKeyCode::W))
+			{
+				mState = eChar01State::Slide;
+			}
+		}
 	}
 
 	void Character01::djump()
@@ -490,35 +603,59 @@ namespace ya
 			mAnimator->Play(L"DJump", true);
 		}
 
-		if (Input::GetKeyDown(eKeyCode::W))
+		if (mKeyError == false)
 		{
-			mDJmpcnt++;
+			if (Input::GetKeyDown(eKeyCode::W))
+			{
+				mDJmpcnt++;
+			}
+
+			if (Input::GetKey(eKeyCode::S))
+			{
+				mState = eChar01State::Slide;
+			}
 		}
 
-		if (Input::GetKey(eKeyCode::S))
+		if (mKeyError == true)
 		{
-			mState = eChar01State::Slide;
+			if (Input::GetKeyDown(eKeyCode::S))
+			{
+				mDJmpcnt++;
+			}
+
+			if (Input::GetKey(eKeyCode::W))
+			{
+				mState = eChar01State::Slide;
+			}
 		}
 	}
 
 	void Character01::slide()
 	{
-
-		Collider* collider = GetComponent<Collider>();
-		collider->SetSize(Vector2(150.0f, 75.0f));
-		collider->SetCenter(Vector2(-50.0f, -25.0f));
-		
-		mAnimator->Play(L"Slide", true);
-
-		if (Input::GetKeyUp(eKeyCode::S))
+		if (mSml != true)
 		{
-			mState = eChar01State::Run;
-		}
-		//if (Input::GetKey(eKeyCode::W))
-		//{
-		//	mState = eChar01State::Run;
-		//}
+			Collider* collider = GetComponent<Collider>();
+			collider->SetSize(Vector2(150.0f, 75.0f));
+			collider->SetCenter(Vector2(-50.0f, -25.0f));
 
+			mAnimator->Play(L"Slide", true);
+		}
+
+		if (mKeyError == false)
+		{
+			if (Input::GetKeyUp(eKeyCode::S))
+			{
+				mState = eChar01State::Run;
+			}
+		}
+
+		if (mKeyError == true)
+		{
+			if (Input::GetKeyUp(eKeyCode::W))
+			{
+				mState = eChar01State::Run;
+			}
+		}
 	}
 
 	void Character01::death()
@@ -543,29 +680,32 @@ namespace ya
 
 		Collider* collider = GetComponent<Collider>();
 		collider->SetSize(Vector2(100.0f, 800.0f));
-		collider->SetCenter(Vector2(200.0f, -250.0f));
+		collider->SetCenter(Vector2(300.0f, -250.0f));
 
 		mAnimator->Play(L"Run", true);
 
-
-		if (Input::GetKeyDown(eKeyCode::W))
+		if (mKeyError == false)
 		{
-			mBJmpcnt++;
-			if (mBJmpcnt == 1)
+			if (Input::GetKeyDown(eKeyCode::W) && this->mGround)
 			{
 				Vector2 velocity = mRigidbody->GetVelocity();
 				velocity.y = -2000.0f;
 
 				mRigidbody->SetVelocity(velocity);
 				mRigidbody->SetGround(false);
-				mState = eChar01State::BigJump;
 			}
 		}
-	}
+		if (mKeyError == true)
+		{
+			if (Input::GetKeyDown(eKeyCode::S) && this->mGround)
+			{
+				Vector2 velocity = mRigidbody->GetVelocity();
+				velocity.y = -2000.0f;
 
-	void Character01::bigjump()
-	{
-		mAnimator->Play(L"BeforeRun", false);
+				mRigidbody->SetVelocity(velocity);
+				mRigidbody->SetGround(false);
+			}
+		}
 	}
 
 	void Character01::JumpCompleteEvent(/*const Cuphead* this*/)

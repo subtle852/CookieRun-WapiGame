@@ -91,7 +91,7 @@ namespace ya
 		{
 			mSwingFTime += Time::DeltaTime();
 
-			if (mSwingFTime < 1.0f)
+			if (mSwingFTime < 0.2f)
 			{
 				mSwingATime += Time::DeltaTime();
 				mSwingBTime += Time::DeltaTime();
@@ -108,7 +108,7 @@ namespace ya
 					mSwingBTime = 0.0f;
 				}
 			}
-			if (mSwingFTime > 1.0f)
+			if (mSwingFTime > 0.2f)
 			{
 				mType = eCameraEffectType::None;
 			}

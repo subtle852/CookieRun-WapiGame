@@ -17,7 +17,7 @@ namespace ya
 	void UnderGround::Initialize()
 	{
 		mCollider = AddComponent<Collider>();
-		mCollider->SetSize(Vector2(50000.0f, 100.0f));
+		mCollider->SetSize(Vector2(50000.0f, 50.0f));
 		GameObject::Initialize();
 	}
 
@@ -37,63 +37,88 @@ namespace ya
 
 	void UnderGround::OnCollisionEnter(Collider* other)
 	{
-		Character01* cuphead = dynamic_cast<Character01*>(other->GetOwner());
-		if (cuphead == nullptr)
-			return;
+		if (dynamic_cast<Character01*>(other->GetOwner()))
+		{
+			Character01* cuphead = dynamic_cast<Character01*>(other->GetOwner());
+			if (cuphead->mState == eChar01State::BigRun)// 커질 때 콜라이더가 언더그라운드와 충돌하기에 예외처리 1
+			{
 
-		//cuphead->SetHp(0.0f);
+			}
+			else if (cuphead->mBig == true)// 커질 때 콜라이더가 언더그라운드와 충돌하기에 예외처리 2
+			{
 
-		//Rigidbody* rb = cuphead->GetComponent<Rigidbody>();
-		//rb->SetGround(true);
+			}
+			else
+			{
+				cuphead->mCurHp = 0.0f;
 
-		//Collider* cupheadCol = cuphead->GetComponent<Collider>();
-		//Vector2 cupheadPos = cupheadCol->GetPos();
+				Rigidbody* rb = cuphead->GetComponent<Rigidbody>();
+				rb->SetGround(true);
 
-		//Collider* groundCol = this->GetComponent<Collider>();
-		//Vector2 groundPos = groundCol->GetPos();
+				Collider* cupheadCol = cuphead->GetComponent<Collider>();
+				Vector2 cupheadPos = cupheadCol->GetPos();
 
-		//float fLen = fabs(cupheadPos.y - groundPos.y);
-		//float fSize = (cupheadCol->GetSize().y / 2.0f) + (groundCol->GetSize().y / 2.0f);
+				Collider* groundCol = this->GetComponent<Collider>();
+				Vector2 groundPos = groundCol->GetPos();
 
-		//if (fLen < fSize)
-		//{
-		//	Transform* cupTr = cuphead->GetComponent<Transform>();
-		//	Transform* grTr = this->GetComponent<Transform>();
+				float fLen = fabs(cupheadPos.y - groundPos.y);
+				float fSize = (cupheadCol->GetSize().y / 2.0f) + (groundCol->GetSize().y / 2.0f);
 
-		//	Vector2 cupPos = cupTr->GetPos();
-		//	Vector2 grPos = grTr->GetPos();
+				if (fLen < fSize)
+				{
+					Transform* cupTr = cuphead->GetComponent<Transform>();
+					Transform* grTr = this->GetComponent<Transform>();
 
-		//	cupPos -= (fSize - fLen) - 1.0f;
-		//	cupTr->SetPos(cupPos);
-		//}
+					Vector2 cupPos = cupTr->GetPos();
+					Vector2 grPos = grTr->GetPos();
+
+					cupPos -= (fSize - fLen) - 1.0f;
+					cupTr->SetPos(cupPos);
+				}
+			}
+
+		}
 	}
 
 	void UnderGround::OnCollisionStay(Collider* other)
 	{
-		Character01* cuphead = dynamic_cast<Character01*>(other->GetOwner());
-		if (cuphead == nullptr)
-			return;
+		if (dynamic_cast<Character01*>(other->GetOwner()))
+		{
+			Character01* cuphead = dynamic_cast<Character01*>(other->GetOwner());
+			if (cuphead->mState == eChar01State::BigRun)// 커질 때 콜라이더가 언더그라운드와 충돌하기에 예외처리 1
+			{
 
-		//Collider* cupheadCol = cuphead->GetComponent<Collider>();
-		//Vector2 cupheadPos = cupheadCol->GetPos();
+			}
+			else if (cuphead->mBig == true)// 커질 때 콜라이더가 언더그라운드와 충돌하기에 예외처리 2
+			{
 
-		//Collider* groundCol = this->GetComponent<Collider>();
-		//Vector2 groundPos = groundCol->GetPos();
+			}
+			else
+			{
+				cuphead->mCurHp = 0.0f;
 
-		//float fLen = fabs(cupheadPos.y - groundPos.y);
-		//float fSize = cupheadCol->GetSize().y;
+				Collider* cupheadCol = cuphead->GetComponent<Collider>();
+				Vector2 cupheadPos = cupheadCol->GetPos();
 
-		//if (fLen < fSize)
-		//{
-		//	Transform* cupTr = cuphead->GetComponent<Transform>();
-		//	Transform* grTr = this->GetComponent<Transform>();
+				Collider* groundCol = this->GetComponent<Collider>();
+				Vector2 groundPos = groundCol->GetPos();
 
-		//	Vector2 cupPos = cupTr->GetPos();
-		//	Vector2 grPos = grTr->GetPos();
+				float fLen = fabs(cupheadPos.y - groundPos.y);
+				float fSize = cupheadCol->GetSize().y;
 
-		//	cupPos.y -= fSize - fLen - 1.0f;
-		//	cupTr->SetPos(cupPos);
-		//}
+				if (fLen < fSize)
+				{
+					Transform* cupTr = cuphead->GetComponent<Transform>();
+					Transform* grTr = this->GetComponent<Transform>();
+
+					Vector2 cupPos = cupTr->GetPos();
+					Vector2 grPos = grTr->GetPos();
+
+					cupPos.y -= fSize - fLen - 1.0f;
+					cupTr->SetPos(cupPos);
+				}
+			}
+		}
 	}
 
 	void UnderGround::OnCollisionExit(Collider* other)

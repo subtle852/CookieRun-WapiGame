@@ -72,41 +72,27 @@ namespace ya
 
 		mPet01 = object::Instantiate<Pet01>(eLayerType::Pet);
 
-		object::Instantiate<BigItem>(Vector2(1200.0f, 700.0f), eLayerType::Obstacle);//
 		object::Instantiate<Obstacle>(Vector2(700.0f, 700.0f), eLayerType::Obstacle);
-		object::Instantiate<Obstacle01>(Vector2(2000.0f, 100.0f), eLayerType::Obstacle);
-		object::Instantiate<Obstacle>(Vector2(2700.0f, 700.0f), eLayerType::Obstacle);
-		object::Instantiate<Obstacle01>(Vector2(3300.0f, 100.0f), eLayerType::Obstacle);
-		object::Instantiate<Obstacle>(Vector2(5600.0f, 700.0f), eLayerType::Obstacle);
-		mJcoin01 = object::Instantiate<JellyCoin>(Vector2(2100.0f, 700.0f), eLayerType::Item);
-		
-		//mBM01 = object::Instantiate<BlackOutMItem>(Vector2(4000.0f, 700.0f), eLayerType::Obstacle);
 
-		object::Instantiate<JellyCoin>(Vector2(2700.0f, 300.0f), eLayerType::Item);
-		mShake01 = object::Instantiate<ShakeItem>(Vector2(5000.0f, 700.0f), eLayerType::Item);
+		mOtC01 = object::Instantiate<ObstacleToCoin>(Vector2(1800.0f, 700.0f), eLayerType::Item);
+		mOb01 = object::Instantiate<Obstacle01>(Vector2(2000.0f, 650.0f), eLayerType::Obstacle);
+
+		object::Instantiate<Obstacle>(Vector2(2700.0f, 700.0f), eLayerType::Obstacle);
+		object::Instantiate<Obstacle01>(Vector2(3300.0f, 650.0f), eLayerType::Obstacle);
+		object::Instantiate<Obstacle>(Vector2(5600.0f, 700.0f), eLayerType::Obstacle);
+		object::Instantiate<JellyCoin>(Vector2(2100.0f, 700.0f), eLayerType::Item);
+
+		object::Instantiate<BigItem>(Vector2(2800.0f, 700.0f), eLayerType::Item);
+		object::Instantiate<ShakeItem>(Vector2(5000.0f, 700.0f), eLayerType::Item);
 		object::Instantiate<FastItem>(Vector2(5400.0f, 700.0f), eLayerType::Item);//
-		//object::Instantiate<SlowItem>(Vector2(5500.0f, 700.0f), eLayerType::Item);
-		object::Instantiate<ObstacleToCoin>(Vector2(5800.0f, 700.0f), eLayerType::Item);
-		object::Instantiate<BasicToBear>(Vector2(5900.0f, 700.0f), eLayerType::Item);
-		object::Instantiate<MagnetItem>(Vector2(6000.0f, 700.0f), eLayerType::Item);
-		object::Instantiate<InputEItem>(Vector2(6500.0f, 700.0f), eLayerType::Item);
-		object::Instantiate<InputEItem>(Vector2(7000.0f, 700.0f), eLayerType::Item);
-		object::Instantiate<InputEItem>(Vector2(7500.0f, 700.0f), eLayerType::Item);
-		object::Instantiate<InputEItem>(Vector2(8000.0f, 700.0f), eLayerType::Item);
-		object::Instantiate<InputEItem>(Vector2(8500.0f, 700.0f), eLayerType::Item);
-		object::Instantiate<InputEItem>(Vector2(9000.0f, 700.0f), eLayerType::Item);
+		//object::Instantiate<BasicToBear>(Vector2(5900.0f, 700.0f), eLayerType::Item);
+		mB01 = object::Instantiate<BlackOutMItem>(Vector2(6000.0f, 700.0f), eLayerType::Item);//
 		object::Instantiate<SlowItem>(Vector2(9300.0f, 700.0f), eLayerType::Item);//
 		object::Instantiate<InputEItem>(Vector2(9500.0f, 700.0f), eLayerType::Item);
-		object::Instantiate<InputEItem>(Vector2(10000.0f, 700.0f), eLayerType::Item);
 		object::Instantiate<InvincibleItem>(Vector2(10100.0f, 700.0f), eLayerType::Item);//
-		object::Instantiate<InputEItem>(Vector2(10500.0f, 700.0f), eLayerType::Item);
-		object::Instantiate<InputEItem>(Vector2(11000.0f, 700.0f), eLayerType::Item);
-		object::Instantiate<InputEItem>(Vector2(11500.0f, 700.0f), eLayerType::Item);
 		object::Instantiate<HpItemI>(Vector2(11600.0f, 700.0f), eLayerType::Item);//
-		object::Instantiate<InputEItem>(Vector2(12000.0f, 700.0f), eLayerType::Item);
-		object::Instantiate<InputEItem>(Vector2(12500.0f, 700.0f), eLayerType::Item);
 		object::Instantiate<HpItemD>(Vector2(13000.0f, 700.0f), eLayerType::Item);//
-		object::Instantiate<BigItem>(Vector2(13200.0f, 700.0f), eLayerType::Item);//
+		object::Instantiate<SmItem>(Vector2(13200.0f, 700.0f), eLayerType::Item);//
 
 		object::Instantiate<GaugeCircle>(Vector2(-10.0f, 20.0f), eLayerType::UIAbove);
 		object::Instantiate<GaugeBar>(Vector2(59.0f, 32.0f), eLayerType::UI);
@@ -127,20 +113,38 @@ namespace ya
 		Transform* trr = mPet01->GetComponent<Transform>();
 		trr->SetPos(Vector2(pos.x - 120.0f, pos.y - 0.0f));
 
-		//if (mBM01->ok && mBME01 == nullptr)
-		//{
-		//	mBME01 = object::Instantiate<BlackOutM>(Vector2(0.0f, 0.0f), eLayerType::Effect);
-		//}
+		if (mB01 != nullptr && mB01->ok == true)
+		{
+			if (mBE01 == nullptr)
+			{
+				mBE01 = object::Instantiate<BlackOutM>(eLayerType::Effect);
+			}
+			mTime += Time::DeltaTime();
 
-		//if (mBME01 != nullptr)
-		//{
-		//	mTime += Time::DeltaTime();
-		//	if (mTime > 5.0f)
-		//	{
-		//		ya::object::Destory(mBME01);
-		//		mTime = 0.0f;
-		//	}
-		//}
+			if (mTime > 5.0f)
+			{
+				ya::object::Destory(mBE01);
+				mBE01 = nullptr;
+				mB01->ok = false;
+			}
+		}
+		if (mB01 != nullptr && mB01->ok == false)
+		{
+			mTime = 0.0f;
+		}
+
+		if (mOtC01->mOn == true)// mOtC01 충돌
+		{
+			Transform* tr = mOb01->GetComponent<Transform>();// mOb01 위치 저장
+			Vector2 pos = tr->GetPos();
+			object::Instantiate<JellyCoin>(Vector2(pos.x, 700.0f), eLayerType::Item);// mOb01위치에 JellyCoin 생성
+			
+			ya::object::Destory(mOb01);
+
+			mOtC01->mOn = false;
+
+			ya::object::Destory(mOtC01);
+		}
 
 		//Camera::mType = Camera::eCameraEffectType::ShakeH;// 설정
 		//Camera::mCutton = Image::Create(L"Cutton00", Camera::mResolution.x, Camera::mResolution.y, RGB(0, 0, 0)/*원하는 색*/);

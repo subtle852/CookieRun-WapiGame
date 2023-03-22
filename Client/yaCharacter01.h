@@ -20,7 +20,6 @@ namespace ya
 		Transp2,
 		Damaged,
 		BigRun,
-		BigJump,
 	};
 
 	class Character01 : public GameObject
@@ -53,7 +52,6 @@ namespace ya
 		void idle();
 		void transparent();
 		void bigrun();
-		void bigjump();
 
 		void JumpCompleteEvent();
 		void DJumpCompleteEvent();
@@ -80,15 +78,14 @@ namespace ya
 		eChar01State mState;
 		static float mCurHp;
 
-		bool mFast = false;
-		float mFastT = 0.0f;
-		bool mSlow = false;
-		float mSlowT = 0.0f;
-		bool mInv = false;
-		float mInvT = 0.0f;
-		static bool mBig;
-		float mBigT = 0.0f;
+		bool mFast = false; float mFastT = 0.0f;
+		bool mSlow = false; float mSlowT = 0.0f;
+		bool mInv = false; float mInvT = 0.0f;
+		static bool mBig; float mBigT = 0.0f;// mBig는 펫이 알아야해서 static으로 선언
+		static bool mSml; int mSmlcnt = 0;  float mSmlT = 0.0f;
 
 		bool mGround = false;
+
+		bool mKeyError = false; float mKeyErrorT = 0.0f;
 	};
 }

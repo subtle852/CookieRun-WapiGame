@@ -17,7 +17,7 @@ namespace ya
 	void Ground::Initialize()
 	{
 		mCollider = AddComponent<Collider>();
-		mCollider->SetSize(Vector2(50000.0f, 50.0f));
+		mCollider->SetSize(Vector2(16000.0f, 50.0f));
 		GameObject::Initialize();
 	}
 

@@ -24,12 +24,14 @@ namespace ya
 
 	void Obstacle01::Initialize()
 	{
-		mImage = Resources::Load<Image>(L"Land1Slide01", L"..\\Resources\\land1\\land1_sl_0001.bmp");
+		mAnimator = AddComponent<Animator>();
+		mAnimator->CreateAnimations(L"..\\Resources\\land1\\slide", Vector2::Zero, 0.1f, 0);
+
+		mAnimator->Play(L"land1slide", true);
 
 		Collider* collider = AddComponent<Collider>();
 		collider->SetSize(Vector2(120.0f, 520.0f));
-		//collider->SetCenter(Vector2(0.0f, 250.0f));
-		collider->SetCenter(Vector2(25.0f, 0.0f));
+		collider->SetCenter(Vector2(-60.0f, -550.0f));
 
 		GameObject::Initialize();
 	}
@@ -42,12 +44,6 @@ namespace ya
 	void Obstacle01::Render(HDC hdc)
 	{
 		GameObject::Render(hdc);
-
-		Transform* tr = GetComponent<Transform>();
-		Vector2 pos = tr->GetPos();
-
-		TransparentBlt(hdc, pos.x, pos.y, mImage->GetWidth(), mImage->GetHeight()
-			, mImage->GetHdc(), 0, 0, mImage->GetWidth(), mImage->GetHeight(), RGB(170, 0, 0));
 	}
 
 	void Obstacle01::Release()

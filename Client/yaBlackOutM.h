@@ -16,6 +16,8 @@
 		virtual void Release() override;
 
 	private:
-		Image* mImage;
+		Image* mImage01;
+		Image* mImage02;
+		Image* mImage03;
 	};
 }

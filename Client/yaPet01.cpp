@@ -42,7 +42,7 @@ namespace ya
 
 		Transform* tr = GetComponent<Transform>();
 
-		if (Character01::mBig == false)
+		if (Character01::mBig == false && Character01::mSml == false)
 		{
 			if (Input::GetKeyUp(eKeyCode::S))
 			{

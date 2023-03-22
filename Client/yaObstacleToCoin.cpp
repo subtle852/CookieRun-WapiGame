@@ -65,7 +65,7 @@ namespace ya
 	{
 		if (dynamic_cast<Character01*>(other->GetOwner()))
 		{
-			object::Destory(this);
+			mOn = true;
 		}
 	}
 

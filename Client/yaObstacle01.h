@@ -1,6 +1,5 @@
 #pragma once
 #include "yaGameObject.h"
-#include "yaImage.h"
 
 namespace ya
 {
@@ -20,6 +19,6 @@ namespace ya
 		virtual void OnCollisionExit(class Collider* other) override;
 
 	private:
-		Image* mImage;
+		Animator* mAnimator;
 	};
 }

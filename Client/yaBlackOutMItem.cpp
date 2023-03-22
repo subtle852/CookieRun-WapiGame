@@ -27,12 +27,12 @@ namespace ya
 	void BlackOutMItem::Initialize()
 	{
 		mAnimator = AddComponent<Animator>();
-		mAnimator->CreateAnimations(L"..\\Resources\\Item\\BlackOutM", Vector2::Zero, 0.1f,0);
+		mAnimator->CreateAnimations(L"..\\Resources\\Item\\BlackOutM", Vector2::Zero, 0.1f, 0);
 		mAnimator->Play(L"ItemBlackOutM", true);
 
 		Collider* collider = AddComponent<Collider>();
 		collider->SetSize(Vector2(80.0f, 80.0f));
-		collider->SetCenter(Vector2(-40.0f, -160.0f));
+		collider->SetCenter(Vector2(-40.0f, -60.0f));
 
 		GameObject::Initialize();
 	}
@@ -54,17 +54,19 @@ namespace ya
 
 	void BlackOutMItem::OnCollisionEnter(Collider* other)
 	{
-
+		if (dynamic_cast<Character01*>(other->GetOwner()))
+		{
+			ok = true;
+			//object::Destory(this);
+			Transform* tr = this->GetComponent<Transform>();
+			Vector2 pos = tr->GetPos();
+			tr->SetPos(Vector2(pos.x, pos.y + 500.0f));
+		}
 	}
 
 	void BlackOutMItem::OnCollisionStay(Collider* other)
 	{
-		if (dynamic_cast<Character01*>(other->GetOwner()))
-		{
-			ok = true;
-			object::Destory(this);
-			ok = false;
-		}
+	
 	}
 
 	void BlackOutMItem::OnCollisionExit(Collider* other)
