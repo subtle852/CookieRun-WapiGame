@@ -3,11 +3,23 @@
 
 namespace ya
 {
-	class ToolScene : public Scene
+	union TilePos
+	{
+		struct
+		{
+			UINT32 x;
+			UINT32 y;
+		};
+		UINT64 id;
+	};
+
+	class Character01;
+
+	class MakeScene : public Scene
 	{
 	public:
-		ToolScene();
-		~ToolScene();
+		MakeScene();
+		~MakeScene();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -17,7 +29,11 @@ namespace ya
 		virtual void OnEnter() override;
 		virtual void OnExit() override;
 
-	public:
-		static UINT mIndex;
+		void Create();
+
+	private:
+		std::unordered_map<UINT64, int> mTiles;
+
+		Character01* mCh;
 	};
 }

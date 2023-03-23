@@ -4,6 +4,7 @@
 namespace ya
 {
 	class GameObject;
+
 	class Camera
 	{
 	public:
@@ -15,6 +16,7 @@ namespace ya
 			ShakeH,
 			ShakeW,
 			Rotate,
+			BlackOut,
 			End,
 		};
 
@@ -41,5 +43,7 @@ namespace ya
 		static float mSwingFTime;
 		static float mSwingATime; static float mSwingBTime;
 		static float mSwingETime;
+
+		static float mBTime;
 	};
 }

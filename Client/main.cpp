@@ -174,6 +174,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
     UpdateWindow(hWnd2);
 
     application.Initialize(hWnd); // 윈도우 처음 만들어지는 순간에 핸들 받아와서 application도 Initialize 해버림
+    application.SetToolHwnd(hWnd2);
     //ShowWindow(hWnd2, nCmdShow);
     //UpdateWindow(hWnd2);
 

@@ -39,7 +39,5 @@ namespace ya
 		//Obstacle* mOb01;
 		Obstacle01* mOb01;
 		ObstacleToCoin* mOtC01;
-
-		BlackOutMItem* mB01 = nullptr; BlackOutM* mBE01 = nullptr; float mTime = 0.0f;
 	};
 }

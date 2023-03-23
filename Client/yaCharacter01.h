@@ -87,5 +87,7 @@ namespace ya
 		bool mGround = false;
 
 		bool mKeyError = false; float mKeyErrorT = 0.0f;
+
+		bool mOver = false;
 	};
 }

@@ -10,6 +10,7 @@
 #include "yaResultSucScene.h"
 #include "yaResultFailScene.h"
 #include "yaToolScene.h"
+#include "yaMakeScene.h"
 
 namespace ya
 {
@@ -28,6 +29,7 @@ namespace ya
 		mScenes[(UINT)eSceneType::ResultS] = new ResultSucScene();
 		mScenes[(UINT)eSceneType::ResultF] = new ResultFailScene();
 		mScenes[(UINT)eSceneType::Tool] = new ToolScene();
+		mScenes[(UINT)eSceneType::Make] = new MakeScene();
 
 		//mScenes[(UINT)eSceneType::Play]->SetName(L"PLAYER"); //Entity È°¿ë¹ý
 
@@ -38,7 +40,7 @@ namespace ya
 		mScenes[(UINT)eSceneType::Play]->SetName(L"Play");
 		mScenes[(UINT)eSceneType::ResultS]->SetName(L"ResultS");
 		mScenes[(UINT)eSceneType::ResultF]->SetName(L"ResultF");
-
+		mScenes[(UINT)eSceneType::Make]->SetName(L"Make");
 
 		for (Scene* scene : mScenes)
 		{

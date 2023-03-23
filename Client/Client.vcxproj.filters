@@ -297,9 +297,6 @@
     <ClInclude Include="yaUnderGround.h">
       <Filter>Contents\Ground</Filter>
     </ClInclude>
-    <ClInclude Include="yaBlackOutM.h">
-      <Filter>Contents\Object\Item</Filter>
-    </ClInclude>
     <ClInclude Include="yaBlackOutMItem.h">
       <Filter>Contents\Object\Item</Filter>
     </ClInclude>
@@ -341,6 +338,12 @@
     </ClInclude>
     <ClInclude Include="yaInvincibleItem.h">
       <Filter>Contents\Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="yaMakeScene.h">
+      <Filter>Contents\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="yaOverGround.h">
+      <Filter>Contents\Ground</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -524,9 +527,6 @@
     <ClCompile Include="yaUnderGround.cpp">
       <Filter>Contents\Ground</Filter>
     </ClCompile>
-    <ClCompile Include="yaBlackOutM.cpp">
-      <Filter>Contents\Object\Item</Filter>
-    </ClCompile>
     <ClCompile Include="yaBlackOutMItem.cpp">
       <Filter>Contents\Object\Item</Filter>
     </ClCompile>
@@ -568,6 +568,12 @@
     </ClCompile>
     <ClCompile Include="yaInvincibleItem.cpp">
       <Filter>Contents\Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="yaMakeScene.cpp">
+      <Filter>Contents\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="yaOverGround.cpp">
+      <Filter>Contents\Ground</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

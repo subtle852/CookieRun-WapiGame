@@ -11,6 +11,7 @@ enum class eSceneType
 	ResultS,
 	ResultF,
 	Tool,
+	Make,
 	Max,
 };
 

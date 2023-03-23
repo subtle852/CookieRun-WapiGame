@@ -14,7 +14,6 @@
 
 #include "yaJellyCoin.h"
 #include "yaBlackOutMItem.h"
-#include "yaBlackOutM.h"
 #include "yaShakeItem.h"
 #include "yaSmItem.h"
 #include "yaBigItem.h"
@@ -35,8 +34,10 @@
 #include "yaGaugeBar.h"
 #include "yaGround.h"
 #include "yaUnderGround.h"
+#include "yaOverGround.h"
 
 #include "yaSelectCharScene.h"
+#include "yaMakeScene.h"
 
 namespace ya
 {
@@ -60,7 +61,7 @@ namespace ya
 		// 여기다
 
 		//object::Instantiate<PlayBackGround>(eLayerType::BG);
-
+		object::Instantiate<OverGround>(Vector2(-100.0f, 400.0f), eLayerType::Ground);
 		object::Instantiate<Ground>(Vector2(-100.0f, 700.0f), eLayerType::Ground);
 		object::Instantiate<UnderGround>(Vector2(-100.0f, 790.0f), eLayerType::Ground);
 
@@ -86,7 +87,7 @@ namespace ya
 		object::Instantiate<ShakeItem>(Vector2(5000.0f, 700.0f), eLayerType::Item);
 		object::Instantiate<FastItem>(Vector2(5400.0f, 700.0f), eLayerType::Item);//
 		//object::Instantiate<BasicToBear>(Vector2(5900.0f, 700.0f), eLayerType::Item);
-		mB01 = object::Instantiate<BlackOutMItem>(Vector2(6000.0f, 700.0f), eLayerType::Item);//
+		object::Instantiate<BlackOutMItem>(Vector2(6000.0f, 700.0f), eLayerType::Item);//
 		object::Instantiate<SlowItem>(Vector2(9300.0f, 700.0f), eLayerType::Item);//
 		object::Instantiate<InputEItem>(Vector2(9500.0f, 700.0f), eLayerType::Item);
 		object::Instantiate<InvincibleItem>(Vector2(10100.0f, 700.0f), eLayerType::Item);//
@@ -101,6 +102,37 @@ namespace ya
 		object::Instantiate<SlideButton>(Vector2(1200.0f, 650.0f), eLayerType::UI);
 		object::Instantiate<PauseButton>(Vector2(1480.0f, 40.0f), eLayerType::UI);
 
+		/*{
+			wchar_t temp[256] = L"..\\Resources\\asdd";
+			FILE* file = nullptr;
+			_wfopen_s(&file, temp, L"rb");
+
+			if (file == nullptr)
+				return;
+
+			while (true)
+			{
+				int index = -1;
+				TilePos id;
+
+				if (fread(&index, sizeof(int), 1, file) == NULL)
+					break;
+
+				if (fread(&id.id, sizeof(TilePos), 1, file) == NULL)
+					break;
+
+
+				if (index == 0)
+				{
+					object::Instantiate<Obstacle>(Vector2(id.x, id.y), eLayerType::Obstacle);
+				}
+				if (index == 1)
+				{
+					object::Instantiate<Obstacle01>(Vector2(id.x, id.y), eLayerType::Obstacle);
+				}
+	
+		}*/
+
 		//CollisionManager::SetLayer(eLayerType::Player, eLayerType::Ground, true);
 		//CollisionManager::SetLayer(eLayerType::Player, eLayerType::Obstacle, true);
 	}
@@ -113,31 +145,11 @@ namespace ya
 		Transform* trr = mPet01->GetComponent<Transform>();
 		trr->SetPos(Vector2(pos.x - 120.0f, pos.y - 0.0f));
 
-		if (mB01 != nullptr && mB01->ok == true)
-		{
-			if (mBE01 == nullptr)
-			{
-				mBE01 = object::Instantiate<BlackOutM>(eLayerType::Effect);
-			}
-			mTime += Time::DeltaTime();
-
-			if (mTime > 5.0f)
-			{
-				ya::object::Destory(mBE01);
-				mBE01 = nullptr;
-				mB01->ok = false;
-			}
-		}
-		if (mB01 != nullptr && mB01->ok == false)
-		{
-			mTime = 0.0f;
-		}
-
 		if (mOtC01->mOn == true)// mOtC01 충돌
 		{
 			Transform* tr = mOb01->GetComponent<Transform>();// mOb01 위치 저장
 			Vector2 pos = tr->GetPos();
-			object::Instantiate<JellyCoin>(Vector2(pos.x, 700.0f), eLayerType::Item);// mOb01위치에 JellyCoin 생성
+			//object::Instantiate<JellyCoin>(Vector2(pos.x, 700.0f), eLayerType::Item);// mOb01위치에 JellyCoin 생성// 오류발생
 			
 			ya::object::Destory(mOb01);
 
@@ -151,7 +163,8 @@ namespace ya
 
 		if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
 		{
-			SceneManager::LoadScene(eSceneType::ResultS);
+			//SceneManager::LoadScene(eSceneType::ResultS);
+			SceneManager::LoadScene(eSceneType::Make);
 		}
 
 		Scene::Update();

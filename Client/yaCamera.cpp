@@ -7,6 +7,7 @@
 #include "yaImage.h"
 #include "yaSceneManager.h"
 #include "yaCharacter01.h"
+#include "yaResources.h"
 
 extern ya::Application application;
 namespace ya
@@ -27,6 +28,8 @@ namespace ya
 	float Camera::mSwingFTime = 0.0f;
 	float Camera::mSwingETime = 0.1f;
 
+	float Camera::mBTime = 0.0f;
+
 	void Camera::Initiailize()
 	{
 		mResolution.x = application.GetWidth();
@@ -41,21 +44,21 @@ namespace ya
 	{
 
 		if (Input::GetKey(eKeyCode::LEFT))
-			mLookPosition.x -= 100.0f * Time::DeltaTime();
+			mLookPosition.x -= 600.0f * Time::DeltaTime();
 
 		if (Input::GetKey(eKeyCode::RIGHT))
-			mLookPosition.x += 100.0f * Time::DeltaTime();
+			mLookPosition.x += 600.0f * Time::DeltaTime();
 
 		if (Input::GetKey(eKeyCode::UP))
-			mLookPosition.y -= 100.0f * Time::DeltaTime();
+			mLookPosition.y -= 200.0f * Time::DeltaTime();
 
 		if (Input::GetKey(eKeyCode::DOWN))
-			mLookPosition.y += 100.0f * Time::DeltaTime();
+			mLookPosition.y += 200.0f * Time::DeltaTime();
 
 		if (mTarget != nullptr)
 		{
 			Scene* scn = SceneManager::GetActiveScene();
-			if (scn->GetName() == L"Play")
+			if (scn->GetName() == L"Play" || scn->GetName() == L"Make")
 			{
 				mLookPosition.x = mTarget->GetComponent<Transform>()->GetPos().x + 500.0f;
 				mLookPosition.y = 450.0f;
@@ -141,7 +144,6 @@ namespace ya
 			}
 		}
 
-
 		mDistance = mLookPosition - (mResolution / 2.0f);
 	}
 
@@ -163,6 +165,22 @@ namespace ya
 				, 0, 0
 				, mCutton->GetHeight(), mCutton->GetWidth()
 				, func);
+		}
+
+		if (mType == eCameraEffectType::BlackOut)
+		{
+			mBTime += Time::DeltaTime();
+
+			Image* mImage = Resources::Load<Image>(L"BlackOutM", L"..\\Resources\\Item\\Effect\\BlackOutM.bmp");
+
+			TransparentBlt(hdc, 750, 200, mImage->GetWidth() * 1.1, mImage->GetHeight() * 1.1
+				, mImage->GetHdc(), 0, 0, mImage->GetWidth(), mImage->GetHeight(), RGB(170, 0, 0));
+
+			if (mBTime > 4.0f)
+			{
+				mType = eCameraEffectType::None;
+				mBTime = 0.0f;
+			}
 		}
 	}
 

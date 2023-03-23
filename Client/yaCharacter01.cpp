@@ -13,6 +13,7 @@
 #include "yaObstacle01.h"
 #include "yaGround.h"
 #include "yaUnderGround.h"
+#include "yaOverGround.h"
 
 namespace ya
 {
@@ -83,6 +84,21 @@ namespace ya
 			mState = eChar01State::Run;
 		}
 
+		if (scn->GetName() == L"Make")
+		{
+			Transform* tr = GetComponent<Transform>();
+			tr->SetScale(Vector2(1.2f, 1.2f));
+
+			Collider* collider = AddComponent<Collider>();
+			collider->SetSize(Vector2(100.0f, 100.0f));
+			collider->SetCenter(Vector2(-10.0f, -50.0f));
+
+			mRigidbody = AddComponent<Rigidbody>();
+			mRigidbody->SetMass(1.0f);
+
+			mState = eChar01State::Run;
+		}
+
 		GameObject::Initialize();
 	}
 	void Character01::Update()
@@ -90,19 +106,47 @@ namespace ya
 		GameObject::Update();
 
 		Scene* scn = SceneManager::GetActiveScene();
-		if (scn->GetName() == L"Play")
+
+		if (scn->GetName() == L"Play" || scn->GetName() == L"Make")
 		{
+
+			if (this->mGround == true)
+			{
+				this->mOver = false;
+			}
+
 			if (mState != eChar01State::Death)
 			{
-				if (mFast == false && mSlow == false)// 속도 아이템 먹지 않는 경우의 속도
+				if (scn->GetName() == L"Make")
 				{
-					Transform* tr = GetComponent<Transform>();
-					Vector2 pos = tr->GetPos();
-					pos.x += 600.0f * Time::DeltaTime();
-					tr->SetPos(pos);
+					if (Input::GetKey(eKeyCode::D))
+					{
+						Transform* tr = GetComponent<Transform>();
+						Vector2 pos = tr->GetPos();
+						pos.x += 600.0f * Time::DeltaTime();
+						tr->SetPos(pos);
+					}
+					if (Input::GetKey(eKeyCode::A))
+					{
+						Transform* tr = GetComponent<Transform>();
+						Vector2 pos = tr->GetPos();
+						pos.x -= 600.0f * Time::DeltaTime();
+						tr->SetPos(pos);
+					}
 				}
 
-				else if (mFast == true)// Fast 아이템 먹었을 때
+				if (scn->GetName() == L"Play")
+				{ 
+					if (mFast == false && mSlow == false)// 속도 아이템 먹지 않는 경우의 속도
+					{
+						Transform* tr = GetComponent<Transform>();
+						Vector2 pos = tr->GetPos();
+						pos.x += 600.0f * Time::DeltaTime();
+						tr->SetPos(pos);
+					}
+				}
+
+				if (mFast == true)// Fast 아이템 먹었을 때
 				{
 					mFastT += Time::DeltaTime();
 
@@ -119,7 +163,7 @@ namespace ya
 					}
 				}
 
-				else if (mSlow == true)// slow 아이템 먹었을 때
+				if (mSlow == true)// slow 아이템 먹었을 때
 				{
 					mSlowT += Time::DeltaTime();
 
@@ -187,11 +231,11 @@ namespace ya
 						Vector2 pos = tr->GetPos();
 						pos.y = 400.0f;
 						tr->SetPos(pos);
-						tr->SetScale(Vector2(0.5f, 0.5f));
+						tr->SetScale(Vector2(0.7f, 0.7f));
 
 						Collider* collider = GetComponent<Collider>();
 						collider->SetSize(Vector2(50.0f, 50.0f));
-						collider->SetCenter(Vector2(-70.0f, -190.0f));
+						collider->SetCenter(Vector2(-20.0f, -140.0f));
 					}
 			
 					if (mSmlT > 3.0f)
@@ -221,9 +265,12 @@ namespace ya
 
 					if (mKeyErrorT > 3.0f)
 					{
-						mKeyErrorT = 0.0f;
 						mKeyError = false;
 					}
+				}
+				if (mKeyError == false)
+				{
+					mKeyErrorT = 0.0f;
 				}
 			}
 
@@ -521,7 +568,7 @@ namespace ya
 
 		if (mRigidbody->GetGround())
 		{
-			mRigidbody->mVelocity = Vector2(0.0f, 0.0f);
+			//mRigidbody->mVelocity = Vector2(0.0f, 0.0f);
 
 			mState = eChar01State::Run;
 		}

@@ -27,7 +27,6 @@ namespace ya
 
 	void TitleScene::Update()
 	{
-		
 
 		if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
 		{

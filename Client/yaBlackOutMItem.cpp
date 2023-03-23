@@ -56,11 +56,8 @@ namespace ya
 	{
 		if (dynamic_cast<Character01*>(other->GetOwner()))
 		{
-			ok = true;
-			//object::Destory(this);
-			Transform* tr = this->GetComponent<Transform>();
-			Vector2 pos = tr->GetPos();
-			tr->SetPos(Vector2(pos.x, pos.y + 500.0f));
+			object::Destory(this);
+			Camera::mType = Camera::eCameraEffectType::BlackOut;
 		}
 	}
 

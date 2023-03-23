@@ -52,6 +52,7 @@
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
+    <EnableUnitySupport>true</EnableUnitySupport>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -143,14 +144,15 @@
     <ClInclude Include="CommonInclude.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Resource.h" />
-    <ClInclude Include="yaBlackOutM.h" />
     <ClInclude Include="yaFastItem.h" />
     <ClInclude Include="yaGround.h" />
     <ClInclude Include="yaGaugeBar.h" />
     <ClInclude Include="yaGaugeCircle.h" />
     <ClInclude Include="yaInputEItem.h" />
     <ClInclude Include="yaJellyCoin.h" />
+    <ClInclude Include="yaMakeScene.h" />
     <ClInclude Include="yaObstacleToCoin.h" />
+    <ClInclude Include="yaOverGround.h" />
     <ClInclude Include="yaPauseButton.h" />
     <ClInclude Include="yaRigidbody.h" />
     <ClInclude Include="yaShakeItem.h" />
@@ -220,14 +222,15 @@
     <ClCompile Include="yaHpItemI.cpp" />
     <ClCompile Include="yaBigItem.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="yaBlackOutM.cpp" />
     <ClCompile Include="yaFastItem.cpp" />
     <ClCompile Include="yaGround.cpp" />
     <ClCompile Include="yaGaugeBar.cpp" />
     <ClCompile Include="yaGaugeCircle.cpp" />
     <ClCompile Include="yaInputEItem.cpp" />
     <ClCompile Include="yaJellyCoin.cpp" />
+    <ClCompile Include="yaMakeScene.cpp" />
     <ClCompile Include="yaObstacleToCoin.cpp" />
+    <ClCompile Include="yaOverGround.cpp" />
     <ClCompile Include="yaPauseButton.cpp" />
     <ClCompile Include="yaRigidbody.cpp" />
     <ClCompile Include="yaShakeItem.cpp" />
