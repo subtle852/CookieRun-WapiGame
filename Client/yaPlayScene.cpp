@@ -62,7 +62,8 @@ namespace ya
 
 		//object::Instantiate<PlayBackGround>(eLayerType::BG);
 		object::Instantiate<OverGround>(Vector2(-100.0f, 400.0f), eLayerType::Ground);
-		object::Instantiate<Ground>(Vector2(-100.0f, 700.0f), eLayerType::Ground);
+		//object::Instantiate<Ground>(Vector2(-100.0f, 700.0f), eLayerType::Ground);
+		object::Instantiate<Ground>(Vector2(-100.0f, 700.0f), eLayerType::Ground, Vector2(10000.0f, 50.0f));
 		object::Instantiate<UnderGround>(Vector2(-100.0f, 790.0f), eLayerType::Ground);
 
 		int temp = SelectCharScene::GetCharNumber();
@@ -176,6 +177,8 @@ namespace ya
 		Scene::Render(hdc);
 
 		Scene::SceneText(hdc);
+
+		Scene::PosText(hdc);
 	}
 
 	void PlayScene::Release()

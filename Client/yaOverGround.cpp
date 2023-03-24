@@ -16,8 +16,8 @@ namespace ya
 
 	void OverGround::Initialize()
 	{
-		mCollider = AddComponent<Collider>();
-		mCollider->SetSize(Vector2(80000.0f, 50.0f));
+		//mCollider = AddComponent<Collider>();
+		//mCollider->SetSize(Vector2(80000.0f, 50.0f));
 		GameObject::Initialize();
 	}
 
@@ -41,8 +41,14 @@ namespace ya
 		if (cuphead == nullptr)
 			return;
 
+		Collider* cupheadCol = cuphead->GetComponent<Collider>();
+		Vector2 cupheadPos = cupheadCol->GetPos();
 
-		if (cuphead->mOver == true)
+		Collider* groundCol = this->GetComponent<Collider>();
+		Vector2 groundPos = groundCol->GetPos();
+		
+		if((50.0f < groundPos.y - cupheadPos.y) && (groundPos.y - cupheadPos.y < 100.0f))
+		//if (cuphead->mOver == true)
 		{
 			Rigidbody* rb = cuphead->GetComponent<Rigidbody>();
 			rb->SetGround(true);
@@ -76,9 +82,15 @@ namespace ya
 		if (cuphead == nullptr)
 			return;
 
-		if (cuphead->mOver == true)
-		{
+		Collider* cupheadCol = cuphead->GetComponent<Collider>();
+		Vector2 cupheadPos = cupheadCol->GetPos();
 
+		Collider* groundCol = this->GetComponent<Collider>();
+		Vector2 groundPos = groundCol->GetPos();
+
+		if ((50.0f < groundPos.y - cupheadPos.y) && (groundPos.y - cupheadPos.y < 100.0f))
+		//if (cuphead->mOver == true)
+		{
 			Collider* cupheadCol = cuphead->GetComponent<Collider>();
 			Vector2 cupheadPos = cupheadCol->GetPos();
 

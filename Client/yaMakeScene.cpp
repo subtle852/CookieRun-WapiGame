@@ -10,9 +10,11 @@
 #include "yaObject.h"
 #include "yaGround.h"
 #include "yaUnderGround.h"
+#include "yaOverGround.h"
 #include "yaCamera.h"
 #include <commdlg.h>
 #include "yaToolScene.h"
+#include "yaBasicToBear.h"
 
 #include "yaApplication.h"
 extern ya::Application application;
@@ -31,7 +33,7 @@ namespace ya
 	{
 		Scene::Initialize();
 
-		object::Instantiate<Ground>(Vector2(-100.0f, 700.0f), eLayerType::Ground);
+		object::Instantiate<Ground>(Vector2(-100.0f, 700.0f), eLayerType::Ground, Vector2(1000.0f, 50.0f));
 		object::Instantiate<UnderGround>(Vector2(-100.0f, 790.0f), eLayerType::Ground);
 
 		mCh = object::Instantiate<Character01>(Vector2(300.0f, 650.0f), eLayerType::Player);
@@ -44,6 +46,17 @@ namespace ya
 
 		if (GetFocus())
 		{
+			if (Input::GetKeyDown(eKeyCode::R))
+			{
+				Transform* tr = mCh->GetComponent<Transform>();
+				tr->SetPos(Vector2(tr->GetPos().x, 100.0f));
+			}
+
+			if (Input::GetKeyDown(eKeyCode::E))
+			{
+				ya::object::Destory(mOb);
+				mTiles.erase(id.id);
+			}
 
 			if (Input::GetKeyDown(eKeyCode::LBUTTON))
 			{
@@ -56,25 +69,81 @@ namespace ya
 				Vector2 pos = Input::GetMousePos();
 				pos -= Camera::CaluatePos(Vector2::Zero);
 
-				if (ToolScene::mIndex == 0)// class가 Monster일때
+				if (ToolScene::mIndex == 0)
 				{
-					object::Instantiate<Obstacle>(Vector2(pos.x, pos.y), eLayerType::Obstacle);
+					mOb = object::Instantiate<Obstacle>(Vector2(pos.x, pos.y), eLayerType::Obstacle);
 
 					int index = ToolScene::mIndex;
 
-					TilePos id;
+					//TilePos id;
 					id.x = (UINT32)pos.x;
 					id.y = (UINT32)pos.y;
 
 					mTiles.insert(std::make_pair(id.id, index));
 				}
-				if (ToolScene::mIndex == 1)// class가 Monster일때
+				if (ToolScene::mIndex == 1)
 				{
-					object::Instantiate<Obstacle01>(Vector2(pos.x, pos.y), eLayerType::Obstacle);
+					mOb = object::Instantiate<Obstacle01>(Vector2(pos.x, pos.y), eLayerType::Obstacle);
 
 					int index = ToolScene::mIndex;
 
-					TilePos id;
+					//TilePos id;
+					id.x = (UINT32)pos.x;
+					id.y = (UINT32)pos.y;
+
+					mTiles.insert(std::make_pair(id.id, index));
+				}
+				if (ToolScene::mIndex == 2)
+				{
+					DownPosX = pos.x;
+					DownPosY = pos.y;
+				}
+				if (ToolScene::mIndex == 3)
+				{
+					DownPosX = pos.x;
+					DownPosY = pos.y;
+				}
+			}
+
+			if (Input::GetKeyUp(eKeyCode::LBUTTON))
+			{
+				Vector2 mousPos = Input::GetMousePos();
+				if (mousPos.x >= 1600.0f || mousPos.x <= 0.0f)
+					return;
+				if (mousPos.y >= 900.0f || mousPos.y <= 0.0f)
+					return;
+
+				Vector2 pos = Input::GetMousePos();
+				pos -= Camera::CaluatePos(Vector2::Zero);
+
+				UpPosX = pos.x;
+				UpPosY = pos.y;
+
+				float tempWidth = UpPosX - DownPosX;
+				float tempHeight = UpPosY - DownPosY;
+
+				if (ToolScene::mIndex == 2)
+				{
+					//mOb = object::Instantiate<BasicToBear>(Vector2(pos.x, 700.0f), eLayerType::Obstacle);
+					mOb = object::Instantiate<OverGround>(Vector2(DownPosX, DownPosY), eLayerType::Ground, Vector2(tempWidth, 50.0f));
+					
+					int index = ToolScene::mIndex;
+
+					//TilePos id;
+					id.x = (UINT32)pos.x;
+					id.y = (UINT32)pos.y;
+
+					mTiles.insert(std::make_pair(id.id, index));
+				}
+
+				if (ToolScene::mIndex == 3)
+				{
+					//mOb = object::Instantiate<BasicToBear>(Vector2(pos.x, 700.0f), eLayerType::Obstacle);
+					mOb = object::Instantiate<Ground>(Vector2(DownPosX, 700.0f), eLayerType::Ground, Vector2(tempWidth, 50.0f));
+
+					int index = ToolScene::mIndex;
+
+					//TilePos id;
 					id.x = (UINT32)pos.x;
 					id.y = (UINT32)pos.y;
 
@@ -164,7 +233,7 @@ namespace ya
 			while (true)
 			{
 				int index = -1;
-				TilePos id;
+				//TilePos id;
 
 				if (fread(&index, sizeof(int), 1, file) == NULL)
 					break;
@@ -181,6 +250,10 @@ namespace ya
 				{
 					object::Instantiate<Obstacle01>(Vector2(id.x, id.y), eLayerType::Obstacle);
 				}
+				if (index == 2)
+				{
+					object::Instantiate<BasicToBear>(Vector2(id.x, id.y), eLayerType::Obstacle);
+				}
 
 				int a = 0;
 			}
@@ -193,14 +266,14 @@ namespace ya
 
 	void MakeScene::Render(HDC hdc)
 	{
-		HPEN redPen = CreatePen(PS_SOLID, 2, RGB(255, 255, 255));
+		HPEN redPen = CreatePen(PS_SOLID, 2, RGB(0, 247, 253));
 		HPEN oldPen = (HPEN)SelectObject(hdc, redPen);
 
 
 		Vector2 startPos(0, 0);
 		startPos = Camera::CaluatePos(startPos);
 
-		int maxRow = application.GetHeight() / TILE_SIZE_Y + 1;
+		int maxRow = application.GetHeight() * 5 / TILE_SIZE_Y + 1;
 		for (size_t y = 0; y < maxRow; y++)
 		{
 			MoveToEx(hdc, startPos.x, TILE_SIZE_Y * y + startPos.y, NULL);
@@ -208,7 +281,7 @@ namespace ya
 		}
 		int maxColumn = application.GetWidth() / TILE_SIZE_X + 1;
 
-		for (size_t x = 0; x < maxColumn*3; x++)
+		for (size_t x = 0; x < maxColumn * 5; x++)
 		{
 			MoveToEx(hdc, TILE_SIZE_X * x + startPos.x, startPos.y, NULL);
 			LineTo(hdc, TILE_SIZE_X * x + startPos.x, application.GetHeight());
@@ -219,6 +292,8 @@ namespace ya
 		Scene::Render(hdc);
 
 		Scene::SceneText(hdc);
+
+		Scene::PosText(hdc);
 	}
 
 	void MakeScene::Release()

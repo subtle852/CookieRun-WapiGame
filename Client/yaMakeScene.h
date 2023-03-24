@@ -14,6 +14,7 @@ namespace ya
 	};
 
 	class Character01;
+	class GameObject;
 
 	class MakeScene : public Scene
 	{
@@ -35,5 +36,14 @@ namespace ya
 		std::unordered_map<UINT64, int> mTiles;
 
 		Character01* mCh;
+
+		GameObject* mOb;
+
+		TilePos id;
+
+		float DownPosX;
+		float DownPosY;
+		float UpPosX;
+		float UpPosY;
 	};
 }

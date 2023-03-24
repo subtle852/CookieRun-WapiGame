@@ -29,14 +29,7 @@ namespace ya
 		//tr->SetPos(Vector2(1200.0f, 500.0f));
 		//tr->SetScale(Vector2(1.5f, 1.5f));
 
-		mAnimator = AddComponent<Animator>();
-		mAnimator->CreateAnimations(L"..\\Resources\\Item\\BasicToBear", Vector2::Zero, 0.1f, 0);
-
-		mAnimator->Play(L"ItemBasicToBear", true);
-
-		Collider* collider = AddComponent<Collider>();
-		collider->SetSize(Vector2(80.0f, 80.0f));
-		collider->SetCenter(Vector2(-40.0f, -60.0f));
+		mImage = Resources::Load<Image>(L"pt", L"..\\Resources\\item03_fast.bmp");
 
 		GameObject::Initialize();
 	}
@@ -49,6 +42,13 @@ namespace ya
 	void BasicToBear::Render(HDC hdc)
 	{
 		GameObject::Render(hdc);
+
+		Transform* tr = GetComponent<Transform>();
+
+		Vector2 renderPos = Camera::CaluatePos(tr->GetPos());
+
+		TransparentBlt(hdc, renderPos.x, renderPos.y, mImage->GetWidth(), mImage->GetHeight()
+			, mImage->GetHdc(), 0, 0, mImage->GetWidth(), mImage->GetHeight(), RGB(170, 0, 0));
 	}
 
 	void BasicToBear::Release()

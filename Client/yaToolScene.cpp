@@ -84,7 +84,7 @@ namespace ya
 #include <string>
 #include "yaToolScene.h"
 
-int x, y; WCHAR text[100]; int index = 0;
+int x, y; WCHAR text[100]; int index = 0; int chapter = 0;
 
 LRESULT CALLBACK AtlasWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -96,7 +96,10 @@ LRESULT CALLBACK AtlasWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPa
 		//HMENU mMenubar = LoadMenu(nullptr, MAKEINTRESOURCE(IDC_CLIENT));
 		//SetMenu(hWnd, mMenubar);
 		ya::Image* tile = ya::Resources::Load<ya::Image>(L"TileAtlas", L"..\\Resources\\Tile.bmp");
+		ya::Image* tile2 = ya::Resources::Load<ya::Image>(L"TileAtlas2", L"..\\Resources\\Tile2.bmp");
+		ya::Image* tile3 = ya::Resources::Load<ya::Image>(L"TileAtlas3", L"..\\Resources\\Tile3.bmp");
 		RECT rect = { 0, 0, tile->GetWidth(), tile->GetHeight() };
+		//RECT rect = { 0, 0, tile->GetWidth(), tile->GetHeight() };
 		AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
 
 		// 윈도우 크기 변경및 출력 설정
@@ -115,11 +118,55 @@ LRESULT CALLBACK AtlasWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPa
 			x = GET_X_LPARAM(lParam);
 			y = GET_Y_LPARAM(lParam);
 
-			index = (x / 64) + (8 * (y / 64));
+			if (chapter == 0)
+			{
+				index = (x / 64) + (8 * (y / 64));
 
-			ya::ToolScene::mIndex = index;
+				if (index > 500 || index < 0)
+				{
+					index = 0;
+				}
+				ya::ToolScene::mIndex = index;
+			}
+				
+			if (chapter == 1)
+			{
+				index = (x / 64) + (8 * (y / 64));
+				index += 47;
 
-			wsprintf(text, L" x : %d \t y : %d \t i : %d", x, y, index);
+				if (index > 500 || index < 0)
+				{
+					index = 0;
+				}
+				ya::ToolScene::mIndex = index;
+			}
+			
+			if (chapter == 2)
+			{
+				index = (x / 64) + (8 * (y / 64));
+				index += 94;
+
+				if (index > 500 || index < 0)
+				{
+					index = 0;
+				}
+				ya::ToolScene::mIndex = index;
+			}
+
+			if (index == 47)
+			{
+				chapter = 1;
+			}
+			if (index == 94)
+			{
+				chapter = 2;
+			}
+			if (index == 141)
+			{
+				chapter = 0;
+			}
+
+			wsprintf(text, L" x : %d  y : %d  i : %d chapter : %d", x, y, index, chapter);
 			InvalidateRect(hWnd, NULL, TRUE);
 		}
 	}
@@ -157,7 +204,7 @@ LRESULT CALLBACK AtlasWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPa
 			x = GET_X_LPARAM(lParam);
 			y = GET_Y_LPARAM(lParam);
 
-			wsprintf(text, L" x : %d \t y : %d \t i : %d", x, y, index);
+			wsprintf(text, L" x : %d  y : %d  i : %d chapter : %d", x, y, index, chapter);
 			InvalidateRect(hWnd, NULL, TRUE);
 
 			/*int y, x;
@@ -197,9 +244,23 @@ LRESULT CALLBACK AtlasWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPa
 		PAINTSTRUCT ps;
 		HDC hdc = BeginPaint(hWnd, &ps);
 
-		ya::Image* tile = ya::Resources::Find<ya::Image>(L"TileAtlas");
-		BitBlt(hdc, 0, 0, tile->GetWidth(), tile->GetHeight(), tile->GetHdc(), 0, 0, SRCCOPY);
+		if (chapter == 0)
+		{
+			ya::Image* tile = ya::Resources::Find<ya::Image>(L"TileAtlas");
+			BitBlt(hdc, 0, 0, tile->GetWidth(), tile->GetHeight(), tile->GetHdc(), 0, 0, SRCCOPY);
+		}
 
+		if (chapter == 1)
+		{
+			ya::Image* tile2 = ya::Resources::Find<ya::Image>(L"TileAtlas2");
+			BitBlt(hdc, 0, 0, tile2->GetWidth(), tile2->GetHeight(), tile2->GetHdc(), 0, 0, SRCCOPY);
+		}
+
+		if (chapter == 2)
+		{
+			ya::Image* tile3 = ya::Resources::Find<ya::Image>(L"TileAtlas3");
+			BitBlt(hdc, 0, 0, tile3->GetWidth(), tile3->GetHeight(), tile3->GetHdc(), 0, 0, SRCCOPY);
+		}
 		//HPEN redPen = CreatePen(PS_SOLID, 2, RGB(255, 0, 0));
 		//HPEN oldPen = (HPEN)SelectObject(hdc, redPen);
 

@@ -1,9 +1,12 @@
 #include "yaScene.h"
 #include "yaSceneManager.h"
+#include "yaApplication.h"
 
+extern ya::Application application;
 
 namespace ya
 {
+	int PosX, PosY; WCHAR Postext[100];
 	Scene::Scene()
 	{
 		mLayers.reserve(5);
@@ -80,6 +83,24 @@ namespace ya
 	{
 		std::wstring tmp = Scene::GetName();
 		TextOut(hdc, 0, 0, tmp.c_str(), tmp.size());
+	}
+
+	void Scene::PosText(HDC hdc)
+	{
+		::POINT mousePos = {};
+		::GetCursorPos(&mousePos);
+		::ScreenToClient(application.GetHwnd(), &mousePos);
+
+		PosX = mousePos.x;
+		PosY = mousePos.y;
+		//if (x >= 1600.0f || x <= 0.0f)
+		//	return;
+		//if (y >= 900.0f || y <= 0.0f)
+		//	return;
+
+		wsprintf(Postext, L" x : %d  y : %d", PosX, PosY);
+
+		TextOutW(hdc, 0, 16, Postext, lstrlen(Postext));
 	}
 
 	void Scene::AddGameObeject(GameObject* obj, eLayerType layer)

@@ -63,6 +63,8 @@ namespace ya
 		Scene::Render(hdc);
 
 		Scene::SceneText(hdc);
+
+		Scene::PosText(hdc);
 	}
 
 	void MainScene::Release()

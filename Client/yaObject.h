@@ -27,6 +27,17 @@ namespace ya::object
 		return gameObj;
 	}
 
+	template <typename T>
+	static inline T* Instantiate(Vector2 pos, eLayerType type, Vector2 size)
+	{
+		T* gameObj = new T();
+		Scene* scene = SceneManager::GetActiveScene();
+		scene->AddGameObeject(gameObj, type);
+		gameObj->GameObject::GetComponent<Transform>()->SetPos(pos);
+		gameObj->GameObject::AddComponent<Collider>()->SetSize(size);
+		gameObj->Initialize();
+		return gameObj;
+	}
 
 	static void Destory(GameObject* obj)
 	{

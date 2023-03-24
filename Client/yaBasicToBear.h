@@ -3,7 +3,7 @@
 
 namespace ya
 {
-	class Animator;
+	class Image;
 	class BasicToBear : public GameObject
 	{
 	public:
@@ -20,6 +20,6 @@ namespace ya
 		virtual void OnCollisionExit(class Collider* other) override;
 
 	private:
-		Animator* mAnimator;
+		Image* mImage;
 	};
 }
