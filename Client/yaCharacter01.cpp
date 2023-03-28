@@ -109,10 +109,9 @@ namespace ya
 
 		if (scn->GetName() == L"Play" || scn->GetName() == L"Make")
 		{
-
-			if (this->mGround == true)
+			if (mG == false)
 			{
-				this->mOver = false;
+				mRigidbody->SetGround(false);
 			}
 
 			if (mState != eChar01State::Death)
@@ -201,6 +200,11 @@ namespace ya
 			{
 				if (mBig == true)// 커졌을 때
 				{
+					mBcnt++;
+					if (mBcnt == 1)
+					{
+						mRigidbody->SetGround(false);
+					}
 					mState = eChar01State::BigRun;
 					mBigT += Time::DeltaTime();
 
@@ -210,9 +214,11 @@ namespace ya
 						Vector2 pos = tr->GetPos();
 						pos.y = 600.0f;
 						tr->SetPos(pos);
+						mRigidbody->SetGround(false);
 
 						mState = eChar01State::Run;
 
+						mBcnt = 0;
 						mBigT = 0.0f;
 						mBig = false;
 					}
@@ -222,8 +228,6 @@ namespace ya
 				{
 					mSmlT += Time::DeltaTime();
 					mSmlcnt++;
-
-					bool a = this->mGround;
 
 					if (mSmlcnt == 1)
 					{
@@ -381,14 +385,18 @@ namespace ya
 
 		if (dynamic_cast<Ground*>(other->GetOwner()))
 		{
-			mGround = true;
+			mG = true;
+			mRigidbody->SetGround(true);
 		}
-	
+		if (dynamic_cast<UnderGround*>(other->GetOwner()))
+		{
+			mG = true;
+			mRigidbody->SetGround(true);
+		}
 	}
 
 	void Character01::OnCollisionStay(Collider* other)
 	{
-
 		if (mBig == true && dynamic_cast<Ground*>(other->GetOwner()))// 커졌을 때 바로 카메라 흔들리고, 커진 상태에서 점프하고 땅에 닿으면 카메라 흔들리게 
 		{
 			Camera::mType = Camera::eCameraEffectType::ShakeH;
@@ -396,15 +404,28 @@ namespace ya
 
 		if (dynamic_cast<Ground*>(other->GetOwner()))
 		{
-			mGround = true;
+			mG = true;
+		}
+		if (dynamic_cast<UnderGround*>(other->GetOwner()))
+		{
+			mG = true;
 		}
 	}
 
 	void Character01::OnCollisionExit(Collider* other)
 	{
+
 		if (dynamic_cast<Ground*>(other->GetOwner()))
 		{
-			mGround = false;
+			mG = false;
+		}
+		if (dynamic_cast<UnderGround*>(other->GetOwner()))
+		{
+			mG = false;
+		}
+		if (dynamic_cast<OverGround*>(other->GetOwner()))
+		{
+			mG = false;
 		}
 	}
 
@@ -685,6 +706,12 @@ namespace ya
 			collider->SetSize(Vector2(150.0f, 75.0f));
 			collider->SetCenter(Vector2(-50.0f, -25.0f));
 
+			mScnt++;
+			if (mScnt == 1)
+			{
+				mRigidbody->SetGround(false);
+			}
+
 			mAnimator->Play(L"Slide", true);
 		}
 
@@ -692,6 +719,8 @@ namespace ya
 		{
 			if (Input::GetKeyUp(eKeyCode::S))
 			{
+				mRigidbody->SetGround(false);
+				mScnt = 0;
 				mState = eChar01State::Run;
 			}
 		}
@@ -700,6 +729,8 @@ namespace ya
 		{
 			if (Input::GetKeyUp(eKeyCode::W))
 			{
+				mRigidbody->SetGround(false);
+				mScnt = 0;
 				mState = eChar01State::Run;
 			}
 		}
@@ -733,7 +764,7 @@ namespace ya
 
 		if (mKeyError == false)
 		{
-			if (Input::GetKeyDown(eKeyCode::W) && this->mGround)
+			if (Input::GetKeyDown(eKeyCode::W) && this->mG)
 			{
 				Vector2 velocity = mRigidbody->GetVelocity();
 				velocity.y = -2000.0f;
@@ -744,7 +775,7 @@ namespace ya
 		}
 		if (mKeyError == true)
 		{
-			if (Input::GetKeyDown(eKeyCode::S) && this->mGround)
+			if (Input::GetKeyDown(eKeyCode::S) && this->mG)
 			{
 				Vector2 velocity = mRigidbody->GetVelocity();
 				velocity.y = -2000.0f;

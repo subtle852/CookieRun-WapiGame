@@ -1,5 +1,5 @@
 #include "yaBlackOutMItem.h"
-#include "yaJellyCoin.h"
+#include "yaCoin_Silver.h"
 #include "yaTime.h"
 #include "yaSceneManager.h"
 #include "yaInput.h"

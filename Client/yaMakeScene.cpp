@@ -15,12 +15,19 @@
 #include <commdlg.h>
 #include "yaToolScene.h"
 #include "yaBasicToBear.h"
+#include "yaTime.h"
+#include "yaMagnetItem.h"
+#include "yaBasic_Candy_Y.h"
+#include "yaCoin_Silver.h"
+#include "yaBear_FlyingPink.h"
 
 #include "yaApplication.h"
 extern ya::Application application;
 
 namespace ya
 {
+	Vector2 MakeScene::mChPos = Vector2::Zero;
+
 	MakeScene::MakeScene()
 	{
 	}
@@ -44,6 +51,60 @@ namespace ya
 	{
 		mCh->mCurHp = 100.0f;
 
+		if (mCh->mMagnetState == true)
+			// 1. 캐릭이 마그넷 아이템과 충돌하면 캐릭이 mMagnetState가 true가 됨
+			// 2. 그럼 여기서 모든 겜오브젝트들의 mMagnet을 true로 전환시켜 그 내부 함수가 실행
+			// 1번 구현은 캐릭 온콜리젼엔터 or 마그넷아이템 온콜리젼엔터 해야함
+			// 2번 구현은 모든 겜오브젝트들 중에서 당겨지는 아이템들에 적용시켜야함(캐릭 쪽으로 이동하도록)
+			// 3번 세이브랑 로드 할 때도 mVectorOb가 연동 되야함(아 로드할때만 해주면 되나?)
+		{
+			mMagnetTime += Time::DeltaTime();
+
+			if (mMagnetTime > 1.0f)
+			{
+				mMagnetTime = 0.0f;
+				mCh->mMagnetState = false;
+			}
+
+			std::unordered_map<UINT64, GameObject*>::iterator iter = mVectorOb.begin();
+			for (; iter != mVectorOb.end(); iter++)
+			{
+				TilePos id;
+				id.id = iter->first;
+
+				Transform* tr = mCh->GetComponent<Transform>();
+				Vector2 pos = tr->GetPos();
+				MakeScene::mChPos = pos;
+
+				if (pos.x < id.x && id.x < pos.x + 700.0f)
+				{
+					GameObject* temp = iter->second;
+					temp->mMagnet = true;
+				}
+			}
+		}
+
+		if (mCh->mBtoB == true)
+		{
+			std::unordered_map<UINT64, GameObject*>::iterator iter = mBasicJelly.begin();
+			for (; iter != mBasicJelly.end(); iter++)
+			{
+				TilePos id;
+				id.id = iter->first;
+
+				GameObject* temp = iter->second;
+				
+				ya::object::Destory(iter->second);
+				mOb = object::Instantiate<Bear_FlyingPink>(Vector2(id.x, id.y), eLayerType::Item);
+
+				if (iter == --mBasicJelly.end())
+				{
+					mCh->mBtoB = false;
+				}
+			}
+		
+		}
+
 		if (GetFocus())
 		{
 			if (Input::GetKeyDown(eKeyCode::R))
@@ -52,10 +113,37 @@ namespace ya
 				tr->SetPos(Vector2(tr->GetPos().x, 100.0f));
 			}
 
+			if (Input::GetKeyDown(eKeyCode::T))
+			{
+				Transform* tr = mCh->GetComponent<Transform>();
+				tr->SetPos(Vector2(300.0f, 650.0f));
+			}
+
+			if (Input::GetKeyDown(eKeyCode::Y))
+			{
+				for (auto i = mVectorOb.begin(); i != mVectorOb.end(); i++)
+				{
+					ya::object::Destory(i->second);
+				}
+
+				mTiles.clear();
+				mVectorOb.clear();
+			}
+			
 			if (Input::GetKeyDown(eKeyCode::E))
 			{
-				ya::object::Destory(mOb);
-				mTiles.erase(id.id);
+				if (!mVectorOb.empty())
+				{ 
+				std::unordered_map<UINT64, GameObject*>::iterator iter1 = --mVectorOb.end() ;
+				TilePos idt;
+				idt.id = iter1->first;
+
+				ya::object::Destory(iter1->second);
+
+				mVectorOb.erase(idt.id);
+
+				mTiles.erase(idt.id);
+				}
 			}
 
 			if (Input::GetKeyDown(eKeyCode::LBUTTON))
@@ -74,24 +162,27 @@ namespace ya
 					mOb = object::Instantiate<Obstacle>(Vector2(pos.x, pos.y), eLayerType::Obstacle);
 
 					int index = ToolScene::mIndex;
+					id2.ind = (UINT32)index;
 
 					//TilePos id;
 					id.x = (UINT32)pos.x;
 					id.y = (UINT32)pos.y;
 
-					mTiles.insert(std::make_pair(id.id, index));
+					mVectorOb.insert(std::make_pair(id.id, mOb));
+					mTiles.insert(std::make_pair(id.id, id2.id2));
 				}
 				if (ToolScene::mIndex == 1)
 				{
-					mOb = object::Instantiate<Obstacle01>(Vector2(pos.x, pos.y), eLayerType::Obstacle);
+					mOb = object::Instantiate<MagnetItem>(Vector2(pos.x, pos.y), eLayerType::Obstacle);
 
 					int index = ToolScene::mIndex;
-
+					id2.ind = (UINT32)index;
 					//TilePos id;
 					id.x = (UINT32)pos.x;
 					id.y = (UINT32)pos.y;
 
-					mTiles.insert(std::make_pair(id.id, index));
+					mVectorOb.insert(std::make_pair(id.id, mOb));
+					mTiles.insert(std::make_pair(id.id, id2.id2));
 				}
 				if (ToolScene::mIndex == 2)
 				{
@@ -102,6 +193,21 @@ namespace ya
 				{
 					DownPosX = pos.x;
 					DownPosY = pos.y;
+				}
+			
+				if (ToolScene::mIndex == 4)
+				{
+					mOb = object::Instantiate<Basic_Candy_Y>(Vector2(pos.x, pos.y), eLayerType::Item);
+
+					int index = ToolScene::mIndex;
+					id2.ind = (UINT32)index;
+					//TilePos id;
+					id.x = (UINT32)pos.x;
+					id.y = (UINT32)pos.y;
+
+					mVectorOb.insert(std::make_pair(id.id, mOb));
+					mBasicJelly.insert(std::make_pair(id.id, mOb));
+					mTiles.insert(std::make_pair(id.id, id2.id2));
 				}
 			}
 
@@ -120,34 +226,36 @@ namespace ya
 				UpPosY = pos.y;
 
 				float tempWidth = UpPosX - DownPosX;
-				float tempHeight = UpPosY - DownPosY;
+				//float tempHeight = UpPosY - DownPosY;
 
 				if (ToolScene::mIndex == 2)
 				{
-					//mOb = object::Instantiate<BasicToBear>(Vector2(pos.x, 700.0f), eLayerType::Obstacle);
 					mOb = object::Instantiate<OverGround>(Vector2(DownPosX, DownPosY), eLayerType::Ground, Vector2(tempWidth, 50.0f));
-					
+
 					int index = ToolScene::mIndex;
-
+					id2.ind = (UINT32)index;
+					id2.width = (UINT32)tempWidth;
 					//TilePos id;
-					id.x = (UINT32)pos.x;
-					id.y = (UINT32)pos.y;
+					id.x = (UINT32)DownPosX;
+					id.y = (UINT32)DownPosY;
 
-					mTiles.insert(std::make_pair(id.id, index));
+					mVectorOb.insert(std::make_pair(id.id, mOb));
+					mTiles.insert(std::make_pair(id.id, id2.id2));
 				}
 
 				if (ToolScene::mIndex == 3)
 				{
-					//mOb = object::Instantiate<BasicToBear>(Vector2(pos.x, 700.0f), eLayerType::Obstacle);
 					mOb = object::Instantiate<Ground>(Vector2(DownPosX, 700.0f), eLayerType::Ground, Vector2(tempWidth, 50.0f));
 
 					int index = ToolScene::mIndex;
-
+					id2.ind = (UINT32)index;
+					id2.width = (UINT32)tempWidth;
 					//TilePos id;
-					id.x = (UINT32)pos.x;
-					id.y = (UINT32)pos.y;
+					id.x = (UINT32)DownPosX;
+					id.y = (UINT32)700.0f;
 
-					mTiles.insert(std::make_pair(id.id, index));
+					mVectorOb.insert(std::make_pair(id.id, mOb));
+					mTiles.insert(std::make_pair(id.id, id2.id2));
 				}
 			}
 		}
@@ -188,11 +296,12 @@ namespace ya
 			if (nullptr == file)
 				return;
 
-			std::unordered_map<UINT64, int>::iterator iter = mTiles.begin();
+			std::unordered_map<UINT64, UINT64>::iterator iter = mTiles.begin();
 			for (; iter != mTiles.end(); iter++)
 			{
-				int index = iter->second;
-				fwrite(&index, sizeof(int), 1, file);
+				TileInd id2;
+				id2.id2 = iter->second;
+				fwrite(&id2.id2, sizeof(TileInd), 1, file);
 
 				TilePos id;
 				id.id = iter->first;
@@ -232,27 +341,42 @@ namespace ya
 
 			while (true)
 			{
-				int index = -1;
+				TileInd id2;
+				id2.ind = -1;
+				//int index = -1;
 				//TilePos id;
 
-				if (fread(&index, sizeof(int), 1, file) == NULL)
+				if (fread(&id2.id2, sizeof(TileInd), 1, file) == NULL)
 					break;
 
 				if (fread(&id.id, sizeof(TilePos), 1, file) == NULL)
 					break;
 
 
-				if (index == 0)
+				if (id2.ind == 0)
 				{
-					object::Instantiate<Obstacle>(Vector2(id.x, id.y), eLayerType::Obstacle);
+					mOb = object::Instantiate<Obstacle>(Vector2(id.x, id.y), eLayerType::Obstacle);
+					mVectorOb.insert(std::make_pair(id.id, mOb));// Reason to insert mVectorOb : Magnet is activating at MakeScene Update with mVectorOb
 				}
-				if (index == 1)
+				if (id2.ind == 1)
 				{
-					object::Instantiate<Obstacle01>(Vector2(id.x, id.y), eLayerType::Obstacle);
+					mOb = object::Instantiate<MagnetItem>(Vector2(id.x, id.y), eLayerType::Obstacle);
+					mVectorOb.insert(std::make_pair(id.id, mOb));
 				}
-				if (index == 2)
+				if (id2.ind == 2)
 				{
-					object::Instantiate<BasicToBear>(Vector2(id.x, id.y), eLayerType::Obstacle);
+					mOb = object::Instantiate<OverGround>(Vector2(id.x, id.y), eLayerType::Ground, Vector2((float)id2.width, 50.0f));
+					mVectorOb.insert(std::make_pair(id.id, mOb));
+				}
+				if (id2.ind == 3)
+				{
+					mOb = object::Instantiate<Ground>(Vector2(id.x, id.y), eLayerType::Ground, Vector2((float)id2.width, 50.0f));
+					mVectorOb.insert(std::make_pair(id.id, mOb));
+				}
+				if (id2.ind == 4)
+				{
+					mOb = object::Instantiate<BasicToBear>(Vector2(id.x, id.y), eLayerType::BG, Vector2((float)id2.width, 50.0f));
+					mVectorOb.insert(std::make_pair(id.id, mOb));
 				}
 
 				int a = 0;
@@ -305,9 +429,11 @@ namespace ya
 		Camera::SetTarget(mCh);
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Obstacle, true);
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Ground, true);
+		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Item, true);
 	}
 	void MakeScene::OnExit()
 	{
+		mOb = nullptr;
 		Camera::Clear();
 	}
 

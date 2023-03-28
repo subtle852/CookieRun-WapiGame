@@ -1,9 +1,10 @@
 #pragma once
 #include "yaGameObject.h"
-#include "yaImage.h"
 
 namespace ya
 {
+	class Animator;
+
 	class PlayBackGround : public GameObject
 	{
 	public:
@@ -16,6 +17,6 @@ namespace ya
 		virtual void Release();
 
 	private:
-		Image* mImage;
+		Animator* mAnimator;
 	};
 }

@@ -56,5 +56,8 @@ namespace ya
 		std::vector<Component*> mComponents;
 
 		eState mState;
+
+	public:
+		bool mMagnet = false;
 	};
 }

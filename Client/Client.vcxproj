@@ -135,6 +135,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="yaBasic_Candy_B.h" />
+    <ClInclude Include="yaBasic_Candy_G.h" />
+    <ClInclude Include="yaBasic_Candy_M1.h" />
+    <ClInclude Include="yaBasic_Candy_M2.h" />
+    <ClInclude Include="yaBasic_Candy_R.h" />
+    <ClInclude Include="yaBasic_Candy_Y.h" />
+    <ClInclude Include="yaBasic_Gummy_B.h" />
+    <ClInclude Include="yaBasic_Gummy_G.h" />
+    <ClInclude Include="yaBasic_Gummy_M1.h" />
+    <ClInclude Include="yaBasic_Gummy_M2.h" />
+    <ClInclude Include="yaBasic_Gummy_R.h" />
+    <ClInclude Include="yaBasic_Gummy_Y.h" />
+    <ClInclude Include="yaBear_Big.h" />
+    <ClInclude Include="yaBear_FlyingPink.h" />
+    <ClInclude Include="yaBear_FlyingYellow.h" />
+    <ClInclude Include="yaBear_Rainbow.h" />
+    <ClInclude Include="yaBear_SmallBlue.h" />
+    <ClInclude Include="yaBear_SmallPink.h" />
+    <ClInclude Include="yaBear_SmallYellow.h" />
+    <ClInclude Include="yaBear_StarBlue.h" />
+    <ClInclude Include="yaBear_StarYellow.h" />
+    <ClInclude Include="yaCoin_Gold.h" />
+    <ClInclude Include="yaCoin_GoldB.h" />
+    <ClInclude Include="yaCoin_Silver.h" />
+    <ClInclude Include="yaCoin_SilverB.h" />
     <ClInclude Include="yaInvincibleItem.h" />
     <ClInclude Include="yaBasicToBear.h" />
     <ClInclude Include="yaHpItemD.h" />
@@ -149,7 +174,6 @@
     <ClInclude Include="yaGaugeBar.h" />
     <ClInclude Include="yaGaugeCircle.h" />
     <ClInclude Include="yaInputEItem.h" />
-    <ClInclude Include="yaJellyCoin.h" />
     <ClInclude Include="yaMakeScene.h" />
     <ClInclude Include="yaObstacleToCoin.h" />
     <ClInclude Include="yaOverGround.h" />
@@ -216,6 +240,31 @@
     <ClInclude Include="yaMagnetItem.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="yaBasic_Candy_B.cpp" />
+    <ClCompile Include="yaBasic_Candy_G.cpp" />
+    <ClCompile Include="yaBasic_Candy_M1.cpp" />
+    <ClCompile Include="yaBasic_Candy_M2.cpp" />
+    <ClCompile Include="yaBasic_Candy_R.cpp" />
+    <ClCompile Include="yaBasic_Candy_Y.cpp" />
+    <ClCompile Include="yaBasic_Gummy_B.cpp" />
+    <ClCompile Include="yaBasic_Gummy_G.cpp" />
+    <ClCompile Include="yaBasic_Gummy_M1.cpp" />
+    <ClCompile Include="yaBasic_Gummy_M2.cpp" />
+    <ClCompile Include="yaBasic_Gummy_R.cpp" />
+    <ClCompile Include="yaBasic_Gummy_Y.cpp" />
+    <ClCompile Include="yaBear_Big.cpp" />
+    <ClCompile Include="yaBear_FlyingPink.cpp" />
+    <ClCompile Include="yaBear_FlyingYellow.cpp" />
+    <ClCompile Include="yaBear_Rainbow.cpp" />
+    <ClCompile Include="yaBear_SmallBlue.cpp" />
+    <ClCompile Include="yaBear_SmallPink.cpp" />
+    <ClCompile Include="yaBear_SmallYellow.cpp" />
+    <ClCompile Include="yaBear_StarBlue.cpp" />
+    <ClCompile Include="yaBear_StarYellow.cpp" />
+    <ClCompile Include="yaCoin_Gold.cpp" />
+    <ClCompile Include="yaCoin_GoldB.cpp" />
+    <ClCompile Include="yaCoin_Silver.cpp" />
+    <ClCompile Include="yaCoin_SilverB.cpp" />
     <ClCompile Include="yaInvincibleItem.cpp" />
     <ClCompile Include="yaBasicToBear.cpp" />
     <ClCompile Include="yaHpItemD.cpp" />
@@ -227,7 +276,6 @@
     <ClCompile Include="yaGaugeBar.cpp" />
     <ClCompile Include="yaGaugeCircle.cpp" />
     <ClCompile Include="yaInputEItem.cpp" />
-    <ClCompile Include="yaJellyCoin.cpp" />
     <ClCompile Include="yaMakeScene.cpp" />
     <ClCompile Include="yaObstacleToCoin.cpp" />
     <ClCompile Include="yaOverGround.cpp" />

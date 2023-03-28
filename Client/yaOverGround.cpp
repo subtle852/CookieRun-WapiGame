@@ -48,10 +48,11 @@ namespace ya
 		Vector2 groundPos = groundCol->GetPos();
 		
 		if((50.0f < groundPos.y - cupheadPos.y) && (groundPos.y - cupheadPos.y < 100.0f))
-		//if (cuphead->mOver == true)
 		{
 			Rigidbody* rb = cuphead->GetComponent<Rigidbody>();
 			rb->SetGround(true);
+
+			cuphead->mG = true;
 
 			Collider* cupheadCol = cuphead->GetComponent<Collider>();
 			Vector2 cupheadPos = cupheadCol->GetPos();
@@ -89,7 +90,6 @@ namespace ya
 		Vector2 groundPos = groundCol->GetPos();
 
 		if ((50.0f < groundPos.y - cupheadPos.y) && (groundPos.y - cupheadPos.y < 100.0f))
-		//if (cuphead->mOver == true)
 		{
 			Collider* cupheadCol = cuphead->GetComponent<Collider>();
 			Vector2 cupheadPos = cupheadCol->GetPos();
@@ -119,8 +119,6 @@ namespace ya
 		Character01* cuphead = dynamic_cast<Character01*>(other->GetOwner());
 		if (cuphead == nullptr)
 			return;
-
-		cuphead->mOver = true;
 
 		Rigidbody* rb = cuphead->GetComponent<Rigidbody>();
 		rb->SetGround(false);

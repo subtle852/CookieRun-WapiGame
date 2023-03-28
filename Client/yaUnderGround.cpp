@@ -16,8 +16,8 @@ namespace ya
 
 	void UnderGround::Initialize()
 	{
-		//mCollider = AddComponent<Collider>();
-		//mCollider->SetSize(Vector2(50000.0f, 50.0f));
+		mCollider = AddComponent<Collider>();
+		mCollider->SetSize(Vector2(50000.0f, 50.0f));
 		GameObject::Initialize();
 	}
 
@@ -72,7 +72,7 @@ namespace ya
 					Vector2 cupPos = cupTr->GetPos();
 					Vector2 grPos = grTr->GetPos();
 
-					cupPos -= (fSize - fLen) - 1.0f;
+					cupPos.y -= (fSize - fLen) - 1.0f;
 					cupTr->SetPos(cupPos);
 				}
 			}

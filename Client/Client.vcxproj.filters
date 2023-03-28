@@ -110,6 +110,24 @@
     <Filter Include="Contents\Object\Obstacle\Common">
       <UniqueIdentifier>{602f34a2-7f70-4c57-84a7-3d13a83fadfa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Object\Item\Basic">
+      <UniqueIdentifier>{7d450624-c89d-40e2-a216-380173057517}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Object\Item\Active">
+      <UniqueIdentifier>{7a73c25c-01a1-473b-99f1-cc97ad8781e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Object\Item\Bear">
+      <UniqueIdentifier>{ddc89d99-1334-477c-8fca-5d06ffa4b5d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Object\Item\Coin">
+      <UniqueIdentifier>{6ac6d9e8-c8fb-417c-b978-62ed1e7eb49d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Object\Item\Basic\Candy">
+      <UniqueIdentifier>{25ade054-5fb0-4d65-a1e1-3f63803768cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Object\Item\Basic\Gummy">
+      <UniqueIdentifier>{f33193b2-8325-44a4-af42-5a483ca8f8f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -286,8 +304,6 @@
     <ClInclude Include="yaGround.h">
       <Filter>Contents\Ground</Filter>
     </ClInclude>
-    <ClInclude Include="yaToolScene.h" />
-    <ClInclude Include="yaTile.h" />
     <ClInclude Include="yaGaugeCircle.h">
       <Filter>Contents\UI\PlayUI</Filter>
     </ClInclude>
@@ -297,53 +313,131 @@
     <ClInclude Include="yaUnderGround.h">
       <Filter>Contents\Ground</Filter>
     </ClInclude>
-    <ClInclude Include="yaBlackOutMItem.h">
-      <Filter>Contents\Object\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="yaShakeItem.h">
-      <Filter>Contents\Object\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="yaJellyCoin.h">
-      <Filter>Contents\Object\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="yaHpItemD.h">
-      <Filter>Contents\Object\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="yaHpItemI.h">
-      <Filter>Contents\Object\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="yaBigItem.h">
-      <Filter>Contents\Object\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="yaFastItem.h">
-      <Filter>Contents\Object\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="yaObstacleToCoin.h">
-      <Filter>Contents\Object\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="yaSlowItem.h">
-      <Filter>Contents\Object\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="yaSmItem.h">
-      <Filter>Contents\Object\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="yaInputEItem.h">
-      <Filter>Contents\Object\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="yaMagnetItem.h">
-      <Filter>Contents\Object\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="yaBasicToBear.h">
-      <Filter>Contents\Object\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="yaInvincibleItem.h">
-      <Filter>Contents\Object\Item</Filter>
-    </ClInclude>
     <ClInclude Include="yaMakeScene.h">
       <Filter>Contents\Scene</Filter>
     </ClInclude>
     <ClInclude Include="yaOverGround.h">
       <Filter>Contents\Ground</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBigItem.h">
+      <Filter>Contents\Object\Item\Active</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBlackOutMItem.h">
+      <Filter>Contents\Object\Item\Active</Filter>
+    </ClInclude>
+    <ClInclude Include="yaFastItem.h">
+      <Filter>Contents\Object\Item\Active</Filter>
+    </ClInclude>
+    <ClInclude Include="yaHpItemI.h">
+      <Filter>Contents\Object\Item\Active</Filter>
+    </ClInclude>
+    <ClInclude Include="yaHpItemD.h">
+      <Filter>Contents\Object\Item\Active</Filter>
+    </ClInclude>
+    <ClInclude Include="yaInputEItem.h">
+      <Filter>Contents\Object\Item\Active</Filter>
+    </ClInclude>
+    <ClInclude Include="yaInvincibleItem.h">
+      <Filter>Contents\Object\Item\Active</Filter>
+    </ClInclude>
+    <ClInclude Include="yaMagnetItem.h">
+      <Filter>Contents\Object\Item\Active</Filter>
+    </ClInclude>
+    <ClInclude Include="yaSmItem.h">
+      <Filter>Contents\Object\Item\Active</Filter>
+    </ClInclude>
+    <ClInclude Include="yaSlowItem.h">
+      <Filter>Contents\Object\Item\Active</Filter>
+    </ClInclude>
+    <ClInclude Include="yaShakeItem.h">
+      <Filter>Contents\Object\Item\Active</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBasic_Candy_B.h">
+      <Filter>Contents\Object\Item\Basic\Candy</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBasic_Candy_G.h">
+      <Filter>Contents\Object\Item\Basic\Candy</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBasic_Candy_M1.h">
+      <Filter>Contents\Object\Item\Basic\Candy</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBasic_Candy_M2.h">
+      <Filter>Contents\Object\Item\Basic\Candy</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBasic_Candy_R.h">
+      <Filter>Contents\Object\Item\Basic\Candy</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBasic_Candy_Y.h">
+      <Filter>Contents\Object\Item\Basic\Candy</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBasic_Gummy_B.h">
+      <Filter>Contents\Object\Item\Basic\Gummy</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBasic_Gummy_G.h">
+      <Filter>Contents\Object\Item\Basic\Gummy</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBasic_Gummy_M2.h">
+      <Filter>Contents\Object\Item\Basic\Gummy</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBasic_Gummy_M1.h">
+      <Filter>Contents\Object\Item\Basic\Gummy</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBasic_Gummy_R.h">
+      <Filter>Contents\Object\Item\Basic\Gummy</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBasic_Gummy_Y.h">
+      <Filter>Contents\Object\Item\Basic\Gummy</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBear_Big.h">
+      <Filter>Contents\Object\Item\Bear</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBear_FlyingPink.h">
+      <Filter>Contents\Object\Item\Bear</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBear_FlyingYellow.h">
+      <Filter>Contents\Object\Item\Bear</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBear_Rainbow.h">
+      <Filter>Contents\Object\Item\Bear</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBear_SmallBlue.h">
+      <Filter>Contents\Object\Item\Bear</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBear_SmallPink.h">
+      <Filter>Contents\Object\Item\Bear</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBear_SmallYellow.h">
+      <Filter>Contents\Object\Item\Bear</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBear_StarBlue.h">
+      <Filter>Contents\Object\Item\Bear</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBear_StarYellow.h">
+      <Filter>Contents\Object\Item\Bear</Filter>
+    </ClInclude>
+    <ClInclude Include="yaTile.h">
+      <Filter>Contents\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="yaToolScene.h">
+      <Filter>Contents\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="yaCoin_Gold.h">
+      <Filter>Contents\Object\Item\Coin</Filter>
+    </ClInclude>
+    <ClInclude Include="yaCoin_GoldB.h">
+      <Filter>Contents\Object\Item\Coin</Filter>
+    </ClInclude>
+    <ClInclude Include="yaCoin_Silver.h">
+      <Filter>Contents\Object\Item\Coin</Filter>
+    </ClInclude>
+    <ClInclude Include="yaCoin_SilverB.h">
+      <Filter>Contents\Object\Item\Coin</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBasicToBear.h">
+      <Filter>Contents\Object\Item\Active</Filter>
+    </ClInclude>
+    <ClInclude Include="yaObstacleToCoin.h">
+      <Filter>Contents\Object\Item\Active</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -522,58 +616,134 @@
     <ClCompile Include="yaGround.cpp">
       <Filter>Contents\Ground</Filter>
     </ClCompile>
-    <ClCompile Include="yaToolScene.cpp" />
-    <ClCompile Include="yaTile.cpp" />
     <ClCompile Include="yaUnderGround.cpp">
       <Filter>Contents\Ground</Filter>
-    </ClCompile>
-    <ClCompile Include="yaBlackOutMItem.cpp">
-      <Filter>Contents\Object\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="yaShakeItem.cpp">
-      <Filter>Contents\Object\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="yaJellyCoin.cpp">
-      <Filter>Contents\Object\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="yaHpItemD.cpp">
-      <Filter>Contents\Object\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="yaHpItemI.cpp">
-      <Filter>Contents\Object\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="yaBigItem.cpp">
-      <Filter>Contents\Object\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="yaFastItem.cpp">
-      <Filter>Contents\Object\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="yaObstacleToCoin.cpp">
-      <Filter>Contents\Object\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="yaSlowItem.cpp">
-      <Filter>Contents\Object\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="yaSmItem.cpp">
-      <Filter>Contents\Object\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="yaInputEItem.cpp">
-      <Filter>Contents\Object\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="yaMagnetItem.cpp">
-      <Filter>Contents\Object\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="yaBasicToBear.cpp">
-      <Filter>Contents\Object\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="yaInvincibleItem.cpp">
-      <Filter>Contents\Object\Item</Filter>
     </ClCompile>
     <ClCompile Include="yaMakeScene.cpp">
       <Filter>Contents\Scene</Filter>
     </ClCompile>
     <ClCompile Include="yaOverGround.cpp">
       <Filter>Contents\Ground</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBigItem.cpp">
+      <Filter>Contents\Object\Item\Active</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBlackOutMItem.cpp">
+      <Filter>Contents\Object\Item\Active</Filter>
+    </ClCompile>
+    <ClCompile Include="yaFastItem.cpp">
+      <Filter>Contents\Object\Item\Active</Filter>
+    </ClCompile>
+    <ClCompile Include="yaHpItemD.cpp">
+      <Filter>Contents\Object\Item\Active</Filter>
+    </ClCompile>
+    <ClCompile Include="yaHpItemI.cpp">
+      <Filter>Contents\Object\Item\Active</Filter>
+    </ClCompile>
+    <ClCompile Include="yaInputEItem.cpp">
+      <Filter>Contents\Object\Item\Active</Filter>
+    </ClCompile>
+    <ClCompile Include="yaInvincibleItem.cpp">
+      <Filter>Contents\Object\Item\Active</Filter>
+    </ClCompile>
+    <ClCompile Include="yaMagnetItem.cpp">
+      <Filter>Contents\Object\Item\Active</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSmItem.cpp">
+      <Filter>Contents\Object\Item\Active</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSlowItem.cpp">
+      <Filter>Contents\Object\Item\Active</Filter>
+    </ClCompile>
+    <ClCompile Include="yaShakeItem.cpp">
+      <Filter>Contents\Object\Item\Active</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBasic_Candy_B.cpp">
+      <Filter>Contents\Object\Item\Basic\Candy</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBasic_Candy_G.cpp">
+      <Filter>Contents\Object\Item\Basic\Candy</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBasic_Candy_M1.cpp">
+      <Filter>Contents\Object\Item\Basic\Candy</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBasic_Candy_M2.cpp">
+      <Filter>Contents\Object\Item\Basic\Candy</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBasic_Candy_R.cpp">
+      <Filter>Contents\Object\Item\Basic\Candy</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBasic_Candy_Y.cpp">
+      <Filter>Contents\Object\Item\Basic\Candy</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBasic_Gummy_B.cpp">
+      <Filter>Contents\Object\Item\Basic\Gummy</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBasic_Gummy_G.cpp">
+      <Filter>Contents\Object\Item\Basic\Gummy</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBasic_Gummy_M1.cpp">
+      <Filter>Contents\Object\Item\Basic\Gummy</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBasic_Gummy_M2.cpp">
+      <Filter>Contents\Object\Item\Basic\Gummy</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBasic_Gummy_R.cpp">
+      <Filter>Contents\Object\Item\Basic\Gummy</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBasic_Gummy_Y.cpp">
+      <Filter>Contents\Object\Item\Basic\Gummy</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBear_Big.cpp">
+      <Filter>Contents\Object\Item\Bear</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBear_FlyingPink.cpp">
+      <Filter>Contents\Object\Item\Bear</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBear_FlyingYellow.cpp">
+      <Filter>Contents\Object\Item\Bear</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBear_Rainbow.cpp">
+      <Filter>Contents\Object\Item\Bear</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBear_SmallBlue.cpp">
+      <Filter>Contents\Object\Item\Bear</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBear_SmallPink.cpp">
+      <Filter>Contents\Object\Item\Bear</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBear_SmallYellow.cpp">
+      <Filter>Contents\Object\Item\Bear</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBear_StarBlue.cpp">
+      <Filter>Contents\Object\Item\Bear</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBear_StarYellow.cpp">
+      <Filter>Contents\Object\Item\Bear</Filter>
+    </ClCompile>
+    <ClCompile Include="yaTile.cpp">
+      <Filter>Contents\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="yaToolScene.cpp">
+      <Filter>Contents\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="yaCoin_Gold.cpp">
+      <Filter>Contents\Object\Item\Coin</Filter>
+    </ClCompile>
+    <ClCompile Include="yaCoin_GoldB.cpp">
+      <Filter>Contents\Object\Item\Coin</Filter>
+    </ClCompile>
+    <ClCompile Include="yaCoin_Silver.cpp">
+      <Filter>Contents\Object\Item\Coin</Filter>
+    </ClCompile>
+    <ClCompile Include="yaCoin_SilverB.cpp">
+      <Filter>Contents\Object\Item\Coin</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBasicToBear.cpp">
+      <Filter>Contents\Object\Item\Active</Filter>
+    </ClCompile>
+    <ClCompile Include="yaObstacleToCoin.cpp">
+      <Filter>Contents\Object\Item\Active</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

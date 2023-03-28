@@ -20,5 +20,7 @@ namespace ya
 
 	private:
 		Animator* mAnimator;
+		
+		float mTime = 0.0f;
 	};
 }

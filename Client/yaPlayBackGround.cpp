@@ -4,6 +4,7 @@
 #include "yaInput.h"
 #include "yaResources.h"
 #include "yaTransform.h"
+#include "yaAnimator.h"
 
 namespace ya
 {
@@ -19,7 +20,14 @@ namespace ya
 
 	void PlayBackGround::Initialize()
 	{
-		mImage = Resources::Load<Image>(L"PlayBG", L"..\\Resources\\stage00.bmp");
+		mAnimator = AddComponent<Animator>();
+
+		Transform* tr = GetComponent<Transform>();
+		//tr->SetPos(Vector2(600.0f, 700.0f));
+		tr->SetScale(Vector2(2.4f, 2.4f));
+
+		mAnimator->CreateAnimations(L"..\\Resources\\Map\\Land1", Vector2::Zero, 0.1f, 0);
+		mAnimator->Play(L"MapLand1", false);
 
 		GameObject::Initialize();
 	}
@@ -27,24 +35,11 @@ namespace ya
 	void PlayBackGround::Update()
 	{
 		GameObject::Update();
-
-		Transform* tr = GetComponent<Transform>();
-		Vector2 pos = tr->GetPos();
-
-		pos.x -= 100.0f * Time::DeltaTime();
-
-		tr->SetPos(pos);
 	}
 
 	void PlayBackGround::Render(HDC hdc)
 	{
 		GameObject::Render(hdc);
-
-		Transform* tr = GetComponent<Transform>();
-		Vector2 pos = tr->GetPos();
-		//BitBlt(hdc, pos.x, pos.y, mImage->GetWidth(), mImage->GetHeight(), mImage->GetHdc(), 0, 0, SRCCOPY);
-		TransparentBlt(hdc, pos.x, pos.y, 3000, 1200
-			, mImage->GetHdc(), 0, 0, mImage->GetWidth(), mImage->GetHeight(), RGB(170, 0, 0));
 	}
 
 	void PlayBackGround::Release()

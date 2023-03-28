@@ -12,7 +12,7 @@
 #include "yaObject.h"
 #include "yaTime.h"
 
-#include "yaJellyCoin.h"
+#include "yaCoin_Silver.h"
 #include "yaBlackOutMItem.h"
 #include "yaShakeItem.h"
 #include "yaSmItem.h"
@@ -59,12 +59,13 @@ namespace ya
 		Scene::Initialize();
 
 		// ¿©±â´Ù
-
+		object::Instantiate<BasicToBear>(Vector2(900.0f, 400.0f), eLayerType::BG);
 		//object::Instantiate<PlayBackGround>(eLayerType::BG);
+
 		object::Instantiate<OverGround>(Vector2(-100.0f, 400.0f), eLayerType::Ground);
 		//object::Instantiate<Ground>(Vector2(-100.0f, 700.0f), eLayerType::Ground);
 		object::Instantiate<Ground>(Vector2(-100.0f, 700.0f), eLayerType::Ground, Vector2(10000.0f, 50.0f));
-		object::Instantiate<UnderGround>(Vector2(-100.0f, 790.0f), eLayerType::Ground);
+		object::Instantiate<UnderGround>(Vector2(-100.0f, 890.0f), eLayerType::Ground);
 
 		int temp = SelectCharScene::GetCharNumber();
 		if (int temp = SelectCharScene::GetCharNumber() == 1)
@@ -82,7 +83,7 @@ namespace ya
 		object::Instantiate<Obstacle>(Vector2(2700.0f, 700.0f), eLayerType::Obstacle);
 		object::Instantiate<Obstacle01>(Vector2(3300.0f, 650.0f), eLayerType::Obstacle);
 		object::Instantiate<Obstacle>(Vector2(5600.0f, 700.0f), eLayerType::Obstacle);
-		object::Instantiate<JellyCoin>(Vector2(2100.0f, 700.0f), eLayerType::Item);
+		object::Instantiate<Coin_Silver>(Vector2(2100.0f, 700.0f), eLayerType::Item);
 
 		object::Instantiate<BigItem>(Vector2(2800.0f, 700.0f), eLayerType::Item);
 		object::Instantiate<ShakeItem>(Vector2(5000.0f, 700.0f), eLayerType::Item);

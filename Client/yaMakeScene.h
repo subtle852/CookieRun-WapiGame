@@ -13,6 +13,16 @@ namespace ya
 		UINT64 id;
 	};
 
+	union TileInd
+	{
+		struct
+		{
+			UINT32 ind;
+			UINT32 width;
+		};
+		UINT64 id2;
+	};
+
 	class Character01;
 	class GameObject;
 
@@ -33,17 +43,26 @@ namespace ya
 		void Create();
 
 	private:
-		std::unordered_map<UINT64, int> mTiles;
+		std::unordered_map<UINT64, UINT64> mTiles;
 
 		Character01* mCh;
 
 		GameObject* mOb;
+		std::unordered_map<UINT64, GameObject*> mVectorOb;
+
+		std::unordered_map<UINT64, GameObject*> mBasicJelly;
 
 		TilePos id;
+		TileInd id2;
 
 		float DownPosX;
 		float DownPosY;
 		float UpPosX;
 		float UpPosY;
+
+	public:
+		static Vector2 mChPos;
+
+		float mMagnetTime = 0.0f;
 	};
 }

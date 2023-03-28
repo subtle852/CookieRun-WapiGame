@@ -61,7 +61,7 @@ namespace ya
 			Vector2 cupPos = cupTr->GetPos();
 			Vector2 grPos = grTr->GetPos();
 
-			cupPos -= (fSize - fLen) - 1.0f;
+			cupPos.y -= (fSize - fLen) - 1.0f;
 			cupTr->SetPos(cupPos);
 		}
 	}
@@ -71,6 +71,9 @@ namespace ya
 		Character01* cuphead = dynamic_cast<Character01*>(other->GetOwner());
 		if (cuphead == nullptr)
 			return;
+
+		//Rigidbody* rb = cuphead->GetComponent<Rigidbody>();
+		//rb->SetGround(true);
 
 		Collider* cupheadCol = cuphead->GetComponent<Collider>();
 		Vector2 cupheadPos = cupheadCol->GetPos();
@@ -100,8 +103,8 @@ namespace ya
 		if (cuphead == nullptr)
 			return;
 
-		Rigidbody* rb = cuphead->GetComponent<Rigidbody>();
-		rb->SetGround(false);
+		//Rigidbody* rb = cuphead->GetComponent<Rigidbody>();
+		//rb->SetGround(false);
 	}
 
 }

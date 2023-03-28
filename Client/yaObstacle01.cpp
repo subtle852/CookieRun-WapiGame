@@ -38,6 +38,27 @@ namespace ya
 
 	void Obstacle01::Update()
 	{
+		//mTime += Time::DeltaTime();
+
+		//if (0.f < mTime && mTime < 2.f)
+		//{
+		//	Collider* collider = GetComponent<Collider>();
+		//	collider->SetSize(Vector2(120.0f, 520.0f));
+		//	collider->SetCenter(Vector2(-60.0f, -350.0f));
+		//}
+
+		//if (2.f < mTime && mTime < 4.f)
+		//{
+		//	Collider* collider = GetComponent<Collider>();
+		//	collider->SetSize(Vector2(120.0f, 520.0f));
+		//	collider->SetCenter(Vector2(-60.0f, -550.0f));
+		//}
+
+		//if (mTime > 4.f)
+		//{
+		//	mTime = 0.0f;
+		//}
+
 		GameObject::Update();
 	}
 
