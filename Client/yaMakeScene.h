@@ -51,6 +51,7 @@ namespace ya
 		std::unordered_map<UINT64, GameObject*> mVectorOb;
 
 		std::unordered_map<UINT64, GameObject*> mBasicJelly;
+		std::unordered_map<UINT64, GameObject*> mBearJelly;
 
 		TilePos id;
 		TileInd id2;
@@ -64,5 +65,8 @@ namespace ya
 		static Vector2 mChPos;
 
 		float mMagnetTime = 0.0f;
+		float mBtoBTime = 0.0f;
+		bool mBtoBend = false;
+		bool mBtoBend2 = false;
 	};
 }

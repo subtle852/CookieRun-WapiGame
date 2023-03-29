@@ -128,6 +128,27 @@
     <Filter Include="Contents\Object\Item\Basic\Gummy">
       <UniqueIdentifier>{f33193b2-8325-44a4-af42-5a483ca8f8f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Object\Obstacle\Land1\Slide">
+      <UniqueIdentifier>{07e7a29c-36e7-43bf-87eb-32153628204a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Object\Obstacle\Land1\Jump2">
+      <UniqueIdentifier>{7dac1293-dcb7-4614-b1ae-7b888fd9e7a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Object\Obstacle\Land1\Jump1">
+      <UniqueIdentifier>{ba2dd3e8-9001-4592-a899-89b555932097}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Object\Obstacle\Land1\Tile">
+      <UniqueIdentifier>{a835ac29-5bc2-4859-9a7f-ea1df31580d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Object\BackGround\Land1">
+      <UniqueIdentifier>{d4e7ba54-11b9-408b-b315-1c5df94d479b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Object\Obstacle\Land1\Tile\GroundTile">
+      <UniqueIdentifier>{e938451a-a68e-4f77-bc3b-4daacdcf2e08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Object\Obstacle\Land1\Tile\OvergTile">
+      <UniqueIdentifier>{fd3baddb-bce0-4f56-b4de-894aa2e6f5ec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -229,14 +250,8 @@
     <ClInclude Include="yaCollisionManager.h">
       <Filter>Engine\Component\Collider</Filter>
     </ClInclude>
-    <ClInclude Include="yaObstacle.h">
-      <Filter>Contents\Object\Obstacle</Filter>
-    </ClInclude>
     <ClInclude Include="yaPet01.h">
       <Filter>Contents\Pet</Filter>
-    </ClInclude>
-    <ClInclude Include="yaObstacle01.h">
-      <Filter>Contents\Object\Obstacle</Filter>
     </ClInclude>
     <ClInclude Include="yaCamera.h">
       <Filter>Engine\Component\Camera</Filter>
@@ -439,6 +454,96 @@
     <ClInclude Include="yaObstacleToCoin.h">
       <Filter>Contents\Object\Item\Active</Filter>
     </ClInclude>
+    <ClInclude Include="yaFlag.h">
+      <Filter>Contents\Object\Obstacle\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="yaL1_DP01.h">
+      <Filter>Contents\Object\Obstacle\Land1\Jump2</Filter>
+    </ClInclude>
+    <ClInclude Include="yaL1_DP02.h">
+      <Filter>Contents\Object\Obstacle\Land1\Jump2</Filter>
+    </ClInclude>
+    <ClInclude Include="yaL1_DP03.h">
+      <Filter>Contents\Object\Obstacle\Land1\Jump2</Filter>
+    </ClInclude>
+    <ClInclude Include="yaL1_DP04.h">
+      <Filter>Contents\Object\Obstacle\Land1\Jump2</Filter>
+    </ClInclude>
+    <ClInclude Include="yaL1_DP05.h">
+      <Filter>Contents\Object\Obstacle\Land1\Jump2</Filter>
+    </ClInclude>
+    <ClInclude Include="yaL1_DP06.h">
+      <Filter>Contents\Object\Obstacle\Land1\Jump2</Filter>
+    </ClInclude>
+    <ClInclude Include="yaL1_JP01.h">
+      <Filter>Contents\Object\Obstacle\Land1\Jump1</Filter>
+    </ClInclude>
+    <ClInclude Include="yaL1_JP02.h">
+      <Filter>Contents\Object\Obstacle\Land1\Jump1</Filter>
+    </ClInclude>
+    <ClInclude Include="yaL1_JP03.h">
+      <Filter>Contents\Object\Obstacle\Land1\Jump1</Filter>
+    </ClInclude>
+    <ClInclude Include="yaL1_JP04.h">
+      <Filter>Contents\Object\Obstacle\Land1\Jump1</Filter>
+    </ClInclude>
+    <ClInclude Include="yaL1_JP05.h">
+      <Filter>Contents\Object\Obstacle\Land1\Jump1</Filter>
+    </ClInclude>
+    <ClInclude Include="yaL1_SL01.h">
+      <Filter>Contents\Object\Obstacle\Land1\Slide</Filter>
+    </ClInclude>
+    <ClInclude Include="yaL1_SL02.h">
+      <Filter>Contents\Object\Obstacle\Land1\Slide</Filter>
+    </ClInclude>
+    <ClInclude Include="yaL1_SL03.h">
+      <Filter>Contents\Object\Obstacle\Land1\Slide</Filter>
+    </ClInclude>
+    <ClInclude Include="yaL1_SL04.h">
+      <Filter>Contents\Object\Obstacle\Land1\Slide</Filter>
+    </ClInclude>
+    <ClInclude Include="yaL1_SL05.h">
+      <Filter>Contents\Object\Obstacle\Land1\Slide</Filter>
+    </ClInclude>
+    <ClInclude Include="yaL1_SL06.h">
+      <Filter>Contents\Object\Obstacle\Land1\Slide</Filter>
+    </ClInclude>
+    <ClInclude Include="yaL1_JP06.h">
+      <Filter>Contents\Object\Obstacle\Land1\Jump1</Filter>
+    </ClInclude>
+    <ClInclude Include="yaObstacle.h">
+      <Filter>Contents\Object\Obstacle\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="yaObstacle01.h">
+      <Filter>Contents\Object\Obstacle\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="yaL1_BG02.h">
+      <Filter>Contents\Object\BackGround\Land1</Filter>
+    </ClInclude>
+    <ClInclude Include="yaL1_BG01.h">
+      <Filter>Contents\Object\BackGround\Land1</Filter>
+    </ClInclude>
+    <ClInclude Include="yaL1_BG03.h">
+      <Filter>Contents\Object\BackGround\Land1</Filter>
+    </ClInclude>
+    <ClInclude Include="yaL1_GT01.h">
+      <Filter>Contents\Object\Obstacle\Land1\Tile\GroundTile</Filter>
+    </ClInclude>
+    <ClInclude Include="yaL1_GT02.h">
+      <Filter>Contents\Object\Obstacle\Land1\Tile\GroundTile</Filter>
+    </ClInclude>
+    <ClInclude Include="yaL1_GT03.h">
+      <Filter>Contents\Object\Obstacle\Land1\Tile\GroundTile</Filter>
+    </ClInclude>
+    <ClInclude Include="yaL1_OT01.h">
+      <Filter>Contents\Object\Obstacle\Land1\Tile\OvergTile</Filter>
+    </ClInclude>
+    <ClInclude Include="yaL1_OT02.h">
+      <Filter>Contents\Object\Obstacle\Land1\Tile\OvergTile</Filter>
+    </ClInclude>
+    <ClInclude Include="yaL1_OT03.h">
+      <Filter>Contents\Object\Obstacle\Land1\Tile\OvergTile</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="small.ico">
@@ -538,14 +643,8 @@
     <ClCompile Include="yaCollisionManager.cpp">
       <Filter>Engine\Component\Collider</Filter>
     </ClCompile>
-    <ClCompile Include="yaObstacle.cpp">
-      <Filter>Contents\Object\Obstacle</Filter>
-    </ClCompile>
     <ClCompile Include="yaPet01.cpp">
       <Filter>Contents\Pet</Filter>
-    </ClCompile>
-    <ClCompile Include="yaObstacle01.cpp">
-      <Filter>Contents\Object\Obstacle</Filter>
     </ClCompile>
     <ClCompile Include="yaCamera.cpp">
       <Filter>Engine\Component\Camera</Filter>
@@ -744,6 +843,96 @@
     </ClCompile>
     <ClCompile Include="yaObstacleToCoin.cpp">
       <Filter>Contents\Object\Item\Active</Filter>
+    </ClCompile>
+    <ClCompile Include="yaFlag.cpp">
+      <Filter>Contents\Object\Obstacle\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="yaL1_DP01.cpp">
+      <Filter>Contents\Object\Obstacle\Land1\Jump2</Filter>
+    </ClCompile>
+    <ClCompile Include="yaL1_DP02.cpp">
+      <Filter>Contents\Object\Obstacle\Land1\Jump2</Filter>
+    </ClCompile>
+    <ClCompile Include="yaL1_DP03.cpp">
+      <Filter>Contents\Object\Obstacle\Land1\Jump2</Filter>
+    </ClCompile>
+    <ClCompile Include="yaL1_DP04.cpp">
+      <Filter>Contents\Object\Obstacle\Land1\Jump2</Filter>
+    </ClCompile>
+    <ClCompile Include="yaL1_DP05.cpp">
+      <Filter>Contents\Object\Obstacle\Land1\Jump2</Filter>
+    </ClCompile>
+    <ClCompile Include="yaL1_DP06.cpp">
+      <Filter>Contents\Object\Obstacle\Land1\Jump2</Filter>
+    </ClCompile>
+    <ClCompile Include="yaL1_JP01.cpp">
+      <Filter>Contents\Object\Obstacle\Land1\Jump1</Filter>
+    </ClCompile>
+    <ClCompile Include="yaL1_JP02.cpp">
+      <Filter>Contents\Object\Obstacle\Land1\Jump1</Filter>
+    </ClCompile>
+    <ClCompile Include="yaL1_JP03.cpp">
+      <Filter>Contents\Object\Obstacle\Land1\Jump1</Filter>
+    </ClCompile>
+    <ClCompile Include="yaL1_JP04.cpp">
+      <Filter>Contents\Object\Obstacle\Land1\Jump1</Filter>
+    </ClCompile>
+    <ClCompile Include="yaL1_JP05.cpp">
+      <Filter>Contents\Object\Obstacle\Land1\Jump1</Filter>
+    </ClCompile>
+    <ClCompile Include="yaL1_JP06.cpp">
+      <Filter>Contents\Object\Obstacle\Land1\Jump1</Filter>
+    </ClCompile>
+    <ClCompile Include="yaL1_SL01.cpp">
+      <Filter>Contents\Object\Obstacle\Land1\Slide</Filter>
+    </ClCompile>
+    <ClCompile Include="yaL1_SL02.cpp">
+      <Filter>Contents\Object\Obstacle\Land1\Slide</Filter>
+    </ClCompile>
+    <ClCompile Include="yaL1_SL03.cpp">
+      <Filter>Contents\Object\Obstacle\Land1\Slide</Filter>
+    </ClCompile>
+    <ClCompile Include="yaL1_SL04.cpp">
+      <Filter>Contents\Object\Obstacle\Land1\Slide</Filter>
+    </ClCompile>
+    <ClCompile Include="yaL1_SL05.cpp">
+      <Filter>Contents\Object\Obstacle\Land1\Slide</Filter>
+    </ClCompile>
+    <ClCompile Include="yaL1_SL06.cpp">
+      <Filter>Contents\Object\Obstacle\Land1\Slide</Filter>
+    </ClCompile>
+    <ClCompile Include="yaObstacle.cpp">
+      <Filter>Contents\Object\Obstacle\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="yaObstacle01.cpp">
+      <Filter>Contents\Object\Obstacle\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="yaL1_BG02.cpp">
+      <Filter>Contents\Object\BackGround\Land1</Filter>
+    </ClCompile>
+    <ClCompile Include="yaL1_BG01.cpp">
+      <Filter>Contents\Object\BackGround\Land1</Filter>
+    </ClCompile>
+    <ClCompile Include="yaL1_BG03.cpp">
+      <Filter>Contents\Object\BackGround\Land1</Filter>
+    </ClCompile>
+    <ClCompile Include="yaL1_GT01.cpp">
+      <Filter>Contents\Object\Obstacle\Land1\Tile\GroundTile</Filter>
+    </ClCompile>
+    <ClCompile Include="yaL1_GT02.cpp">
+      <Filter>Contents\Object\Obstacle\Land1\Tile\GroundTile</Filter>
+    </ClCompile>
+    <ClCompile Include="yaL1_GT03.cpp">
+      <Filter>Contents\Object\Obstacle\Land1\Tile\GroundTile</Filter>
+    </ClCompile>
+    <ClCompile Include="yaL1_OT01.cpp">
+      <Filter>Contents\Object\Obstacle\Land1\Tile\OvergTile</Filter>
+    </ClCompile>
+    <ClCompile Include="yaL1_OT02.cpp">
+      <Filter>Contents\Object\Obstacle\Land1\Tile\OvergTile</Filter>
+    </ClCompile>
+    <ClCompile Include="yaL1_OT03.cpp">
+      <Filter>Contents\Object\Obstacle\Land1\Tile\OvergTile</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

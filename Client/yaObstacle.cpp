@@ -33,9 +33,9 @@ namespace ya
 		//tr->SetScale(Vector2(1.5f, 1.5f));
 
 		mAnimator = AddComponent<Animator>();
-		mAnimator->CreateAnimations(L"..\\Resources\\land1\\jump", Vector2::Zero, 0.1f,0);
+		//mAnimator->CreateAnimations(L"..\\Resources\\land1\\jump", Vector2::Zero, 0.1f,0);
 
-		mAnimator->Play(L"land1jump", true);
+		//mAnimator->Play(L"land1jump", true);
 
 		Collider* collider = AddComponent<Collider>();
 		collider->SetSize(Vector2(120.0f, 200.0f));
@@ -50,7 +50,7 @@ namespace ya
 		Transform* tr = GetComponent<Transform>();
 		Vector2 pos = tr->GetPos();
 
-		if (mMagnet == true)
+		if (mMagnet == true)// 이 부분은 자석효과일 때 따라올 아이템들한테 다 넣어줘야함
 		{
 			if (ChPos.y + 25.0f < pos.y)
 			{

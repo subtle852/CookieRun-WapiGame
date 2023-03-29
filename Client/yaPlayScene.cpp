@@ -59,7 +59,6 @@ namespace ya
 		Scene::Initialize();
 
 		// ¿©±â´Ù
-		object::Instantiate<BasicToBear>(Vector2(900.0f, 400.0f), eLayerType::BG);
 		//object::Instantiate<PlayBackGround>(eLayerType::BG);
 
 		object::Instantiate<OverGround>(Vector2(-100.0f, 400.0f), eLayerType::Ground);

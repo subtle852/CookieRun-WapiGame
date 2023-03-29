@@ -135,6 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="yaL1_BG02.h" />
     <ClInclude Include="yaBasic_Candy_B.h" />
     <ClInclude Include="yaBasic_Candy_G.h" />
     <ClInclude Include="yaBasic_Candy_M1.h" />
@@ -160,6 +161,7 @@
     <ClInclude Include="yaCoin_GoldB.h" />
     <ClInclude Include="yaCoin_Silver.h" />
     <ClInclude Include="yaCoin_SilverB.h" />
+    <ClInclude Include="yaFlag.h" />
     <ClInclude Include="yaInvincibleItem.h" />
     <ClInclude Include="yaBasicToBear.h" />
     <ClInclude Include="yaHpItemD.h" />
@@ -174,6 +176,32 @@
     <ClInclude Include="yaGaugeBar.h" />
     <ClInclude Include="yaGaugeCircle.h" />
     <ClInclude Include="yaInputEItem.h" />
+    <ClInclude Include="yaL1_BG01.h" />
+    <ClInclude Include="yaL1_BG03.h" />
+    <ClInclude Include="yaL1_DP01.h" />
+    <ClInclude Include="yaL1_DP02.h" />
+    <ClInclude Include="yaL1_DP03.h" />
+    <ClInclude Include="yaL1_DP04.h" />
+    <ClInclude Include="yaL1_DP05.h" />
+    <ClInclude Include="yaL1_DP06.h" />
+    <ClInclude Include="yaL1_GT01.h" />
+    <ClInclude Include="yaL1_GT02.h" />
+    <ClInclude Include="yaL1_GT03.h" />
+    <ClInclude Include="yaL1_JP01.h" />
+    <ClInclude Include="yaL1_JP02.h" />
+    <ClInclude Include="yaL1_JP03.h" />
+    <ClInclude Include="yaL1_JP04.h" />
+    <ClInclude Include="yaL1_JP05.h" />
+    <ClInclude Include="yaL1_JP06.h" />
+    <ClInclude Include="yaL1_OT01.h" />
+    <ClInclude Include="yaL1_OT02.h" />
+    <ClInclude Include="yaL1_OT03.h" />
+    <ClInclude Include="yaL1_SL01.h" />
+    <ClInclude Include="yaL1_SL02.h" />
+    <ClInclude Include="yaL1_SL03.h" />
+    <ClInclude Include="yaL1_SL04.h" />
+    <ClInclude Include="yaL1_SL05.h" />
+    <ClInclude Include="yaL1_SL06.h" />
     <ClInclude Include="yaMakeScene.h" />
     <ClInclude Include="yaObstacleToCoin.h" />
     <ClInclude Include="yaOverGround.h" />
@@ -240,6 +268,7 @@
     <ClInclude Include="yaMagnetItem.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="yaL1_BG02.cpp" />
     <ClCompile Include="yaBasic_Candy_B.cpp" />
     <ClCompile Include="yaBasic_Candy_G.cpp" />
     <ClCompile Include="yaBasic_Candy_M1.cpp" />
@@ -265,6 +294,7 @@
     <ClCompile Include="yaCoin_GoldB.cpp" />
     <ClCompile Include="yaCoin_Silver.cpp" />
     <ClCompile Include="yaCoin_SilverB.cpp" />
+    <ClCompile Include="yaFlag.cpp" />
     <ClCompile Include="yaInvincibleItem.cpp" />
     <ClCompile Include="yaBasicToBear.cpp" />
     <ClCompile Include="yaHpItemD.cpp" />
@@ -276,6 +306,32 @@
     <ClCompile Include="yaGaugeBar.cpp" />
     <ClCompile Include="yaGaugeCircle.cpp" />
     <ClCompile Include="yaInputEItem.cpp" />
+    <ClCompile Include="yaL1_BG01.cpp" />
+    <ClCompile Include="yaL1_BG03.cpp" />
+    <ClCompile Include="yaL1_DP01.cpp" />
+    <ClCompile Include="yaL1_DP02.cpp" />
+    <ClCompile Include="yaL1_DP03.cpp" />
+    <ClCompile Include="yaL1_DP04.cpp" />
+    <ClCompile Include="yaL1_DP05.cpp" />
+    <ClCompile Include="yaL1_DP06.cpp" />
+    <ClCompile Include="yaL1_GT01.cpp" />
+    <ClCompile Include="yaL1_GT02.cpp" />
+    <ClCompile Include="yaL1_GT03.cpp" />
+    <ClCompile Include="yaL1_JP01.cpp" />
+    <ClCompile Include="yaL1_JP02.cpp" />
+    <ClCompile Include="yaL1_JP03.cpp" />
+    <ClCompile Include="yaL1_JP04.cpp" />
+    <ClCompile Include="yaL1_JP05.cpp" />
+    <ClCompile Include="yaL1_JP06.cpp" />
+    <ClCompile Include="yaL1_OT01.cpp" />
+    <ClCompile Include="yaL1_OT02.cpp" />
+    <ClCompile Include="yaL1_OT03.cpp" />
+    <ClCompile Include="yaL1_SL01.cpp" />
+    <ClCompile Include="yaL1_SL02.cpp" />
+    <ClCompile Include="yaL1_SL03.cpp" />
+    <ClCompile Include="yaL1_SL04.cpp" />
+    <ClCompile Include="yaL1_SL05.cpp" />
+    <ClCompile Include="yaL1_SL06.cpp" />
     <ClCompile Include="yaMakeScene.cpp" />
     <ClCompile Include="yaObstacleToCoin.cpp" />
     <ClCompile Include="yaOverGround.cpp" />

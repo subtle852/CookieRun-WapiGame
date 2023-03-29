@@ -6,7 +6,6 @@
 #include "yaTransform.h"
 #include "yaAnimator.h"
 #include "yaCollider.h"
-//#include "yaBaseBullet.h"
 #include "yaScene.h"
 #include "yaCamera.h"
 
@@ -25,9 +24,9 @@ namespace ya
 	void Obstacle01::Initialize()
 	{
 		mAnimator = AddComponent<Animator>();
-		mAnimator->CreateAnimations(L"..\\Resources\\land1\\slide", Vector2::Zero, 0.1f, 0);
+		//mAnimator->CreateAnimations(L"..\\Resources\\land1\\slide", Vector2::Zero, 0.1f, 0);
 
-		mAnimator->Play(L"land1slide", true);
+		//mAnimator->Play(L"land1slide", true);
 
 		Collider* collider = AddComponent<Collider>();
 		collider->SetSize(Vector2(120.0f, 520.0f));

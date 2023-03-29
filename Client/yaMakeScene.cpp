@@ -20,6 +20,19 @@
 #include "yaBasic_Candy_Y.h"
 #include "yaCoin_Silver.h"
 #include "yaBear_FlyingPink.h"
+#include "yaFlag.h"
+
+#include "yaL1_JP01.h"
+#include "yaL1_DP01.h"
+#include "yaL1_SL04.h"
+
+#include "yaL1_BG01.h"
+#include "yaL1_BG02.h"
+#include "yaL1_BG03.h"
+
+#include "yaL1_GT01.h"
+#include "yaL1_GT02.h"
+#include "yaL1_GT03.h"
 
 #include "yaApplication.h"
 extern ya::Application application;
@@ -39,6 +52,11 @@ namespace ya
 	void MakeScene::Initialize()
 	{
 		Scene::Initialize();
+
+		//object::Instantiate<L1_BG01>(Vector2(500.0f, 370.0f), eLayerType::BG);
+		object::Instantiate<L1_BG02>(Vector2(500.0f, 370.0f), eLayerType::BG);
+		object::Instantiate<L1_BG02>(Vector2(3238.0f, 370.0f), eLayerType::BG);
+		//object::Instantiate<L1_BG03>(Vector2(500.0f, 370.0f), eLayerType::BG);
 
 		object::Instantiate<Ground>(Vector2(-100.0f, 700.0f), eLayerType::Ground, Vector2(1000.0f, 50.0f));
 		object::Instantiate<UnderGround>(Vector2(-100.0f, 790.0f), eLayerType::Ground);
@@ -86,23 +104,84 @@ namespace ya
 
 		if (mCh->mBtoB == true)
 		{
-			std::unordered_map<UINT64, GameObject*>::iterator iter = mBasicJelly.begin();
-			for (; iter != mBasicJelly.end(); iter++)
+			mBtoBTime += Time::DeltaTime();
+			int tempToclear = 0;
+
+			if (mBtoBend == false && mBtoBTime <= 1.0f)
 			{
-				TilePos id;
-				id.id = iter->first;
-
-				GameObject* temp = iter->second;
-				
-				ya::object::Destory(iter->second);
-				mOb = object::Instantiate<Bear_FlyingPink>(Vector2(id.x, id.y), eLayerType::Item);
-
-				if (iter == --mBasicJelly.end())
+				std::unordered_map<UINT64, GameObject*>::iterator iter = mBasicJelly.begin();
+				for (; iter != mBasicJelly.end(); iter++)
 				{
+					TilePos id;
+					id.id = iter->first;
+
+					GameObject* temp = iter->second;
+
+					Transform* tr = mCh->GetComponent<Transform>();
+					Vector2 pos = tr->GetPos();
+					if (pos.x < id.x)
+					{
+						ya::object::Destory(iter->second);
+						mOb = object::Instantiate<Bear_FlyingPink>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mBearJelly.insert(std::make_pair(id.id, mOb));
+					}
+
+					if (iter == --mBasicJelly.end())
+					{
+						tempToclear = 1;
+						mBtoBend2 = false;
+						mBtoBend = true;
+						//mCh->mBtoB = false;
+					}
+				}
+
+				if (tempToclear == 1)
+				{
+					mBasicJelly.clear();
+				}
+			}
+			
+			if (mBtoBTime > 1.0f)
+			{
+				if (mBtoBend2 == false)
+				{
+					std::unordered_map<UINT64, GameObject*>::iterator iter = mBearJelly.begin();
+					for (; iter != mBearJelly.end(); iter++)
+					{
+						TilePos id;
+						id.id = iter->first;
+
+						GameObject* temp = iter->second;
+
+						Transform* tr = mCh->GetComponent<Transform>();
+						Vector2 pos = tr->GetPos();
+						if (pos.x < id.x)
+						{
+							ya::object::Destory(iter->second);
+							mOb = object::Instantiate<Basic_Candy_Y>(Vector2(id.x, id.y), eLayerType::Item);
+							// 만약에 베이직 젤리를 여러 종류로 생성을 하고 싶다면
+							// mTiles를 받아와서 그 id.id 찾아서 index 찾은 후 조건문으로 생성
+
+							mBasicJelly.insert(std::make_pair(id.id, mOb));
+						}
+
+						if (iter == --mBearJelly.end())
+						{
+							mBtoBend = false;
+							mBtoBend2 = true;// 얘들 다시 false로 돌려놔야함
+							//mCh->mBtoB = false;
+						}
+					}
+				}
+
+				if (mBtoBend2 == true)
+				{
+					mBearJelly.clear();
+					mBtoBTime = 0.0f;
 					mCh->mBtoB = false;
 				}
 			}
-		
 		}
 
 		if (GetFocus())
@@ -159,7 +238,12 @@ namespace ya
 
 				if (ToolScene::mIndex == 0)
 				{
-					mOb = object::Instantiate<Obstacle>(Vector2(pos.x, pos.y), eLayerType::Obstacle);
+					//#include "yaL1_JP01.h"
+					//#include "yaL1_DP01.h"
+					//#include "yaL1_SL01.h"
+					//Obstacle
+					//L1_GT01 OT말고 GT는 y좌표 고정하면 될듯(단, 타일마다 y위치 다른 경우 존재하니 맞춰서 타일그림 편집)
+					mOb = object::Instantiate<L1_GT03>(Vector2(pos.x, pos.y), eLayerType::Obstacle);
 
 					int index = ToolScene::mIndex;
 					id2.ind = (UINT32)index;
@@ -173,7 +257,8 @@ namespace ya
 				}
 				if (ToolScene::mIndex == 1)
 				{
-					mOb = object::Instantiate<MagnetItem>(Vector2(pos.x, pos.y), eLayerType::Obstacle);
+					//mOb = object::Instantiate<MagnetItem>(Vector2(pos.x, pos.y), eLayerType::Obstacle);
+					mOb = object::Instantiate<BasicToBear>(Vector2(pos.x, pos.y), eLayerType::Item);
 
 					int index = ToolScene::mIndex;
 					id2.ind = (UINT32)index;
