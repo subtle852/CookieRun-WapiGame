@@ -25,6 +25,8 @@ namespace ya
 
 	class Character01;
 	class GameObject;
+	class EatEffect;
+	class CloudEffect;
 
 	class MakeScene : public Scene
 	{
@@ -48,10 +50,13 @@ namespace ya
 		Character01* mCh;
 
 		GameObject* mOb;
-		std::unordered_map<UINT64, GameObject*> mVectorOb;
+		std::unordered_map<UINT64, GameObject*> mObs;// 게임오브젝트를 멤버 배열로 받아 destroy하려고 만든 것
 
 		std::unordered_map<UINT64, GameObject*> mBasicJelly;
 		std::unordered_map<UINT64, GameObject*> mBearJelly;
+
+		std::unordered_map<UINT64, GameObject*> mObstacle;
+		std::unordered_map<UINT64, GameObject*> mCoin;
 
 		TilePos id;
 		TileInd id2;
@@ -65,8 +70,21 @@ namespace ya
 		static Vector2 mChPos;
 
 		float mMagnetTime = 0.0f;
+
 		float mBtoBTime = 0.0f;
 		bool mBtoBend = false;
 		bool mBtoBend2 = false;
+
+		float mOtoCTime = 0.0f;
+		bool mOtoCend = false;
+		bool mOtoCend2 = false;
+
+		EatEffect* mEatEffect = nullptr;
+		static bool mEatEffectOn;
+		float mEatEffectTime = 0.0f;
+
+		CloudEffect* mCloudEffect = nullptr;
+		static bool mCloudEffectOn;
+		float mCloudEffectTime = 0.0f;
 	};
 }

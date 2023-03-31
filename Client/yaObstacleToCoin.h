@@ -21,8 +21,5 @@ namespace ya
 
 	private:
 		Animator* mAnimator;
-
-	public:
-		bool mOn = false;
 	};
 }

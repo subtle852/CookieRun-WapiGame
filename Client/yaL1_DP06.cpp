@@ -29,9 +29,9 @@ namespace ya
 		//tr->SetScale(Vector2(1.5f, 1.5f));
 
 		mAnimator = AddComponent<Animator>();
-		mAnimator->CreateAnimations(L"..\\Resources\\Land1\\Jump2\\1_01", Vector2::Zero, 0.1f, 0);
+		mAnimator->CreateAnimations(L"..\\Resources\\Land1\\Jump2\\1_06", Vector2::Zero, 0.1f, 0);
 
-		mAnimator->Play(L"Jump21_01", true);
+		mAnimator->Play(L"Jump21_06", true);
 
 		Collider* collider = AddComponent<Collider>();
 		collider->SetSize(Vector2(80.0f, 180.0f));

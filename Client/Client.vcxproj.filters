@@ -544,6 +544,12 @@
     <ClInclude Include="yaL1_OT03.h">
       <Filter>Contents\Object\Obstacle\Land1\Tile\OvergTile</Filter>
     </ClInclude>
+    <ClInclude Include="yaEatEffect.h">
+      <Filter>Contents\Object\Obstacle\Land1</Filter>
+    </ClInclude>
+    <ClInclude Include="yaCloudEffect.h">
+      <Filter>Contents\Object\Obstacle\Land1</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="small.ico">
@@ -933,6 +939,12 @@
     </ClCompile>
     <ClCompile Include="yaL1_OT03.cpp">
       <Filter>Contents\Object\Obstacle\Land1\Tile\OvergTile</Filter>
+    </ClCompile>
+    <ClCompile Include="yaEatEffect.cpp">
+      <Filter>Contents\Object\Obstacle\Land1</Filter>
+    </ClCompile>
+    <ClCompile Include="yaCloudEffect.cpp">
+      <Filter>Contents\Object\Obstacle\Land1</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

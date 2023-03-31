@@ -117,32 +117,32 @@ namespace ya
 			}
 		}
 
-		if ((mType == eCameraEffectType::ShakeW))
-		{
-			mSwingFTime += Time::DeltaTime();
+		//if ((mType == eCameraEffectType::ShakeW))
+		//{
+		//	mSwingFTime += Time::DeltaTime();
 
-			if (mSwingFTime < 1.0f)
-			{
-				mSwingATime += Time::DeltaTime();
-				mSwingBTime += Time::DeltaTime();
+		//	if (mSwingFTime < 1.0f)
+		//	{
+		//		mSwingATime += Time::DeltaTime();
+		//		mSwingBTime += Time::DeltaTime();
 
-				if (mSwingATime > mSwingETime)
-				{
-					mLookPosition.x += 50.0f;
-				}
+		//		if (mSwingATime > mSwingETime)
+		//		{
+		//			mLookPosition.x += 50.0f;
+		//		}
 
-				if (mSwingBTime > mSwingETime * 2)
-				{
-					mLookPosition.x -= 50.0f;
-					mSwingATime = 0.0f;
-					mSwingBTime = 0.0f;
-				}
-			}
-			if (mSwingFTime > 1.0f)
-			{
-				mType = eCameraEffectType::None;
-			}
-		}
+		//		if (mSwingBTime > mSwingETime * 2)
+		//		{
+		//			mLookPosition.x -= 50.0f;
+		//			mSwingATime = 0.0f;
+		//			mSwingBTime = 0.0f;
+		//		}
+		//	}
+		//	if (mSwingFTime > 1.0f)
+		//	{
+		//		mType = eCameraEffectType::None;
+		//	}
+		//}
 
 		mDistance = mLookPosition - (mResolution / 2.0f);
 	}
@@ -167,20 +167,12 @@ namespace ya
 				, func);
 		}
 
-		if (mType == eCameraEffectType::BlackOut)
+		if (mType == eCameraEffectType::KeyError)
 		{
-			mBTime += Time::DeltaTime();
+			Image* mImage = Resources::Load<Image>(L"KeyErrorE", L"..\\Resources\\Item\\InputE\\memories_jelly_0001.bmp");
 
-			Image* mImage = Resources::Load<Image>(L"BlackOutM", L"..\\Resources\\Item\\Effect\\BlackOutM.bmp");
-
-			TransparentBlt(hdc, 750, 200, mImage->GetWidth() * 1.1, mImage->GetHeight() * 1.1
+			TransparentBlt(hdc, 750, 200, mImage->GetWidth() * 1.3, mImage->GetHeight() * 1.3
 				, mImage->GetHdc(), 0, 0, mImage->GetWidth(), mImage->GetHeight(), RGB(170, 0, 0));
-
-			if (mBTime > 4.0f)
-			{
-				mType = eCameraEffectType::None;
-				mBTime = 0.0f;
-			}
 		}
 	}
 

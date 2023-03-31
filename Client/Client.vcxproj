@@ -135,6 +135,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="yaCloudEffect.h" />
+    <ClInclude Include="yaEatEffect.h" />
     <ClInclude Include="yaL1_BG02.h" />
     <ClInclude Include="yaBasic_Candy_B.h" />
     <ClInclude Include="yaBasic_Candy_G.h" />
@@ -268,6 +270,8 @@
     <ClInclude Include="yaMagnetItem.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="yaCloudEffect.cpp" />
+    <ClCompile Include="yaEatEffect.cpp" />
     <ClCompile Include="yaL1_BG02.cpp" />
     <ClCompile Include="yaBasic_Candy_B.cpp" />
     <ClCompile Include="yaBasic_Candy_G.cpp" />

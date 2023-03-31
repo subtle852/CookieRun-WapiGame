@@ -4,6 +4,7 @@
 namespace ya
 {
 	class GameObject;
+	class Animator;
 
 	class Camera
 	{
@@ -14,9 +15,8 @@ namespace ya
 			FadeIn,
 			FadeOut,
 			ShakeH,
-			ShakeW,
 			Rotate,
-			BlackOut,
+			KeyError,
 			End,
 		};
 
@@ -45,5 +45,7 @@ namespace ya
 		static float mSwingETime;
 
 		static float mBTime;
+
+		Animator* mAnimaC;
 	};
 }

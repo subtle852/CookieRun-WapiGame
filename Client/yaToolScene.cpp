@@ -95,9 +95,9 @@ LRESULT CALLBACK AtlasWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPa
 		//512 384
 		//HMENU mMenubar = LoadMenu(nullptr, MAKEINTRESOURCE(IDC_CLIENT));
 		//SetMenu(hWnd, mMenubar);
-		ya::Image* tile = ya::Resources::Load<ya::Image>(L"TileAtlas", L"..\\Resources\\Tile.bmp");
-		ya::Image* tile2 = ya::Resources::Load<ya::Image>(L"TileAtlas2", L"..\\Resources\\Tile2.bmp");
-		ya::Image* tile3 = ya::Resources::Load<ya::Image>(L"TileAtlas3", L"..\\Resources\\Tile3.bmp");
+		ya::Image* tile = ya::Resources::Load<ya::Image>(L"Tile1", L"..\\Resources\\Tile_1.bmp");
+		ya::Image* tile2 = ya::Resources::Load<ya::Image>(L"Tile2", L"..\\Resources\\Tile_2.bmp");
+		ya::Image* tile3 = ya::Resources::Load<ya::Image>(L"Tile3", L"..\\Resources\\Tile3.bmp");
 		RECT rect = { 0, 0, tile->GetWidth(), tile->GetHeight() };
 		//RECT rect = { 0, 0, tile->GetWidth(), tile->GetHeight() };
 		AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
@@ -246,19 +246,19 @@ LRESULT CALLBACK AtlasWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPa
 
 		if (chapter == 0)
 		{
-			ya::Image* tile = ya::Resources::Find<ya::Image>(L"TileAtlas");
+			ya::Image* tile = ya::Resources::Find<ya::Image>(L"Tile1");
 			BitBlt(hdc, 0, 0, tile->GetWidth(), tile->GetHeight(), tile->GetHdc(), 0, 0, SRCCOPY);
 		}
 
 		if (chapter == 1)
 		{
-			ya::Image* tile2 = ya::Resources::Find<ya::Image>(L"TileAtlas2");
+			ya::Image* tile2 = ya::Resources::Find<ya::Image>(L"Tile2");
 			BitBlt(hdc, 0, 0, tile2->GetWidth(), tile2->GetHeight(), tile2->GetHdc(), 0, 0, SRCCOPY);
 		}
 
 		if (chapter == 2)
 		{
-			ya::Image* tile3 = ya::Resources::Find<ya::Image>(L"TileAtlas3");
+			ya::Image* tile3 = ya::Resources::Find<ya::Image>(L"Tile3");
 			BitBlt(hdc, 0, 0, tile3->GetWidth(), tile3->GetHeight(), tile3->GetHdc(), 0, 0, SRCCOPY);
 		}
 		//HPEN redPen = CreatePen(PS_SOLID, 2, RGB(255, 0, 0));

@@ -63,7 +63,7 @@ namespace ya
 
 		object::Instantiate<OverGround>(Vector2(-100.0f, 400.0f), eLayerType::Ground);
 		//object::Instantiate<Ground>(Vector2(-100.0f, 700.0f), eLayerType::Ground);
-		object::Instantiate<Ground>(Vector2(-100.0f, 700.0f), eLayerType::Ground, Vector2(10000.0f, 50.0f));
+		object::Instantiate<Ground>(Vector2(-100.0f, 700.0f), eLayerType::Ground, Vector2(20000.0f, 50.0f));
 		object::Instantiate<UnderGround>(Vector2(-100.0f, 890.0f), eLayerType::Ground);
 
 		int temp = SelectCharScene::GetCharNumber();
@@ -74,7 +74,7 @@ namespace ya
 
 		mPet01 = object::Instantiate<Pet01>(eLayerType::Pet);
 
-		object::Instantiate<Obstacle>(Vector2(700.0f, 700.0f), eLayerType::Obstacle);
+		//object::Instantiate<Obstacle>(Vector2(700.0f, 700.0f), eLayerType::Obstacle);
 
 		mOtC01 = object::Instantiate<ObstacleToCoin>(Vector2(1800.0f, 700.0f), eLayerType::Item);
 		mOb01 = object::Instantiate<Obstacle01>(Vector2(2000.0f, 650.0f), eLayerType::Obstacle);
@@ -84,7 +84,7 @@ namespace ya
 		object::Instantiate<Obstacle>(Vector2(5600.0f, 700.0f), eLayerType::Obstacle);
 		object::Instantiate<Coin_Silver>(Vector2(2100.0f, 700.0f), eLayerType::Item);
 
-		object::Instantiate<BigItem>(Vector2(2800.0f, 700.0f), eLayerType::Item);
+		object::Instantiate<SmItem>(Vector2(2800.0f, 700.0f), eLayerType::Item);
 		object::Instantiate<ShakeItem>(Vector2(5000.0f, 700.0f), eLayerType::Item);
 		object::Instantiate<FastItem>(Vector2(5400.0f, 700.0f), eLayerType::Item);//
 		//object::Instantiate<BasicToBear>(Vector2(5900.0f, 700.0f), eLayerType::Item);
@@ -146,18 +146,18 @@ namespace ya
 		Transform* trr = mPet01->GetComponent<Transform>();
 		trr->SetPos(Vector2(pos.x - 120.0f, pos.y - 0.0f));
 
-		if (mOtC01->mOn == true)// mOtC01 충돌
-		{
-			Transform* tr = mOb01->GetComponent<Transform>();// mOb01 위치 저장
-			Vector2 pos = tr->GetPos();
-			//object::Instantiate<JellyCoin>(Vector2(pos.x, 700.0f), eLayerType::Item);// mOb01위치에 JellyCoin 생성// 오류발생
-			
-			ya::object::Destory(mOb01);
+		//if (mOtC01->mOn == true)// mOtC01 충돌
+		//{
+		//	Transform* tr = mOb01->GetComponent<Transform>();// mOb01 위치 저장
+		//	Vector2 pos = tr->GetPos();
+		//	//object::Instantiate<JellyCoin>(Vector2(pos.x, 700.0f), eLayerType::Item);// mOb01위치에 JellyCoin 생성// 오류발생
+		//	
+		//	ya::object::Destory(mOb01);
 
-			mOtC01->mOn = false;
+		//	mOtC01->mOn = false;
 
-			ya::object::Destory(mOtC01);
-		}
+		//	ya::object::Destory(mOtC01);
+		//}
 
 		//Camera::mType = Camera::eCameraEffectType::ShakeH;// 설정
 		//Camera::mCutton = Image::Create(L"Cutton00", Camera::mResolution.x, Camera::mResolution.y, RGB(0, 0, 0)/*원하는 색*/);

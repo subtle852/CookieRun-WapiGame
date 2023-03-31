@@ -91,5 +91,6 @@ namespace ya
 		bool mMagnetState = false;
 
 		bool mBtoB = false;
+		bool mOtoC = false;
 	};
 }

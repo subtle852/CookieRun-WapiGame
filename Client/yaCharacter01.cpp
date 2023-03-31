@@ -263,12 +263,13 @@ namespace ya
 			}
 
 			{
-				if (mKeyError == true)// 키 에러
+				if (mKeyError == true)// 키 에러 
 				{
 					mKeyErrorT += Time::DeltaTime();
 
-					if (mKeyErrorT > 3.0f)
+					if (mKeyErrorT > 4.0f)
 					{
+						Camera::mType = Camera::eCameraEffectType::None;
 						mKeyError = false;
 					}
 				}
@@ -700,7 +701,11 @@ namespace ya
 
 	void Character01::slide()
 	{
-		if (mSml != true)
+		if (mSml == true)
+		{
+			mState = eChar01State::Run;
+		}
+		else if (mSml != true)
 		{
 			Collider* collider = GetComponent<Collider>();
 			collider->SetSize(Vector2(150.0f, 75.0f));
@@ -713,25 +718,26 @@ namespace ya
 			}
 
 			mAnimator->Play(L"Slide", true);
-		}
 
-		if (mKeyError == false)
-		{
-			if (Input::GetKeyUp(eKeyCode::S))
+
+			if (mKeyError == false)
 			{
-				mRigidbody->SetGround(false);
-				mScnt = 0;
-				mState = eChar01State::Run;
+				if (Input::GetKeyUp(eKeyCode::S))
+				{
+					mRigidbody->SetGround(false);
+					mScnt = 0;
+					mState = eChar01State::Run;
+				}
 			}
-		}
 
-		if (mKeyError == true)
-		{
-			if (Input::GetKeyUp(eKeyCode::W))
+			if (mKeyError == true)
 			{
-				mRigidbody->SetGround(false);
-				mScnt = 0;
-				mState = eChar01State::Run;
+				if (Input::GetKeyUp(eKeyCode::W))
+				{
+					mRigidbody->SetGround(false);
+					mScnt = 0;
+					mState = eChar01State::Run;
+				}
 			}
 		}
 	}

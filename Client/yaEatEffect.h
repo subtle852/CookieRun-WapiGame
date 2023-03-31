@@ -4,11 +4,11 @@
 namespace ya
 {
 	class Animator;
-	class Obstacle01 : public GameObject
+	class EatEffect : public GameObject
 	{
 	public:
-		Obstacle01();
-		~Obstacle01();
+		EatEffect();
+		~EatEffect();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -21,7 +21,5 @@ namespace ya
 
 	private:
 		Animator* mAnimator;
-		
-		float mTime = 0.0f;
 	};
 }
