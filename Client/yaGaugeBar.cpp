@@ -28,7 +28,7 @@ namespace ya
     void GaugeBar::Update()
     {
         //Vector2(59.0f, 32.0f)
-        mHpPercent = Character01::GetHpPercent();
+        mHpPercent = Character01::mCurHp;
 
         float temp = 964.0f / (100 / mHpPercent);
 

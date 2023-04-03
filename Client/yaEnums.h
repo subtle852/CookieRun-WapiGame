@@ -4,8 +4,10 @@ enum class eSceneType
 {
 	Title,
 	Main,
+	Lottery,
+	Store,
 	SelectChar,
-	//PetSelect,
+	SelectPet,
 	SelectStage,
 	Play, //Stage00,
 	ResultS,
@@ -39,4 +41,24 @@ enum class eComponentType
 	Rigidbody,
 	Audio,
 	End,
+};
+
+union TilePos
+{
+	struct
+	{
+		UINT32 x;
+		UINT32 y;
+	};
+	UINT64 id;
+};
+
+union TileInd
+{
+	struct
+	{
+		UINT32 ind;
+		UINT32 width;
+	};
+	UINT64 id2;
 };

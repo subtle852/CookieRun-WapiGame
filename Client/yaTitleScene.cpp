@@ -27,10 +27,12 @@ namespace ya
 
 	void TitleScene::Update()
 	{
-
-		if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
+		if (GetFocus())
 		{
-			SceneManager::LoadScene(eSceneType::Main);
+			if (Input::GetKeyDown(eKeyCode::LBUTTON))
+			{
+				SceneManager::LoadScene(eSceneType::Main);
+			}
 		}
 		Scene::Update();
 	}

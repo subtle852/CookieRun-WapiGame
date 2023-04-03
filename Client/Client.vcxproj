@@ -204,11 +204,14 @@
     <ClInclude Include="yaL1_SL04.h" />
     <ClInclude Include="yaL1_SL05.h" />
     <ClInclude Include="yaL1_SL06.h" />
+    <ClInclude Include="yaLotteryBackGround.h" />
+    <ClInclude Include="yaLotteryScene.h" />
     <ClInclude Include="yaMakeScene.h" />
     <ClInclude Include="yaObstacleToCoin.h" />
     <ClInclude Include="yaOverGround.h" />
     <ClInclude Include="yaPauseButton.h" />
     <ClInclude Include="yaRigidbody.h" />
+    <ClInclude Include="yaSelectPetBackGround.h" />
     <ClInclude Include="yaShakeItem.h" />
     <ClInclude Include="yaSlideButton.h" />
     <ClInclude Include="targetver.h" />
@@ -240,6 +243,8 @@
     <ClInclude Include="yaSilverUI.h" />
     <ClInclude Include="yaSlowItem.h" />
     <ClInclude Include="yaSmItem.h" />
+    <ClInclude Include="yaStoreBackGround.h" />
+    <ClInclude Include="yaStoreScene.h" />
     <ClInclude Include="yaStoreUI.h" />
     <ClInclude Include="yaTile.h" />
     <ClInclude Include="yaTitleBackGround.h" />
@@ -336,11 +341,14 @@
     <ClCompile Include="yaL1_SL04.cpp" />
     <ClCompile Include="yaL1_SL05.cpp" />
     <ClCompile Include="yaL1_SL06.cpp" />
+    <ClCompile Include="yaLotteryBackGround.cpp" />
+    <ClCompile Include="yaLotteryScene.cpp" />
     <ClCompile Include="yaMakeScene.cpp" />
     <ClCompile Include="yaObstacleToCoin.cpp" />
     <ClCompile Include="yaOverGround.cpp" />
     <ClCompile Include="yaPauseButton.cpp" />
     <ClCompile Include="yaRigidbody.cpp" />
+    <ClCompile Include="yaSelectPetBackGround.cpp" />
     <ClCompile Include="yaShakeItem.cpp" />
     <ClCompile Include="yaSlideButton.cpp" />
     <ClCompile Include="yaAnimation.cpp" />
@@ -370,6 +378,8 @@
     <ClCompile Include="yaSilverUI.cpp" />
     <ClCompile Include="yaSlowItem.cpp" />
     <ClCompile Include="yaSmItem.cpp" />
+    <ClCompile Include="yaStoreBackGround.cpp" />
+    <ClCompile Include="yaStoreScene.cpp" />
     <ClCompile Include="yaStoreUI.cpp" />
     <ClCompile Include="yaTile.cpp" />
     <ClCompile Include="yaTitleBackGround.cpp" />

@@ -15,6 +15,29 @@
 #include "yaUnderGround.h"
 #include "yaOverGround.h"
 
+#include "yaFlag.h"
+
+#include "yaL1_JP01.h"
+#include "yaL1_JP02.h"
+#include "yaL1_JP03.h"
+#include "yaL1_JP04.h"
+#include "yaL1_JP05.h"
+#include "yaL1_JP06.h"
+
+#include "yaL1_DP01.h"
+#include "yaL1_DP02.h"
+#include "yaL1_DP03.h"
+#include "yaL1_DP04.h"
+#include "yaL1_DP05.h"
+#include "yaL1_DP06.h"
+
+#include "yaL1_SL01.h"
+#include "yaL1_SL02.h"
+#include "yaL1_SL03.h"
+#include "yaL1_SL04.h"
+#include "yaL1_SL05.h"
+#include "yaL1_SL06.h"
+
 namespace ya
 {
 	float Character01::mCurHp = 100;
@@ -45,7 +68,7 @@ namespace ya
 		mAnimator->CreateAnimation(L"Run", mImage, Vector2(0.0f, (290.0f * 1)), 11, 6, 4, Vector2::Zero, 0.1, 0);
 		mAnimator->CreateAnimation(L"FastRun", mImage, Vector2((290.0f * 4), (290.0f * 1)), 11, 6, 4, Vector2::Zero, 0.1, 0);
 		mAnimator->CreateAnimation(L"SlowRun", mImage, Vector2(0.0f, (290.0f * 1)), 11, 6, 4, Vector2::Zero, 0.5, 0);
-		mAnimator->CreateAnimation(L"Jump", mImage, Vector2((290.0f * 0), (290.0f * 0)), 11, 6, 1, Vector2::Zero, 0.1, 0);// 0¿¡ °¡±î¿ï¼ö·Ï ¾Ö´Ï¸ŞÀÌ¼Ç »¡¸® µ¿ÀÛ
+		mAnimator->CreateAnimation(L"Jump", mImage, Vector2((290.0f * 0), (290.0f * 0)), 11, 6, 1, Vector2::Zero, 0.1, 0);// 0ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		mAnimator->CreateAnimation(L"DJump", mImage, Vector2((290.0f * 1), (290.0f * 0)), 11, 6, 6, Vector2::Zero, 0.08, 0);
 		mAnimator->CreateAnimation(L"Slide", mImage, Vector2((290.0f * 9), (290.0f * 0)), 11, 6, 2, Vector2::Zero, 0.08, 0);
 		mAnimator->CreateAnimation(L"Death", mImage, Vector2((290.0f * 0), (290.0f * 4)), 11, 6, 4, Vector2::Zero, 0.15, 0);
@@ -69,35 +92,35 @@ namespace ya
 			mAnimator->Play(L"idle", true);
 		}
 		
-		if (scn->GetName() == L"Play")
-		{
-			Transform* tr = GetComponent<Transform>();
-			tr->SetScale(Vector2(1.2f, 1.2f));
+		//if (scn->GetName() == L"Play")
+		//{
+		//	Transform* tr = GetComponent<Transform>();
+		//	tr->SetScale(Vector2(1.2f, 1.2f));
 
-			Collider* collider = AddComponent<Collider>();
-			collider->SetSize(Vector2(100.0f, 100.0f));
-			collider->SetCenter(Vector2(-10.0f, -50.0f));
+		//	Collider* collider = AddComponent<Collider>();
+		//	collider->SetSize(Vector2(100.0f, 100.0f));
+		//	collider->SetCenter(Vector2(-10.0f, -50.0f));
 
-			mRigidbody = AddComponent<Rigidbody>();
-			mRigidbody->SetMass(1.0f);
+		//	mRigidbody = AddComponent<Rigidbody>();
+		//	mRigidbody->SetMass(1.0f);
 
-			mState = eChar01State::Run;
-		}
+		//	mState = eChar01State::Run;
+		//}
 
-		if (scn->GetName() == L"Make")
-		{
-			Transform* tr = GetComponent<Transform>();
-			tr->SetScale(Vector2(1.2f, 1.2f));
+		//if (scn->GetName() == L"Make")
+		//{
+		//	Transform* tr = GetComponent<Transform>();
+		//	tr->SetScale(Vector2(1.2f, 1.2f));
 
-			Collider* collider = AddComponent<Collider>();
-			collider->SetSize(Vector2(100.0f, 100.0f));
-			collider->SetCenter(Vector2(-10.0f, -50.0f));
+		//	Collider* collider = AddComponent<Collider>();
+		//	collider->SetSize(Vector2(100.0f, 100.0f));
+		//	collider->SetCenter(Vector2(-10.0f, -50.0f));
 
-			mRigidbody = AddComponent<Rigidbody>();
-			mRigidbody->SetMass(1.0f);
+		//	mRigidbody = AddComponent<Rigidbody>();
+		//	mRigidbody->SetMass(1.0f);
 
-			mState = eChar01State::Run;
-		}
+		//	mState = eChar01State::Run;
+		//}
 
 		GameObject::Initialize();
 	}
@@ -106,9 +129,51 @@ namespace ya
 		GameObject::Update();
 
 		Scene* scn = SceneManager::GetActiveScene();
+		
+		if (scn->GetName() == L"Main")
+		{
+			mAnimator->Play(L"idle", true);
+		}
 
 		if (scn->GetName() == L"Play" || scn->GetName() == L"Make")
 		{
+			if (mPlayInit == false)
+			{
+				if (scn->GetName() == L"Play")
+				{
+					Transform* tr = GetComponent<Transform>();
+					tr->SetScale(Vector2(1.2f, 1.2f));
+
+					Collider* collider = AddComponent<Collider>();
+					collider->SetSize(Vector2(100.0f, 100.0f));
+					collider->SetCenter(Vector2(-10.0f, -50.0f));
+
+					mRigidbody = AddComponent<Rigidbody>();
+					mRigidbody->SetMass(1.0f);
+
+					mState = eChar01State::Run;
+				}
+				mPlayInit = true;
+			}
+			if (mMakeInit == false)
+			{
+				if (scn->GetName() == L"Make")
+				{
+					Transform* tr = GetComponent<Transform>();
+					tr->SetScale(Vector2(1.2f, 1.2f));
+
+					Collider* collider = AddComponent<Collider>();
+					collider->SetSize(Vector2(100.0f, 100.0f));
+					collider->SetCenter(Vector2(-10.0f, -50.0f));
+
+					mRigidbody = AddComponent<Rigidbody>();
+					mRigidbody->SetMass(1.0f);
+
+					mState = eChar01State::Run;
+				}
+				mMakeInit = true;
+			}
+
 			if (mG == false)
 			{
 				mRigidbody->SetGround(false);
@@ -136,33 +201,50 @@ namespace ya
 
 				if (scn->GetName() == L"Play")
 				{ 
-					if (mFast == false && mSlow == false)// ¼Óµµ ¾ÆÀÌÅÛ ¸ÔÁö ¾Ê´Â °æ¿ìÀÇ ¼Óµµ
+					if (mStopbyFlag == false)
 					{
-						Transform* tr = GetComponent<Transform>();
-						Vector2 pos = tr->GetPos();
-						pos.x += 600.0f * Time::DeltaTime();
-						tr->SetPos(pos);
+						if (mFast == false && mSlow == false)// ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½
+						{
+							Transform* tr = GetComponent<Transform>();
+							Vector2 pos = tr->GetPos();
+							pos.x += 600.0f * Time::DeltaTime();
+							tr->SetPos(pos);
+						}
+					}
+
+					if (mStopbyFlag == true)
+					{
+						mState = eChar01State::Idle;
 					}
 				}
 
-				if (mFast == true)// Fast ¾ÆÀÌÅÛ ¸Ô¾úÀ» ¶§
+				if (mFast == true && mStopbyFlag == false)// Fast ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¾ï¿½ï¿½ï¿½ ï¿½ï¿½
 				{
+					if (mFastFirst == false)
+					{
+						Transform* tr = GetComponent<Transform>();
+						Vector2 pos = tr->GetPos();
+						pos.y -= 200.0f;
+						tr->SetPos(pos);
+						mFastFirst = true;
+					}
 					mFastT += Time::DeltaTime();
 
 					//mAnimator->Play(L"FastRun", true);
 					Transform* tr = GetComponent<Transform>();
 					Vector2 pos = tr->GetPos();
-					pos.x += 1000.0f * Time::DeltaTime();
+					pos.x += 800.0f * Time::DeltaTime();
 					tr->SetPos(pos);
 
 					if (mFastT > 2.0f)
 					{
 						mFastT = 0.0f;
 						mFast = false;
+						mFastFirst = false;
 					}
 				}
 
-				if (mSlow == true)// slow ¾ÆÀÌÅÛ ¸Ô¾úÀ» ¶§
+				if (mSlow == true && mStopbyFlag == false)// slow ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¾ï¿½ï¿½ï¿½ ï¿½ï¿½
 				{
 					mSlowT += Time::DeltaTime();
 
@@ -181,11 +263,11 @@ namespace ya
 			}
 
 			{
-				if (mInv == false)
+				if (mInv == false)// Ã¼ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				{
-					Character01::mCurHp -= 1.0f * Time::DeltaTime();
+					Character01::mCurHp -= 3.0f * Time::DeltaTime();
 				}
-				else// ¹«Àû ¾ÆÀÌÅÛ ¸Ô¾úÀ» ¶§
+				else// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¾ï¿½ï¿½ï¿½ ï¿½ï¿½
 				{
 					mInvT += Time::DeltaTime();
 
@@ -198,7 +280,7 @@ namespace ya
 			}
 
 			{
-				if (mBig == true)// Ä¿Á³À» ¶§
+				if (mBig == true)// Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 				{
 					mBcnt++;
 					if (mBcnt == 1)
@@ -224,7 +306,7 @@ namespace ya
 					}
 				}
 
-				if (mSml == true)// ÀÛ¾ÆÁ³À» ¶§
+				if (mSml == true)// ï¿½Û¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 				{
 					mSmlT += Time::DeltaTime();
 					mSmlcnt++;
@@ -263,7 +345,7 @@ namespace ya
 			}
 
 			{
-				if (mKeyError == true)// Å° ¿¡·¯ 
+				if (mKeyError == true)// Å° ï¿½ï¿½ï¿½ï¿½ 
 				{
 					mKeyErrorT += Time::DeltaTime();
 
@@ -279,21 +361,42 @@ namespace ya
 				}
 			}
 
-			// ÇöÀç Ã¼·Â ¿¹¿Ü Ã³¸®
+			// ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 			if (Character01::mCurHp <= 0.0f)
 			{
-				mCurHp = 0.0f;
-				mState = eChar01State::Death;
+				if (mZom == true)
+				{
+					mCurHp = 0.0f;
+					mState = eChar01State::Death;
+					mZomWait += Time::DeltaTime();
+
+					if (mZomWait > 2.0f)
+					{
+						//Transform* tr = GetComponent<Transform>();
+						//Vector2 pos = tr->GetPos();
+						//pos.y = 600.0f;
+						//tr->SetPos(pos);
+
+						mCurHp += 30.f;
+						mState = eChar01State::Run;
+						mZom = false;
+					}
+				}
+				else
+				{
+					mCurHp = 0.0f;
+					mState = eChar01State::Death;
+				}
 			}
 			if (Character01::mCurHp > 100.0f)
 			{
 				mCurHp = 100.0f;
 			}
 
-			// ÇöÀç Ã¼·Â ÆÛ¼¾Æ® °è»ê
+			// ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½ ï¿½Û¼ï¿½Æ® ï¿½ï¿½ï¿½
 			Character01::mHpPercent = (Character01::mCurHp / Character01::mMaxHp) * 100;
 
-			// »óÅÂ¿¡ µû¸¥ »óÅÂ ÇÔ¼ö ½ÇÇàÇÏ´Â ½ºÀ§Ä¡¹®
+			// ï¿½ï¿½ï¿½Â¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½
 			switch (mState)
 			{
 			case ya::eChar01State::Run:
@@ -346,7 +449,7 @@ namespace ya
 		//{
 		//	object::Destory(this);
 		//} 
-		// ÀÌ·¸°Ô ±æÀÌ Á¶Á¤ °¡´É 2ÃÊµÚ¸é »ç¶óÁöµµ·Ï(ÀÌ ºÎºĞÀº 3¿ù 8ÀÏ 01:25 ¿µ»ó Âü°í or Delete Object ±ê ÂüÁ¶)
+		// ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 2ï¿½ÊµÚ¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ ï¿½Îºï¿½ï¿½ï¿½ 3ï¿½ï¿½ 8ï¿½ï¿½ 01:25 ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ or Delete Object ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
 	}
 
 	void Character01::Render(HDC hdc)
@@ -370,17 +473,82 @@ namespace ya
 			if (mFast == true) {}
 			else if (mInv == true) {}
 			else if (mBig == true) {}
-			else// À§´Â ºü¸£°Ô, ¹«Àû, Ä¿Áö°Ô »óÅÂ¿¡¼­ Obstacle°ú ºÎµúÈ÷¸é ÇÇ°¡ ÁÙ¾îµéÁö ¾Ê´Â °æ¿ì·Î Á¦¿Ü½ÃÅ² °Í
+			else// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½, Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¿ï¿½ï¿½ï¿½ Obstacleï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç°ï¿½ ï¿½Ù¾ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ü½ï¿½Å² ï¿½ï¿½
 			{
-
-				if (dynamic_cast<Obstacle*>(other->GetOwner()))
+				#pragma region ì¥ì• ë¬¼ ì¶©ëŒ ì‹œ ì²´ë ¥ ë§ˆì´ë„ˆìŠ¤
+				if (dynamic_cast<L1_JP01*>(other->GetOwner()))
 				{
 					mCurHp -= 10;
 				}
-				if (dynamic_cast<Obstacle01*>(other->GetOwner()))
+				if (dynamic_cast<L1_JP02*>(other->GetOwner()))
 				{
 					mCurHp -= 10;
 				}
+				if (dynamic_cast<L1_JP03*>(other->GetOwner()))
+				{
+					mCurHp -= 10;
+				}
+				if (dynamic_cast<L1_JP04*>(other->GetOwner()))
+				{
+					mCurHp -= 10;
+				}
+				if (dynamic_cast<L1_JP05*>(other->GetOwner()))
+				{
+					mCurHp -= 10;
+				}
+				if (dynamic_cast<L1_JP06*>(other->GetOwner()))
+				{
+					mCurHp -= 10;
+				}
+				if (dynamic_cast<L1_DP01*>(other->GetOwner()))
+				{
+					mCurHp -= 10;
+				}
+				if (dynamic_cast<L1_DP02*>(other->GetOwner()))
+				{
+					mCurHp -= 10;
+				}
+				if (dynamic_cast<L1_DP03*>(other->GetOwner()))
+				{
+					mCurHp -= 10;
+				}
+				if (dynamic_cast<L1_DP04*>(other->GetOwner()))
+				{
+					mCurHp -= 10;
+				}
+				if (dynamic_cast<L1_DP05*>(other->GetOwner()))
+				{
+					mCurHp -= 10;
+				}
+				if (dynamic_cast<L1_DP06*>(other->GetOwner()))
+				{
+					mCurHp -= 10;
+				}
+				if (dynamic_cast<L1_SL01*>(other->GetOwner()))
+				{
+					mCurHp -= 10;
+				}
+				if (dynamic_cast<L1_SL02*>(other->GetOwner()))
+				{
+					mCurHp -= 10;
+				}
+				if (dynamic_cast<L1_SL03*>(other->GetOwner()))
+				{
+					mCurHp -= 10;
+				}
+				if (dynamic_cast<L1_SL04*>(other->GetOwner()))
+				{
+					mCurHp -= 10;
+				}
+				if (dynamic_cast<L1_SL05*>(other->GetOwner()))
+				{
+					mCurHp -= 10;
+				}
+				if (dynamic_cast<L1_SL06*>(other->GetOwner()))
+				{
+					mCurHp -= 10;
+				}
+				#pragma endregion
 			}
 		}
 
@@ -394,11 +562,16 @@ namespace ya
 			mG = true;
 			mRigidbody->SetGround(true);
 		}
+
+		if (dynamic_cast<Flag*>(other->GetOwner()))
+		{
+			mStopbyFlag = true;
+		}
 	}
 
 	void Character01::OnCollisionStay(Collider* other)
 	{
-		if (mBig == true && dynamic_cast<Ground*>(other->GetOwner()))// Ä¿Á³À» ¶§ ¹Ù·Î Ä«¸Ş¶ó Èçµé¸®°í, Ä¿Áø »óÅÂ¿¡¼­ Á¡ÇÁÇÏ°í ¶¥¿¡ ´êÀ¸¸é Ä«¸Ş¶ó Èçµé¸®°Ô 
+		if (mBig == true && dynamic_cast<Ground*>(other->GetOwner()))// Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ù·ï¿½ Ä«ï¿½Ş¶ï¿½ ï¿½ï¿½é¸®ï¿½ï¿½, Ä¿ï¿½ï¿½ ï¿½ï¿½ï¿½Â¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½Ş¶ï¿½ ï¿½ï¿½é¸®ï¿½ï¿½ 
 		{
 			Camera::mType = Camera::eCameraEffectType::ShakeH;
 		}
@@ -514,7 +687,7 @@ namespace ya
 		//{
 		//	pos.x += 100.0f * Time::DeltaTime();
 
-		//	//// È¸Àü
+		//	//// È¸ï¿½ï¿½
 		//	//Transform* tr = GetComponent<Transform>();
 		//	//float x = cosf(-PI / 4.0f);
 		//	//float y = sinf(-PI / 4.0f);
@@ -523,7 +696,7 @@ namespace ya
 		//	//pos.y += 100.0f * y * Time::DeltaTime();
 		//	//tr->SetPos(pos);
 		//	//
-		//	//// º¤ÅÍ È¸Àü
+		//	//// ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½
 		//	//Transform* tr = GetComponent<Transform>();
 		//	//Vector2 dir(1.0f, 1.0f);
 		//	//
@@ -536,7 +709,7 @@ namespace ya
 		//	//
 		//	//tr->SetPos(pos);
 		//	//
-		//	//// º¤ÅÍ È¸ÀüÀÌ ÇÊ¿ä¾ø´Â °æ¿ì, ±× À§Ä¡¿¡ ±×³É ¸ó½ºÅÍ°¡ ÀÖÀ¸¸é
+		//	//// ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½, ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½×³ï¿½ ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		//	//Transform* tr = GetComponent<Transform>();
 		//	//Vector2 dir = Vector2(500.0f, 500.0f) - tr->GetPos();
 		//	//dir.Normalize();
@@ -749,7 +922,7 @@ namespace ya
 
 	void Character01::idle()
 	{
-
+		mAnimator->Play(L"idle", true);
 	}
 
 	void Character01::transparent()

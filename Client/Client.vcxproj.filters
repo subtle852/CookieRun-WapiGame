@@ -550,6 +550,21 @@
     <ClInclude Include="yaCloudEffect.h">
       <Filter>Contents\Object\Obstacle\Land1</Filter>
     </ClInclude>
+    <ClInclude Include="yaLotteryScene.h">
+      <Filter>Contents\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="yaStoreScene.h">
+      <Filter>Contents\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="yaStoreBackGround.h">
+      <Filter>Contents\Object\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="yaSelectPetBackGround.h">
+      <Filter>Contents\Object\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="yaLotteryBackGround.h">
+      <Filter>Contents\Object\BackGround</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="small.ico">
@@ -945,6 +960,21 @@
     </ClCompile>
     <ClCompile Include="yaCloudEffect.cpp">
       <Filter>Contents\Object\Obstacle\Land1</Filter>
+    </ClCompile>
+    <ClCompile Include="yaLotteryScene.cpp">
+      <Filter>Contents\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="yaStoreScene.cpp">
+      <Filter>Contents\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="yaStoreBackGround.cpp">
+      <Filter>Contents\Object\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSelectPetBackGround.cpp">
+      <Filter>Contents\Object\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="yaLotteryBackGround.cpp">
+      <Filter>Contents\Object\BackGround</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -78,7 +78,7 @@ namespace ya
 		eChar01State mState;
 		static float mCurHp;
 
-		bool mFast = false; float mFastT = 0.0f;
+		bool mFast = false; float mFastT = 0.0f; bool mFastFirst = false;
 		bool mSlow = false; float mSlowT = 0.0f;
 		bool mInv = false; float mInvT = 0.0f;
 		static bool mBig; float mBigT = 0.0f; int mBcnt = 0;// mBig는 펫이 알아야해서 static으로 선언 
@@ -92,5 +92,13 @@ namespace ya
 
 		bool mBtoB = false;
 		bool mOtoC = false;
+
+		bool mZom = true;
+		float mZomWait = 0.0f;
+
+		bool mPlayInit = false;
+		bool mMakeInit = false;
+
+		bool mStopbyFlag = false;
 	};
 }

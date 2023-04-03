@@ -4,7 +4,10 @@
 
 #include "yaTitleScene.h"
 #include "yaMainScene.h"
+#include "yaLotteryScene.h"
+#include "yaStoreScene.h"
 #include "yaSelectCharScene.h"
+#include "yaSelectPetScene.h"
 #include "yaSelectStageScene.h"
 #include "yaPlayScene.h"
 #include "yaResultSucScene.h"
@@ -23,7 +26,10 @@ namespace ya
 
 		mScenes[(UINT)eSceneType::Title] = new TitleScene();
 		mScenes[(UINT)eSceneType::Main] = new MainScene();
+		mScenes[(UINT)eSceneType::Lottery] = new LotteryScene();
+		mScenes[(UINT)eSceneType::Store] = new StoreScene();
 		mScenes[(UINT)eSceneType::SelectChar] = new SelectCharScene();
+		mScenes[(UINT)eSceneType::SelectPet] = new SelectPetScene();
 		mScenes[(UINT)eSceneType::SelectStage] = new SelectStageScene();
 		mScenes[(UINT)eSceneType::Play] = new PlayScene();
 		mScenes[(UINT)eSceneType::ResultS] = new ResultSucScene();
@@ -35,7 +41,10 @@ namespace ya
 
 		mScenes[(UINT)eSceneType::Title]->SetName(L"Title");
 		mScenes[(UINT)eSceneType::Main]->SetName(L"Main");
+		mScenes[(UINT)eSceneType::Lottery]->SetName(L"Lottery");
+		mScenes[(UINT)eSceneType::Store]->SetName(L"Store");
 		mScenes[(UINT)eSceneType::SelectChar]->SetName(L"SelectChar");
+		mScenes[(UINT)eSceneType::SelectPet]->SetName(L"SelectPet");
 		mScenes[(UINT)eSceneType::SelectStage]->SetName(L"SelectStage");
 		mScenes[(UINT)eSceneType::Play]->SetName(L"Play");
 		mScenes[(UINT)eSceneType::ResultS]->SetName(L"ResultS");

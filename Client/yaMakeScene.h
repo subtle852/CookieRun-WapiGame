@@ -1,28 +1,9 @@
 #pragma once
 #include "yaScene.h"
+#include "yaEnums.h"
 
 namespace ya
 {
-	union TilePos
-	{
-		struct
-		{
-			UINT32 x;
-			UINT32 y;
-		};
-		UINT64 id;
-	};
-
-	union TileInd
-	{
-		struct
-		{
-			UINT32 ind;
-			UINT32 width;
-		};
-		UINT64 id2;
-	};
-
 	class Character01;
 	class GameObject;
 	class EatEffect;

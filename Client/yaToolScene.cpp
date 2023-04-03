@@ -166,7 +166,7 @@ LRESULT CALLBACK AtlasWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPa
 				chapter = 0;
 			}
 
-			wsprintf(text, L" x : %d  y : %d  i : %d chapter : %d", x, y, index, chapter);
+			wsprintf(text, L"i : %d chapter : %d", index, chapter);
 			InvalidateRect(hWnd, NULL, TRUE);
 		}
 	}
@@ -204,7 +204,7 @@ LRESULT CALLBACK AtlasWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPa
 			x = GET_X_LPARAM(lParam);
 			y = GET_Y_LPARAM(lParam);
 
-			wsprintf(text, L" x : %d  y : %d  i : %d chapter : %d", x, y, index, chapter);
+			wsprintf(text, L"i : %d chapter : %d", index, chapter);
 			InvalidateRect(hWnd, NULL, TRUE);
 
 			/*int y, x;
@@ -269,7 +269,7 @@ LRESULT CALLBACK AtlasWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPa
 		//(HPEN)SelectObject(hdc, oldPen);
 		//DeleteObject(redPen);
 		// TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
-		TextOutW(hdc, 0, 0, text, lstrlen(text));
+		TextOutW(hdc, 416, 0, text, lstrlen(text));
 
 		EndPaint(hWnd, &ps);
 	}

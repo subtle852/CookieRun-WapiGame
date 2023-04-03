@@ -21,7 +21,7 @@ namespace ya
 
     void SelectCharBackGround::Initialize()
     {
-        mImage = Resources::Load<Image>(L"SelectCharBG", L"..\\Resources\\selectchar_a.bmp");
+        mImage = Resources::Load<Image>(L"SelectCharBG", L"..\\Resources\\SelectC\\selectchar_bg.bmp");
 
         GameObject::Initialize();
     }
