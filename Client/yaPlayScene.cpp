@@ -797,6 +797,11 @@ namespace ya
 					GameObject* temp = iter->second;
 					temp->mMagnet = true;
 				}
+				if (pos.x - 30.0f >= id.x)
+				{
+					GameObject* temp = iter->second;
+					temp->mMagnet = false;
+				}
 			}
 		}
 
@@ -861,7 +866,7 @@ namespace ya
 
 						Transform* tr = mCh01->GetComponent<Transform>();
 						Vector2 pos = tr->GetPos();
-						if (pos.x < id.x)
+						if (pos.x + 50.f < id.x)
 						{
 							ya::object::Destory(iter->second);
 
@@ -871,7 +876,7 @@ namespace ya
 							mObs.erase(id.id);
 							mTiles.erase(id.id);
 
-#pragma region 젤리 index에 따른 해당 젤리 생성
+							#pragma region 젤리 index에 따른 해당 젤리 생성
 							// 만약에 베이직 젤리를 여러 종류로 생성을 하고 싶다면
 							// mTiles를 받아와서 그 id.id 찾아서 index 찾은 후 조건문으로 생성
 
@@ -1028,7 +1033,7 @@ namespace ya
 							mObs.erase(id.id);
 							mTiles.erase(id.id);
 
-#pragma region 젤리 index에 따른 해당 젤리 생성
+							#pragma region 젤리 index에 따른 해당 젤리 생성
 							// 만약에 베이직 젤리를 여러 종류로 생성을 하고 싶다면
 							// mTiles를 받아와서 그 id.id 찾아서 index 찾은 후 조건문으로 생성
 

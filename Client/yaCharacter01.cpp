@@ -224,7 +224,7 @@ namespace ya
 					{
 						Transform* tr = GetComponent<Transform>();
 						Vector2 pos = tr->GetPos();
-						pos.y -= 200.0f;
+						pos.y -= 50.0f;
 						tr->SetPos(pos);
 						mFastFirst = true;
 					}
