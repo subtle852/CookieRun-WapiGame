@@ -24,5 +24,13 @@ namespace ya
 	private:
 		Character01* mCh00;
 		Pet01* mPet00;
+
+	public:
+		static int mSilver;
+		static int mDia;
+
+		GameObject* mOb = nullptr;
+		GameObject* mObs[6] = { nullptr, };
+		GameObject* mObs2[6] = { nullptr, };
 	};
 }

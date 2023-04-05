@@ -96,6 +96,7 @@ namespace ya
 		if (dynamic_cast<Character01*>(other->GetOwner()))
 		{
 			MakeScene::mEatEffectOn = true;
+			MakeScene::mCloudEffectOn = true;
 			PlayScene::mCloudEffectOnatPlay = true;
 			object::Destory(this);
 		}

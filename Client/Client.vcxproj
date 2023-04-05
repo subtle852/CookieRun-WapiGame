@@ -137,6 +137,16 @@
   <ItemGroup>
     <ClInclude Include="yaCloudEffect.h" />
     <ClInclude Include="yaEatEffect.h" />
+    <ClInclude Include="yaF_0.h" />
+    <ClInclude Include="yaF_1.h" />
+    <ClInclude Include="yaF_2.h" />
+    <ClInclude Include="yaF_3.h" />
+    <ClInclude Include="yaF_4.h" />
+    <ClInclude Include="yaF_5.h" />
+    <ClInclude Include="yaF_6.h" />
+    <ClInclude Include="yaF_7.h" />
+    <ClInclude Include="yaF_8.h" />
+    <ClInclude Include="yaF_9.h" />
     <ClInclude Include="yaL1_BG02.h" />
     <ClInclude Include="yaBasic_Candy_B.h" />
     <ClInclude Include="yaBasic_Candy_G.h" />
@@ -277,6 +287,16 @@
   <ItemGroup>
     <ClCompile Include="yaCloudEffect.cpp" />
     <ClCompile Include="yaEatEffect.cpp" />
+    <ClCompile Include="yaF_0.cpp" />
+    <ClCompile Include="yaF_1.cpp" />
+    <ClCompile Include="yaF_2.cpp" />
+    <ClCompile Include="yaF_3.cpp" />
+    <ClCompile Include="yaF_4.cpp" />
+    <ClCompile Include="yaF_5.cpp" />
+    <ClCompile Include="yaF_6.cpp" />
+    <ClCompile Include="yaF_7.cpp" />
+    <ClCompile Include="yaF_8.cpp" />
+    <ClCompile Include="yaF_9.cpp" />
     <ClCompile Include="yaL1_BG02.cpp" />
     <ClCompile Include="yaBasic_Candy_B.cpp" />
     <ClCompile Include="yaBasic_Candy_G.cpp" />

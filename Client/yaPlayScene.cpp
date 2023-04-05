@@ -748,7 +748,7 @@ namespace ya
 		trr->SetPos(Vector2(pos.x - 120.0f, pos.y - 0.0f));
 
 		#pragma region 아이템 효과 적용
-		if (MakeScene::mCloudEffectOn == true)// 구름 이펙트
+		if (PlayScene::mCloudEffectOnatPlay == true)// 구름 이펙트
 		{
 			mCloudEffectTime += Time::DeltaTime();
 
@@ -761,14 +761,14 @@ namespace ya
 			Vector2 pos = tr->GetPos();
 
 			Transform* tre = mCloudEffect->GetComponent<Transform>();
-			tre->SetPos(Vector2(pos.x + 550.0f, pos.y - 200.0f));
+			tre->SetPos(Vector2(pos.x + 550.0f, 650.0f - 200.0f));
 
 			if (mCloudEffectTime > 2.0f)
 			{
 				object::Destory(mCloudEffect);
 				mCloudEffect = nullptr;
 				mCloudEffectTime = 0.0f;
-				MakeScene::mCloudEffectOn = false;
+				PlayScene::mCloudEffectOnatPlay = false;
 			}
 		}
 
@@ -964,10 +964,10 @@ namespace ya
 
 		if (mCh01->mOtoC == true)// Obstacle To Coin 아이템
 		{
-			mOtoCTime += Time::DeltaTime();
+			//mOtoCTime += Time::DeltaTime();
 			int tempToclear = 0;
 
-			if (mOtoCend == false && mOtoCTime <= 1.0f)
+			//if (mOtoCend == false && mOtoCTime <= 1.0f)
 			{
 				std::unordered_map<UINT64, GameObject*>::iterator iter = mObstacle.begin();
 				for (; iter != mObstacle.end(); iter++)
@@ -979,7 +979,7 @@ namespace ya
 
 					Transform* tr = mCh01->GetComponent<Transform>();
 					Vector2 pos = tr->GetPos();
-					if (pos.x < id.x)
+					if (pos.x < id.x && id.x < pos.x + 600.f)
 					{
 						std::unordered_map<UINT64, UINT64>::iterator temp = mTiles.find(id.id);
 						UINT64 indexTemp = temp->second;
@@ -997,250 +997,19 @@ namespace ya
 
 					if (iter == --mObstacle.end())
 					{
-						tempToclear = 1;
+						//tempToclear = 1;
 						mOtoCend2 = false;
-						mOtoCend = true;
+						//mOtoCend = true;
+						mCh01->mOtoC = false;
 					}
 				}
 
-				if (tempToclear == 1)
-				{
-					mObstacle.clear();
-				}
-			}
-
-			if (mOtoCTime > 1.0f)
-			{
-				if (mOtoCend2 == false)
-				{
-					std::unordered_map<UINT64, GameObject*>::iterator iter = mCoin.begin();
-					for (; iter != mCoin.end(); iter++)
-					{
-						TilePos id;
-						id.id = iter->first;
-
-						GameObject* temp = iter->second;
-
-						Transform* tr = mCh01->GetComponent<Transform>();
-						Vector2 pos = tr->GetPos();
-						if (pos.x < id.x)
-						{
-							ya::object::Destory(iter->second);
-
-							std::unordered_map<UINT64, UINT64>::iterator temp = mTiles.find(id.id);
-							UINT64 indexTemp = temp->second;
-
-							mObs.erase(id.id);
-							mTiles.erase(id.id);
-
-							#pragma region 젤리 index에 따른 해당 젤리 생성
-							// 만약에 베이직 젤리를 여러 종류로 생성을 하고 싶다면
-							// mTiles를 받아와서 그 id.id 찾아서 index 찾은 후 조건문으로 생성
-
-							if (indexTemp == 55)
-							{
-								mOb = object::Instantiate<L1_JP01>(Vector2(id.x, id.y), eLayerType::Item);
-
-								id2.ind = (UINT32)indexTemp;
-
-								mObs.insert(std::make_pair(id.id, mOb));
-								mTiles.insert(std::make_pair(id.id, id2.ind));
-								mObstacle.insert(std::make_pair(id.id, mOb));
-							}
-							if (indexTemp == 56)
-							{
-								mOb = object::Instantiate<L1_JP02>(Vector2(id.x, id.y), eLayerType::Item);
-
-								id2.ind = (UINT32)indexTemp;
-
-								mObs.insert(std::make_pair(id.id, mOb));
-								mTiles.insert(std::make_pair(id.id, id2.ind));
-								mObstacle.insert(std::make_pair(id.id, mOb));
-							}
-							if (indexTemp == 57)
-							{
-								mOb = object::Instantiate<L1_JP03>(Vector2(id.x, id.y), eLayerType::Item);
-
-								id2.ind = (UINT32)indexTemp;
-
-								mObs.insert(std::make_pair(id.id, mOb));
-								mTiles.insert(std::make_pair(id.id, id2.ind));
-								mObstacle.insert(std::make_pair(id.id, mOb));
-							}
-							if (indexTemp == 58)
-							{
-								mOb = object::Instantiate<L1_JP04>(Vector2(id.x, id.y), eLayerType::Item);
-
-								id2.ind = (UINT32)indexTemp;
-
-								mObs.insert(std::make_pair(id.id, mOb));
-								mTiles.insert(std::make_pair(id.id, id2.ind));
-								mObstacle.insert(std::make_pair(id.id, mOb));
-							}
-							if (indexTemp == 59)
-							{
-								mOb = object::Instantiate<L1_JP05>(Vector2(id.x, id.y), eLayerType::Item);
-
-								id2.ind = (UINT32)indexTemp;
-
-								mObs.insert(std::make_pair(id.id, mOb));
-								mTiles.insert(std::make_pair(id.id, id2.ind));
-								mObstacle.insert(std::make_pair(id.id, mOb));
-							}
-							if (indexTemp == 60)
-							{
-								mOb = object::Instantiate<L1_JP06>(Vector2(id.x, id.y), eLayerType::Item);
-
-								id2.ind = (UINT32)indexTemp;
-
-								mObs.insert(std::make_pair(id.id, mOb));
-								mTiles.insert(std::make_pair(id.id, id2.ind));
-								mObstacle.insert(std::make_pair(id.id, mOb));
-							}
-							//
-							if (indexTemp == 63)
-							{
-								mOb = object::Instantiate<L1_DP01>(Vector2(id.x, id.y), eLayerType::Item);
-
-								id2.ind = (UINT32)indexTemp;
-
-								mObs.insert(std::make_pair(id.id, mOb));
-								mTiles.insert(std::make_pair(id.id, id2.ind));
-								mObstacle.insert(std::make_pair(id.id, mOb));
-							}
-							if (indexTemp == 64)
-							{
-								mOb = object::Instantiate<L1_DP02>(Vector2(id.x, id.y), eLayerType::Item);
-
-								id2.ind = (UINT32)indexTemp;
-
-								mObs.insert(std::make_pair(id.id, mOb));
-								mTiles.insert(std::make_pair(id.id, id2.ind));
-								mObstacle.insert(std::make_pair(id.id, mOb));
-							}
-							if (indexTemp == 65)
-							{
-								mOb = object::Instantiate<L1_DP03>(Vector2(id.x, id.y), eLayerType::Item);
-
-								id2.ind = (UINT32)indexTemp;
-
-								mObs.insert(std::make_pair(id.id, mOb));
-								mTiles.insert(std::make_pair(id.id, id2.ind));
-								mObstacle.insert(std::make_pair(id.id, mOb));
-							}
-							if (indexTemp == 66)
-							{
-								mOb = object::Instantiate<L1_DP04>(Vector2(id.x, id.y), eLayerType::Item);
-
-								id2.ind = (UINT32)indexTemp;
-
-								mObs.insert(std::make_pair(id.id, mOb));
-								mTiles.insert(std::make_pair(id.id, id2.ind));
-								mObstacle.insert(std::make_pair(id.id, mOb));
-							}
-							if (indexTemp == 67)
-							{
-								mOb = object::Instantiate<L1_DP05>(Vector2(id.x, id.y), eLayerType::Item);
-
-								id2.ind = (UINT32)indexTemp;
-
-								mObs.insert(std::make_pair(id.id, mOb));
-								mTiles.insert(std::make_pair(id.id, id2.ind));
-								mObstacle.insert(std::make_pair(id.id, mOb));
-							}
-							if (indexTemp == 68)
-							{
-								mOb = object::Instantiate<L1_DP06>(Vector2(id.x, id.y), eLayerType::Item);
-
-								id2.ind = (UINT32)indexTemp;
-
-								mObs.insert(std::make_pair(id.id, mOb));
-								mTiles.insert(std::make_pair(id.id, id2.ind));
-								mObstacle.insert(std::make_pair(id.id, mOb));
-							}
-							//
-							if (indexTemp == 71)
-							{
-								mOb = object::Instantiate<L1_SL01>(Vector2(id.x, id.y), eLayerType::Item);
-
-								id2.ind = (UINT32)indexTemp;
-
-								mObs.insert(std::make_pair(id.id, mOb));
-								mTiles.insert(std::make_pair(id.id, id2.ind));
-								mObstacle.insert(std::make_pair(id.id, mOb));
-							}
-							if (indexTemp == 72)
-							{
-								mOb = object::Instantiate<L1_SL02>(Vector2(id.x, id.y), eLayerType::Item);
-
-								id2.ind = (UINT32)indexTemp;
-
-								mObs.insert(std::make_pair(id.id, mOb));
-								mTiles.insert(std::make_pair(id.id, id2.ind));
-								mObstacle.insert(std::make_pair(id.id, mOb));
-							}
-							if (indexTemp == 73)
-							{
-								mOb = object::Instantiate<L1_SL03>(Vector2(id.x, id.y), eLayerType::Item);
-
-								id2.ind = (UINT32)indexTemp;
-
-								mObs.insert(std::make_pair(id.id, mOb));
-								mTiles.insert(std::make_pair(id.id, id2.ind));
-								mObstacle.insert(std::make_pair(id.id, mOb));
-							}
-							if (indexTemp == 74)
-							{
-								mOb = object::Instantiate<L1_SL04>(Vector2(id.x, id.y), eLayerType::Item);
-
-								id2.ind = (UINT32)indexTemp;
-
-								mObs.insert(std::make_pair(id.id, mOb));
-								mTiles.insert(std::make_pair(id.id, id2.ind));
-								mObstacle.insert(std::make_pair(id.id, mOb));
-							}
-							if (indexTemp == 75)
-							{
-								mOb = object::Instantiate<L1_SL05>(Vector2(id.x, id.y), eLayerType::Item);
-
-								id2.ind = (UINT32)indexTemp;
-
-								mObs.insert(std::make_pair(id.id, mOb));
-								mTiles.insert(std::make_pair(id.id, id2.ind));
-								mObstacle.insert(std::make_pair(id.id, mOb));
-							}
-							if (indexTemp == 76)
-							{
-								mOb = object::Instantiate<L1_SL06>(Vector2(id.x, id.y), eLayerType::Item);
-
-								id2.ind = (UINT32)indexTemp;
-
-								mObs.insert(std::make_pair(id.id, mOb));
-								mTiles.insert(std::make_pair(id.id, id2.ind));
-								mObstacle.insert(std::make_pair(id.id, mOb));
-							}
-
-#pragma endregion
-
-						}
-
-						if (iter == --mCoin.end())
-						{
-							mOtoCend = false;
-							mOtoCend2 = true;// 얘들 다시 false로 돌려놔야함
-						}
-					}
-				}
-
-				if (mOtoCend2 == true)
-				{
-					mCoin.clear();
-					mOtoCTime = 0.0f;
-					mCh01->mOtoC = false;
-				}
+				//if (tempToclear == 1)
+				//{
+				//	mObstacle.clear();
+				//}
 			}
 		}
-		#pragma endregion
 
 		if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
 		{
