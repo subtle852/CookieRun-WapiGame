@@ -679,24 +679,38 @@ namespace ya
 				mOb = nullptr;
 			}
 
-			if (Input::GetKeyDown(eKeyCode::E))// 방금 설치한 오브젝트 삭제
+			if (Input::GetKeyDown(eKeyCode::E))// E 눌렀을 때, 마우스 근처의 오브젝트들 삭제
 			{
-				//if (!mObs.empty())// 오류 있음 끝에서부터 사라지는게 아니라 중간게 먼저 삭제됨
-				//{ 
-				//std::unordered_map<UINT64, GameObject*>::iterator iter1 = --mObs.end() ;
-				//TilePos idt;
-				//idt.id = iter1->first;
+				::POINT mousePos = {};
+				::GetCursorPos(&mousePos);
+				::ScreenToClient(application.GetHwnd(), &mousePos);
 
-				//ya::object::Destory(iter1->second);
+				float PosX = mousePos.x;
+				float PosY = mousePos.y;
 
-				//mObs.erase(idt.id);
+				for (auto i = mObs.begin(); i != mObs.end(); )
+				{
+					GameObject* mObTemp;
+					mObTemp = i->second;
 
-				//mTiles.erase(idt.id);
-				//}
+					TilePos id;
+					id.id = i->first;
+					
+					if (PosX - 50.f < id.x && id.x < PosX + 50.f)
+					{
+						ya::object::Destory(i->second);
 
-				ya::object::Destory(mOb);
-				mObs.erase(id.id);
-				mTiles.erase(id.id);
+						mObs.erase(id.id);
+						mTiles.erase(id.id);
+						mBasicJelly.erase(id.id);
+						mObstacle.erase(id.id);
+
+						i = mObs.begin();
+						continue;
+					}
+
+					i++;
+				}
 			}
 
 			if (Input::GetKeyDown(eKeyCode::LBUTTON))

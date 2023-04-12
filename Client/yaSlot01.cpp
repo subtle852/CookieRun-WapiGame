@@ -23,29 +23,29 @@ namespace ya
 		Transform* tr = GetComponent<Transform>();
 		tr->SetScale(Vector2(1.45f, 1.45f));
 
-		Image* mImage = Resources::Load<Image>(L"sssss", L"..\\Resources\\sssss.bmp"); 
+		Image* mImage = Resources::Load<Image>(L"sssss", L"..\\Resources\\Slot\\Lane\\sssss.bmp"); 
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimation(L"L1", mImage, Vector2((1311.0f * 0), (67.0f * 0)), 32, 1, 32, Vector2::Zero, 0.01, 0);
 
-		Image* mImage1 = Resources::Load<Image>(L"r1", L"..\\Resources\\r1.bmp");
+		Image* mImage1 = Resources::Load<Image>(L"r1", L"..\\Resources\\Slot\\Lane\\r1.bmp");
 		mAnimator->CreateAnimation(L"R1", mImage1, Vector2((1314.0f * 0), (67.0f * 0)), 32, 1, 32, Vector2::Zero, 0.03, 0);
 
-		Image* mImage2 = Resources::Load<Image>(L"r2", L"..\\Resources\\r2.bmp");
+		Image* mImage2 = Resources::Load<Image>(L"r2", L"..\\Resources\\Slot\\Lane\\r2.bmp");
 		mAnimator->CreateAnimation(L"R2", mImage2, Vector2((1314.0f * 0), (67.0f * 0)), 32, 1, 32, Vector2::Zero, 0.03, 0);
 
-		Image* mImage3 = Resources::Load<Image>(L"r3", L"..\\Resources\\r3.bmp");
+		Image* mImage3 = Resources::Load<Image>(L"r3", L"..\\Resources\\Slot\\Lane\\r3.bmp");
 		mAnimator->CreateAnimation(L"R3", mImage3, Vector2((1314.0f * 0), (67.0f * 0)), 32, 1, 32, Vector2::Zero, 0.03, 0);
 
-		Image* mImage4 = Resources::Load<Image>(L"r4", L"..\\Resources\\r4.bmp");
+		Image* mImage4 = Resources::Load<Image>(L"r4", L"..\\Resources\\Slot\\Lane\\r4.bmp");
 		mAnimator->CreateAnimation(L"R4", mImage4, Vector2((1314.0f * 0), (67.0f * 0)), 32, 1, 32, Vector2::Zero, 0.03, 0);
 
-		Image* mImage5 = Resources::Load<Image>(L"r5", L"..\\Resources\\r5.bmp");
+		Image* mImage5 = Resources::Load<Image>(L"r5", L"..\\Resources\\Slot\\Lane\\r5.bmp");
 		mAnimator->CreateAnimation(L"R5", mImage5, Vector2((1314.0f * 0), (67.0f * 0)), 32, 1, 32, Vector2::Zero, 0.03, 0);
 
-		Image* mImage6 = Resources::Load<Image>(L"r6", L"..\\Resources\\r6.bmp");
+		Image* mImage6 = Resources::Load<Image>(L"r6", L"..\\Resources\\Slot\\Lane\\r6.bmp");
 		mAnimator->CreateAnimation(L"R6", mImage6, Vector2((1314.0f * 0), (67.0f * 0)), 32, 1, 32, Vector2::Zero, 0.03, 0);
 
-		Image* mImage7 = Resources::Load<Image>(L"r7", L"..\\Resources\\r7.bmp");
+		Image* mImage7 = Resources::Load<Image>(L"r7", L"..\\Resources\\Slot\\Lane\\r7.bmp");
 		mAnimator->CreateAnimation(L"R7", mImage7, Vector2((1314.0f * 0), (67.0f * 0)), 32, 1, 32, Vector2::Zero, 0.03, 0);
 		//mAnimator->CreateAnimations(L"..\\Resorces\\Chalise\\Idle", Vector2::Zero, 0.1f); 
 
