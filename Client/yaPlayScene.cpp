@@ -146,6 +146,7 @@
 
 namespace ya
 {
+	Character01* PlayScene::mCh01 = nullptr;
 	bool PlayScene::mCloudEffectOnatPlay = false;
 
 	PlayScene::PlayScene()
@@ -776,7 +777,7 @@ namespace ya
 		{
 			mMagnetTime += Time::DeltaTime(); // 모든 아이템들에 캐릭쪽으로 오는 논리 적용시켜야함
 
-			if (mMagnetTime > 1.0f)
+			if (mMagnetTime > 2.0f)
 			{
 				mMagnetTime = 0.0f;
 				mCh01->mMagnetState = false;
@@ -792,15 +793,20 @@ namespace ya
 				Vector2 pos = tr->GetPos();
 				MakeScene::mChPos = pos;
 
-				if (pos.x - 30.0f < id.x && id.x < pos.x + 700.0f)
+				if (pos.x < id.x && id.x < pos.x + 500.0f)
 				{
 					GameObject* temp = iter->second;
 					temp->mMagnet = true;
 				}
-				if (pos.x - 30.0f >= id.x)
+				//if (pos.x >= id.x)
+				//{
+				//	GameObject* temp = iter->second;
+				//	temp->mMagnet = false;
+				//}
+				if (pos.x - 500.f < id.x && id.x < pos.x)
 				{
 					GameObject* temp = iter->second;
-					temp->mMagnet = false;
+					temp->mMagnetError = true;
 				}
 			}
 		}
@@ -1010,6 +1016,7 @@ namespace ya
 				//}
 			}
 		}
+		#pragma endregion
 
 		if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
 		{

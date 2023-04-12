@@ -135,6 +135,11 @@ namespace ya
 			mAnimator->Play(L"idle", true);
 		}
 
+		if (scn->GetName() == L"Racing")
+		{
+			mAnimator->Play(L"Run", true);
+		}
+
 		if (scn->GetName() == L"Play" || scn->GetName() == L"Make")
 		{
 			if (mPlayInit == false)

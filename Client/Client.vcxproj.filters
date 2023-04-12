@@ -152,6 +152,18 @@
     <Filter Include="Contents\UI\Fonts">
       <UniqueIdentifier>{c8348ea8-223f-4fea-95cf-11578cf50c71}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Slot">
+      <UniqueIdentifier>{49c483b5-ed95-4fa7-a400-9c2b469ec131}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Racing">
+      <UniqueIdentifier>{c14145cd-f8cb-4ad5-8597-e9d1bfe91170}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Baccarat">
+      <UniqueIdentifier>{7b978904-96e4-4b8c-9208-083c9a1cc34c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Baccarat\Card">
+      <UniqueIdentifier>{821b8422-9411-4168-86d3-dd189551586e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -598,6 +610,99 @@
     <ClInclude Include="yaF_7.h">
       <Filter>Contents\UI\Fonts</Filter>
     </ClInclude>
+    <ClInclude Include="yaSlotScene.h">
+      <Filter>Contents\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="yaSlotBackGround.h">
+      <Filter>Contents\Object\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="yaRacingScene.h">
+      <Filter>Contents\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="yaRacingBackGround.h">
+      <Filter>Contents\Object\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="yaSlot01.h">
+      <Filter>Contents\Slot</Filter>
+    </ClInclude>
+    <ClInclude Include="yaSlotB01.h">
+      <Filter>Contents\Slot</Filter>
+    </ClInclude>
+    <ClInclude Include="yaSlotB02.h">
+      <Filter>Contents\Slot</Filter>
+    </ClInclude>
+    <ClInclude Include="yaSlotB03.h">
+      <Filter>Contents\Slot</Filter>
+    </ClInclude>
+    <ClInclude Include="yaSlotBs.h">
+      <Filter>Contents\Slot</Filter>
+    </ClInclude>
+    <ClInclude Include="yaRacingB01.h">
+      <Filter>Contents\Racing</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBaccaratScene.h">
+      <Filter>Contents\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBaccaratBackGround.h">
+      <Filter>Contents\Object\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="yaCard01_00.h">
+      <Filter>Contents\Baccarat\Card</Filter>
+    </ClInclude>
+    <ClInclude Include="yaCard01_10.h">
+      <Filter>Contents\Baccarat\Card</Filter>
+    </ClInclude>
+    <ClInclude Include="yaCard01_13.h">
+      <Filter>Contents\Baccarat\Card</Filter>
+    </ClInclude>
+    <ClInclude Include="yaCard01_12.h">
+      <Filter>Contents\Baccarat\Card</Filter>
+    </ClInclude>
+    <ClInclude Include="yaCard01_11.h">
+      <Filter>Contents\Baccarat\Card</Filter>
+    </ClInclude>
+    <ClInclude Include="yaCard01_09.h">
+      <Filter>Contents\Baccarat\Card</Filter>
+    </ClInclude>
+    <ClInclude Include="yaCard01_08.h">
+      <Filter>Contents\Baccarat\Card</Filter>
+    </ClInclude>
+    <ClInclude Include="yaCard01_07.h">
+      <Filter>Contents\Baccarat\Card</Filter>
+    </ClInclude>
+    <ClInclude Include="yaCard01_06.h">
+      <Filter>Contents\Baccarat\Card</Filter>
+    </ClInclude>
+    <ClInclude Include="yaCard01_05.h">
+      <Filter>Contents\Baccarat\Card</Filter>
+    </ClInclude>
+    <ClInclude Include="yaCard01_04.h">
+      <Filter>Contents\Baccarat\Card</Filter>
+    </ClInclude>
+    <ClInclude Include="yaCard01_03.h">
+      <Filter>Contents\Baccarat\Card</Filter>
+    </ClInclude>
+    <ClInclude Include="yaCard01_02.h">
+      <Filter>Contents\Baccarat\Card</Filter>
+    </ClInclude>
+    <ClInclude Include="yaCard01_01.h">
+      <Filter>Contents\Baccarat\Card</Filter>
+    </ClInclude>
+    <ClInclude Include="yaSelect_Banker.h">
+      <Filter>Contents\Baccarat</Filter>
+    </ClInclude>
+    <ClInclude Include="yaSelect_BankerPair.h">
+      <Filter>Contents\Baccarat</Filter>
+    </ClInclude>
+    <ClInclude Include="yaSelect_Player.h">
+      <Filter>Contents\Baccarat</Filter>
+    </ClInclude>
+    <ClInclude Include="yaSelect_PlayerPair.h">
+      <Filter>Contents\Baccarat</Filter>
+    </ClInclude>
+    <ClInclude Include="yaSelect_Tie.h">
+      <Filter>Contents\Baccarat</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="small.ico">
@@ -1038,6 +1143,99 @@
     </ClCompile>
     <ClCompile Include="yaF_7.cpp">
       <Filter>Contents\UI\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSlotScene.cpp">
+      <Filter>Contents\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSlotBackGround.cpp">
+      <Filter>Contents\Object\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="yaRacingScene.cpp">
+      <Filter>Contents\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="yaRacingBackGround.cpp">
+      <Filter>Contents\Object\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSlot01.cpp">
+      <Filter>Contents\Slot</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSlotB01.cpp">
+      <Filter>Contents\Slot</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSlotB02.cpp">
+      <Filter>Contents\Slot</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSlotBs.cpp">
+      <Filter>Contents\Slot</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSlotB03.cpp">
+      <Filter>Contents\Slot</Filter>
+    </ClCompile>
+    <ClCompile Include="yaRacingB01.cpp">
+      <Filter>Contents\Racing</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBaccaratScene.cpp">
+      <Filter>Contents\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBaccaratBackGround.cpp">
+      <Filter>Contents\Object\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="yaCard01_00.cpp">
+      <Filter>Contents\Baccarat\Card</Filter>
+    </ClCompile>
+    <ClCompile Include="yaCard01_01.cpp">
+      <Filter>Contents\Baccarat\Card</Filter>
+    </ClCompile>
+    <ClCompile Include="yaCard01_02.cpp">
+      <Filter>Contents\Baccarat\Card</Filter>
+    </ClCompile>
+    <ClCompile Include="yaCard01_06.cpp">
+      <Filter>Contents\Baccarat\Card</Filter>
+    </ClCompile>
+    <ClCompile Include="yaCard01_08.cpp">
+      <Filter>Contents\Baccarat\Card</Filter>
+    </ClCompile>
+    <ClCompile Include="yaCard01_13.cpp">
+      <Filter>Contents\Baccarat\Card</Filter>
+    </ClCompile>
+    <ClCompile Include="yaCard01_12.cpp">
+      <Filter>Contents\Baccarat\Card</Filter>
+    </ClCompile>
+    <ClCompile Include="yaCard01_11.cpp">
+      <Filter>Contents\Baccarat\Card</Filter>
+    </ClCompile>
+    <ClCompile Include="yaCard01_10.cpp">
+      <Filter>Contents\Baccarat\Card</Filter>
+    </ClCompile>
+    <ClCompile Include="yaCard01_09.cpp">
+      <Filter>Contents\Baccarat\Card</Filter>
+    </ClCompile>
+    <ClCompile Include="yaCard01_07.cpp">
+      <Filter>Contents\Baccarat\Card</Filter>
+    </ClCompile>
+    <ClCompile Include="yaCard01_05.cpp">
+      <Filter>Contents\Baccarat\Card</Filter>
+    </ClCompile>
+    <ClCompile Include="yaCard01_04.cpp">
+      <Filter>Contents\Baccarat\Card</Filter>
+    </ClCompile>
+    <ClCompile Include="yaCard01_03.cpp">
+      <Filter>Contents\Baccarat\Card</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSelect_Banker.cpp">
+      <Filter>Contents\Baccarat</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSelect_BankerPair.cpp">
+      <Filter>Contents\Baccarat</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSelect_Player.cpp">
+      <Filter>Contents\Baccarat</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSelect_PlayerPair.cpp">
+      <Filter>Contents\Baccarat</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSelect_Tie.cpp">
+      <Filter>Contents\Baccarat</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

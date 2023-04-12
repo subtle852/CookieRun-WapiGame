@@ -59,5 +59,6 @@ namespace ya
 
 	public:
 		bool mMagnet = false;
+		bool mMagnetError = false;
 	};
 }

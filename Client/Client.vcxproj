@@ -135,6 +135,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="yaBaccaratBackGround.h" />
+    <ClInclude Include="yaBaccaratScene.h" />
+    <ClInclude Include="yaCard01_00.h" />
+    <ClInclude Include="yaCard01_01.h" />
+    <ClInclude Include="yaCard01_02.h" />
+    <ClInclude Include="yaCard01_03.h" />
+    <ClInclude Include="yaCard01_04.h" />
+    <ClInclude Include="yaCard01_05.h" />
+    <ClInclude Include="yaCard01_06.h" />
+    <ClInclude Include="yaCard01_07.h" />
+    <ClInclude Include="yaCard01_08.h" />
+    <ClInclude Include="yaCard01_09.h" />
+    <ClInclude Include="yaCard01_10.h" />
+    <ClInclude Include="yaCard01_11.h" />
+    <ClInclude Include="yaCard01_12.h" />
+    <ClInclude Include="yaCard01_13.h" />
+    <ClInclude Include="yaRacingB01.h" />
+    <ClInclude Include="yaRacingBackGround.h" />
+    <ClInclude Include="yaRacingScene.h" />
+    <ClInclude Include="yaSelect_Banker.h" />
+    <ClInclude Include="yaSelect_BankerPair.h" />
+    <ClInclude Include="yaSelect_Player.h" />
+    <ClInclude Include="yaSelect_PlayerPair.h" />
+    <ClInclude Include="yaSelect_Tie.h" />
+    <ClInclude Include="yaSlotBs.h" />
     <ClInclude Include="yaCloudEffect.h" />
     <ClInclude Include="yaEatEffect.h" />
     <ClInclude Include="yaF_0.h" />
@@ -251,6 +276,12 @@
     <ClInclude Include="yaSelectStageBackGround.h" />
     <ClInclude Include="yaSelectStageScene.h" />
     <ClInclude Include="yaSilverUI.h" />
+    <ClInclude Include="yaSlot01.h" />
+    <ClInclude Include="yaSlotB01.h" />
+    <ClInclude Include="yaSlotB02.h" />
+    <ClInclude Include="yaSlotB03.h" />
+    <ClInclude Include="yaSlotBackGround.h" />
+    <ClInclude Include="yaSlotScene.h" />
     <ClInclude Include="yaSlowItem.h" />
     <ClInclude Include="yaSmItem.h" />
     <ClInclude Include="yaStoreBackGround.h" />
@@ -285,6 +316,31 @@
     <ClInclude Include="yaMagnetItem.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="yaBaccaratBackGround.cpp" />
+    <ClCompile Include="yaBaccaratScene.cpp" />
+    <ClCompile Include="yaCard01_00.cpp" />
+    <ClCompile Include="yaCard01_01.cpp" />
+    <ClCompile Include="yaCard01_02.cpp" />
+    <ClCompile Include="yaCard01_03.cpp" />
+    <ClCompile Include="yaCard01_04.cpp" />
+    <ClCompile Include="yaCard01_05.cpp" />
+    <ClCompile Include="yaCard01_06.cpp" />
+    <ClCompile Include="yaCard01_07.cpp" />
+    <ClCompile Include="yaCard01_08.cpp" />
+    <ClCompile Include="yaCard01_09.cpp" />
+    <ClCompile Include="yaCard01_10.cpp" />
+    <ClCompile Include="yaCard01_11.cpp" />
+    <ClCompile Include="yaCard01_12.cpp" />
+    <ClCompile Include="yaCard01_13.cpp" />
+    <ClCompile Include="yaRacingB01.cpp" />
+    <ClCompile Include="yaRacingBackGround.cpp" />
+    <ClCompile Include="yaRacingScene.cpp" />
+    <ClCompile Include="yaSelect_Banker.cpp" />
+    <ClCompile Include="yaSelect_BankerPair.cpp" />
+    <ClCompile Include="yaSelect_Player.cpp" />
+    <ClCompile Include="yaSelect_PlayerPair.cpp" />
+    <ClCompile Include="yaSelect_Tie.cpp" />
+    <ClCompile Include="yaSlotBs.cpp" />
     <ClCompile Include="yaCloudEffect.cpp" />
     <ClCompile Include="yaEatEffect.cpp" />
     <ClCompile Include="yaF_0.cpp" />
@@ -396,6 +452,12 @@
     <ClCompile Include="yaSelectStageBackGround.cpp" />
     <ClCompile Include="yaSelectStageScene.cpp" />
     <ClCompile Include="yaSilverUI.cpp" />
+    <ClCompile Include="yaSlot01.cpp" />
+    <ClCompile Include="yaSlotB01.cpp" />
+    <ClCompile Include="yaSlotB02.cpp" />
+    <ClCompile Include="yaSlotB03.cpp" />
+    <ClCompile Include="yaSlotBackGround.cpp" />
+    <ClCompile Include="yaSlotScene.cpp" />
     <ClCompile Include="yaSlowItem.cpp" />
     <ClCompile Include="yaSmItem.cpp" />
     <ClCompile Include="yaStoreBackGround.cpp" />

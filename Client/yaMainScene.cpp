@@ -30,7 +30,7 @@
 namespace ya
 {
 	int MainScene::mSilver = 410348;
-	int MainScene::mDia = 3500;
+	int MainScene::mDia = 159500;
 
 	MainScene::MainScene()
 	{
@@ -55,13 +55,15 @@ namespace ya
 		//object::Instantiate<DiaUI>(Vector2(1000.0f, 50.0f), eLayerType::UI);
 		//object::Instantiate<SilverUI>(Vector2(1300.0f, 50.0f), eLayerType::UI);
 
-		//object::Instantiate<CookiesUI>(Vector2(150.0f, 700.0f), eLayerType::UI);
 		//object::Instantiate<GachaUI>(Vector2(150.0f, 100.0f), eLayerType::UI);
 		//object::Instantiate<StoreUI>(Vector2(150.0f, 300.0f), eLayerType::UI);
 	}
 
 	void MainScene::Update()
 	{
+		
+
+
 		for (auto i = 0; i < 6; i++)
 		{
 			if (mObs[i] != nullptr)
@@ -200,14 +202,27 @@ namespace ya
 				if (mousPos.y >= 900.0f || mousPos.y <= 0.0f)
 					return;
 
-				if ((266.f <= mousPos.x && mousPos.x <= 352.f) && (226.f <= mousPos.y && mousPos.y <= 276.f))
+				if ((276.f <= mousPos.x && mousPos.x <= 360.f) && (163.f <= mousPos.y && mousPos.y <= 218.f))
 				{
 					SceneManager::LoadScene(eSceneType::Lottery);
 				}
-				if ((266.f <= mousPos.x && mousPos.x <= 350.f) && (364.f <= mousPos.y && mousPos.y <= 411.f))
+				if ((276.f <= mousPos.x && mousPos.x <= 360.f) && (286.f <= mousPos.y && mousPos.y <= 342.f))
 				{
 					SceneManager::LoadScene(eSceneType::Store);
 				}
+				if ((276.f <= mousPos.x && mousPos.x <= 360.f) && (415.f <= mousPos.y && mousPos.y <= 474.f))
+				{
+					SceneManager::LoadScene(eSceneType::Slot);
+				}
+				if ((276.f <= mousPos.x && mousPos.x <= 360.f) && (540.f <= mousPos.y && mousPos.y <= 595.f))
+				{
+					SceneManager::LoadScene(eSceneType::Racing);
+				}
+				if ((276.f <= mousPos.x && mousPos.x <= 360.f) && (617.f <= mousPos.y && mousPos.y <= 656.f))
+				{
+					SceneManager::LoadScene(eSceneType::Baccarat);
+				}
+
 				if ((196.f <= mousPos.x && mousPos.x <= 424.f) && (685.f <= mousPos.y && mousPos.y <= 784.f))
 				{
 					SceneManager::LoadScene(eSceneType::SelectChar);
@@ -216,6 +231,7 @@ namespace ya
 				{
 					SceneManager::LoadScene(eSceneType::Play);
 				}
+
 			}
 		}
 
@@ -243,18 +259,50 @@ namespace ya
 		mCh00 = object::Instantiate<Character01>(Vector2(780.0f, 580.0f), eLayerType::Player);
 		mPet00 = object::Instantiate<Pet01>(Vector2(880.0f, 480.0f), eLayerType::Pet);
 
-		//object::Instantiate<PlayButton>(Vector2(1100.0f, 700.0f), eLayerType::UI);
-		//object::Instantiate<DiaUI>(Vector2(1000.0f, 50.0f), eLayerType::UI);
-		//object::Instantiate<SilverUI>(Vector2(1300.0f, 50.0f), eLayerType::UI);
+		for (auto i = 0; i < 6; i++)
+		{
+			if (mObs[i] != nullptr)
+				object::Destory(mObs[i]);
+		}
+		for (auto i = 0; i < 6; i++)
+		{
+			mObs[i] = nullptr;
+		}
 
-		//object::Instantiate<CookiesUI>(Vector2(150.0f, 700.0f), eLayerType::UI);
-		//object::Instantiate<GachaUI>(Vector2(150.0f, 100.0f), eLayerType::UI);
-		//object::Instantiate<StoreUI>(Vector2(150.0f, 300.0f), eLayerType::UI);
+		for (auto i = 0; i < 6; i++)
+		{
+			if (mObs2[i] != nullptr)
+				object::Destory(mObs2[i]);
+		}
+		for (auto i = 0; i < 6; i++)
+		{
+			mObs2[i] = nullptr;
+		}
 	}
 
 	void MainScene::OnExit()
 	{
 		ya::object::Destory(mCh00);
 		ya::object::Destory(mPet00);
+
+		for (auto i = 0; i < 6; i++)
+		{
+			if (mObs[i] != nullptr)
+				object::Destory(mObs[i]);
+		}
+		for (auto i = 0; i < 6; i++)
+		{
+			mObs[i] = nullptr;
+		}
+
+		for (auto i = 0; i < 6; i++)
+		{
+			if (mObs2[i] != nullptr)
+				object::Destory(mObs2[i]);
+		}
+		for (auto i = 0; i < 6; i++)
+		{
+			mObs2[i] = nullptr;
+		}
 	}
 }

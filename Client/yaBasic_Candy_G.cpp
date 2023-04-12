@@ -82,6 +82,11 @@ namespace ya
 			}
 		}
 
+		if (mMagnetError == true)
+		{
+			object::Destory(this);
+		}
+
 		GameObject::Update();
 	}
 

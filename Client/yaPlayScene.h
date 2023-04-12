@@ -29,7 +29,8 @@ namespace ya
 	private:
 		PlayBackGround* mBG;
 
-		Character01* mCh01;
+	public:
+		static Character01* mCh01;
 		Pet01* mPet01;
 
 	private:

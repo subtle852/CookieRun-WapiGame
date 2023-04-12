@@ -95,8 +95,8 @@ LRESULT CALLBACK AtlasWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPa
 		//512 384
 		//HMENU mMenubar = LoadMenu(nullptr, MAKEINTRESOURCE(IDC_CLIENT));
 		//SetMenu(hWnd, mMenubar);
-		ya::Image* tile = ya::Resources::Load<ya::Image>(L"Tile1", L"..\\Resources\\Tile_1_new.bmp");
-		ya::Image* tile2 = ya::Resources::Load<ya::Image>(L"Tile2", L"..\\Resources\\Tile_2_new.bmp");
+		ya::Image* tile = ya::Resources::Load<ya::Image>(L"Tile1", L"..\\Resources\\Tile_1_b.bmp");
+		ya::Image* tile2 = ya::Resources::Load<ya::Image>(L"Tile2", L"..\\Resources\\Tile_2_b.bmp");
 		ya::Image* tile3 = ya::Resources::Load<ya::Image>(L"Tile3", L"..\\Resources\\Tile3.bmp");
 		RECT rect = { 0, 0, tile->GetWidth(), tile->GetHeight() };
 		//RECT rect = { 0, 0, tile->GetWidth(), tile->GetHeight() };
@@ -205,7 +205,7 @@ LRESULT CALLBACK AtlasWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPa
 			y = GET_Y_LPARAM(lParam);
 
 			wsprintf(text, L"i : %d chapter : %d", index, chapter);
-			InvalidateRect(hWnd, NULL, TRUE);
+			//InvalidateRect(hWnd, NULL, TRUE);
 
 			/*int y, x;
 			x = GET_X_LPARAM(lParam);
@@ -269,6 +269,8 @@ LRESULT CALLBACK AtlasWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPa
 		//(HPEN)SelectObject(hdc, oldPen);
 		//DeleteObject(redPen);
 		// TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
+		
+		
 		TextOutW(hdc, 410, 0, text, lstrlen(text));
 
 		EndPaint(hWnd, &ps);

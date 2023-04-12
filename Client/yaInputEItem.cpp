@@ -11,6 +11,7 @@
 #include "yaCamera.h"
 #include "yaCharacter01.h"
 #include "yaMakeScene.h"
+#include "yaPlayScene.h"
 
 namespace ya
 {
@@ -56,15 +57,15 @@ namespace ya
 				dir.Normalize();
 
 				Vector2 pos = tr->GetPos();
-				pos.x -= 500.0f * dir.x * Time::DeltaTime();
-				pos.y -= 500.0f * dir.y * Time::DeltaTime();
+				pos.x -= 700.0f * dir.x * Time::DeltaTime();
+				pos.y -= 700.0f * dir.y * Time::DeltaTime();
 
 				tr->SetPos(pos);
 			}
 			else if (ChPos.y - 25.0f < pos.y && pos.y < ChPos.y + 25.0f)
 			{
 				Vector2 pos = tr->GetPos();
-				pos.x -= 500.0f * Time::DeltaTime();
+				pos.x -= 700.0f * Time::DeltaTime();
 
 				tr->SetPos(pos);
 			}
@@ -74,11 +75,18 @@ namespace ya
 				dir.Normalize();
 
 				Vector2 pos = tr->GetPos();
-				pos.x -= 500.0f * dir.x * Time::DeltaTime();
-				pos.y += 500.0f * dir.y * Time::DeltaTime();
+				pos.x -= 700.0f * dir.x * Time::DeltaTime();
+				pos.y += 700.0f * dir.y * Time::DeltaTime();
 
 				tr->SetPos(pos);
 			}
+		}
+
+		if (mMagnetError == true)
+		{
+			PlayScene::mCh01->mKeyError = true;
+			Camera::mType = Camera::eCameraEffectType::KeyError;
+			object::Destory(this);
 		}
 
 		GameObject::Update();
@@ -96,10 +104,7 @@ namespace ya
 
 	void InputEItem::OnCollisionEnter(Collider* other)
 	{
-		if (dynamic_cast<Character01*>(other->GetOwner()))
-		{
-			MakeScene::mEatEffectOn = true;
-		}
+
 	}
 
 	void InputEItem::OnCollisionStay(Collider* other)
