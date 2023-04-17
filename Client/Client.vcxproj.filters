@@ -703,6 +703,12 @@
     <ClInclude Include="yaSelect_Tie.h">
       <Filter>Contents\Baccarat</Filter>
     </ClInclude>
+    <ClInclude Include="yaCharacter02.h">
+      <Filter>Contents\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="yaCharacter03.h">
+      <Filter>Contents\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="small.ico">
@@ -1236,6 +1242,12 @@
     </ClCompile>
     <ClCompile Include="yaSelect_Tie.cpp">
       <Filter>Contents\Baccarat</Filter>
+    </ClCompile>
+    <ClCompile Include="yaCharacter02.cpp">
+      <Filter>Contents\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="yaCharacter03.cpp">
+      <Filter>Contents\Player</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -231,7 +231,7 @@ namespace ya
 					{
 						if ((i == 0 && mTime > 5.0f) || (i == 1 && mTime > 6.0f) || (i == 2 && mTime > 8.0f) || (i == 3 && mTime > 9.0f))
 						{
-							srand(time(NULL));
+							//srand(time(NULL));
 							int tempValue = rand() % 13 + 1;// 1~13
 							
 							if (i == 0 || i == 1)

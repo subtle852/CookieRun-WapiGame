@@ -60,7 +60,7 @@ namespace ya
 		Transform* tr = GetComponent<Transform>();
 		tr->SetScale(Vector2(1.2f, 1.2f));
 
-		Image* mImage = Resources::Load<Image>(L"Char01", L"..\\Resources\\Char\\idle.bmp");
+		Image* mImage = Resources::Load<Image>(L"Char01", L"..\\Resources\\Char\\C\\base.bmp");
 		mAnimator = AddComponent<Animator>();
 		mAnimator->CreateAnimation(L"idle", mImage, Vector2((290.0f * 1), (290.0f * 2)), 11, 6, 4, Vector2::Zero, 0.13, 0);
 		mAnimator->CreateAnimation(L"Roll", mImage, Vector2::Zero, 11, 6, 6, Vector2::Zero, 0.15, 0);
@@ -483,23 +483,23 @@ namespace ya
 				#pragma region 장애물 충돌 시 체력 마이너스
 				if (dynamic_cast<L1_JP01*>(other->GetOwner()))
 				{
-					mCurHp -= 10;
+					mCurHp -= 10; 
 				}
 				if (dynamic_cast<L1_JP02*>(other->GetOwner()))
 				{
-					mCurHp -= 10;
+					mCurHp -= 10; 
 				}
 				if (dynamic_cast<L1_JP03*>(other->GetOwner()))
 				{
-					mCurHp -= 10;
+					mCurHp -= 10; 
 				}
 				if (dynamic_cast<L1_JP04*>(other->GetOwner()))
 				{
-					mCurHp -= 10;
+					mCurHp -= 10; 
 				}
 				if (dynamic_cast<L1_JP05*>(other->GetOwner()))
 				{
-					mCurHp -= 10;
+					mCurHp -= 10; 
 				}
 				if (dynamic_cast<L1_JP06*>(other->GetOwner()))
 				{
@@ -507,15 +507,15 @@ namespace ya
 				}
 				if (dynamic_cast<L1_DP01*>(other->GetOwner()))
 				{
-					mCurHp -= 10;
+					mCurHp -= 10; 
 				}
 				if (dynamic_cast<L1_DP02*>(other->GetOwner()))
 				{
-					mCurHp -= 10;
+					mCurHp -= 10; 
 				}
 				if (dynamic_cast<L1_DP03*>(other->GetOwner()))
 				{
-					mCurHp -= 10;
+					mCurHp -= 10; 
 				}
 				if (dynamic_cast<L1_DP04*>(other->GetOwner()))
 				{
@@ -993,7 +993,8 @@ namespace ya
 
 	void Character01::DamagedCompleteEvent()
 	{
-		mState = eChar01State::Transp2;
+		//mState = eChar01State::Transp2;
+		mState = eChar01State::Run;
 	}
 
 	void Character01::Transp2CompleteEvent()

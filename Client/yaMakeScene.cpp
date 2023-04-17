@@ -681,12 +681,21 @@ namespace ya
 
 			if (Input::GetKeyDown(eKeyCode::E))// E 눌렀을 때, 마우스 근처의 오브젝트들 삭제
 			{
-				::POINT mousePos = {};
-				::GetCursorPos(&mousePos);
-				::ScreenToClient(application.GetHwnd(), &mousePos);
+				//::POINT mousePos = {};
+				//::GetCursorPos(&mousePos);
+				//::ScreenToClient(application.GetHwnd(), &mousePos);
 
-				float PosX = mousePos.x;
-				float PosY = mousePos.y;
+				//float PosX = mousePos.x;
+				//float PosY = mousePos.y;
+
+				Vector2 mousPos = Input::GetMousePos();
+				if (mousPos.x >= 1600.0f || mousPos.x <= 0.0f)
+					return;
+				if (mousPos.y >= 900.0f || mousPos.y <= 0.0f)
+					return;
+
+				Vector2 pos = Input::GetMousePos();
+				pos -= Camera::CaluatePos(Vector2::Zero);
 
 				for (auto i = mObs.begin(); i != mObs.end(); )
 				{
@@ -696,7 +705,7 @@ namespace ya
 					TilePos id;
 					id.id = i->first;
 					
-					if (PosX - 50.f < id.x && id.x < PosX + 50.f)
+					if (pos.x - 50.f < id.x && id.x < pos.x + 50.f)
 					{
 						ya::object::Destory(i->second);
 

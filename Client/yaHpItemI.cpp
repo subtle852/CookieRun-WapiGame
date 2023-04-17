@@ -10,6 +10,7 @@
 #include "yaObject.h"
 #include "yaCamera.h"
 #include "yaCharacter01.h"
+#include "yaCharacter02.h"
 #include "yaMakeScene.h"
 #include "yaPlayScene.h"
 
@@ -110,7 +111,8 @@ namespace ya
 	{
 		if (dynamic_cast<Character01*>(other->GetOwner()))
 		{
-			Character01* ch = dynamic_cast<Character01*>(other->GetOwner());
+			//Character01* ch = dynamic_cast<Character01*>(other->GetOwner());
+			Character02* ch = dynamic_cast<Character02*>(other->GetOwner());
 			ch->IncreaseHP(15.0f);
 			object::Destory(this);
 		}

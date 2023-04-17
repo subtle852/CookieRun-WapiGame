@@ -16,8 +16,8 @@ namespace ya
 		Slide,
 		Death,
 		Idle,
-		Transp1,
-		Transp2,
+		Transp1,// 이거 필요없음
+		Transp2,// 이거 필요없음
 		Damaged,
 		BigRun,
 	};
@@ -37,7 +37,7 @@ namespace ya
 		virtual void OnCollisionStay(class Collider* other) override;
 		virtual void OnCollisionExit(class Collider* other) override;
 
-		static float GetHpPercent() { return mHpPercent; }
+		static float GetHpPercent() { return (Character01::mCurHp / Character01::mMaxHp) * 100; }
 		static void SetHp(float hp) { mCurHp = hp; }
 		static void IncreaseHP(float hp) { mCurHp += hp; }
 		static void DecreaseHP(float hp) { mCurHp -= hp; }
@@ -50,15 +50,15 @@ namespace ya
 		void slide();
 		void death();
 		void idle();
-		void transparent();
+		void transparent();// 이거 필요없음
 		void bigrun();
 
 		void JumpCompleteEvent();
 		void DJumpCompleteEvent();
 		void SlideStarteEvent();
-		void Transp1CompleteEvent();
-		void DamagedCompleteEvent();
-		void Transp2CompleteEvent();
+		void Transp1CompleteEvent();// 이거 필요없음
+		void DamagedCompleteEvent();// 이거 필요없음
+		void Transp2CompleteEvent();// 이거 필요없음
 
 
 	private:
@@ -93,7 +93,7 @@ namespace ya
 		bool mBtoB = false;
 		bool mOtoC = false;
 
-		bool mZom = true;
+		bool mZom = false;
 		float mZomWait = 0.0f;
 
 		bool mPlayInit = false;

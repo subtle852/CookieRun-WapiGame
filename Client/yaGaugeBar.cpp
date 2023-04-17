@@ -5,6 +5,8 @@
 #include "yaResources.h"
 #include "yaTransform.h"
 #include "yaCharacter01.h"
+#include "yaCharacter02.h"
+#include "yaCharacter03.h"
 
 namespace ya
 {
@@ -28,7 +30,9 @@ namespace ya
     void GaugeBar::Update()
     {
         //Vector2(59.0f, 32.0f)
-        mHpPercent = Character01::mCurHp;
+        //mHpPercent = Character01::GetHpPercent();
+        //mHpPercent = Character02::GetHpPercent();
+        mHpPercent = Character03::GetHpPercent();
 
         float temp = 964.0f / (100 / mHpPercent);
 

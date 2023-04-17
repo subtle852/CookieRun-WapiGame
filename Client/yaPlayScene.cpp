@@ -51,6 +51,8 @@
 #include "yaToolScene.h"
 
 #include "yaCharacter01.h"
+#include "yaCharacter02.h"
+#include "yaCharacter03.h"
 
 //Common
 #include "yaGround.h"
@@ -167,25 +169,28 @@ namespace ya
 		Scene::Initialize();
 
 		// ¿©±â´Ù
-		object::Instantiate<L1_BG02>(Vector2(500.0f, 370.0f), eLayerType::BG);
-		object::Instantiate<L1_BG02>(Vector2(3238.0f, 370.0f), eLayerType::BG);
-		object::Instantiate<L1_BG02>(Vector2(5976.0f, 370.0f), eLayerType::BG);
-		object::Instantiate<L1_BG02>(Vector2(8714.0f, 370.0f), eLayerType::BG);
-		object::Instantiate<L1_BG02>(Vector2(11452.0f, 370.0f), eLayerType::BG);
-		object::Instantiate<L1_BG02>(Vector2(14190.0f, 370.0f), eLayerType::BG);
-		object::Instantiate<L1_BG02>(Vector2(16928.0f, 370.0f), eLayerType::BG);
-		object::Instantiate<L1_BG02>(Vector2(19666.0f, 370.0f), eLayerType::BG);
-		object::Instantiate<L1_BG02>(Vector2(22404.0f, 370.0f), eLayerType::BG);
-		object::Instantiate<L1_BG02>(Vector2(25142.0f, 370.0f), eLayerType::BG);
+		//object::Instantiate<L1_BG02>(Vector2(500.0f, 370.0f), eLayerType::BG);
+		//object::Instantiate<L1_BG02>(Vector2(3238.0f, 370.0f), eLayerType::BG);
+		//object::Instantiate<L1_BG02>(Vector2(5976.0f, 370.0f), eLayerType::BG);
+		//object::Instantiate<L1_BG02>(Vector2(8714.0f, 370.0f), eLayerType::BG);
+		//object::Instantiate<L1_BG02>(Vector2(11452.0f, 370.0f), eLayerType::BG);
+		//object::Instantiate<L1_BG02>(Vector2(14190.0f, 370.0f), eLayerType::BG);
+		//object::Instantiate<L1_BG02>(Vector2(16928.0f, 370.0f), eLayerType::BG);
+		//object::Instantiate<L1_BG02>(Vector2(19666.0f, 370.0f), eLayerType::BG);
+		//object::Instantiate<L1_BG02>(Vector2(22404.0f, 370.0f), eLayerType::BG);
+		//object::Instantiate<L1_BG02>(Vector2(25142.0f, 370.0f), eLayerType::BG);
 
 
 		object::Instantiate<Ground>(Vector2(-100.0f, 700.0f), eLayerType::Ground, Vector2(1000.0f, 50.0f));
 		object::Instantiate<UnderGround>(Vector2(-100.0f, 890.0f), eLayerType::Ground);
 
 		int temp = SelectCharScene::GetCharNumber();
+
 		if (int temp = SelectCharScene::GetCharNumber() == 1)
 		{
-			mCh01 = object::Instantiate<Character01>(Vector2(300.0f, 650.0f), eLayerType::Player);
+			//mCh01 = object::Instantiate<Character01>(Vector2(300.0f, 650.0f), eLayerType::Player);
+			//mCh01 = object::Instantiate<Character02>(Vector2(300.0f, 650.0f), eLayerType::Player);
+			mCh01 = object::Instantiate<Character03>(Vector2(300.0f, 650.0f), eLayerType::Player);
 		}
 
 		mPet01 = object::Instantiate<Pet01>(eLayerType::Pet);
@@ -793,19 +798,34 @@ namespace ya
 				Vector2 pos = tr->GetPos();
 				MakeScene::mChPos = pos;
 
-				if (pos.x < id.x && id.x < pos.x + 500.0f)
+				if (pos.x < id.x && id.x < pos.x + 400.0f)
 				{
 					GameObject* temp = iter->second;
 					temp->mMagnet = true;
 				}
-				//if (pos.x >= id.x)
-				//{
-				//	GameObject* temp = iter->second;
-				//	temp->mMagnet = false;
-				//}
-				if (pos.x - 500.f < id.x && id.x < pos.x)
+				if (pos.x - 300.f < id.x && id.x < pos.x + 50.f)
 				{
 					GameObject* temp = iter->second;
+					temp->mMagnetError = true;
+				}
+			}
+		}
+
+		std::unordered_map<UINT64, GameObject*>::iterator iter = mObs.begin();
+		for (; iter != mObs.end(); iter++)
+		{
+			TilePos id;
+			id.id = iter->first;
+
+			Transform* tr = mCh01->GetComponent<Transform>();
+			Vector2 pos = tr->GetPos();
+			MakeScene::mChPos = pos;
+
+			if (pos.x - 300.f < id.x && id.x < pos.x + 50.f)
+			{
+				GameObject* temp = iter->second;
+				if (temp->mMagnet == true)
+				{
 					temp->mMagnetError = true;
 				}
 			}
@@ -816,7 +836,7 @@ namespace ya
 			mBtoBTime += Time::DeltaTime();
 			int tempToclear = 0;
 
-			if (mBtoBend == false && mBtoBTime <= 1.0f)
+			if (mBtoBend == false && mBtoBTime <= 2.0f)
 			{
 				std::unordered_map<UINT64, GameObject*>::iterator iter = mBasicJelly.begin();
 				for (; iter != mBasicJelly.end(); iter++)
@@ -858,7 +878,7 @@ namespace ya
 				}
 			}
 
-			if (mBtoBTime > 1.0f)
+			if (mBtoBTime > 2.0f)
 			{
 				if (mBtoBend2 == false)
 				{

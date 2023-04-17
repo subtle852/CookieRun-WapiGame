@@ -151,6 +151,8 @@
     <ClInclude Include="yaCard01_11.h" />
     <ClInclude Include="yaCard01_12.h" />
     <ClInclude Include="yaCard01_13.h" />
+    <ClInclude Include="yaCharacter02.h" />
+    <ClInclude Include="yaCharacter03.h" />
     <ClInclude Include="yaRacingB01.h" />
     <ClInclude Include="yaRacingBackGround.h" />
     <ClInclude Include="yaRacingScene.h" />
@@ -332,6 +334,8 @@
     <ClCompile Include="yaCard01_11.cpp" />
     <ClCompile Include="yaCard01_12.cpp" />
     <ClCompile Include="yaCard01_13.cpp" />
+    <ClCompile Include="yaCharacter02.cpp" />
+    <ClCompile Include="yaCharacter03.cpp" />
     <ClCompile Include="yaRacingB01.cpp" />
     <ClCompile Include="yaRacingBackGround.cpp" />
     <ClCompile Include="yaRacingScene.cpp" />

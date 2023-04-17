@@ -63,7 +63,7 @@ namespace ya
 					{
 						mSlotB01 = object::Instantiate<SlotB01>(Vector2(558.f, 817.f), eLayerType::UI);
 
-						srand(time(NULL)); //int tempValue = 1;
+						srand(time(NULL));
 						tempValueF = rand() % 7 + 1;// 1~7
 
 						if (tempValueF == 1)
@@ -160,14 +160,14 @@ namespace ya
 					{
 						mSlotB03 = object::Instantiate<SlotB03>(Vector2(785.f, 817.f), eLayerType::UI);
 
-						srand(time(NULL)); //int tempValue = 1;
+						//srand(time(NULL)); //int tempValue = 1;
 						int tempValue = rand() % 7 + 1;// 1~7
 
 						int tempArray[2];
 						tempArray[0] = tempValueS;
 						tempArray[1] = tempValue;
 
-						srand(time(NULL));
+						//srand(time(NULL));
 						int tempRand = rand() % 4;
 						if (tempRand == 0)
 						{
