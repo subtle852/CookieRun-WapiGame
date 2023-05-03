@@ -206,6 +206,9 @@ namespace ya
 				{
 					if (mWinner != -1)
 					{
+						Sound* mClick = Resources::Load<Sound>(L"Click", L"..\\Resources\\Sound\\click.wav");
+						mClick->Play(false);
+
 						mB01 = object::Instantiate<RacingB01>(Vector2(954.f, 860.f), eLayerType::UI);
 
 						ya::object::Destory(mCh01);
@@ -263,23 +266,38 @@ namespace ya
 				{
 					if ((543.f <= mousPos.x && mousPos.x <= 611.f) && (463.f <= mousPos.y && mousPos.y <= 513.f))
 					{
-						mNumber = 1; mBenefit1 = 3.f; MainScene::mSilver -= 1000;
+						Sound* mSound = Resources::Load<Sound>(L"Gunshot", L"..\\Resources\\Sound\\Racing\\gunshot.wav");
+						mSound->Play(false);
+
+						mNumber = 1; mBenefit1 = 3.2f; MainScene::mSilver -= 1000;
 					}
 					if ((543.f <= mousPos.x && mousPos.x <= 611.f) && (520.f <= mousPos.y && mousPos.y <= 560.f))
 					{
-						mNumber = 2; mBenefit2 = 3.f; MainScene::mSilver -= 1000;
+						Sound* mSound = Resources::Load<Sound>(L"Gunshot", L"..\\Resources\\Sound\\Racing\\gunshot.wav");
+						mSound->Play(false);
+
+						mNumber = 2; mBenefit2 = 3.2f; MainScene::mSilver -= 1000;
 					}
 					if ((543.f <= mousPos.x && mousPos.x <= 611.f) && (568.f <= mousPos.y && mousPos.y <= 609.f))
 					{
-						mNumber = 3; mBenefit3 = 3.f; MainScene::mSilver -= 1000;
+						Sound* mSound = Resources::Load<Sound>(L"Gunshot", L"..\\Resources\\Sound\\Racing\\gunshot.wav");
+						mSound->Play(false);
+
+						mNumber = 3; mBenefit3 = 3.2f; MainScene::mSilver -= 1000;
 					}
 					if ((543.f <= mousPos.x && mousPos.x <= 611.f) && (619.f <= mousPos.y && mousPos.y <= 660.f))
 					{
-						mNumber = 4; mBenefit4 = 3.f; MainScene::mSilver -= 1000;
+						Sound* mSound = Resources::Load<Sound>(L"Gunshot", L"..\\Resources\\Sound\\Racing\\gunshot.wav");
+						mSound->Play(false);
+
+						mNumber = 4; mBenefit4 = 3.2f; MainScene::mSilver -= 1000;
 					}
 					if ((543.f <= mousPos.x && mousPos.x <= 611.f) && (670.f <= mousPos.y && mousPos.y <= 721.f))
 					{
-						mNumber = 5; mBenefit5 = 3.f; MainScene::mSilver -= 1000;
+						Sound* mSound = Resources::Load<Sound>(L"Gunshot", L"..\\Resources\\Sound\\Racing\\gunshot.wav");
+						mSound->Play(false);
+
+						mNumber = 5; mBenefit5 = 3.2f; MainScene::mSilver -= 1000;
 					}
 				}
 			}
@@ -377,7 +395,16 @@ namespace ya
 
 				if (mNumber == 1)
 				{
+					Sound* mSound = Resources::Load<Sound>(L"win", L"..\\Resources\\Sound\\Racing\\win.wav");
+					mSound->Play(false);
+
 					MainScene::mSilver += 5000;
+					mNumber = -1;
+				}
+				else if (mNumber != -1)
+				{
+					Sound* mSound = Resources::Load<Sound>(L"lose", L"..\\Resources\\Sound\\Racing\\lose.wav");
+					mSound->Play(false);
 					mNumber = -1;
 				}
 			}
@@ -391,7 +418,16 @@ namespace ya
 
 				if (mNumber == 2)
 				{
+					Sound* mSound = Resources::Load<Sound>(L"win", L"..\\Resources\\Sound\\Racing\\win.wav");
+					mSound->Play(false);
+
 					MainScene::mSilver += 5000;
+					mNumber = -1;
+				}
+				else if (mNumber != -1)
+				{
+					Sound* mSound = Resources::Load<Sound>(L"lose", L"..\\Resources\\Sound\\Racing\\lose.wav");
+					mSound->Play(false);
 					mNumber = -1;
 				}
 			}
@@ -405,7 +441,16 @@ namespace ya
 
 				if (mNumber == 3)
 				{
+					Sound* mSound = Resources::Load<Sound>(L"win", L"..\\Resources\\Sound\\Racing\\win.wav");
+					mSound->Play(false);
+
 					MainScene::mSilver += 5000;
+					mNumber = -1;
+				}
+				else if (mNumber != -1)
+				{
+					Sound* mSound = Resources::Load<Sound>(L"lose", L"..\\Resources\\Sound\\Racing\\lose.wav");
+					mSound->Play(false);
 					mNumber = -1;
 				}
 			}
@@ -419,7 +464,16 @@ namespace ya
 
 				if (mNumber == 4)
 				{
+					Sound* mSound = Resources::Load<Sound>(L"win", L"..\\Resources\\Sound\\Racing\\win.wav");
+					mSound->Play(false);
+
 					MainScene::mSilver += 5000;
+					mNumber = -1;
+				}
+				else if (mNumber != -1)
+				{
+					Sound* mSound = Resources::Load<Sound>(L"lose", L"..\\Resources\\Sound\\Racing\\lose.wav");
+					mSound->Play(false);
 					mNumber = -1;
 				}
 			}
@@ -433,12 +487,21 @@ namespace ya
 
 				if (mNumber == 5)
 				{
+					Sound* mSound = Resources::Load<Sound>(L"win", L"..\\Resources\\Sound\\Racing\\win.wav");
+					mSound->Play(false);
+
 					MainScene::mSilver += 5000;
+					mNumber = -1;
+				}
+				else if(mNumber != -1)
+				{
+					Sound* mSound = Resources::Load<Sound>(L"lose", L"..\\Resources\\Sound\\Racing\\lose.wav");
+					mSound->Play(false);
 					mNumber = -1;
 				}
 			}
 
-			if (mTime > 2.0f)
+			if (mTime > 0.0f)
 			{
 				srand(time(NULL));
 				int tempValue = rand() % 3 + 1;// 1~3
@@ -471,7 +534,7 @@ namespace ya
 				trr->SetPos(pos);
 			}
 
-			if (mTime > 2.0f)
+			if (mTime > 0.0f)
 			{
 				//srand(time(NULL));
 				int tempValue = rand() % 3 + 1;// 1~3
@@ -504,7 +567,7 @@ namespace ya
 				trr->SetPos(pos);
 			}
 
-			if (mTime > 2.0f)
+			if (mTime > 0.0f)
 			{
 				//srand(time(NULL));
 				int tempValue = rand() % 3 + 1;// 1~3
@@ -537,7 +600,7 @@ namespace ya
 				trr->SetPos(pos);
 			}
 
-			if (mTime > 2.0f)
+			if (mTime > 0.0f)
 			{
 				//srand(time(NULL));
 				int tempValue = rand() % 3 + 1;// 1~3
@@ -570,7 +633,7 @@ namespace ya
 				trr->SetPos(pos);
 			}
 
-			if (mTime > 2.0f)
+			if (mTime > 0.0f)
 			{
 				//srand(time(NULL));
 				int tempValue = rand() % 3 + 1;// 1~3

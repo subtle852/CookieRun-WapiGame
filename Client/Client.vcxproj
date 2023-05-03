@@ -185,6 +185,7 @@
     <ClInclude Include="yaRacingB01.h" />
     <ClInclude Include="yaRacingBackGround.h" />
     <ClInclude Include="yaRacingScene.h" />
+    <ClInclude Include="yaSelectMark.h" />
     <ClInclude Include="yaSelect_Banker.h" />
     <ClInclude Include="yaSelect_BankerPair.h" />
     <ClInclude Include="yaSelect_Player.h" />
@@ -400,6 +401,7 @@
     <ClCompile Include="yaRacingB01.cpp" />
     <ClCompile Include="yaRacingBackGround.cpp" />
     <ClCompile Include="yaRacingScene.cpp" />
+    <ClCompile Include="yaSelectMark.cpp" />
     <ClCompile Include="yaSelect_Banker.cpp" />
     <ClCompile Include="yaSelect_BankerPair.cpp" />
     <ClCompile Include="yaSelect_Player.cpp" />

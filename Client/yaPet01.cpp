@@ -56,10 +56,10 @@ namespace ya
 		
 		float tempHp = Character01::GetHpPercent();
 
-		if (Character01::GetHpPercent() == 0.0f)
-		{
-			mAnimator->Play(L"Death", true);
-		}
+		//if (Character01::GetHpPercent() == 0.0f)
+		//{
+		//	mAnimator->Play(L"Death", true);
+		//}
 	}
 
 	void Pet01::Render(HDC hdc)

@@ -18,7 +18,7 @@ namespace ya
 
 	void MainBackGround::Initialize()
 	{
-		mImage = Resources::Load<Image>(L"MainBG", L"..\\Resources\\Main\\main_bg_new.bmp");
+		mImage = Resources::Load<Image>(L"MainBG", L"..\\Resources\\Main\\main_bg_final.bmp");
 
 		GameObject::Initialize();
 	}

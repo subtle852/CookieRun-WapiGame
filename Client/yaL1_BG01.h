@@ -1,22 +1,21 @@
 #pragma once
 #include "yaGameObject.h"
+#include "yaImage.h"
 
 namespace ya
 {
-	class Animator;
-
 	class L1_BG01 : public GameObject
 	{
 	public:
 		L1_BG01();
 		~L1_BG01();
 
-		virtual void Initialize();
-		virtual void Update();
-		virtual void Render(HDC hdc);
-		virtual void Release();
+		virtual void Initialize() override;
+		virtual void Update() override;
+		virtual void Render(HDC hdc) override;
+		virtual void Release() override;
 
 	private:
-		Animator* mAnimator;
+		Image* mImage;
 	};
 }

@@ -220,6 +220,9 @@ namespace ya
 				//
 				if ((910.f <= mousPos.x && mousPos.x <= 980.f) && (799.f <= mousPos.y && mousPos.y <= 837.f))
 				{
+					Sound* mClick = Resources::Load<Sound>(L"Click", L"..\\Resources\\Sound\\click.wav");
+					mClick->Play(false);
+
 					for (auto i = 0; i < 6; i++)
 					{
 						if (mCards[i] != nullptr)
@@ -282,18 +285,30 @@ namespace ya
 
 				if ((513.f <= mousPos.x && mousPos.x <= 555.f) && (806.f <= mousPos.y && mousPos.y <= 834.f))
 				{
+					Sound* mClick = Resources::Load<Sound>(L"Click", L"..\\Resources\\Sound\\click.wav");
+					mClick->Play(false);
+
 					mBetMoney += 500;
 				}
 				if ((615.f <= mousPos.x && mousPos.x <= 656.f) && (812.f <= mousPos.y && mousPos.y <= 834.f))
 				{
+					Sound* mClick = Resources::Load<Sound>(L"Click", L"..\\Resources\\Sound\\click.wav");
+					mClick->Play(false);
+
 					mBetMoney += 1000;
 				}
 				if ((711.f <= mousPos.x && mousPos.x <= 753.f) && (806.f <= mousPos.y && mousPos.y <= 834.f))
 				{
+					Sound* mClick = Resources::Load<Sound>(L"Click", L"..\\Resources\\Sound\\click.wav");
+					mClick->Play(false);
+
 					mBetMoney += 2000;
 				}
 				if ((817.f <= mousPos.x && mousPos.x <= 861.f) && (806.f <= mousPos.y && mousPos.y <= 834.f))
 				{
+					Sound* mClick = Resources::Load<Sound>(L"Click", L"..\\Resources\\Sound\\click.wav");
+					mClick->Play(false);
+
 					mBetMoney = 0;
 					for (auto i = 0; i < 6; i++)
 					{
@@ -310,16 +325,25 @@ namespace ya
 				{
 					if ((675.f <= mousPos.x && mousPos.x <= 921.f) && (616.f <= mousPos.y && mousPos.y <= 651.f))
 					{
+						Sound* mSound = Resources::Load<Sound>(L"BacStart", L"..\\Resources\\Sound\\Baccarat\\coin.wav");
+						mSound->Play(false);
+
 						mSelect = 1;
 						mSelectOb = object::Instantiate<Select_Tie>(Vector2(667.f, 204.f), eLayerType::UI);
 					}
 					if ((670.f <= mousPos.x && mousPos.x <= 929.f) && (660.f <= mousPos.y && mousPos.y <= 689.f))
 					{
+						Sound* mSound = Resources::Load<Sound>(L"BacStart", L"..\\Resources\\Sound\\Baccarat\\coin.wav");
+						mSound->Play(false);
+
 						mSelect = 2;
 						mSelectOb = object::Instantiate<Select_Banker>(Vector2(667.f, 204.f), eLayerType::UI);
 					}
 					if ((661.f <= mousPos.x && mousPos.x <= 940.f) && (700.f <= mousPos.y && mousPos.y <= 747.f))
 					{
+						Sound* mSound = Resources::Load<Sound>(L"BacStart", L"..\\Resources\\Sound\\Baccarat\\coin.wav");
+						mSound->Play(false);
+
 						mSelect = 3;
 						mSelectOb = object::Instantiate<Select_Player>(Vector2(667.f, 204.f), eLayerType::UI);
 					}
@@ -337,6 +361,9 @@ namespace ya
 			{
 				if (mC00_01 == nullptr)
 				{
+					Sound* mSound = Resources::Load<Sound>(L"Card", L"..\\Resources\\Sound\\Baccarat\\card_open.wav");
+					mSound->Play(false);
+
 					mC00_01 = object::Instantiate<Card01_00>(Vector2(657.f, 562.f), eLayerType::UI);
 				}
 			}
@@ -344,6 +371,9 @@ namespace ya
 			{
 				if (mC00_03 == nullptr)
 				{
+					Sound* mSound = Resources::Load<Sound>(L"Card", L"..\\Resources\\Sound\\Baccarat\\card_open.wav");
+					mSound->Play(false);
+
 					mC00_03 = object::Instantiate<Card01_00>(Vector2(847.f, 562.f), eLayerType::UI);
 				}
 			}
@@ -351,6 +381,9 @@ namespace ya
 			{
 				if (mC00_02 == nullptr)
 				{
+					Sound* mSound = Resources::Load<Sound>(L"Card", L"..\\Resources\\Sound\\Baccarat\\card_open.wav");
+					mSound->Play(false);
+
 					mC00_02 = object::Instantiate<Card01_00>(Vector2(745.f, 562.f), eLayerType::UI);
 				}
 			}
@@ -358,6 +391,9 @@ namespace ya
 			{
 				if (mC00_04 == nullptr)
 				{
+					Sound* mSound = Resources::Load<Sound>(L"Card", L"..\\Resources\\Sound\\Baccarat\\card_open.wav");
+					mSound->Play(false);
+
 					mC00_04 = object::Instantiate<Card01_00>(Vector2(935.f, 562.f), eLayerType::UI);
 				}
 			}
@@ -419,54 +455,93 @@ namespace ya
 
 							if (tempValue == 1)
 							{
+								Sound* mSound = Resources::Load<Sound>(L"Card", L"..\\Resources\\Sound\\Baccarat\\card_open.wav");
+								mSound->Play(false);
+
 								mCards[i] = object::Instantiate<Card01_01>(Vector2(tempPos, 562.f), eLayerType::UI);
 							}
 							else if (tempValue == 2)
 							{
+								Sound* mSound = Resources::Load<Sound>(L"Card", L"..\\Resources\\Sound\\Baccarat\\card_open.wav");
+								mSound->Play(false);
+
 								mCards[i] = object::Instantiate<Card01_02>(Vector2(tempPos, 562.f), eLayerType::UI);
 							}
 							else if (tempValue == 3)
 							{
+								Sound* mSound = Resources::Load<Sound>(L"Card", L"..\\Resources\\Sound\\Baccarat\\card_open.wav");
+								mSound->Play(false);
+
 								mCards[i] = object::Instantiate<Card01_03>(Vector2(tempPos, 562.f), eLayerType::UI);
 							}
 							else if (tempValue == 4)
 							{
+								Sound* mSound = Resources::Load<Sound>(L"Card", L"..\\Resources\\Sound\\Baccarat\\card_open.wav");
+								mSound->Play(false);
+
 								mCards[i] = object::Instantiate<Card01_04>(Vector2(tempPos, 562.f), eLayerType::UI);
 							}
 							else if (tempValue == 5)
 							{
+								Sound* mSound = Resources::Load<Sound>(L"Card", L"..\\Resources\\Sound\\Baccarat\\card_open.wav");
+								mSound->Play(false);
+
 								mCards[i] = object::Instantiate<Card01_05>(Vector2(tempPos, 562.f), eLayerType::UI);
 							}
 							else if (tempValue == 6)
 							{
+								Sound* mSound = Resources::Load<Sound>(L"Card", L"..\\Resources\\Sound\\Baccarat\\card_open.wav");
+								mSound->Play(false);
+
 								mCards[i] = object::Instantiate<Card01_06>(Vector2(tempPos, 562.f), eLayerType::UI);
 							}
 							else if (tempValue == 7)
 							{
+								Sound* mSound = Resources::Load<Sound>(L"Card", L"..\\Resources\\Sound\\Baccarat\\card_open.wav");
+								mSound->Play(false);
+
 								mCards[i] = object::Instantiate<Card01_07>(Vector2(tempPos, 562.f), eLayerType::UI);
 							}
 							else if (tempValue == 8)
 							{
+								Sound* mSound = Resources::Load<Sound>(L"Card", L"..\\Resources\\Sound\\Baccarat\\card_open.wav");
+								mSound->Play(false);
+
 								mCards[i] = object::Instantiate<Card01_08>(Vector2(tempPos, 562.f), eLayerType::UI);
 							}
 							else if (tempValue == 9)
 							{
+								Sound* mSound = Resources::Load<Sound>(L"Card", L"..\\Resources\\Sound\\Baccarat\\card_open.wav");
+								mSound->Play(false);
+
 								mCards[i] = object::Instantiate<Card01_09>(Vector2(tempPos, 562.f), eLayerType::UI);
 							}
 							else if (tempValue == 10)
 							{
+								Sound* mSound = Resources::Load<Sound>(L"Card", L"..\\Resources\\Sound\\Baccarat\\card_open.wav");
+								mSound->Play(false);
+
 								mCards[i] = object::Instantiate<Card01_10>(Vector2(tempPos, 562.f), eLayerType::UI);
 							}
 							else if (tempValue == 11)
 							{
+								Sound* mSound = Resources::Load<Sound>(L"Card", L"..\\Resources\\Sound\\Baccarat\\card_open.wav");
+								mSound->Play(false);
+
 								mCards[i] = object::Instantiate<Card01_11>(Vector2(tempPos, 562.f), eLayerType::UI);
 							}
 							else if (tempValue == 12)
 							{
+								Sound* mSound = Resources::Load<Sound>(L"Card", L"..\\Resources\\Sound\\Baccarat\\card_open.wav");
+								mSound->Play(false);
+
 								mCards[i] = object::Instantiate<Card01_12>(Vector2(tempPos, 562.f), eLayerType::UI);
 							}
 							else if (tempValue == 13)
 							{
+								Sound* mSound = Resources::Load<Sound>(L"Card", L"..\\Resources\\Sound\\Baccarat\\card_open.wav");
+								mSound->Play(false);
+
 								mCards[i] = object::Instantiate<Card01_13>(Vector2(tempPos, 562.f), eLayerType::UI);
 							}
 						}
@@ -735,6 +810,17 @@ namespace ya
 					MainScene::mSilver += mBetMoney * 8;
 				}
 				mResultOb = object::Instantiate<Select_Tie>(Vector2(930.f, 204.f), eLayerType::UI);
+			}
+
+			if (mResult == mSelect)
+			{
+				Sound* mSound = Resources::Load<Sound>(L"BacWin", L"..\\Resources\\Sound\\Baccarat\\win.wav");
+				mSound->Play(false);
+			}
+			else
+			{
+				Sound* mSound = Resources::Load<Sound>(L"BacLose", L"..\\Resources\\Sound\\Baccarat\\lose.wav");
+				mSound->Play(false);
 			}
 		}
 

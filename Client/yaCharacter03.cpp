@@ -336,6 +336,11 @@ namespace ya
 					mBcnt++;
 					if (mBcnt == 1)
 					{
+						Transform* tr = GetComponent<Transform>();
+						Vector2 pos = tr->GetPos();
+						pos.x -= 600.f;
+						tr->SetPos(pos);
+
 						mRigidbody->SetGround(false);
 					}
 					mState = eChar03State::BigRun;
@@ -345,7 +350,7 @@ namespace ya
 					{
 						Transform* tr = GetComponent<Transform>();
 						Vector2 pos = tr->GetPos();
-						pos.x += 200.f;
+						pos.x += 320.f;
 						pos.y = 600.0f;
 						tr->SetPos(pos);
 						mRigidbody->SetGround(false);

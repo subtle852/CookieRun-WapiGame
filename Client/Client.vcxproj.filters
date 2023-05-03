@@ -801,6 +801,9 @@
     </ClInclude>
     <ClInclude Include="yaSound.h" />
     <ClInclude Include="yaSoundManager.h" />
+    <ClInclude Include="yaSelectMark.h">
+      <Filter>Contents\UI\SelectUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="small.ico">
@@ -1433,5 +1436,8 @@
     </ClCompile>
     <ClCompile Include="yaSound.cpp" />
     <ClCompile Include="yaSoundManager.cpp" />
+    <ClCompile Include="yaSelectMark.cpp">
+      <Filter>Contents\UI\SelectUI</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -16,5 +16,10 @@ namespace ya
 
 		virtual void OnEnter() override;
 		virtual void OnExit() override;
+
+	public:
+		GameObject* mOb = nullptr;
+		GameObject* mObs[6] = { nullptr, };
+		GameObject* mObs2[6] = { nullptr, };
 	};
 }

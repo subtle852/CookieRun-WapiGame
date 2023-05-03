@@ -16,7 +16,14 @@ namespace ya
 		virtual void Release() override;
 
 	private:
-		Image* mImage;
+		Image* mImage1;
+		Image* mImage2;
+		Image* mImage3;
+		Image* mImage4;
+		Image* mImage5;
+		Image* mImage6;
+		Image* mImage7;
+		Image* mImage8;
 		//float mTime = 50.0f;
 
 		public:

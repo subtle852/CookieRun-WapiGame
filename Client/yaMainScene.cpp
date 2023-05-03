@@ -16,6 +16,16 @@
 #include "yaCamera.h"
 #include "yaObject.h"
 
+#include "yaSelectCharScene.h"
+#include "yaCharacter01.h"
+#include "yaCharacter02.h"
+#include "yaCharacter03.h"
+#include "yaCharacter04.h"
+#include "yaCharacter05.h"
+#include "yaCharacter06.h"
+#include "yaCharacter07.h"
+#include "yaCharacter08.h"
+
 #include "yaF_0.h" 
 #include "yaF_1.h" 
 #include "yaF_2.h" 
@@ -64,7 +74,11 @@ namespace ya
 
 	void MainScene::Update()
 	{
-		
+		if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
+		{
+			//SceneManager::LoadScene(eSceneType::ResultS);
+			SceneManager::LoadScene(eSceneType::Make);
+		}
 
 
 		for (auto i = 0; i < 6; i++)
@@ -205,7 +219,7 @@ namespace ya
 				if (mousPos.y >= 900.0f || mousPos.y <= 0.0f)
 					return;
 
-				if ((276.f <= mousPos.x && mousPos.x <= 360.f) && (163.f <= mousPos.y && mousPos.y <= 218.f))
+				if ((267.f <= mousPos.x && mousPos.x <= 344.f) && (132.f <= mousPos.y && mousPos.y <= 184.f))
 				{
 					Sound* mClick = Resources::Load<Sound>(L"Click", L"..\\Resources\\Sound\\click.wav");
 					mClick->Play(false);
@@ -213,7 +227,7 @@ namespace ya
 					mNoReset = true;
 					SceneManager::LoadScene(eSceneType::Lottery);
 				}
-				if ((276.f <= mousPos.x && mousPos.x <= 360.f) && (286.f <= mousPos.y && mousPos.y <= 342.f))
+				if ((267.f <= mousPos.x && mousPos.x <= 344.f) && (228.f <= mousPos.y && mousPos.y <= 281.f))
 				{
 					Sound* mClick = Resources::Load<Sound>(L"Click", L"..\\Resources\\Sound\\click.wav");
 					mClick->Play(false);
@@ -221,7 +235,7 @@ namespace ya
 					mNoReset = true;
 					SceneManager::LoadScene(eSceneType::Store);
 				}
-				if ((276.f <= mousPos.x && mousPos.x <= 360.f) && (415.f <= mousPos.y && mousPos.y <= 474.f))
+				if ((276.f <= mousPos.x && mousPos.x <= 360.f) && (387.f <= mousPos.y && mousPos.y <= 447.f))
 				{
 					Sound* mClick = Resources::Load<Sound>(L"Click", L"..\\Resources\\Sound\\click.wav");
 					mClick->Play(false);
@@ -229,7 +243,7 @@ namespace ya
 					mNoReset = true;
 					SceneManager::LoadScene(eSceneType::Slot);
 				}
-				if ((276.f <= mousPos.x && mousPos.x <= 360.f) && (540.f <= mousPos.y && mousPos.y <= 595.f))
+				if ((276.f <= mousPos.x && mousPos.x <= 360.f) && (480.f <= mousPos.y && mousPos.y <= 541.f))
 				{
 					Sound* mClick = Resources::Load<Sound>(L"Click", L"..\\Resources\\Sound\\click.wav");
 					mClick->Play(false);
@@ -237,7 +251,7 @@ namespace ya
 					mNoReset = true;
 					SceneManager::LoadScene(eSceneType::Racing);
 				}
-				if ((276.f <= mousPos.x && mousPos.x <= 360.f) && (617.f <= mousPos.y && mousPos.y <= 656.f))
+				if ((276.f <= mousPos.x && mousPos.x <= 360.f) && (571.f <= mousPos.y && mousPos.y <= 630.f))
 				{
 					Sound* mClick = Resources::Load<Sound>(L"Click", L"..\\Resources\\Sound\\click.wav");
 					mClick->Play(false);
@@ -294,7 +308,41 @@ namespace ya
 			mBGM->Play(true);
 		}
 
-		mCh00 = object::Instantiate<Character01>(Vector2(780.0f, 580.0f), eLayerType::Player);
+		int temp = SelectCharScene::GetCharNumber();
+
+		if (temp == 1)
+		{
+			mCh00 = object::Instantiate<Character01>(Vector2(780.0f, 580.0f), eLayerType::Player);
+		}
+		else if (temp == 2)
+		{
+			mCh00 = object::Instantiate<Character02>(Vector2(760.0f, 560.0f), eLayerType::Player);
+		}
+		else if (temp == 3)
+		{
+			mCh00 = object::Instantiate<Character03>(Vector2(770.0f, 580.0f), eLayerType::Player);
+		}
+		else if (temp == 4)
+		{
+			mCh00 = object::Instantiate<Character04>(Vector2(760.0f, 570.0f), eLayerType::Player);
+		}
+		else if (temp == 5)
+		{
+			mCh00 = object::Instantiate<Character05>(Vector2(775.0f, 570.0f), eLayerType::Player);
+		}
+		else if (temp == 6)
+		{
+			mCh00 = object::Instantiate<Character06>(Vector2(755.0f, 580.0f), eLayerType::Player);
+		}
+		else if (temp == 7)
+		{
+			mCh00 = object::Instantiate<Character07>(Vector2(770.0f, 590.0f), eLayerType::Player);
+		}
+		else if (temp == 8)
+		{
+			mCh00 = object::Instantiate<Character08>(Vector2(770.0f, 575.0f), eLayerType::Player);
+		}
+
 		mPet00 = object::Instantiate<Pet01>(Vector2(880.0f, 480.0f), eLayerType::Pet);
 
 		for (auto i = 0; i < 6; i++)

@@ -72,6 +72,9 @@ namespace ya
 
 	void ResultSucScene::OnEnter()
 	{
+		Sound* mSound = Resources::Load<Sound>(L"ResultSuc", L"..\\Resources\\Sound\\Result\\ResultSuccess.wav");
+		mSound->Play(false);
+
 		std::string temp = std::to_string(PlayScene::mSilver);
 		int size = temp.size();
 		int totalSize = 5;

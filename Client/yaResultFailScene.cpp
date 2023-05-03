@@ -77,6 +77,9 @@ namespace ya
 
 	void ResultFailScene::OnEnter()
 	{
+		Sound* mSound = Resources::Load<Sound>(L"ResultFail", L"..\\Resources\\Sound\\Result\\ResultFail.wav");
+		mSound->Play(false);
+
 		std::string temp = std::to_string(PlayScene::mSilver);
 		int size = temp.size();
 		int totalSize = 5;

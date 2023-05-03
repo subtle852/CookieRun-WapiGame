@@ -206,6 +206,9 @@ namespace ya
 				{
 					if ((530.f <= mousPos.x && mousPos.x <= 591.f) && (784.f <= mousPos.y && mousPos.y <= 812.f))
 					{
+						Sound* mSound = Resources::Load<Sound>(L"Touch", L"..\\Resources\\Sound\\Slot\\touch.wav");
+						mSound->Play(false);
+
 						mSlotB01 = object::Instantiate<SlotB01>(Vector2(558.f, 817.f), eLayerType::UI);
 
 						MainScene::mSilver -= 1000;
@@ -251,6 +254,9 @@ namespace ya
 				{
 					if ((638.f <= mousPos.x && mousPos.x <= 707.f) && (786.f <= mousPos.y && mousPos.y <= 812.f))
 					{
+						Sound* mSound = Resources::Load<Sound>(L"Touch", L"..\\Resources\\Sound\\Slot\\touch.wav");
+						mSound->Play(false);
+
 						mSlotB02 = object::Instantiate<SlotB02>(Vector2(670.f, 817.f), eLayerType::UI);
 
 						srand(time(NULL)); //int tempValue = 1;
@@ -309,6 +315,9 @@ namespace ya
 				{
 					if ((755.f <= mousPos.x && mousPos.x <= 814.f) && (784.f <= mousPos.y && mousPos.y <= 808.f))
 					{
+						Sound* mSound = Resources::Load<Sound>(L"Touch.", L"..\\Resources\\Sound\\Slot\\touch.wav");
+						mSound->Play(false);
+
 						mSlotB03 = object::Instantiate<SlotB03>(Vector2(785.f, 817.f), eLayerType::UI);
 
 						//srand(time(NULL)); //int tempValue = 1;
@@ -386,8 +395,11 @@ namespace ya
 						{
 							mFinalTime += Time::DeltaTime();
 
-							if (mFinalTime > 1.0f)
+							if (mFinalTime > 1.4f)
 							{
+								Sound* mSound = Resources::Load<Sound>(L"SlotWin", L"..\\Resources\\Sound\\Slot\\win.wav");
+								mSound->Play(false);
+
 								MainScene::mSilver += 10000;
 								mFinalTime = 0.0f;
 

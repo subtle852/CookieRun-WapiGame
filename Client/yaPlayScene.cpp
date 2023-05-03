@@ -152,6 +152,7 @@
 #include "yaCloudEffect.h"
 
 // BG
+#include "yaL1_BG01.h"
 #include "yaL1_BG02.h"
 
 // BonusTime
@@ -194,6 +195,8 @@
 #include "yaSound.h"
 #include "yaResources.h"
 
+#include "yaBonusBackGround.h"
+
 namespace ya
 {
 	Character01* PlayScene::mCh01 = nullptr;
@@ -221,6 +224,7 @@ namespace ya
 		Scene::Initialize();
 
 		// ¿©±â´Ù
+		object::Instantiate<L1_BG01>(eLayerType::BG);
 		//object::Instantiate<L1_BG02>(Vector2(500.0f, 370.0f), eLayerType::BG);
 		//object::Instantiate<L1_BG02>(Vector2(3238.0f, 370.0f), eLayerType::BG);
 		//object::Instantiate<L1_BG02>(Vector2(5976.0f, 370.0f), eLayerType::BG);
@@ -619,11 +623,11 @@ namespace ya
 		}
 		#pragma endregion
 
-		if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
-		{
-			//SceneManager::LoadScene(eSceneType::ResultS);
-			SceneManager::LoadScene(eSceneType::Make);
-		}
+		//if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
+		//{
+		//	//SceneManager::LoadScene(eSceneType::ResultS);
+		//	SceneManager::LoadScene(eSceneType::Make);
+		//}
 
 		if (Input::GetKeyState(eKeyCode::V) == eKeyState::Down)
 		{
