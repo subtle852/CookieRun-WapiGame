@@ -6,7 +6,7 @@
 #include "yaCamera.h"
 namespace ya
 {
-	int SelectCharScene::mCharNumber = 1;
+	int SelectCharScene::mCharNumber = 8;
 
 	SelectCharScene::SelectCharScene()
 	{

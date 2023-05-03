@@ -34,7 +34,7 @@ namespace ya
 		std::unordered_map<UINT64, GameObject*> mObs;// 게임오브젝트를 멤버 배열로 받아 destroy하려고 만든 것
 
 		std::unordered_map<UINT64, GameObject*> mBasicJelly;
-		std::unordered_map<UINT64, GameObject*> mBearJelly;
+		//std::unordered_map<UINT64, GameObject*> mBearJelly;
 
 		std::unordered_map<UINT64, GameObject*> mObstacle;
 		std::unordered_map<UINT64, GameObject*> mCoin;
@@ -51,10 +51,12 @@ namespace ya
 		static Vector2 mChPos;
 
 		float mMagnetTime = 0.0f;
+		float mMagnetFull = 2.0f;
 
-		float mBtoBTime = 0.0f;
-		bool mBtoBend = false;
-		bool mBtoBend2 = false;
+		//float mBtoBTime = 0.0f;
+		//bool mBtoBend = false;
+		//bool mBtoBend2 = false;
+		float mBtoBFull = 1500.f;
 
 		float mOtoCTime = 0.0f;
 		bool mOtoCend = false;

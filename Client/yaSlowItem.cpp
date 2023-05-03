@@ -9,9 +9,19 @@
 #include "yaScene.h"
 #include "yaObject.h"
 #include "yaCamera.h"
+
 #include "yaCharacter01.h"
+#include "yaCharacter02.h"
+#include "yaCharacter03.h"
+#include "yaCharacter04.h"
+#include "yaCharacter05.h"
+#include "yaCharacter06.h"
+#include "yaCharacter07.h"
+#include "yaCharacter08.h"
+
 #include "yaMakeScene.h"
 #include "yaPlayScene.h"
+#include "yaSelectCharScene.h"
 
 namespace ya
 {

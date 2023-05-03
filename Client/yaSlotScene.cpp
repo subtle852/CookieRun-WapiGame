@@ -12,6 +12,18 @@
 #include "yaSlotB03.h"
 #include "yaSlotBs.h"
 
+#include "yaMainScene.h"
+#include "yaF_0.h" 
+#include "yaF_1.h" 
+#include "yaF_2.h" 
+#include "yaF_3.h" 
+#include "yaF_4.h" 
+#include "yaF_5.h"
+#include "yaF_6.h" 
+#include "yaF_7.h" 
+#include "yaF_8.h" 
+#include "yaF_9.h"
+
 namespace ya
 {
 	SlotScene::SlotScene()
@@ -41,6 +53,133 @@ namespace ya
 
 	void SlotScene::Update()
 	{
+		for (auto i = 0; i < 6; i++)
+		{
+			if (mObs[i] != nullptr)
+				object::Destory(mObs[i]);
+		}
+		for (auto i = 0; i < 6; i++)
+		{
+			mObs[i] = nullptr;
+		}
+
+		std::string temp = std::to_string(MainScene::mSilver);
+		int size = temp.size();
+		int totalSize = 5;
+
+		float tempPos = 1408.f + 22.0f * (totalSize - size + 1);
+
+		for (auto i = 0; i < size; i++)
+		{
+			char tempChar = temp[i];
+#pragma region 문자에 맞는 해당 이미지 생성
+			if (tempChar == '0')
+			{
+				mObs[i] = object::Instantiate<F_0>(Vector2(tempPos + (i * 22.0f), 122.0f), eLayerType::UI);
+			}
+			if (tempChar == '1')
+			{
+				mObs[i] = object::Instantiate<F_1>(Vector2(tempPos + (i * 22.0f), 122.0f), eLayerType::UI);
+			}
+			if (tempChar == '2')
+			{
+				mObs[i] = object::Instantiate<F_2>(Vector2(tempPos + (i * 22.0f), 122.0f), eLayerType::UI);
+			}
+			if (tempChar == '3')
+			{
+				mObs[i] = object::Instantiate<F_3>(Vector2(tempPos + (i * 22.0f), 122.0f), eLayerType::UI);
+			}
+			if (tempChar == '4')
+			{
+				mObs[i] = object::Instantiate<F_4>(Vector2(tempPos + (i * 22.0f), 122.0f), eLayerType::UI);
+			}
+			if (tempChar == '5')
+			{
+				mObs[i] = object::Instantiate<F_5>(Vector2(tempPos + (i * 22.0f), 122.0f), eLayerType::UI);
+			}
+			if (tempChar == '6')
+			{
+				mObs[i] = object::Instantiate<F_6>(Vector2(tempPos + (i * 22.0f), 122.0f), eLayerType::UI);
+			}
+			if (tempChar == '7')
+			{
+				mObs[i] = object::Instantiate<F_7>(Vector2(tempPos + (i * 22.0f), 122.0f), eLayerType::UI);
+			}
+			if (tempChar == '8')
+			{
+				mObs[i] = object::Instantiate<F_8>(Vector2(tempPos + (i * 22.0f), 122.0f), eLayerType::UI);
+			}
+			if (tempChar == '9')
+			{
+				mObs[i] = object::Instantiate<F_9>(Vector2(tempPos + (i * 22.0f), 122.0f), eLayerType::UI);
+			}
+#pragma endregion
+		}
+		//
+		for (auto i = 0; i < 6; i++)
+		{
+			if (mObs2[i] != nullptr)
+				object::Destory(mObs2[i]);
+		}
+		for (auto i = 0; i < 6; i++)
+		{
+			mObs2[i] = nullptr;
+		}
+
+		std::string temp2 = std::to_string(MainScene::mDia);
+		int size2 = temp2.size();
+		int totalSize2 = 5;
+
+		float tempPos2 = 1158.f + 22.0f * (totalSize2 - size2 + 1);
+
+		for (auto i = 0; i < size2; i++)
+		{
+			char tempChar = temp2[i];
+#pragma region 문자에 맞는 해당 이미지 생성
+			if (tempChar == '0')
+			{
+				mObs2[i] = object::Instantiate<F_0>(Vector2(tempPos2 + (i * 22.0f), 122.0f), eLayerType::UI);
+			}
+			if (tempChar == '1')
+			{
+				mObs2[i] = object::Instantiate<F_1>(Vector2(tempPos2 + (i * 22.0f), 122.0f), eLayerType::UI);
+			}
+			if (tempChar == '2')
+			{
+				mObs2[i] = object::Instantiate<F_2>(Vector2(tempPos2 + (i * 22.0f), 122.0f), eLayerType::UI);
+			}
+			if (tempChar == '3')
+			{
+				mObs2[i] = object::Instantiate<F_3>(Vector2(tempPos2 + (i * 22.0f), 122.0f), eLayerType::UI);
+			}
+			if (tempChar == '4')
+			{
+				mObs2[i] = object::Instantiate<F_4>(Vector2(tempPos2 + (i * 22.0f), 122.0f), eLayerType::UI);
+			}
+			if (tempChar == '5')
+			{
+				mObs2[i] = object::Instantiate<F_5>(Vector2(tempPos2 + (i * 22.0f), 122.0f), eLayerType::UI);
+			}
+			if (tempChar == '6')
+			{
+				mObs2[i] = object::Instantiate<F_6>(Vector2(tempPos2 + (i * 22.0f), 122.0f), eLayerType::UI);
+			}
+			if (tempChar == '7')
+			{
+				mObs2[i] = object::Instantiate<F_7>(Vector2(tempPos2 + (i * 22.0f), 122.0f), eLayerType::UI);
+			}
+			if (tempChar == '8')
+			{
+				mObs2[i] = object::Instantiate<F_8>(Vector2(tempPos2 + (i * 22.0f), 122.0f), eLayerType::UI);
+			}
+			if (tempChar == '9')
+			{
+				mObs2[i] = object::Instantiate<F_9>(Vector2(tempPos2 + (i * 22.0f), 122.0f), eLayerType::UI);
+			}
+#pragma endregion
+		}
+
+
 		if (GetFocus())
 		{
 			if (Input::GetKeyDown(eKeyCode::LBUTTON))
@@ -63,8 +202,12 @@ namespace ya
 					{
 						mSlotB01 = object::Instantiate<SlotB01>(Vector2(558.f, 817.f), eLayerType::UI);
 
+						MainScene::mSilver -= 1000;
+
 						srand(time(NULL));
 						tempValueF = rand() % 7 + 1;// 1~7
+
+						mSlotResult[0] = tempValueF;
 
 						if (tempValueF == 1)
 						{
@@ -123,6 +266,8 @@ namespace ya
 
 						tempValueS = tempValue;
 
+						mSlotResult[1] = tempValueS;
+
 						if (tempValue == 1)
 						{
 							mSlot02->mState = eSlot01State::R1;
@@ -168,7 +313,7 @@ namespace ya
 						tempArray[1] = tempValue;
 
 						//srand(time(NULL));
-						int tempRand = rand() % 4;
+						int tempRand = rand() % 4 + 1;
 						if (tempRand == 0)
 						{
 							tempValue = tempArray[1];
@@ -190,6 +335,7 @@ namespace ya
 							tempValue = tempArray[0];
 						}
 
+						mSlotResult[2] = tempValue;
 
 						if (tempValue == 1)
 						{
@@ -220,6 +366,30 @@ namespace ya
 							mSlot03->mState = eSlot01State::R7;
 						}
 
+					}
+				}
+			}
+
+			if (mSlotResult[0] == mSlotResult[1] && mSlotResult[1] == mSlotResult[2])
+			{
+				if (mSlotResult[0] != -1)
+				{
+					if (mSlotResult[1] != -1)
+					{
+						if (mSlotResult[2] != -1)
+						{
+							mFinalTime += Time::DeltaTime();
+
+							if (mFinalTime > 1.0f)
+							{
+								MainScene::mSilver += 10000;
+								mFinalTime = 0.0f;
+
+								mSlotResult[0] = -1;
+								mSlotResult[1] = -1;
+								mSlotResult[2] = -1;
+							}
+						}
 					}
 				}
 			}
@@ -282,10 +452,49 @@ namespace ya
 		mSlot01->mState = eSlot01State::L1;
 		mSlot02->mState = eSlot01State::L1;
 		mSlot03->mState = eSlot01State::L1;
+
+		//
+		for (auto i = 0; i < 6; i++)
+		{
+			if (mObs[i] != nullptr)
+				object::Destory(mObs[i]);
+		}
+		for (auto i = 0; i < 6; i++)
+		{
+			mObs[i] = nullptr;
+		}
+
+		for (auto i = 0; i < 6; i++)
+		{
+			if (mObs2[i] != nullptr)
+				object::Destory(mObs2[i]);
+		}
+		for (auto i = 0; i < 6; i++)
+		{
+			mObs2[i] = nullptr;
+		}
 	}
 
 	void SlotScene::OnExit()
 	{
+		for (auto i = 0; i < 6; i++)
+		{
+			if (mObs[i] != nullptr)
+				object::Destory(mObs[i]);
+		}
+		for (auto i = 0; i < 6; i++)
+		{
+			mObs[i] = nullptr;
+		}
 
+		for (auto i = 0; i < 6; i++)
+		{
+			if (mObs2[i] != nullptr)
+				object::Destory(mObs2[i]);
+		}
+		for (auto i = 0; i < 6; i++)
+		{
+			mObs2[i] = nullptr;
+		}
 	}
 }

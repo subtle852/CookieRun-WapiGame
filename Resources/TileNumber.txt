@@ -1,0 +1,43 @@
+챕터 1: Common
+01 Ground
+02 OverGround
+6 Flag
+
+
+03 Fast
+04 Big
+05 Small
+06 Cloud
+07 Hp+
+08 Hp-
+09 Hp! (Inv)
+10 KeyError
+11 BasicToBear
+12 ObstacleToCoin
+13 Magent
+
+13 Big
+14 F P
+15 F Y
+16 R
+17 s B
+18 s P
+19 s Y
+20 S B
+21 S Y
+
+22 G
+23 G B
+24 S
+25 S B
+
+
+27 28 29 30 31 32 Candy Basic
+33 34 35 36 37 38 Gummy Basic
+
+
+챕터 2: Land1
+점프 6
+더점 6
+슬라 6
+타일 6

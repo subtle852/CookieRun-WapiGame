@@ -16,6 +16,14 @@
 #include "yaResources.h"
 #include "resource.h"
 
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+
+#ifdef _DEBUG
+#define new new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
+#endif
+
 #define MAX_LOADSTRING 100
 
 // 전역 변수:
@@ -234,6 +242,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)/
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);
     }
+
+    _CrtDumpMemoryLeaks();
     return 0;
 }
 

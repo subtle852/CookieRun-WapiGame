@@ -9,9 +9,19 @@
 #include "yaScene.h"
 #include "yaObject.h"
 #include "yaCamera.h"
+
 #include "yaCharacter01.h"
+#include "yaCharacter02.h"
+#include "yaCharacter03.h"
+#include "yaCharacter04.h"
+#include "yaCharacter05.h"
+#include "yaCharacter06.h"
+#include "yaCharacter07.h"
+#include "yaCharacter08.h"
+
 #include "yaMakeScene.h"
 #include "yaPlayScene.h"
+#include "yaSelectCharScene.h"
 
 namespace ya
 {
@@ -111,8 +121,47 @@ namespace ya
 	{
 		if (dynamic_cast<Character01*>(other->GetOwner()))
 		{
-			Character01* ch = dynamic_cast<Character01*>(other->GetOwner());
-			ch->mKeyError = true;
+			if (SelectCharScene::GetCharNumber() == 1)
+			{
+				Character01* ch = dynamic_cast<Character01*>(other->GetOwner());
+				ch->mKeyError = true;
+			}
+			else if (SelectCharScene::GetCharNumber() == 2)
+			{
+				Character02* ch = dynamic_cast<Character02*>(other->GetOwner());
+				ch->mKeyError = true;
+			}
+			else if (SelectCharScene::GetCharNumber() == 3)
+			{
+				Character03* ch = dynamic_cast<Character03*>(other->GetOwner());
+				ch->mKeyError = true;
+			}
+			else if (SelectCharScene::GetCharNumber() == 4)
+			{
+				Character04* ch = dynamic_cast<Character04*>(other->GetOwner());
+				ch->mKeyError = true;
+			}
+			else if (SelectCharScene::GetCharNumber() == 5)
+			{
+				Character05* ch = dynamic_cast<Character05*>(other->GetOwner());
+				ch->mKeyError = true;
+			}
+			else if (SelectCharScene::GetCharNumber() == 6)
+			{
+				Character06* ch = dynamic_cast<Character06*>(other->GetOwner());
+				ch->mKeyError = true;
+			}
+			else if (SelectCharScene::GetCharNumber() == 7)
+			{
+				Character07* ch = dynamic_cast<Character07*>(other->GetOwner());
+				ch->mKeyError = true;
+			}
+			else if (SelectCharScene::GetCharNumber() == 8)
+			{
+				Character08* ch = dynamic_cast<Character08*>(other->GetOwner());
+				ch->mKeyError = true;
+			}
+
 			Camera::mType = Camera::eCameraEffectType::KeyError;
 			object::Destory(this);
 		}

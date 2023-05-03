@@ -48,5 +48,9 @@ namespace ya
 
 		int mResult = -1;
 		GameObject* mResultOb = nullptr;
+
+		GameObject* mOb = nullptr;
+		GameObject* mObs[6] = { nullptr, };
+		GameObject* mObs2[6] = { nullptr, };
 	};
 }

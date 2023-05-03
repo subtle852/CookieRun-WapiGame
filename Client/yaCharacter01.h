@@ -20,6 +20,8 @@ namespace ya
 		Transp2,// 이거 필요없음
 		Damaged,
 		BigRun,
+		Up,
+		Down,
 	};
 
 	class Character01 : public GameObject
@@ -52,6 +54,8 @@ namespace ya
 		void idle();
 		void transparent();// 이거 필요없음
 		void bigrun();
+		void up();
+		void down();
 
 		void JumpCompleteEvent();
 		void DJumpCompleteEvent();
@@ -98,7 +102,10 @@ namespace ya
 
 		bool mPlayInit = false;
 		bool mMakeInit = false;
+		bool mBonusInit = false;
 
 		bool mStopbyFlag = false;
+
+		float mWaitTime = 0.0f;
 	};
 }

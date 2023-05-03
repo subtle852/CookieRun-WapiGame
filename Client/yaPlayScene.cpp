@@ -38,6 +38,7 @@
 
 #include "yaSelectCharScene.h"
 #include "yaMakeScene.h"
+#include "yaMainScene.h"
 
 //////////////////////////////////////////////////////////////
 #include "yaInput.h"
@@ -53,6 +54,13 @@
 #include "yaCharacter01.h"
 #include "yaCharacter02.h"
 #include "yaCharacter03.h"
+#include "yaCharacter04.h"
+#include "yaCharacter05.h"
+#include "yaStraw_Jelly.h"
+#include "yaCharacter06.h"
+#include "yaCharacter07.h"
+#include "yaDevil_Jelly.h"
+#include "yaCharacter08.h"
 
 //Common
 #include "yaGround.h"
@@ -146,10 +154,51 @@
 // BG
 #include "yaL1_BG02.h"
 
+// BonusTime
+#include "yaBonus_01_B.h"
+#include "yaBonus_02_O.h"
+#include "yaBonus_03_N.h"
+#include "yaBonus_04_U.h"
+#include "yaBonus_05_S.h"
+#include "yaBonus_06_T.h"
+#include "yaBonus_07_I.h"
+#include "yaBonus_08_M.h"
+#include "yaBonus_09_E.h"
+
+#include "yaBonusUI.h"
+
+#include "yaBonus_UI_01_B.h"
+#include "yaBonus_UI_02_O.h"
+#include "yaBonus_UI_03_N.h"
+#include "yaBonus_UI_04_U.h"
+#include "yaBonus_UI_05_S.h"
+#include "yaBonus_UI_06_T.h"
+#include "yaBonus_UI_07_I.h"
+#include "yaBonus_UI_08_M.h"
+#include "yaBonus_UI_09_E.h"
+
+#include "yaF_0.h" 
+#include "yaF_1.h" 
+#include "yaF_2.h" 
+#include "yaF_3.h" 
+#include "yaF_4.h" 
+#include "yaF_5.h"
+#include "yaF_6.h" 
+#include "yaF_7.h" 
+#include "yaF_8.h" 
+#include "yaF_9.h"
+
+#include "yaPlay_Silver.h"
+#include "yaPlay_Score.h"
+
 namespace ya
 {
 	Character01* PlayScene::mCh01 = nullptr;
 	bool PlayScene::mCloudEffectOnatPlay = false;
+	bool PlayScene::mBonusState[9] = { 0,0,0,0,0,0,0,0,0 };
+
+	int PlayScene::mSilver = 0;
+	int PlayScene::mScore = 0;
 
 	PlayScene::PlayScene()
 	{
@@ -186,14 +235,61 @@ namespace ya
 
 		int temp = SelectCharScene::GetCharNumber();
 
-		if (int temp = SelectCharScene::GetCharNumber() == 1)
+		if (temp == 1)
 		{
-			//mCh01 = object::Instantiate<Character01>(Vector2(300.0f, 650.0f), eLayerType::Player);
-			//mCh01 = object::Instantiate<Character02>(Vector2(300.0f, 650.0f), eLayerType::Player);
+			mCh01 = object::Instantiate<Character01>(Vector2(300.0f, 650.0f), eLayerType::Player);
+		}
+		else if (temp == 2)
+		{
+			mCh01 = object::Instantiate<Character02>(Vector2(300.0f, 650.0f), eLayerType::Player);
+		}
+		else if (temp == 3)
+		{
 			mCh01 = object::Instantiate<Character03>(Vector2(300.0f, 650.0f), eLayerType::Player);
+		}
+		else if (temp == 4)
+		{
+			mCh01 = object::Instantiate<Character04>(Vector2(300.0f, 650.0f), eLayerType::Player);
+		}
+		else if (temp == 5)
+		{
+			mCh01 = object::Instantiate<Character05>(Vector2(300.0f, 650.0f), eLayerType::Player);
+		}
+		else if (temp == 6)
+		{
+			mCh01 = object::Instantiate<Character06>(Vector2(300.0f, 650.0f), eLayerType::Player);
+		}
+		else if (temp == 7)
+		{
+			mCh01 = object::Instantiate<Character07>(Vector2(300.0f, 650.0f), eLayerType::Player);
+		}
+		else if (temp == 8)
+		{
+			mCh01 = object::Instantiate<Character08>(Vector2(300.0f, 650.0f), eLayerType::Player);
 		}
 
 		mPet01 = object::Instantiate<Pet01>(eLayerType::Pet);
+
+		//
+		object::Instantiate<Bonus_04_U>(Vector2(500.0f, 650.0f), eLayerType::Item);
+		object::Instantiate<Bonus_02_O>(Vector2(600.0f, 650.0f), eLayerType::Item);
+		object::Instantiate<Bonus_03_N>(Vector2(700.0f, 650.0f), eLayerType::Item);
+		object::Instantiate<Bonus_01_B>(Vector2(800.0f, 650.0f), eLayerType::Item);
+		object::Instantiate<Bonus_05_S>(Vector2(900.0f, 650.0f), eLayerType::Item);
+		object::Instantiate<Bonus_06_T>(Vector2(1000.0f, 650.0f), eLayerType::Item);
+		object::Instantiate<Bonus_07_I>(Vector2(1100.0f, 650.0f), eLayerType::Item);
+		object::Instantiate<Bonus_08_M>(Vector2(1400.0f, 650.0f), eLayerType::Item);
+		object::Instantiate<Bonus_09_E>(Vector2(1600.0f, 650.0f), eLayerType::Item);
+
+		object::Instantiate<Bonus_04_U>(Vector2(2200.0f, 650.0f), eLayerType::Item);
+		object::Instantiate<Bonus_02_O>(Vector2(2300.0f, 650.0f), eLayerType::Item);
+		object::Instantiate<Bonus_03_N>(Vector2(2400.0f, 650.0f), eLayerType::Item);
+		object::Instantiate<Bonus_01_B>(Vector2(2500.0f, 650.0f), eLayerType::Item);
+		object::Instantiate<Bonus_05_S>(Vector2(2600.0f, 650.0f), eLayerType::Item);
+		object::Instantiate<Bonus_06_T>(Vector2(2700.0f, 650.0f), eLayerType::Item);
+		object::Instantiate<Bonus_07_I>(Vector2(2800.0f, 650.0f), eLayerType::Item);
+		object::Instantiate<Bonus_08_M>(Vector2(2900.0f, 650.0f), eLayerType::Item);
+		object::Instantiate<Bonus_09_E>(Vector2(3000.0f, 650.0f), eLayerType::Item);
 
 		#pragma region Load
 		{
@@ -735,6 +831,73 @@ namespace ya
 		}
 #pragma endregion
 
+		// mBasicJelly 싹다 지우고 그 위치에 딸기젤리로 생성 되야함
+		if (SelectCharScene::GetCharNumber() == 5)
+		{
+			std::unordered_map<UINT64, GameObject*>::iterator iter = mBasicJelly.begin();
+			for (; iter != mBasicJelly.end(); iter++)
+			{
+				TilePos id;
+				id.id = iter->first;
+
+				GameObject* temp = iter->second;
+
+				Transform* tr = mCh01->GetComponent<Transform>();
+				Vector2 pos = tr->GetPos();
+				if (0.0f < id.x)
+				{
+					std::unordered_map<UINT64, UINT64>::iterator temp = mTiles.find(id.id);
+					UINT64 indexTemp = temp->second;
+
+					ya::object::Destory(iter->second);
+					mObs.erase(id.id);
+					mTiles.erase(id.id);
+
+					mOb = object::Instantiate<Straw_Jelly>(Vector2(id.x, id.y), eLayerType::Item);
+
+					mObs.insert(std::make_pair(id.id, mOb));
+					mTiles.insert(std::make_pair(id.id, indexTemp));
+					//mBearJelly.insert(std::make_pair(id.id, mOb));// no need
+				}
+
+				if (iter == --mBasicJelly.end())
+				{
+					mBasicJelly.clear();
+					break;
+				}
+			}
+		}
+
+		// 천사 무한 자력 적용
+		if (SelectCharScene::GetCharNumber() == 6)
+		{
+			mCh01->mMagnetState = true;
+			mMagnetFull = 99999999999.0f;
+		}
+
+		// 악마 원혼 맵에 젤리 랜덤으로 생성
+		if (SelectCharScene::GetCharNumber() == 7)
+		{
+			for (int i = 1; i < 300; i++)
+			{
+				//srand(time(NULL));
+				int temp = rand() % 3;
+				if (temp == 1)
+				{
+					TilePos id;
+					id.x = 500.f * i;
+					id.y = 550.f;
+
+					mOb = object::Instantiate<Devil_Jelly>(Vector2((500.f * i), 550.f), eLayerType::Item);
+					mObs.insert(std::make_pair(id.id, mOb));
+					mTiles.insert(std::make_pair(id.id, 0));
+				}
+
+				if (i == 299) break;
+			}
+		}
+
+
 		// UI라서 직접 선언해야함
 		object::Instantiate<GaugeCircle>(Vector2(-10.0f, 20.0f), eLayerType::UIAbove);
 		object::Instantiate<GaugeBar>(Vector2(59.0f, 32.0f), eLayerType::UI);
@@ -747,6 +910,195 @@ namespace ya
 
 	void PlayScene::Update()
 	{
+		// 점수, 은화 UI
+		for (auto i = 0; i < 6; i++)
+		{
+			if (mObs_[i] != nullptr)
+				object::Destory(mObs_[i]);
+		}
+		for (auto i = 0; i < 6; i++)
+		{
+			mObs_[i] = nullptr;
+		}
+
+		std::string temp = std::to_string(PlayScene::mSilver);
+		int size = temp.size();
+		int totalSize = 5;
+
+		//float tempPos = 1355.f + 22.0f * (totalSize - size + 1);
+
+		for (auto i = 0; i < size; i++)
+		{
+			Transform* tr = mCh01->GetComponent<Transform>();
+			Vector2 pos = tr->GetPos();
+
+			//float tempPos = pos.x + 950.f + 22.0f * (totalSize - size + 1);
+			float tempPos = pos.x + 950.f;
+
+			char tempChar = temp[i];
+#pragma region 문자에 맞는 해당 이미지 생성
+			if (tempChar == '0')
+			{
+				mObs_[i] = object::Instantiate<F_0>(Vector2(tempPos + (i * 22.0f), 100.0f), eLayerType::UI);
+			}
+			if (tempChar == '1')
+			{
+				mObs_[i] = object::Instantiate<F_1>(Vector2(tempPos + (i * 22.0f), 100.0f), eLayerType::UI);
+			}
+			if (tempChar == '2')
+			{
+				mObs_[i] = object::Instantiate<F_2>(Vector2(tempPos + (i * 22.0f), 100.0f), eLayerType::UI);
+			}
+			if (tempChar == '3')
+			{
+				mObs_[i] = object::Instantiate<F_3>(Vector2(tempPos + (i * 22.0f), 100.0f), eLayerType::UI);
+			}
+			if (tempChar == '4')
+			{
+				mObs_[i] = object::Instantiate<F_4>(Vector2(tempPos + (i * 22.0f), 100.0f), eLayerType::UI);
+			}
+			if (tempChar == '5')
+			{
+				mObs_[i] = object::Instantiate<F_5>(Vector2(tempPos + (i * 22.0f), 100.0f), eLayerType::UI);
+			}
+			if (tempChar == '6')
+			{
+				mObs_[i] = object::Instantiate<F_6>(Vector2(tempPos + (i * 22.0f), 100.0f), eLayerType::UI);
+			}
+			if (tempChar == '7')
+			{
+				mObs_[i] = object::Instantiate<F_7>(Vector2(tempPos + (i * 22.0f), 100.0f), eLayerType::UI);
+			}
+			if (tempChar == '8')
+			{
+				mObs_[i] = object::Instantiate<F_8>(Vector2(tempPos + (i * 22.0f), 100.0f), eLayerType::UI);
+			}
+			if (tempChar == '9')
+			{
+				mObs_[i] = object::Instantiate<F_9>(Vector2(tempPos + (i * 22.0f), 100.0f), eLayerType::UI);
+			}
+#pragma endregion
+		}
+		//
+		for (auto i = 0; i < 6; i++)
+		{
+			if (mObs2_[i] != nullptr)
+				object::Destory(mObs2_[i]);
+		}
+		for (auto i = 0; i < 6; i++)
+		{
+			mObs2_[i] = nullptr;
+		}
+
+		std::string temp2 = std::to_string(PlayScene::mScore);
+		int size2 = temp2.size();
+		int totalSize2 = 5;
+
+		//float tempPos2 = 1110.f + 22.0f * (totalSize2 - size2 + 1);
+
+		for (auto i = 0; i < size2; i++)
+		{
+			Transform* tr = mCh01->GetComponent<Transform>();
+			Vector2 pos = tr->GetPos();
+
+			//float tempPos2 = pos.x + 950.f + 22.0f * (totalSize - size + 1);
+			float tempPos2 = pos.x + 950.f;
+
+			char tempChar = temp2[i];
+#pragma region 문자에 맞는 해당 이미지 생성
+			if (tempChar == '0')
+			{
+				mObs2_[i] = object::Instantiate<F_0>(Vector2(tempPos2 + (i * 22.0f), 150.0f), eLayerType::UI);
+			}
+			if (tempChar == '1')
+			{
+				mObs2_[i] = object::Instantiate<F_1>(Vector2(tempPos2 + (i * 22.0f), 150.0f), eLayerType::UI);
+			}
+			if (tempChar == '2')
+			{
+				mObs2_[i] = object::Instantiate<F_2>(Vector2(tempPos2 + (i * 22.0f), 150.0f), eLayerType::UI);
+			}
+			if (tempChar == '3')
+			{
+				mObs2_[i] = object::Instantiate<F_3>(Vector2(tempPos2 + (i * 22.0f), 150.0f), eLayerType::UI);
+			}
+			if (tempChar == '4')
+			{
+				mObs2_[i] = object::Instantiate<F_4>(Vector2(tempPos2 + (i * 22.0f), 150.0f), eLayerType::UI);
+			}
+			if (tempChar == '5')
+			{
+				mObs2_[i] = object::Instantiate<F_5>(Vector2(tempPos2 + (i * 22.0f), 150.0f), eLayerType::UI);
+			}
+			if (tempChar == '6')
+			{
+				mObs2_[i] = object::Instantiate<F_6>(Vector2(tempPos2 + (i * 22.0f), 150.0f), eLayerType::UI);
+			}
+			if (tempChar == '7')
+			{
+				mObs2_[i] = object::Instantiate<F_7>(Vector2(tempPos2 + (i * 22.0f), 150.0f), eLayerType::UI);
+			}
+			if (tempChar == '8')
+			{
+				mObs2_[i] = object::Instantiate<F_8>(Vector2(tempPos2 + (i * 22.0f), 150.0f), eLayerType::UI);
+			}
+			if (tempChar == '9')
+			{
+				mObs2_[i] = object::Instantiate<F_9>(Vector2(tempPos2 + (i * 22.0f), 150.0f), eLayerType::UI);
+			}
+#pragma endregion
+		}
+
+		// bonus UI
+		//for (auto i = 0; i < 9; i++)
+		//{
+		//	if (mBonusUIs[i] != nullptr)
+		//		object::Destory(mBonusUIs[i]);
+		//}
+		//for (auto i = 0; i < 9; i++)
+		//{
+		//	mBonusUIs[i] = nullptr;
+		//}
+
+		if (mBonusState[0] == 1 && mBonusUIs[0] == nullptr)
+		{
+			mBonusUIs[0] = object::Instantiate<Bonus_UI_01_B>(Vector2(208.0f, 106.0f), eLayerType::UI);
+		}
+		if (mBonusState[1] == 1 && mBonusUIs[1] == nullptr)
+		{
+			mBonusUIs[1] = object::Instantiate<Bonus_UI_02_O>(Vector2(255.0f, 106.0f), eLayerType::UI);
+		}
+		if (mBonusState[2] == 1 && mBonusUIs[2] == nullptr)
+		{
+			mBonusUIs[2] = object::Instantiate<Bonus_UI_03_N>(Vector2(305.0f, 106.0f), eLayerType::UI);
+		}
+		if (mBonusState[3] == 1 && mBonusUIs[3] == nullptr)
+		{
+			mBonusUIs[3] = object::Instantiate<Bonus_UI_04_U>(Vector2(355.0f, 106.0f), eLayerType::UI);
+		}
+		if (mBonusState[4] == 1 && mBonusUIs[4] == nullptr)
+		{
+			mBonusUIs[4] = object::Instantiate<Bonus_UI_05_S>(Vector2(406.0f, 106.0f), eLayerType::UI);
+		}
+		if (mBonusState[5] == 1 && mBonusUIs[5] == nullptr)
+		{
+			mBonusUIs[5] = object::Instantiate<Bonus_UI_06_T>(Vector2(456.0f, 106.0f), eLayerType::UI);
+		}
+		if (mBonusState[6] == 1 && mBonusUIs[6] == nullptr)
+		{
+			mBonusUIs[6] = object::Instantiate<Bonus_UI_07_I>(Vector2(500.0f, 108.0f), eLayerType::UI);
+		}
+		if (mBonusState[7] == 1 && mBonusUIs[7] == nullptr)
+		{
+			mBonusUIs[7] = object::Instantiate<Bonus_UI_08_M>(Vector2(545.0f, 106.0f), eLayerType::UI);
+		}
+		if (mBonusState[8] == 1 && mBonusUIs[8] == nullptr)
+		{
+			mBonusUIs[8] = object::Instantiate<Bonus_UI_09_E>(Vector2(600.0f, 106.0f), eLayerType::UI);
+		}
+
+		//
+
 		Transform* tr = mCh01->GetComponent<Transform>();
 		Vector2 pos = tr->GetPos();
 
@@ -782,7 +1134,7 @@ namespace ya
 		{
 			mMagnetTime += Time::DeltaTime(); // 모든 아이템들에 캐릭쪽으로 오는 논리 적용시켜야함
 
-			if (mMagnetTime > 2.0f)
+			if (mMagnetTime > mMagnetFull)
 			{
 				mMagnetTime = 0.0f;
 				mCh01->mMagnetState = false;
@@ -831,159 +1183,37 @@ namespace ya
 			}
 		}
 
-		if (mCh01->mBtoB == true)// Basic To Jelly 아이템
+		if (mCh01->mBtoB == true && SelectCharScene::GetCharNumber() != 5)// Basic To Jelly 아이템
 		{
-			mBtoBTime += Time::DeltaTime();
-			int tempToclear = 0;
-
-			if (mBtoBend == false && mBtoBTime <= 2.0f)
+			std::unordered_map<UINT64, GameObject*>::iterator iter = mBasicJelly.begin();
+			for (; iter != mBasicJelly.end(); iter++)
 			{
-				std::unordered_map<UINT64, GameObject*>::iterator iter = mBasicJelly.begin();
-				for (; iter != mBasicJelly.end(); iter++)
+				if (iter == --mBasicJelly.end())
 				{
-					TilePos id;
-					id.id = iter->first;
-
-					GameObject* temp = iter->second;
-
-					Transform* tr = mCh01->GetComponent<Transform>();
-					Vector2 pos = tr->GetPos();
-					if (pos.x < id.x)
-					{
-						std::unordered_map<UINT64, UINT64>::iterator temp = mTiles.find(id.id);
-						UINT64 indexTemp = temp->second;
-
-						ya::object::Destory(iter->second);
-						mObs.erase(id.id);
-						mTiles.erase(id.id);
-
-						mOb = object::Instantiate<Bear_FlyingPink>(Vector2(id.x, id.y), eLayerType::Item);
-
-						mObs.insert(std::make_pair(id.id, mOb));
-						mTiles.insert(std::make_pair(id.id, indexTemp));
-						mBearJelly.insert(std::make_pair(id.id, mOb));
-					}
-
-					if (iter == --mBasicJelly.end())
-					{
-						tempToclear = 1;
-						mBtoBend2 = false;
-						mBtoBend = true;
-					}
-				}
-
-				if (tempToclear == 1)
-				{
-					mBasicJelly.clear();
-				}
-			}
-
-			if (mBtoBTime > 2.0f)
-			{
-				if (mBtoBend2 == false)
-				{
-					std::unordered_map<UINT64, GameObject*>::iterator iter = mBearJelly.begin();
-					for (; iter != mBearJelly.end(); iter++)
-					{
-						TilePos id;
-						id.id = iter->first;
-
-						GameObject* temp = iter->second;
-
-						Transform* tr = mCh01->GetComponent<Transform>();
-						Vector2 pos = tr->GetPos();
-						if (pos.x + 50.f < id.x)
-						{
-							ya::object::Destory(iter->second);
-
-							std::unordered_map<UINT64, UINT64>::iterator temp = mTiles.find(id.id);
-							UINT64 indexTemp = temp->second;
-
-							mObs.erase(id.id);
-							mTiles.erase(id.id);
-
-							#pragma region 젤리 index에 따른 해당 젤리 생성
-							// 만약에 베이직 젤리를 여러 종류로 생성을 하고 싶다면
-							// mTiles를 받아와서 그 id.id 찾아서 index 찾은 후 조건문으로 생성
-
-							if (indexTemp == 40)
-							{
-								mOb = object::Instantiate<Basic_Gummy_B>(Vector2(id.x, id.y), eLayerType::Item);
-
-								id2.ind = (UINT32)indexTemp;
-
-								mObs.insert(std::make_pair(id.id, mOb));
-								mTiles.insert(std::make_pair(id.id, id2.ind));
-								mBasicJelly.insert(std::make_pair(id.id, mOb));
-							}
-							if (indexTemp == 41)
-							{
-								mOb = object::Instantiate<Basic_Gummy_G>(Vector2(id.x, id.y), eLayerType::Item);
-
-								id2.ind = (UINT32)indexTemp;
-
-								mObs.insert(std::make_pair(id.id, mOb));
-								mTiles.insert(std::make_pair(id.id, id2.ind));
-								mBasicJelly.insert(std::make_pair(id.id, mOb));
-							}
-							if (indexTemp == 42)
-							{
-								mOb = object::Instantiate<Basic_Gummy_R>(Vector2(id.x, id.y), eLayerType::Item);
-
-								id2.ind = (UINT32)indexTemp;
-
-								mObs.insert(std::make_pair(id.id, mOb));
-								mTiles.insert(std::make_pair(id.id, id2.ind));
-								mBasicJelly.insert(std::make_pair(id.id, mOb));
-							}
-							if (indexTemp == 43)
-							{
-								mOb = object::Instantiate<Basic_Gummy_Y>(Vector2(id.x, id.y), eLayerType::Item);
-
-								id2.ind = (UINT32)indexTemp;
-
-								mObs.insert(std::make_pair(id.id, mOb));
-								mTiles.insert(std::make_pair(id.id, id2.ind));
-								mBasicJelly.insert(std::make_pair(id.id, mOb));
-							}
-							if (indexTemp == 44)
-							{
-								mOb = object::Instantiate<Basic_Gummy_M1>(Vector2(id.x, id.y), eLayerType::Item);
-
-								id2.ind = (UINT32)indexTemp;
-
-								mObs.insert(std::make_pair(id.id, mOb));
-								mTiles.insert(std::make_pair(id.id, id2.ind));
-								mBasicJelly.insert(std::make_pair(id.id, mOb));
-							}
-							if (indexTemp == 45)
-							{
-								mOb = object::Instantiate<Basic_Gummy_M2>(Vector2(id.x, id.y), eLayerType::Item);
-
-								id2.ind = (UINT32)indexTemp;
-
-								mObs.insert(std::make_pair(id.id, mOb));
-								mTiles.insert(std::make_pair(id.id, id2.ind));
-								mBasicJelly.insert(std::make_pair(id.id, mOb));
-							}
-
-#pragma endregion
-
-						}
-
-						if (iter == --mBearJelly.end())
-						{
-							mBtoBend = false;
-							mBtoBend2 = true;// 얘들 다시 false로 돌려놔야함
-						}
-					}
-				}
-
-				if (mBtoBend2 == true)
-				{
-					mBearJelly.clear();
-					mBtoBTime = 0.0f;
 					mCh01->mBtoB = false;
+				}
+
+				TilePos id;
+				id.id = iter->first;
+
+				GameObject* temp = iter->second;
+
+				Transform* tr = mCh01->GetComponent<Transform>();
+				Vector2 pos = tr->GetPos();
+				if (pos.x + 50.f < id.x && id.x < pos.x + mBtoBFull)
+				{
+					std::unordered_map<UINT64, UINT64>::iterator temp = mTiles.find(id.id);
+					UINT64 indexTemp = temp->second;
+
+					ya::object::Destory(iter->second);
+					mObs.erase(id.id);
+					mTiles.erase(id.id);
+
+					mOb = object::Instantiate<Bear_FlyingPink>(Vector2(id.x, id.y), eLayerType::Item);
+
+					mObs.insert(std::make_pair(id.id, mOb));
+					mTiles.insert(std::make_pair(id.id, indexTemp));
+					//mBearJelly.insert(std::make_pair(id.id, mOb));// no need
 				}
 			}
 		}
@@ -1044,6 +1274,42 @@ namespace ya
 			SceneManager::LoadScene(eSceneType::Make);
 		}
 
+		if (Input::GetKeyState(eKeyCode::V) == eKeyState::Down)
+		{
+			//SceneManager::LoadScene(eSceneType::ResultS);
+			SceneManager::LoadScene(eSceneType::ResultF);
+		}
+		if (Input::GetKeyState(eKeyCode::C) == eKeyState::Down)
+		{
+			//SceneManager::LoadScene(eSceneType::ResultS);
+			SceneManager::LoadScene(eSceneType::ResultS);
+		}
+
+		for (int i = 0; i < 9; i++)
+		{
+			if (PlayScene::mBonusState[i] == 1)
+			{
+				mBonusSum += 1;
+			}
+
+			if (i == 8)
+			{
+				if (mBonusSum == 9)
+				{
+					mToBonus = true;
+					mBonusWait += Time::DeltaTime();
+
+					if(mBonusWait > 0.2f)
+					SceneManager::LoadScene(eSceneType::Bonus);
+				}
+				else
+				{
+					mBonusSum = 0;
+					break;
+				}
+			}
+		}
+
 		Scene::Update();
 
 	}
@@ -1064,10 +1330,57 @@ namespace ya
 
 	void PlayScene::OnEnter()
 	{
+		mToBonus = false;
+
 		Camera::SetTarget(mCh01);
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Ground, true);
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Obstacle, true);
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Item, true);
+
+		if (SelectCharScene::GetCharNumber() == 3)
+		{
+			mMagnetFull = 2.0f + (2.0f * 0.35);
+			mBtoBFull = 1500.f + (1500.f * 0.35);
+		}
+
+		for (size_t i = 0; i < 9; i++)
+		{
+			PlayScene::mBonusState[i] = 0;
+		}
+
+		//
+		for (auto i = 0; i < 6; i++)
+		{
+			if (mObs_[i] != nullptr)
+				object::Destory(mObs_[i]);
+		}
+		for (auto i = 0; i < 6; i++)
+		{
+			mObs_[i] = nullptr;
+		}
+
+		for (auto i = 0; i < 6; i++)
+		{
+			if (mObs2_[i] != nullptr)
+				object::Destory(mObs2_[i]);
+		}
+		for (auto i = 0; i < 6; i++)
+		{
+			mObs2_[i] = nullptr;
+		}
+		for (auto i = 0; i < 9; i++)
+		{
+			PlayScene::mBonusState[i] = 0;
+		}
+		mBonusSum = 0;
+		
+		//
+		mToBonus = false;
+		mBonusWait = 0.f;
+
+		mSilver_ = object::Instantiate<Play_Silver>(Vector2(1180.f, 25.0f), eLayerType::UI);
+		mScore_ = object::Instantiate<Play_Score>(Vector2(1180.f, 70.0f), eLayerType::UI);
+		mBonusUI = object::Instantiate<BonusUI>(Vector2(200.f, 100.0f), eLayerType::UI);
 	}
 
 	void PlayScene::OnExit()
@@ -1075,5 +1388,117 @@ namespace ya
 		Camera::Clear();
 		//ya::object::Destory(mBG);
 		//mCuphead->SetPos(Vector2{ 0.0f, 0.0f }); 씬넘길때 원상복귀 시키는것
+
+		// 모든 오브젝트들 삭제
+		// 캐릭터 위치, 캐릭터 동작상태, 캐릭터 hp 등 싹다 초기화 해야함!!!
+		// 맵 오브젝트 Load하는 부분 여기에 있어야 함!!!
+		// 딸기, 천사, 악마 능력 초기화 하는 부분도 해줘야 함!!!
+		if (mToBonus == false)
+		{
+			mBasicJelly.clear();
+			mObstacle.clear();
+
+			std::unordered_map<UINT64, GameObject*>::iterator iter = mObs.begin();
+			for (; iter != mObs.end(); iter++)
+			{
+				TilePos id;
+				id.id = iter->first;
+
+				GameObject* temp = iter->second;
+
+				ya::object::Destory(iter->second);
+				mObs.erase(id.id);
+				mTiles.erase(id.id);
+
+				iter = mObs.begin();
+
+				if (iter == --mObs.end())
+				{
+					mObs.clear();
+					break;
+				}
+			}
+
+			for (auto i = 0; i < 6; i++)
+			{
+				if (mObs_[i] != nullptr)
+					object::Destory(mObs_[i]);
+			}
+			for (auto i = 0; i < 6; i++)
+			{
+				mObs_[i] = nullptr;
+			}
+
+			for (auto i = 0; i < 6; i++)
+			{
+				if (mObs2_[i] != nullptr)
+					object::Destory(mObs2_[i]);
+			}
+			for (auto i = 0; i < 6; i++)
+			{
+				mObs2_[i] = nullptr;
+			}
+			//
+
+			for (auto i = 0; i < 9; i++)
+			{
+				if (mBonusUIs[i] != nullptr)
+					object::Destory(mBonusUIs[i]);
+			}
+			for (auto i = 0; i < 9; i++)
+			{
+				mBonusUIs[i] = nullptr;
+			}
+			for (auto i = 0; i < 9; i++)
+			{
+				PlayScene::mBonusState[i] = 0;
+			}
+
+			object::Destory(mSilver_);
+			object::Destory(mScore_);
+			object::Destory(mBonusUI);
+
+			MainScene::mSilver += PlayScene::mSilver;
+		}
+
+		//
+		for (auto i = 0; i < 6; i++)
+		{
+			if (mObs_[i] != nullptr)
+				object::Destory(mObs_[i]);
+		}
+		for (auto i = 0; i < 6; i++)
+		{
+			mObs_[i] = nullptr;
+		}
+
+		for (auto i = 0; i < 6; i++)
+		{
+			if (mObs2_[i] != nullptr)
+				object::Destory(mObs2_[i]);
+		}
+		for (auto i = 0; i < 6; i++)
+		{
+			mObs2_[i] = nullptr;
+		}
+		//
+
+		for (auto i = 0; i < 9; i++)
+		{
+			if (mBonusUIs[i] != nullptr)
+				object::Destory(mBonusUIs[i]);
+		}
+		for (auto i = 0; i < 9; i++)
+		{
+			mBonusUIs[i] = nullptr;
+		}
+		for (auto i = 0; i < 9; i++)
+		{
+			PlayScene::mBonusState[i] = 0;
+		}
+
+		object::Destory(mSilver_);
+		object::Destory(mScore_);
+		object::Destory(mBonusUI);
 	}
 }

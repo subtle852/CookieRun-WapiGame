@@ -33,5 +33,13 @@ namespace ya
 		SlotB02* mSlotB02 = nullptr;
 		SlotB03* mSlotB03 = nullptr;
 		SlotBs* mSlotBs = nullptr;
+
+		int mSlotResult[3] = { -1,-1,-1 };
+
+		GameObject* mOb = nullptr;
+		GameObject* mObs[6] = { nullptr, };
+		GameObject* mObs2[6] = { nullptr, };
+
+		float mFinalTime = 0.0f;
 	};
 }

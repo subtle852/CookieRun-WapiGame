@@ -11,6 +11,7 @@
 #include "yaCamera.h"
 #include "yaCharacter01.h"
 #include "yaMakeScene.h"
+#include "yaPlayScene.h"
 
 namespace ya
 {
@@ -102,16 +103,16 @@ namespace ya
 
 	void Bear_StarYellow::OnCollisionEnter(Collider* other)
 	{
-
+		if (dynamic_cast<Character01*>(other->GetOwner()))
+		{
+			PlayScene::mScore += 3000;
+			object::Destory(this);
+		}
 	}
 
 	void Bear_StarYellow::OnCollisionStay(Collider* other)
 	{
-		if (dynamic_cast<Character01*>(other->GetOwner()))
-		{
-			//Character01* ch = dynamic_cast<Character01*>(other->GetOwner());
-			object::Destory(this);
-		}
+		
 	}
 
 	void Bear_StarYellow::OnCollisionExit(Collider* other)

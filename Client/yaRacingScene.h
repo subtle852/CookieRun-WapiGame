@@ -47,5 +47,15 @@ namespace ya
 		GameObject* mNumOb = nullptr;
 		int mWinner = -1;
 		GameObject* mWinOb = nullptr;
+
+		float mBenefit1 = 0.f;
+		float mBenefit2 = 0.f;
+		float mBenefit3 = 0.f;
+		float mBenefit4 = 0.f;
+		float mBenefit5 = 0.f;
+
+		GameObject* mOb = nullptr;
+		GameObject* mObs[6] = { nullptr, };
+		GameObject* mObs2[6] = { nullptr, };
 	};
 }

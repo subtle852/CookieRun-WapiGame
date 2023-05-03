@@ -58,7 +58,7 @@ namespace ya
 		if (mTarget != nullptr)
 		{
 			Scene* scn = SceneManager::GetActiveScene();
-			if (scn->GetName() == L"Play" || scn->GetName() == L"Make")
+			if (scn->GetName() == L"Play" || scn->GetName() == L"Make" || scn->GetName() == L"Bonus")
 			{
 				mLookPosition.x = mTarget->GetComponent<Transform>()->GetPos().x + 500.0f;
 				mLookPosition.y = 450.0f;

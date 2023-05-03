@@ -29,8 +29,8 @@
 
 namespace ya
 {
-	int MainScene::mSilver = 410348;
-	int MainScene::mDia = 159500;
+	int MainScene::mSilver = 500000;
+	int MainScene::mDia = 100000;
 
 	MainScene::MainScene()
 	{
@@ -210,18 +210,18 @@ namespace ya
 				{
 					SceneManager::LoadScene(eSceneType::Store);
 				}
-				//if ((276.f <= mousPos.x && mousPos.x <= 360.f) && (415.f <= mousPos.y && mousPos.y <= 474.f))
-				//{
-				//	SceneManager::LoadScene(eSceneType::Slot);
-				//}
-				//if ((276.f <= mousPos.x && mousPos.x <= 360.f) && (540.f <= mousPos.y && mousPos.y <= 595.f))
-				//{
-				//	SceneManager::LoadScene(eSceneType::Racing);
-				//}
-				//if ((276.f <= mousPos.x && mousPos.x <= 360.f) && (617.f <= mousPos.y && mousPos.y <= 656.f))
-				//{
-				//	SceneManager::LoadScene(eSceneType::Baccarat);
-				//}
+				if ((276.f <= mousPos.x && mousPos.x <= 360.f) && (415.f <= mousPos.y && mousPos.y <= 474.f))
+				{
+					SceneManager::LoadScene(eSceneType::Slot);
+				}
+				if ((276.f <= mousPos.x && mousPos.x <= 360.f) && (540.f <= mousPos.y && mousPos.y <= 595.f))
+				{
+					SceneManager::LoadScene(eSceneType::Racing);
+				}
+				if ((276.f <= mousPos.x && mousPos.x <= 360.f) && (617.f <= mousPos.y && mousPos.y <= 656.f))
+				{
+					SceneManager::LoadScene(eSceneType::Baccarat);
+				}
 
 				if ((196.f <= mousPos.x && mousPos.x <= 424.f) && (685.f <= mousPos.y && mousPos.y <= 784.f))
 				{

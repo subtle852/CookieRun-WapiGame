@@ -20,5 +20,9 @@ namespace ya
 
 	private:
 		Image* mScenImage;
+
+		GameObject* mOb = nullptr;
+		GameObject* mObs[6] = { nullptr, };
+		GameObject* mObs2[6] = { nullptr, };
 	};
 }

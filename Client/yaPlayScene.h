@@ -2,6 +2,7 @@
 #include "yaScene.h"
 #include "yaImage.h"
 #include "yaEnums.h"
+#include "CommonInclude.h"
 
 namespace ya
 {
@@ -54,10 +55,13 @@ namespace ya
 		static Vector2 mChPos;
 
 		float mMagnetTime = 0.0f;
+		float mMagnetFull = 2.0f;
 
-		float mBtoBTime = 0.0f;
-		bool mBtoBend = false;
-		bool mBtoBend2 = false;
+		//float mBtoBTime = 0.0f;
+		//float mBtoBFull = 2.0f;
+		//bool mBtoBend = false;
+		//bool mBtoBend2 = false;
+		float mBtoBFull = 1500.f;
 
 		float mOtoCTime = 0.0f;
 		bool mOtoCend = false;
@@ -66,5 +70,25 @@ namespace ya
 		CloudEffect* mCloudEffect = nullptr;
 		static bool mCloudEffectOnatPlay;
 		float mCloudEffectTime = 0.0f;
+
+		static bool mBonusState[9];
+		int mBonusSum = 0;
+
+		bool mToBonus = false;
+
+		static int mSilver;
+		static int mScore;
+
+		GameObject* mOb_ = nullptr;
+		GameObject* mObs_[6] = { nullptr, };
+		GameObject* mObs2_[6] = { nullptr, };
+
+		GameObject* mSilver_;
+		GameObject* mScore_;
+
+		GameObject* mBonusUI;
+		GameObject* mBonusUIs[9] = { nullptr, };
+
+		float mBonusWait = 0.f;
 	};
 }

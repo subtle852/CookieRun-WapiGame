@@ -709,6 +709,93 @@
     <ClInclude Include="yaCharacter03.h">
       <Filter>Contents\Player</Filter>
     </ClInclude>
+    <ClInclude Include="yaCharacter04.h">
+      <Filter>Contents\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="yaStraw_Jelly.h">
+      <Filter>Contents\Object\Item\Basic</Filter>
+    </ClInclude>
+    <ClInclude Include="yaCharacter05.h">
+      <Filter>Contents\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="yaCharacter06.h">
+      <Filter>Contents\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="yaCharacter07.h">
+      <Filter>Contents\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="yaDevil_Jelly.h">
+      <Filter>Contents\Object\Item\Basic</Filter>
+    </ClInclude>
+    <ClInclude Include="yaCharacter08.h">
+      <Filter>Contents\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBonusScene.h">
+      <Filter>Contents\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBonus_01_B.h">
+      <Filter>Contents\Object\Obstacle\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBonus_02_O.h">
+      <Filter>Contents\Object\Obstacle\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBonus_03_N.h">
+      <Filter>Contents\Object\Obstacle\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBonus_04_U.h">
+      <Filter>Contents\Object\Obstacle\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBonus_06_T.h">
+      <Filter>Contents\Object\Obstacle\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBonus_07_I.h">
+      <Filter>Contents\Object\Obstacle\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBonus_09_E.h">
+      <Filter>Contents\Object\Obstacle\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBonus_08_M.h">
+      <Filter>Contents\Object\Obstacle\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBonus_05_S.h">
+      <Filter>Contents\Object\Obstacle\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="yaPlay_Score.h">
+      <Filter>Contents\UI\PlayUI</Filter>
+    </ClInclude>
+    <ClInclude Include="yaPlay_Silver.h">
+      <Filter>Contents\UI\PlayUI</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBonusUI.h">
+      <Filter>Contents\UI\PlayUI</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBonus_UI_09_E.h">
+      <Filter>Contents\UI\PlayUI</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBonus_UI_01_B.h">
+      <Filter>Contents\UI\PlayUI</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBonus_UI_02_O.h">
+      <Filter>Contents\UI\PlayUI</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBonus_UI_03_N.h">
+      <Filter>Contents\UI\PlayUI</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBonus_UI_04_U.h">
+      <Filter>Contents\UI\PlayUI</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBonus_UI_05_S.h">
+      <Filter>Contents\UI\PlayUI</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBonus_UI_06_T.h">
+      <Filter>Contents\UI\PlayUI</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBonus_UI_07_I.h">
+      <Filter>Contents\UI\PlayUI</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBonus_UI_08_M.h">
+      <Filter>Contents\UI\PlayUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="small.ico">
@@ -1248,6 +1335,93 @@
     </ClCompile>
     <ClCompile Include="yaCharacter03.cpp">
       <Filter>Contents\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="yaCharacter04.cpp">
+      <Filter>Contents\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="yaStraw_Jelly.cpp">
+      <Filter>Contents\Object\Item\Basic</Filter>
+    </ClCompile>
+    <ClCompile Include="yaCharacter05.cpp">
+      <Filter>Contents\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="yaCharacter06.cpp">
+      <Filter>Contents\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="yaCharacter07.cpp">
+      <Filter>Contents\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="yaDevil_Jelly.cpp">
+      <Filter>Contents\Object\Item\Basic</Filter>
+    </ClCompile>
+    <ClCompile Include="yaCharacter08.cpp">
+      <Filter>Contents\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBonusScene.cpp">
+      <Filter>Contents\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBonus_01_B.cpp">
+      <Filter>Contents\Object\Obstacle\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBonus_03_N.cpp">
+      <Filter>Contents\Object\Obstacle\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBonus_02_O.cpp">
+      <Filter>Contents\Object\Obstacle\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBonus_04_U.cpp">
+      <Filter>Contents\Object\Obstacle\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBonus_05_S.cpp">
+      <Filter>Contents\Object\Obstacle\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBonus_08_M.cpp">
+      <Filter>Contents\Object\Obstacle\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBonus_09_E.cpp">
+      <Filter>Contents\Object\Obstacle\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBonus_07_I.cpp">
+      <Filter>Contents\Object\Obstacle\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBonus_06_T.cpp">
+      <Filter>Contents\Object\Obstacle\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="yaPlay_Score.cpp">
+      <Filter>Contents\UI\PlayUI</Filter>
+    </ClCompile>
+    <ClCompile Include="yaPlay_Silver.cpp">
+      <Filter>Contents\UI\PlayUI</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBonusUI.cpp">
+      <Filter>Contents\UI\PlayUI</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBonus_UI_09_E.cpp">
+      <Filter>Contents\UI\PlayUI</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBonus_UI_01_B.cpp">
+      <Filter>Contents\UI\PlayUI</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBonus_UI_02_O.cpp">
+      <Filter>Contents\UI\PlayUI</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBonus_UI_03_N.cpp">
+      <Filter>Contents\UI\PlayUI</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBonus_UI_04_U.cpp">
+      <Filter>Contents\UI\PlayUI</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBonus_UI_05_S.cpp">
+      <Filter>Contents\UI\PlayUI</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBonus_UI_06_T.cpp">
+      <Filter>Contents\UI\PlayUI</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBonus_UI_07_I.cpp">
+      <Filter>Contents\UI\PlayUI</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBonus_UI_08_M.cpp">
+      <Filter>Contents\UI\PlayUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

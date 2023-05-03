@@ -188,7 +188,7 @@ namespace ya
 		{
 			mMagnetTime += Time::DeltaTime(); // 모든 아이템들에 캐릭쪽으로 오는 논리 적용시켜야함
 
-			if (mMagnetTime > 1.0f)
+			if (mMagnetTime > mMagnetFull)
 			{
 				mMagnetTime = 0.0f;
 				mCh->mMagnetState = false;
@@ -214,157 +214,35 @@ namespace ya
 
 		if (mCh->mBtoB == true)// Basic To Jelly 아이템
 		{
-			mBtoBTime += Time::DeltaTime();
-			int tempToclear = 0;
-
-			if (mBtoBend == false && mBtoBTime <= 1.0f)
+			std::unordered_map<UINT64, GameObject*>::iterator iter = mBasicJelly.begin();
+			for (; iter != mBasicJelly.end(); iter++)
 			{
-				std::unordered_map<UINT64, GameObject*>::iterator iter = mBasicJelly.begin();
-				for (; iter != mBasicJelly.end(); iter++)
+				if (iter == --mBasicJelly.end())
 				{
-					TilePos id;
-					id.id = iter->first;
-
-					GameObject* temp = iter->second;
-
-					Transform* tr = mCh->GetComponent<Transform>();
-					Vector2 pos = tr->GetPos();
-					if (pos.x < id.x)
-					{
-						std::unordered_map<UINT64, UINT64>::iterator temp = mTiles.find(id.id);
-						UINT64 indexTemp = temp->second;
-
-						ya::object::Destory(iter->second);
-						mObs.erase(id.id);
-						mTiles.erase(id.id);
-
-						mOb = object::Instantiate<Bear_FlyingPink>(Vector2(id.x, id.y), eLayerType::Item);
-
-						mObs.insert(std::make_pair(id.id, mOb));
-						mTiles.insert(std::make_pair(id.id, indexTemp));
-						mBearJelly.insert(std::make_pair(id.id, mOb));
-					}
-
-					if (iter == --mBasicJelly.end())
-					{
-						tempToclear = 1;
-						mBtoBend2 = false;
-						mBtoBend = true;
-					}
-				}
-
-				if (tempToclear == 1)
-				{
-					mBasicJelly.clear();
-				}
-			}
-
-			if (mBtoBTime > 1.0f)
-			{
-				if (mBtoBend2 == false)
-				{
-					std::unordered_map<UINT64, GameObject*>::iterator iter = mBearJelly.begin();
-					for (; iter != mBearJelly.end(); iter++)
-					{
-						TilePos id;
-						id.id = iter->first;
-
-						GameObject* temp = iter->second;
-
-						Transform* tr = mCh->GetComponent<Transform>();
-						Vector2 pos = tr->GetPos();
-						if (pos.x < id.x)
-						{
-							ya::object::Destory(iter->second);
-
-							std::unordered_map<UINT64, UINT64>::iterator temp = mTiles.find(id.id);
-							UINT64 indexTemp = temp->second;
-
-							mObs.erase(id.id);
-							mTiles.erase(id.id);
-
-#pragma region 젤리 index에 따른 해당 젤리 생성
-							// 만약에 베이직 젤리를 여러 종류로 생성을 하고 싶다면
-							// mTiles를 받아와서 그 id.id 찾아서 index 찾은 후 조건문으로 생성
-
-							if (indexTemp == 40)
-							{
-								mOb = object::Instantiate<Basic_Gummy_B>(Vector2(id.x, id.y), eLayerType::Item);
-
-								id2.ind = (UINT32)indexTemp;
-
-								mObs.insert(std::make_pair(id.id, mOb));
-								mTiles.insert(std::make_pair(id.id, id2.ind));
-								mBasicJelly.insert(std::make_pair(id.id, mOb));
-							}
-							if (indexTemp == 41)
-							{
-								mOb = object::Instantiate<Basic_Gummy_G>(Vector2(id.x, id.y), eLayerType::Item);
-
-								id2.ind = (UINT32)indexTemp;
-
-								mObs.insert(std::make_pair(id.id, mOb));
-								mTiles.insert(std::make_pair(id.id, id2.ind));
-								mBasicJelly.insert(std::make_pair(id.id, mOb));
-							}
-							if (indexTemp == 42)
-							{
-								mOb = object::Instantiate<Basic_Gummy_R>(Vector2(id.x, id.y), eLayerType::Item);
-
-								id2.ind = (UINT32)indexTemp;
-
-								mObs.insert(std::make_pair(id.id, mOb));
-								mTiles.insert(std::make_pair(id.id, id2.ind));
-								mBasicJelly.insert(std::make_pair(id.id, mOb));
-							}
-							if (indexTemp == 43)
-							{
-								mOb = object::Instantiate<Basic_Gummy_Y>(Vector2(id.x, id.y), eLayerType::Item);
-
-								id2.ind = (UINT32)indexTemp;
-
-								mObs.insert(std::make_pair(id.id, mOb));
-								mTiles.insert(std::make_pair(id.id, id2.ind));
-								mBasicJelly.insert(std::make_pair(id.id, mOb));
-							}
-							if (indexTemp == 44)
-							{
-								mOb = object::Instantiate<Basic_Gummy_M1>(Vector2(id.x, id.y), eLayerType::Item);
-
-								id2.ind = (UINT32)indexTemp;
-
-								mObs.insert(std::make_pair(id.id, mOb));
-								mTiles.insert(std::make_pair(id.id, id2.ind));
-								mBasicJelly.insert(std::make_pair(id.id, mOb));
-							}
-							if (indexTemp == 45)
-							{
-								mOb = object::Instantiate<Basic_Gummy_M2>(Vector2(id.x, id.y), eLayerType::Item);
-
-								id2.ind = (UINT32)indexTemp;
-
-								mObs.insert(std::make_pair(id.id, mOb));
-								mTiles.insert(std::make_pair(id.id, id2.ind));
-								mBasicJelly.insert(std::make_pair(id.id, mOb));
-							}
-
-#pragma endregion
-
-						}
-
-						if (iter == --mBearJelly.end())
-						{
-							mBtoBend = false;
-							mBtoBend2 = true;// 얘들 다시 false로 돌려놔야함
-						}
-					}
-				}
-
-				if (mBtoBend2 == true)
-				{
-					mBearJelly.clear();
-					mBtoBTime = 0.0f;
 					mCh->mBtoB = false;
+				}
+
+				TilePos id;
+				id.id = iter->first;
+
+				GameObject* temp = iter->second;
+
+				Transform* tr = mCh->GetComponent<Transform>();
+				Vector2 pos = tr->GetPos();
+				if (pos.x + 50.f < id.x && id.x < pos.x + mBtoBFull)
+				{
+					std::unordered_map<UINT64, UINT64>::iterator temp = mTiles.find(id.id);
+					UINT64 indexTemp = temp->second;
+
+					ya::object::Destory(iter->second);
+					mObs.erase(id.id);
+					mTiles.erase(id.id);
+
+					mOb = object::Instantiate<Bear_FlyingPink>(Vector2(id.x, id.y), eLayerType::Item);
+
+					mObs.insert(std::make_pair(id.id, mOb));
+					mTiles.insert(std::make_pair(id.id, indexTemp));
+					//mBearJelly.insert(std::make_pair(id.id, mOb));// no need
 				}
 			}
 		}
@@ -673,7 +551,7 @@ namespace ya
 				mTiles.clear();
 				mObs.clear();
 				mBasicJelly.clear();
-				mBearJelly.clear();
+				//mBearJelly.clear();
 				mObstacle.clear();
 				mCoin.clear();
 				mOb = nullptr;
@@ -707,15 +585,18 @@ namespace ya
 					
 					if (pos.x - 50.f < id.x && id.x < pos.x + 50.f)
 					{
-						ya::object::Destory(i->second);
+						if (pos.y - 50.f < id.y && id.y < pos.y + 50.f)
+						{
+							ya::object::Destory(i->second);
 
-						mObs.erase(id.id);
-						mTiles.erase(id.id);
-						mBasicJelly.erase(id.id);
-						mObstacle.erase(id.id);
+							mObs.erase(id.id);
+							mTiles.erase(id.id);
+							mBasicJelly.erase(id.id);
+							mObstacle.erase(id.id);
 
-						i = mObs.begin();
-						continue;
+							i = mObs.begin();
+							continue;
+						}
 					}
 
 					i++;
@@ -1774,11 +1655,13 @@ namespace ya
 				{
 					mOb = object::Instantiate<Ground>(Vector2(id.x, id.y), eLayerType::Ground, Vector2((float)id2.width, 50.0f));
 					mObs.insert(std::make_pair(id.id, mOb));
+					mTiles.insert(std::make_pair(id.id, id2.id2));
 				}
 				if (id2.ind == 1)
 				{
 					mOb = object::Instantiate<OverGround>(Vector2(id.x, id.y), eLayerType::Ground, Vector2((float)id2.width, 50.0f));
 					mObs.insert(std::make_pair(id.id, mOb));
+					mTiles.insert(std::make_pair(id.id, id2.id2));
 				}
 				if (id2.ind == 2)
 				{

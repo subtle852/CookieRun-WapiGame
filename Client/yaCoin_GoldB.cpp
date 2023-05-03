@@ -11,6 +11,7 @@
 #include "yaCamera.h"
 #include "yaCharacter01.h"
 #include "yaMakeScene.h"
+#include "yaPlayScene.h"
 
 namespace ya
 {
@@ -102,15 +103,16 @@ namespace ya
 
 	void Coin_GoldB::OnCollisionEnter(Collider* other)
 	{
-
+		if (dynamic_cast<Character01*>(other->GetOwner()))
+		{
+			PlayScene::mSilver += 5000;
+			object::Destory(this);
+		}
 	}
 
 	void Coin_GoldB::OnCollisionStay(Collider* other)
 	{
-		if (dynamic_cast<Character01*>(other->GetOwner()))
-		{
-			object::Destory(this);
-		}
+		
 	}
 
 	void Coin_GoldB::OnCollisionExit(Collider* other)

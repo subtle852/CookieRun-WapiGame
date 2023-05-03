@@ -38,6 +38,19 @@
 #include "yaL1_SL05.h"
 #include "yaL1_SL06.h"
 
+// BonusTime
+#include "yaBonus_01_B.h"
+#include "yaBonus_02_O.h"
+#include "yaBonus_03_N.h"
+#include "yaBonus_04_U.h"
+#include "yaBonus_05_S.h"
+#include "yaBonus_06_T.h"
+#include "yaBonus_07_I.h"
+#include "yaBonus_08_M.h"
+#include "yaBonus_09_E.h"
+
+#include "yaPlayScene.h"
+
 namespace ya
 {
 	float Character03::mCurHp = 100;
@@ -75,8 +88,8 @@ namespace ya
 		mAnimator->CreateAnimation(L"Transp1", mImage, Vector2((322.18f * 9), (322.18f * 1)), 11, 6, 2, Vector2::Zero, 0.1, 0);
 		mAnimator->CreateAnimation(L"Transp2", mImage, Vector2((322.18f * 9), (322.18f * 1)), 11, 6, 2, Vector2::Zero, 0.1, 0);
 		mAnimator->CreateAnimation(L"Damaged", mImage, Vector2(0.0f, (322.18f * 4)), 11, 6, 1, Vector2::Zero, 0.2, 0);
-		//mAnimator->CreateAnimations(L"..\\Resorces\\Chalise\\Idle", Vector2::Zero, 0.1f);
-
+		mAnimator->CreateAnimation(L"Up", mImage, Vector2((322.18f * 0), (322.18f * 3)), 11, 6, 1, Vector2::Zero, 0.1, 0);
+		mAnimator->CreateAnimation(L"Down", mImage, Vector2((322.18f * 2), (322.18f * 3)), 11, 6, 1, Vector2::Zero, 0.1, 0);
 
 		mAnimator->GetCompleteEvent(L"Jump") = std::bind(&Character03::JumpCompleteEvent, this);
 		mAnimator->GetCompleteEvent(L"DJump") = std::bind(&Character03::DJumpCompleteEvent, this);
@@ -138,6 +151,36 @@ namespace ya
 		if (scn->GetName() == L"Racing")
 		{
 			mAnimator->Play(L"Run", true);
+		}
+
+		if (scn->GetName() == L"Bonus")
+		{
+			if (mBonusInit == false)
+			{
+				Transform* tr = GetComponent<Transform>();
+				tr->SetScale(Vector2(1.2f, 1.2f));
+
+				Collider* collider = AddComponent<Collider>();
+				collider->SetSize(Vector2(100.0f, 100.0f));
+				collider->SetCenter(Vector2(-10.0f, -50.0f));
+
+				mRigidbody = AddComponent<Rigidbody>();
+				mRigidbody->SetMass(1.0f);
+
+				mState = eChar03State::Down;
+
+				mBonusInit = true;
+			}
+
+			switch (mState)
+			{
+			case ya::eChar03State::Up:
+				up();
+				break;
+			case ya::eChar03State::Down:
+				down();
+				break;
+			}
 		}
 
 		if (scn->GetName() == L"Play" || scn->GetName() == L"Make")
@@ -241,7 +284,7 @@ namespace ya
 					pos.x += 800.0f * Time::DeltaTime();
 					tr->SetPos(pos);
 
-					if (mFastT > 3.0f)/////////////////////////////////////////////////////////////////////////
+					if (mFastT > 2.0f + (2.0f * 0.35f))/////////////////////////////////////////////////////////////////////////
 					{
 						mFastT = 0.0f;
 						mFast = false;
@@ -555,6 +598,43 @@ namespace ya
 				}
 #pragma endregion
 			}
+		}
+
+		if (dynamic_cast<Bonus_01_B*>(other->GetOwner()))
+		{
+			PlayScene::mBonusState[0] = 1;
+		}
+		if (dynamic_cast<Bonus_02_O*>(other->GetOwner()))
+		{
+			PlayScene::mBonusState[1] = 1;
+		}
+		if (dynamic_cast<Bonus_03_N*>(other->GetOwner()))
+		{
+			PlayScene::mBonusState[2] = 1;
+		}
+		if (dynamic_cast<Bonus_04_U*>(other->GetOwner()))
+		{
+			PlayScene::mBonusState[3] = 1;
+		}
+		if (dynamic_cast<Bonus_05_S*>(other->GetOwner()))
+		{
+			PlayScene::mBonusState[4] = 1;
+		}
+		if (dynamic_cast<Bonus_06_T*>(other->GetOwner()))
+		{
+			PlayScene::mBonusState[5] = 1;
+		}
+		if (dynamic_cast<Bonus_07_I*>(other->GetOwner()))
+		{
+			PlayScene::mBonusState[6] = 1;
+		}
+		if (dynamic_cast<Bonus_08_M*>(other->GetOwner()))
+		{
+			PlayScene::mBonusState[7] = 1;
+		}
+		if (dynamic_cast<Bonus_09_E*>(other->GetOwner()))
+		{
+			PlayScene::mBonusState[8] = 1;
 		}
 
 		if (dynamic_cast<Ground*>(other->GetOwner()))
@@ -966,6 +1046,62 @@ namespace ya
 
 				mRigidbody->SetVelocity(velocity);
 				mRigidbody->SetGround(false);
+			}
+		}
+	}
+
+	void Character03::up()
+	{
+		mInv = true;
+		//mTransfState = true;
+		mAnimator->Play(L"Up", true);
+
+		Transform* tr = GetComponent<Transform>();
+		Vector2 pos = tr->GetPos();
+		pos.x += 600.0f * Time::DeltaTime();
+		tr->SetPos(pos);
+
+		Vector2 velocity = mRigidbody->GetVelocity();
+		velocity.y = -600.0f;
+
+		mRigidbody->SetVelocity(velocity);
+		mRigidbody->SetGround(false);
+
+		if (Input::GetKeyUp(eKeyCode::W))
+		{
+			mState = eChar03State::Down;
+		}
+	}
+
+	void Character03::down()
+	{
+		mInv = true;
+		//mTransfState = true;
+		mAnimator->Play(L"Down", true);
+
+		Transform* tr = GetComponent<Transform>();
+		Vector2 pos = tr->GetPos();
+		pos.x += 600.0f * Time::DeltaTime();
+		tr->SetPos(pos);
+
+		mRigidbody = GetComponent<Rigidbody>();
+		mRigidbody->mFriction = 6500.0f;
+		//mGravity = Vector2(0.0f, 9000.0f); //9000
+		//mFriction = 500.0f;
+
+		if (Input::GetKey(eKeyCode::W))
+		{
+			//mJmpcnt++;
+
+			//if (mJmpcnt == 1)
+			{
+				/*Vector2 velocity = mRigidbody->GetVelocity();
+				velocity.y = -450.0f;
+
+				mRigidbody->SetVelocity(velocity);
+				mRigidbody->SetGround(false);*/
+
+				mState = eChar03State::Up;
 			}
 		}
 	}

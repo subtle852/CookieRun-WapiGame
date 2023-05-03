@@ -11,6 +11,7 @@
 #include "yaCamera.h"
 #include "yaCharacter01.h"
 #include "yaMakeScene.h"
+#include "yaPlayScene.h"
 
 namespace ya
 {
@@ -102,16 +103,16 @@ namespace ya
 
 	void Basic_Gummy_B::OnCollisionEnter(Collider* other)
 	{
-
+		if (dynamic_cast<Character01*>(other->GetOwner()))
+		{
+			PlayScene::mScore += 100;
+			object::Destory(this);
+		}
 	}
 
 	void Basic_Gummy_B::OnCollisionStay(Collider* other)
 	{
-		if (dynamic_cast<Character01*>(other->GetOwner()))
-		{
-			//Character01* ch = dynamic_cast<Character01*>(other->GetOwner());
-			object::Destory(this);
-		}
+
 	}
 
 	void Basic_Gummy_B::OnCollisionExit(Collider* other)

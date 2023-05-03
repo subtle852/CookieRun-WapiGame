@@ -135,8 +135,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="yaBonus_UI_09_E.h" />
     <ClInclude Include="yaBaccaratBackGround.h" />
     <ClInclude Include="yaBaccaratScene.h" />
+    <ClInclude Include="yaBonusScene.h" />
+    <ClInclude Include="yaBonusUI.h" />
+    <ClInclude Include="yaBonus_01_B.h" />
+    <ClInclude Include="yaBonus_02_O.h" />
+    <ClInclude Include="yaBonus_03_N.h" />
+    <ClInclude Include="yaBonus_04_U.h" />
+    <ClInclude Include="yaBonus_05_S.h" />
+    <ClInclude Include="yaBonus_06_T.h" />
+    <ClInclude Include="yaBonus_07_I.h" />
+    <ClInclude Include="yaBonus_08_M.h" />
+    <ClInclude Include="yaBonus_09_E.h" />
+    <ClInclude Include="yaBonus_UI_01_B.h" />
+    <ClInclude Include="yaBonus_UI_02_O.h" />
+    <ClInclude Include="yaBonus_UI_03_N.h" />
+    <ClInclude Include="yaBonus_UI_04_U.h" />
+    <ClInclude Include="yaBonus_UI_05_S.h" />
+    <ClInclude Include="yaBonus_UI_06_T.h" />
+    <ClInclude Include="yaBonus_UI_07_I.h" />
+    <ClInclude Include="yaBonus_UI_08_M.h" />
     <ClInclude Include="yaCard01_00.h" />
     <ClInclude Include="yaCard01_01.h" />
     <ClInclude Include="yaCard01_02.h" />
@@ -153,6 +173,14 @@
     <ClInclude Include="yaCard01_13.h" />
     <ClInclude Include="yaCharacter02.h" />
     <ClInclude Include="yaCharacter03.h" />
+    <ClInclude Include="yaCharacter04.h" />
+    <ClInclude Include="yaCharacter05.h" />
+    <ClInclude Include="yaCharacter06.h" />
+    <ClInclude Include="yaCharacter07.h" />
+    <ClInclude Include="yaCharacter08.h" />
+    <ClInclude Include="yaDevil_Jelly.h" />
+    <ClInclude Include="yaPlay_Score.h" />
+    <ClInclude Include="yaPlay_Silver.h" />
     <ClInclude Include="yaRacingB01.h" />
     <ClInclude Include="yaRacingBackGround.h" />
     <ClInclude Include="yaRacingScene.h" />
@@ -289,6 +317,7 @@
     <ClInclude Include="yaStoreBackGround.h" />
     <ClInclude Include="yaStoreScene.h" />
     <ClInclude Include="yaStoreUI.h" />
+    <ClInclude Include="yaStraw_Jelly.h" />
     <ClInclude Include="yaTile.h" />
     <ClInclude Include="yaTitleBackGround.h" />
     <ClInclude Include="yaApplication.h" />
@@ -318,8 +347,28 @@
     <ClInclude Include="yaMagnetItem.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="yaBonus_UI_09_E.cpp" />
     <ClCompile Include="yaBaccaratBackGround.cpp" />
     <ClCompile Include="yaBaccaratScene.cpp" />
+    <ClCompile Include="yaBonusScene.cpp" />
+    <ClCompile Include="yaBonusUI.cpp" />
+    <ClCompile Include="yaBonus_01_B.cpp" />
+    <ClCompile Include="yaBonus_02_O.cpp" />
+    <ClCompile Include="yaBonus_03_N.cpp" />
+    <ClCompile Include="yaBonus_04_U.cpp" />
+    <ClCompile Include="yaBonus_05_S.cpp" />
+    <ClCompile Include="yaBonus_06_T.cpp" />
+    <ClCompile Include="yaBonus_07_I.cpp" />
+    <ClCompile Include="yaBonus_08_M.cpp" />
+    <ClCompile Include="yaBonus_09_E.cpp" />
+    <ClCompile Include="yaBonus_UI_01_B.cpp" />
+    <ClCompile Include="yaBonus_UI_02_O.cpp" />
+    <ClCompile Include="yaBonus_UI_03_N.cpp" />
+    <ClCompile Include="yaBonus_UI_04_U.cpp" />
+    <ClCompile Include="yaBonus_UI_05_S.cpp" />
+    <ClCompile Include="yaBonus_UI_06_T.cpp" />
+    <ClCompile Include="yaBonus_UI_07_I.cpp" />
+    <ClCompile Include="yaBonus_UI_08_M.cpp" />
     <ClCompile Include="yaCard01_00.cpp" />
     <ClCompile Include="yaCard01_01.cpp" />
     <ClCompile Include="yaCard01_02.cpp" />
@@ -336,6 +385,14 @@
     <ClCompile Include="yaCard01_13.cpp" />
     <ClCompile Include="yaCharacter02.cpp" />
     <ClCompile Include="yaCharacter03.cpp" />
+    <ClCompile Include="yaCharacter04.cpp" />
+    <ClCompile Include="yaCharacter05.cpp" />
+    <ClCompile Include="yaCharacter06.cpp" />
+    <ClCompile Include="yaCharacter07.cpp" />
+    <ClCompile Include="yaCharacter08.cpp" />
+    <ClCompile Include="yaDevil_Jelly.cpp" />
+    <ClCompile Include="yaPlay_Score.cpp" />
+    <ClCompile Include="yaPlay_Silver.cpp" />
     <ClCompile Include="yaRacingB01.cpp" />
     <ClCompile Include="yaRacingBackGround.cpp" />
     <ClCompile Include="yaRacingScene.cpp" />
@@ -467,6 +524,7 @@
     <ClCompile Include="yaStoreBackGround.cpp" />
     <ClCompile Include="yaStoreScene.cpp" />
     <ClCompile Include="yaStoreUI.cpp" />
+    <ClCompile Include="yaStraw_Jelly.cpp" />
     <ClCompile Include="yaTile.cpp" />
     <ClCompile Include="yaTitleBackGround.cpp" />
     <ClCompile Include="yaApplication.cpp" />

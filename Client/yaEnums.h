@@ -17,6 +17,7 @@ enum class eSceneType
 	ResultF,
 	Tool,
 	Make,
+	Bonus,
 	Max,
 };
 
