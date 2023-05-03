@@ -12,6 +12,8 @@ namespace ya
 	class Pet01;
 
 	class CloudEffect;
+	
+	class Sound;
 
 	class PlayScene : public Scene
 	{
@@ -90,5 +92,13 @@ namespace ya
 		GameObject* mBonusUIs[9] = { nullptr, };
 
 		float mBonusWait = 0.f;
+
+		bool mFromBonus = false;
+
+		bool mOnInv = false;
+
+		bool mNoReset = false;
+
+		Sound* mBGM;
 	};
 }

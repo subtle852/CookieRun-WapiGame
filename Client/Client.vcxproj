@@ -135,6 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="yaBonusBackGround.h" />
     <ClInclude Include="yaBonus_UI_09_E.h" />
     <ClInclude Include="yaBaccaratBackGround.h" />
     <ClInclude Include="yaBaccaratScene.h" />
@@ -314,6 +315,8 @@
     <ClInclude Include="yaSlotScene.h" />
     <ClInclude Include="yaSlowItem.h" />
     <ClInclude Include="yaSmItem.h" />
+    <ClInclude Include="yaSound.h" />
+    <ClInclude Include="yaSoundManager.h" />
     <ClInclude Include="yaStoreBackGround.h" />
     <ClInclude Include="yaStoreScene.h" />
     <ClInclude Include="yaStoreUI.h" />
@@ -347,6 +350,7 @@
     <ClInclude Include="yaMagnetItem.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="yaBonusBackGround.cpp" />
     <ClCompile Include="yaBonus_UI_09_E.cpp" />
     <ClCompile Include="yaBaccaratBackGround.cpp" />
     <ClCompile Include="yaBaccaratScene.cpp" />
@@ -521,6 +525,8 @@
     <ClCompile Include="yaSlotScene.cpp" />
     <ClCompile Include="yaSlowItem.cpp" />
     <ClCompile Include="yaSmItem.cpp" />
+    <ClCompile Include="yaSound.cpp" />
+    <ClCompile Include="yaSoundManager.cpp" />
     <ClCompile Include="yaStoreBackGround.cpp" />
     <ClCompile Include="yaStoreScene.cpp" />
     <ClCompile Include="yaStoreUI.cpp" />

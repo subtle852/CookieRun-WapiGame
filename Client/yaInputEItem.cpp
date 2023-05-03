@@ -23,6 +23,10 @@
 #include "yaPlayScene.h"
 #include "yaSelectCharScene.h"
 
+
+#include "yaSound.h"
+#include "yaResources.h"
+
 namespace ya
 {
 	InputEItem::InputEItem()
@@ -114,7 +118,11 @@ namespace ya
 
 	void InputEItem::OnCollisionEnter(Collider* other)
 	{
-
+		if (dynamic_cast<Character01*>(other->GetOwner()))
+		{
+			Sound* mSound = Resources::Load<Sound>(L"KeyE", L"..\\Resources\\Sound\\Item\\ability1.wav");
+			mSound->Play(false);
+		}
 	}
 
 	void InputEItem::OnCollisionStay(Collider* other)

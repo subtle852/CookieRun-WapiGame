@@ -13,6 +13,10 @@
 #include "yaMakeScene.h"
 #include "yaPlayScene.h"
 
+
+#include "yaSound.h"
+#include "yaResources.h"
+
 namespace ya
 {
 	Basic_Gummy_M2::Basic_Gummy_M2()
@@ -105,6 +109,10 @@ namespace ya
 	{
 		if (dynamic_cast<Character01*>(other->GetOwner()))
 		{
+			Sound* mSound = Resources::Load<Sound>(L"Basic", L"..\\Resources\\Sound\\Item\\general.wav");
+			mSound->Play(false);
+
+
 			PlayScene::mScore += 100;
 			object::Destory(this);
 		}

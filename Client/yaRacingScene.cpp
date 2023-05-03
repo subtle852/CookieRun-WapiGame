@@ -32,6 +32,10 @@
 #include "yaF_8.h" 
 #include "yaF_9.h"
 
+
+#include "yaSound.h"
+#include "yaResources.h"
+
 namespace ya
 {
 	RacingScene::RacingScene()
@@ -192,6 +196,9 @@ namespace ya
 
 				if ((0.f <= mousPos.x && mousPos.x <= 96.f) && (0.f <= mousPos.y && mousPos.y <= 96.f))
 				{
+					Sound* mClick = Resources::Load<Sound>(L"Click", L"..\\Resources\\Sound\\click.wav");
+					mClick->Play(false);
+
 					SceneManager::LoadScene(eSceneType::Main);
 				}
 

@@ -4,6 +4,14 @@
 #include "yaSceneManager.h"
 #include "yaObject.h"
 #include "yaCamera.h"
+
+#include "yaSound.h"
+#include "yaResources.h"
+
+
+#include "yaSound.h"
+#include "yaResources.h"
+
 namespace ya
 {
 	int SelectCharScene::mCharNumber = 8;
@@ -49,12 +57,77 @@ namespace ya
 
 				if ((0.f <= mousPos.x && mousPos.x <= 96.f) && (0.f <= mousPos.y && mousPos.y <= 96.f))
 				{
+					Sound* mClick = Resources::Load<Sound>(L"Click", L"..\\Resources\\Sound\\click.wav");
+					mClick->Play(false);
+
 					SceneManager::LoadScene(eSceneType::Main);
 				}
 
 				if ((273.f <= mousPos.x && mousPos.x <= 392.f) && (130.f <= mousPos.y && mousPos.y <= 181.f))
 				{
+					Sound* mClick = Resources::Load<Sound>(L"Click", L"..\\Resources\\Sound\\click.wav");
+					mClick->Play(false);
+
 					SceneManager::LoadScene(eSceneType::SelectPet);
+				}
+
+
+				if ((59.f <= mousPos.x && mousPos.x <= 372.f) && (258.f <= mousPos.y && mousPos.y <= 545.f))
+				{
+					Sound* mClick = Resources::Load<Sound>(L"Click", L"..\\Resources\\Sound\\click.wav");
+					mClick->Play(false);
+
+					SelectCharScene::mCharNumber = 1;
+				}
+				if ((443.f <= mousPos.x && mousPos.x <= 762.f) && (258.f <= mousPos.y && mousPos.y <= 545.f))
+				{
+					Sound* mClick = Resources::Load<Sound>(L"Click", L"..\\Resources\\Sound\\click.wav");
+					mClick->Play(false);
+
+					SelectCharScene::mCharNumber = 2;
+				}
+				if ((837.f <= mousPos.x && mousPos.x <= 1152.f) && (258.f <= mousPos.y && mousPos.y <= 545.f))
+				{
+					Sound* mClick = Resources::Load<Sound>(L"Click", L"..\\Resources\\Sound\\click.wav");
+					mClick->Play(false);
+
+					SelectCharScene::mCharNumber = 3;
+				}
+				if ((1221.f <= mousPos.x && mousPos.x <= 1541.f) && (258.f <= mousPos.y && mousPos.y <= 545.f))
+				{
+					Sound* mClick = Resources::Load<Sound>(L"Click", L"..\\Resources\\Sound\\click.wav");
+					mClick->Play(false);
+
+					SelectCharScene::mCharNumber = 4;
+				}
+
+				if ((57.f <= mousPos.x && mousPos.x <= 373.f) && (577.f <= mousPos.y && mousPos.y <= 872.f))
+				{
+					Sound* mClick = Resources::Load<Sound>(L"Click", L"..\\Resources\\Sound\\click.wav");
+					mClick->Play(false);
+
+					SelectCharScene::mCharNumber = 5;
+				}
+				if ((443.f <= mousPos.x && mousPos.x <= 762.f) && (577.f <= mousPos.y && mousPos.y <= 872.f))
+				{
+					Sound* mClick = Resources::Load<Sound>(L"Click", L"..\\Resources\\Sound\\click.wav");
+					mClick->Play(false);
+
+					SelectCharScene::mCharNumber = 6;
+				}
+				if ((837.f <= mousPos.x && mousPos.x <= 1152.f) && (577.f <= mousPos.y && mousPos.y <= 872.f))
+				{
+					Sound* mClick = Resources::Load<Sound>(L"Click", L"..\\Resources\\Sound\\click.wav");
+					mClick->Play(false);
+
+					SelectCharScene::mCharNumber = 7;
+				}
+				if ((1221.f <= mousPos.x && mousPos.x <= 1541.f) && (577.f <= mousPos.y && mousPos.y <= 872.f))
+				{
+					Sound* mClick = Resources::Load<Sound>(L"Click", L"..\\Resources\\Sound\\click.wav");
+					mClick->Play(false);
+
+					SelectCharScene::mCharNumber = 8;
 				}
 			}
 		}

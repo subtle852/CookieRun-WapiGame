@@ -13,6 +13,10 @@
 #include "yaMakeScene.h"
 #include "yaPlayScene.h"
 
+
+#include "yaSound.h"
+#include "yaResources.h"
+
 namespace ya
 {
 	Bear_SmallBlue::Bear_SmallBlue()
@@ -105,6 +109,9 @@ namespace ya
 	{
 		if (dynamic_cast<Character01*>(other->GetOwner()))
 		{
+			Sound* mSound = Resources::Load<Sound>(L"Basic", L"..\\Resources\\Sound\\Item\\general.wav");
+			mSound->Play(false);
+
 			PlayScene::mScore += 300;
 			object::Destory(this);
 		}

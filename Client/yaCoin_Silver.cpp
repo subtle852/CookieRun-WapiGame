@@ -13,6 +13,10 @@
 #include "yaMakeScene.h"
 #include "yaPlayScene.h"
 
+
+#include "yaSound.h"
+#include "yaResources.h"
+
 namespace ya
 {
 	Coin_Silver::Coin_Silver()
@@ -105,6 +109,9 @@ namespace ya
 	{
 		if (dynamic_cast<Character01*>(other->GetOwner()))
 		{
+			Sound* mSound = Resources::Load<Sound>(L"Coin", L"..\\Resources\\Sound\\Item\\coin.wav");
+			mSound->Play(false);
+
 			PlayScene::mSilver += 500;
 			object::Destory(this);
 		}

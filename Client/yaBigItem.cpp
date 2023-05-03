@@ -23,6 +23,10 @@
 #include "yaPlayScene.h"
 #include "yaSelectCharScene.h"
 
+
+#include "yaSound.h"
+#include "yaResources.h"
+
 namespace ya
 {
 	BigItem::BigItem()
@@ -113,7 +117,11 @@ namespace ya
 
 	void BigItem::OnCollisionEnter(Collider* other)
 	{
-
+		if (dynamic_cast<Character01*>(other->GetOwner()))
+		{
+			Sound* mSound = Resources::Load<Sound>(L"Big", L"..\\Resources\\Sound\\Item\\big.wav");
+			mSound->Play(false);
+		}
 	}
 
 	void BigItem::OnCollisionStay(Collider* other)

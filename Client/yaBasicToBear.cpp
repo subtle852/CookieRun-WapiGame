@@ -23,6 +23,10 @@
 #include "yaPlayScene.h"
 #include "yaSelectCharScene.h"
 
+
+#include "yaSound.h"
+#include "yaResources.h"
+
 namespace ya
 {
 	BasicToBear::BasicToBear()
@@ -115,7 +119,11 @@ namespace ya
 
 	void BasicToBear::OnCollisionEnter(Collider* other)
 	{
-
+		if (dynamic_cast<Character01*>(other->GetOwner()))
+		{
+			Sound* mSound = Resources::Load<Sound>(L"BtoB", L"..\\Resources\\Sound\\Item\\ability1.wav");
+			mSound->Play(false);
+		}
 	}
 
 	void BasicToBear::OnCollisionStay(Collider* other)

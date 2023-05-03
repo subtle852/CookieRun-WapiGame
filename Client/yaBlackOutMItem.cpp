@@ -24,6 +24,10 @@
 #include "yaPlayScene.h"
 #include "yaSelectCharScene.h"
 
+
+#include "yaSound.h"
+#include "yaResources.h"
+
 namespace ya
 {
 	BlackOutMItem::BlackOutMItem()
@@ -111,7 +115,11 @@ namespace ya
 
 	void BlackOutMItem::OnCollisionEnter(Collider* other)
 	{
-		
+		if (dynamic_cast<Character01*>(other->GetOwner()))
+		{
+			Sound* mSound = Resources::Load<Sound>(L"Black", L"..\\Resources\\Sound\\Item\\ability1.wav");
+			mSound->Play(false);
+		}
 	}
 
 	void BlackOutMItem::OnCollisionStay(Collider* other)

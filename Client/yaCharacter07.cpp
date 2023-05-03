@@ -53,10 +53,13 @@
 
 #include "yaPlayScene.h"
 
+#include "yaSound.h"
+#include "yaResources.h"
+
 namespace ya
 {
-	float Character07::mCurHp = 100;
-	float Character07::mMaxHp = 100;
+	float Character07::mCurHp = 200;
+	float Character07::mMaxHp = 200;
 	float Character07::mHpPercent = (Character07::mCurHp / Character07::mMaxHp) * 100;
 
 	bool Character07::mBig = false;
@@ -288,7 +291,7 @@ namespace ya
 					//mAnimator->Play(L"FastRun", true);
 					Transform* tr = GetComponent<Transform>();
 					Vector2 pos = tr->GetPos();
-					pos.x += 800.0f * Time::DeltaTime();
+					pos.x += 900.0f * Time::DeltaTime();
 					tr->SetPos(pos);
 
 					if (mFastT > 2.0f)
@@ -335,8 +338,10 @@ namespace ya
 			}
 
 			{
-				if (mBig == true)// Ŀ���� ��
+				if (mBig == true && mTransfItem != 5)// Ŀ���� ��
 				{
+					mTransfItem = 0;
+
 					mBcnt++;
 					if (mBcnt == 1)
 					{
@@ -349,6 +354,7 @@ namespace ya
 					{
 						Transform* tr = GetComponent<Transform>();
 						Vector2 pos = tr->GetPos();
+						pos.x += 200.f;
 						pos.y = 600.0f;
 						tr->SetPos(pos);
 						mRigidbody->SetGround(false);
@@ -416,7 +422,7 @@ namespace ya
 				}
 			}
 
-			if (mTransfItem == 5)
+			if (mTransfItem == 5 && mBig == false)
 			{
 				mState = eChar07State::BeforeTransf;
 				mTransfState = true;
@@ -458,9 +464,9 @@ namespace ya
 					mState = eChar07State::Death;
 				}
 			}
-			if (Character07::mCurHp > 100.0f)
+			if (Character07::mCurHp > mMaxHp)
 			{
-				mCurHp = 100.0f;
+				mCurHp = mMaxHp;
 			}
 
 			// ���� ü�� �ۼ�Ʈ ���
@@ -759,6 +765,9 @@ namespace ya
 		{
 			if (Input::GetKeyDown(eKeyCode::S))
 			{
+				Sound* mSound = Resources::Load<Sound>(L"Slide", L"..\\Resources\\Sound\\Ch\\Cookie_Slide.wav");
+				mSound->Play(false);
+
 				mState = eChar07State::Slide;
 			}
 
@@ -768,6 +777,9 @@ namespace ya
 
 				if (mJmpcnt == 1)
 				{
+					Sound* mSound = Resources::Load<Sound>(L"Jump", L"..\\Resources\\Sound\\Ch\\Cookie_Jump_1.wav");
+					mSound->Play(false);
+
 					Vector2 velocity = mRigidbody->GetVelocity();
 					velocity.y = -2200.0f;
 
@@ -855,6 +867,9 @@ namespace ya
 
 				if (mDJmpcnt == 1)
 				{
+					Sound* mSound = Resources::Load<Sound>(L"DJump", L"..\\Resources\\Sound\\Ch\\Cookie_Jump_2.wav");
+					mSound->Play(false);
+
 					Vector2 velocity = mRigidbody->GetVelocity();
 					velocity.y = -2200.0f;
 
@@ -894,6 +909,9 @@ namespace ya
 		{
 			if (Input::GetKey(eKeyCode::S))
 			{
+				Sound* mSound = Resources::Load<Sound>(L"Slide", L"..\\Resources\\Sound\\Ch\\Cookie_Slide.wav");
+				mSound->Play(false);
+
 				mState = eChar07State::Slide;
 			}
 		}
@@ -931,6 +949,9 @@ namespace ya
 
 			if (Input::GetKey(eKeyCode::S))
 			{
+				Sound* mSound = Resources::Load<Sound>(L"Slide", L"..\\Resources\\Sound\\Ch\\Cookie_Slide.wav");
+				mSound->Play(false);
+
 				mState = eChar07State::Slide;
 			}
 		}
@@ -976,6 +997,9 @@ namespace ya
 
 			if (Input::GetKey(eKeyCode::S))
 			{
+				Sound* mSound = Resources::Load<Sound>(L"Slide", L"..\\Resources\\Sound\\Ch\\Cookie_Slide.wav");
+				mSound->Play(false);
+
 				mState = eChar07State::Slide;
 			}
 		}
@@ -1059,7 +1083,7 @@ namespace ya
 
 		Collider* collider = GetComponent<Collider>();
 		collider->SetSize(Vector2(100.0f, 800.0f));
-		collider->SetCenter(Vector2(300.0f, -250.0f));
+		collider->SetCenter(Vector2(300.0f, -70.0f));
 
 		mAnimator->Play(L"Run", true);
 
@@ -1151,7 +1175,11 @@ namespace ya
 		velocity.y = -600.0f;
 
 		mRigidbody->SetVelocity(velocity);
-		mRigidbody->SetGround(false);
+		Scene* scn = SceneManager::GetActiveScene();
+		if (scn->GetName() == L"Bonus")
+		{
+			mRigidbody->SetGround(false);
+		}
 
 		if (Input::GetKeyUp(eKeyCode::W))
 		{
@@ -1226,6 +1254,9 @@ namespace ya
 
 	void Character07::BeforeTransfCompleteEvent()
 	{
+		Sound* mSound = Resources::Load<Sound>(L"DevilOn", L"..\\Resources\\Sound\\Devil\\devil_on.wav");
+		mSound->Play(false);
+
 		mState = eChar07State::Transf;
 	}
 
@@ -1235,8 +1266,14 @@ namespace ya
 		mRigidbody->mFriction = 500.0f;
 
 		mTransFTime = 0.0f;
-		mInv = false;
+		mInv = true;
+		mInvT = 0.0f;
 		mTransfState = false;
+
+		mJmpcnt = 0;
+		mDJmpcnt = 0;
+		mBJmpcnt = 0;
+
 		mState = eChar07State::Run;
 	}
 }

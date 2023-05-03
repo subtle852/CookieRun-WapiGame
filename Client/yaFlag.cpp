@@ -9,6 +9,10 @@
 #include "yaCollider.h"
 #include "yaCamera.h"
 
+
+#include "yaSound.h"
+#include "yaResources.h"
+
 namespace ya
 {
 	Flag::Flag()
@@ -50,6 +54,9 @@ namespace ya
 	{
 		if (dynamic_cast<Character01*>(other->GetOwner()))
 		{
+			Sound* mSound = Resources::Load<Sound>(L"Flag", L"..\\Resources\\Sound\\Flag\\flag.wav");
+			mSound->Play(false);
+
 			mAnimator->Play(L"FlagIng", true);
 		}
 	}

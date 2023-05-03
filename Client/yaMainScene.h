@@ -6,6 +6,7 @@ namespace ya
 {
 	class Character01;
 	class Pet01;
+	class Sound;
 
 	class MainScene : public Scene
 	{
@@ -25,6 +26,8 @@ namespace ya
 		Character01* mCh00;
 		Pet01* mPet00;
 
+		Sound* mBGM;
+
 	public:
 		static int mSilver;
 		static int mDia;
@@ -32,5 +35,7 @@ namespace ya
 		GameObject* mOb = nullptr;
 		GameObject* mObs[6] = { nullptr, };
 		GameObject* mObs2[6] = { nullptr, };
+
+		bool mNoReset = false;
 	};
 }

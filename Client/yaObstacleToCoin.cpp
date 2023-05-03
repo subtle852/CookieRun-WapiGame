@@ -23,6 +23,10 @@
 #include "yaPlayScene.h"
 #include "yaSelectCharScene.h"
 
+
+#include "yaSound.h"
+#include "yaResources.h"
+
 namespace ya
 {
 	ObstacleToCoin::ObstacleToCoin()
@@ -113,7 +117,11 @@ namespace ya
 
 	void ObstacleToCoin::OnCollisionEnter(Collider* other)
 	{
-
+		if (dynamic_cast<Character01*>(other->GetOwner()))
+		{
+			Sound* mSound = Resources::Load<Sound>(L"Obs", L"..\\Resources\\Sound\\Item\\ability2.wav");
+			mSound->Play(false);
+		}
 	}
 
 	void ObstacleToCoin::OnCollisionStay(Collider* other)

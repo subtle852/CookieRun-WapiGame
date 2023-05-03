@@ -23,6 +23,10 @@
 #include "yaPlayScene.h"
 #include "yaSelectCharScene.h"
 
+
+#include "yaSound.h"
+#include "yaResources.h"
+
 namespace ya
 {
 	FastItem::FastItem()
@@ -113,7 +117,11 @@ namespace ya
 
 	void FastItem::OnCollisionEnter(Collider* other)
 	{
-
+		if (dynamic_cast<Character01*>(other->GetOwner()))
+		{
+			Sound* mSound = Resources::Load<Sound>(L"Fast", L"..\\Resources\\Sound\\Item\\fast.wav");
+			mSound->Play(false);
+		}
 	}
 
 	void FastItem::OnCollisionStay(Collider* other)

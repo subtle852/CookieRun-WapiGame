@@ -51,6 +51,9 @@
 
 #include "yaPlayScene.h"
 
+#include "yaSound.h"
+#include "yaResources.h"
+
 namespace ya
 {
 	float Character02::mCurHp = 100;
@@ -342,6 +345,7 @@ namespace ya
 					{
 						Transform* tr = GetComponent<Transform>();
 						Vector2 pos = tr->GetPos();
+						pos.x += 200.f;
 						pos.y = 600.0f;
 						tr->SetPos(pos);
 						mRigidbody->SetGround(false);
@@ -436,9 +440,9 @@ namespace ya
 					mState = eChar02State::Death;
 				}
 			}
-			if (Character02::mCurHp > 100.0f)
+			if (Character02::mCurHp > mMaxHp)
 			{
-				mCurHp = 100.0f;
+				mCurHp = mMaxHp;
 			}
 
 			// ���� ü�� �ۼ�Ʈ ���
@@ -722,6 +726,9 @@ namespace ya
 		{
 			if (Input::GetKeyDown(eKeyCode::S))
 			{
+				Sound* mSound = Resources::Load<Sound>(L"Slide", L"..\\Resources\\Sound\\Ch\\Cookie_Slide.wav");
+				mSound->Play(false);
+
 				mState = eChar02State::Slide;
 			}
 
@@ -731,6 +738,9 @@ namespace ya
 
 				if (mJmpcnt == 1)
 				{
+					Sound* mSound = Resources::Load<Sound>(L"Jump", L"..\\Resources\\Sound\\Ch\\Cookie_Jump_1.wav");
+					mSound->Play(false);
+
 					Vector2 velocity = mRigidbody->GetVelocity();
 					velocity.y = -2200.0f;
 
@@ -818,6 +828,9 @@ namespace ya
 
 				if (mDJmpcnt == 1)
 				{
+					Sound* mSound = Resources::Load<Sound>(L"DJump", L"..\\Resources\\Sound\\Ch\\Cookie_Jump_2.wav");
+					mSound->Play(false);
+
 					Vector2 velocity = mRigidbody->GetVelocity();
 					velocity.y = -2200.0f;
 
@@ -857,6 +870,9 @@ namespace ya
 		{
 			if (Input::GetKey(eKeyCode::S))
 			{
+				Sound* mSound = Resources::Load<Sound>(L"Slide", L"..\\Resources\\Sound\\Ch\\Cookie_Slide.wav");
+				mSound->Play(false);
+
 				mState = eChar02State::Slide;
 			}
 		}
@@ -894,6 +910,9 @@ namespace ya
 
 			if (Input::GetKey(eKeyCode::S))
 			{
+				Sound* mSound = Resources::Load<Sound>(L"Slide", L"..\\Resources\\Sound\\Ch\\Cookie_Slide.wav");
+				mSound->Play(false);
+
 				mState = eChar02State::Slide;
 			}
 		}
@@ -939,6 +958,9 @@ namespace ya
 
 			if (Input::GetKey(eKeyCode::S))
 			{
+				Sound* mSound = Resources::Load<Sound>(L"Slide", L"..\\Resources\\Sound\\Ch\\Cookie_Slide.wav");
+				mSound->Play(false);
+
 				mState = eChar02State::Slide;
 			}
 		}

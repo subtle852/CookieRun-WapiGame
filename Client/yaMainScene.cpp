@@ -27,6 +27,9 @@
 #include "yaF_8.h" 
 #include "yaF_9.h"
 
+#include "yaSound.h"
+#include "yaResources.h"
+
 namespace ya
 {
 	int MainScene::mSilver = 500000;
@@ -204,31 +207,60 @@ namespace ya
 
 				if ((276.f <= mousPos.x && mousPos.x <= 360.f) && (163.f <= mousPos.y && mousPos.y <= 218.f))
 				{
+					Sound* mClick = Resources::Load<Sound>(L"Click", L"..\\Resources\\Sound\\click.wav");
+					mClick->Play(false);
+
+					mNoReset = true;
 					SceneManager::LoadScene(eSceneType::Lottery);
 				}
 				if ((276.f <= mousPos.x && mousPos.x <= 360.f) && (286.f <= mousPos.y && mousPos.y <= 342.f))
 				{
+					Sound* mClick = Resources::Load<Sound>(L"Click", L"..\\Resources\\Sound\\click.wav");
+					mClick->Play(false);
+
+					mNoReset = true;
 					SceneManager::LoadScene(eSceneType::Store);
 				}
 				if ((276.f <= mousPos.x && mousPos.x <= 360.f) && (415.f <= mousPos.y && mousPos.y <= 474.f))
 				{
+					Sound* mClick = Resources::Load<Sound>(L"Click", L"..\\Resources\\Sound\\click.wav");
+					mClick->Play(false);
+
+					mNoReset = true;
 					SceneManager::LoadScene(eSceneType::Slot);
 				}
 				if ((276.f <= mousPos.x && mousPos.x <= 360.f) && (540.f <= mousPos.y && mousPos.y <= 595.f))
 				{
+					Sound* mClick = Resources::Load<Sound>(L"Click", L"..\\Resources\\Sound\\click.wav");
+					mClick->Play(false);
+
+					mNoReset = true;
 					SceneManager::LoadScene(eSceneType::Racing);
 				}
 				if ((276.f <= mousPos.x && mousPos.x <= 360.f) && (617.f <= mousPos.y && mousPos.y <= 656.f))
 				{
+					Sound* mClick = Resources::Load<Sound>(L"Click", L"..\\Resources\\Sound\\click.wav");
+					mClick->Play(false);
+
+					mNoReset = true;
 					SceneManager::LoadScene(eSceneType::Baccarat);
 				}
 
 				if ((196.f <= mousPos.x && mousPos.x <= 424.f) && (685.f <= mousPos.y && mousPos.y <= 784.f))
 				{
+					Sound* mClick = Resources::Load<Sound>(L"Click", L"..\\Resources\\Sound\\click.wav");
+					mClick->Play(false);
+
+					mNoReset = true;
 					SceneManager::LoadScene(eSceneType::SelectChar);
 				}
 				if ((1084.f <= mousPos.x && mousPos.x <= 1457.f) && (686.f <= mousPos.y && mousPos.y <= 787.f))
 				{
+					Sound* mClick = Resources::Load<Sound>(L"Click", L"..\\Resources\\Sound\\click.wav");
+					mClick->Play(false);
+
+					mNoReset = false;
+					mBGM->Stop(true);
 					SceneManager::LoadScene(eSceneType::Play);
 				}
 
@@ -256,6 +288,12 @@ namespace ya
 
 	void MainScene::OnEnter()
 	{
+		if (mNoReset == false)
+		{
+			mBGM = Resources::Load<Sound>(L"MainTheme", L"..\\Resources\\Sound\\Main\\main_bgm.wav");
+			mBGM->Play(true);
+		}
+
 		mCh00 = object::Instantiate<Character01>(Vector2(780.0f, 580.0f), eLayerType::Player);
 		mPet00 = object::Instantiate<Pet01>(Vector2(880.0f, 480.0f), eLayerType::Pet);
 

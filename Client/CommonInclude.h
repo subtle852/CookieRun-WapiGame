@@ -20,6 +20,14 @@
 
 #pragma comment(lib, "Msimg32.lib")
 
+#include <mmsystem.h>
+#include <dsound.h>
+#include <dinput.h>
+
+#pragma comment(lib, "winmm.lib")
+#pragma comment(lib, "dsound.lib")
+
+
 // 타일 하나 크기
 #define TILE_SIZE_X 64
 #define TILE_SIZE_Y 64

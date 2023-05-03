@@ -13,6 +13,10 @@
 #include "yaMakeScene.h"
 #include "yaPlayScene.h"
 
+
+#include "yaSound.h"
+#include "yaResources.h"
+
 namespace ya
 {
 	Devil_Jelly::Devil_Jelly()
@@ -103,7 +107,14 @@ namespace ya
 
 	void Devil_Jelly::OnCollisionEnter(Collider* other)
 	{
+		if (dynamic_cast<Character01*>(other->GetOwner()))
+		{
+			Sound* mSound = Resources::Load<Sound>(L"Devil", L"..\\Resources\\Sound\\Devil\\devil_item.wav");
+			mSound->Play(false);
 
+			PlayScene::mScore += 500;
+			object::Destory(this);
+		}
 	}
 
 	void Devil_Jelly::OnCollisionStay(Collider* other)

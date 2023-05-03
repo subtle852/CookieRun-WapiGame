@@ -6,6 +6,7 @@ namespace ya
 {
 	class TitleBackGround;
 	class Animation;
+	class Sound;
 
 	class TitleScene : public Scene
 	{
@@ -23,5 +24,6 @@ namespace ya
 
 	private:
 		TitleBackGround* anima;
+		Sound* mBGM;
 	};
 }

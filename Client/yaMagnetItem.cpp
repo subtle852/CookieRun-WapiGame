@@ -23,6 +23,10 @@
 #include "yaPlayScene.h"
 #include "yaSelectCharScene.h"
 
+
+#include "yaSound.h"
+#include "yaResources.h"
+
 namespace ya
 {
 	MagnetItem::MagnetItem()
@@ -113,7 +117,11 @@ namespace ya
 
 	void MagnetItem::OnCollisionEnter(Collider* other)
 	{
-
+		if (dynamic_cast<Character01*>(other->GetOwner()))
+		{
+			Sound* mSound = Resources::Load<Sound>(L"Mag", L"..\\Resources\\Sound\\Item\\ability1.wav");
+			mSound->Play(false);
+		}
 	}
 
 	void MagnetItem::OnCollisionStay(Collider* other)

@@ -52,10 +52,14 @@
 
 #include "yaPlayScene.h"
 
+#include "yaSound.h"
+#include "yaResources.h"
+
+
 namespace ya
 {
-	float Character08::mCurHp = 100;
-	float Character08::mMaxHp = 100;
+	float Character08::mCurHp = 1000;
+	float Character08::mMaxHp = 1000;
 	float Character08::mHpPercent = (Character08::mCurHp / Character08::mMaxHp) * 100;
 
 	bool Character08::mBig = false;
@@ -360,6 +364,7 @@ namespace ya
 					{
 						Transform* tr = GetComponent<Transform>();
 						Vector2 pos = tr->GetPos();
+						pos.x += 200.f;
 						pos.y = 600.0f;
 						tr->SetPos(pos);
 						mRigidbody->SetGround(false);
@@ -463,9 +468,9 @@ namespace ya
 					mState = eChar08State::Death;
 				}
 			}
-			if (Character08::mCurHp > 100.0f)
+			if (Character08::mCurHp > mMaxHp)
 			{
-				mCurHp = 100.0f;
+				mCurHp = mMaxHp;
 			}
 
 			// ���� ü�� �ۼ�Ʈ ���
@@ -711,6 +716,7 @@ namespace ya
 		{
 			mG = true;
 		}
+
 	}
 
 	void Character08::OnCollisionExit(Collider* other)
@@ -764,6 +770,8 @@ namespace ya
 		{
 			if (Input::GetKeyDown(eKeyCode::S))
 			{
+				Sound* mSound = Resources::Load<Sound>(L"Slide", L"..\\Resources\\Sound\\Ch\\Cookie_Slide.wav");
+				mSound->Play(false);
 				mState = eChar08State::Slide;
 			}
 
@@ -773,6 +781,9 @@ namespace ya
 
 				if (mJmpcnt == 1)
 				{
+					Sound* mSound = Resources::Load<Sound>(L"Jump", L"..\\Resources\\Sound\\Ch\\Cookie_Jump_1.wav");
+					mSound->Play(false);
+
 					Vector2 velocity = mRigidbody->GetVelocity();
 					velocity.y = -2200.0f;
 
@@ -860,6 +871,9 @@ namespace ya
 
 				if (mDJmpcnt == 1)
 				{
+					Sound* mSound = Resources::Load<Sound>(L"DJump", L"..\\Resources\\Sound\\Ch\\Cookie_Jump_2.wav");
+					mSound->Play(false);
+
 					Vector2 velocity = mRigidbody->GetVelocity();
 					velocity.y = -2200.0f;
 
@@ -899,6 +913,8 @@ namespace ya
 		{
 			if (Input::GetKey(eKeyCode::S))
 			{
+				Sound* mSound = Resources::Load<Sound>(L"Slide", L"..\\Resources\\Sound\\Ch\\Cookie_Slide.wav");
+				mSound->Play(false);
 				mState = eChar08State::Slide;
 			}
 		}
@@ -936,6 +952,8 @@ namespace ya
 
 			if (Input::GetKey(eKeyCode::S))
 			{
+				Sound* mSound = Resources::Load<Sound>(L"Slide", L"..\\Resources\\Sound\\Ch\\Cookie_Slide.wav");
+				mSound->Play(false);
 				mState = eChar08State::Slide;
 			}
 		}
@@ -981,6 +999,8 @@ namespace ya
 
 			if (Input::GetKey(eKeyCode::S))
 			{
+				Sound* mSound = Resources::Load<Sound>(L"Slide", L"..\\Resources\\Sound\\Ch\\Cookie_Slide.wav");
+				mSound->Play(false);
 				mState = eChar08State::Slide;
 			}
 		}
@@ -1064,7 +1084,7 @@ namespace ya
 
 		Collider* collider = GetComponent<Collider>();
 		collider->SetSize(Vector2(100.0f, 800.0f));
-		collider->SetCenter(Vector2(300.0f, -250.0f));
+		collider->SetCenter(Vector2(300.0f, -70.0f));
 
 		mAnimator->Play(L"Run", true);
 
@@ -1156,7 +1176,12 @@ namespace ya
 		velocity.y = -600.0f;
 
 		mRigidbody->SetVelocity(velocity);
-		mRigidbody->SetGround(false);
+
+		Scene* scn = SceneManager::GetActiveScene();
+		if (scn->GetName() == L"Bonus")
+		{
+			mRigidbody->SetGround(false);
+		}
 
 		if (Input::GetKeyUp(eKeyCode::W))
 		{
@@ -1231,6 +1256,9 @@ namespace ya
 
 	void Character08::BeforeTransfCompleteEvent()
 	{
+		Sound* mSound = Resources::Load<Sound>(L"Hero", L"..\\Resources\\Sound\\Hero\\hero_on.wav");
+		mSound->Play(false);
+
 		mState = eChar08State::Transf;
 	}
 
@@ -1240,8 +1268,14 @@ namespace ya
 		mRigidbody->mFriction = 500.0f;
 
 		mTransFTime = 0.0f;
-		mInv = false;
+		mInv = true;
+		mInvT = 0.0f;
 		mTransfState = false;
+
+		mJmpcnt = 0;
+		mDJmpcnt = 0;
+		mBJmpcnt = 0;
+
 		mState = eChar08State::Run;
 	}
 }

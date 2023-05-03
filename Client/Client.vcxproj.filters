@@ -796,6 +796,11 @@
     <ClInclude Include="yaBonus_UI_08_M.h">
       <Filter>Contents\UI\PlayUI</Filter>
     </ClInclude>
+    <ClInclude Include="yaBonusBackGround.h">
+      <Filter>Contents\Object\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="yaSound.h" />
+    <ClInclude Include="yaSoundManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="small.ico">
@@ -1423,5 +1428,10 @@
     <ClCompile Include="yaBonus_UI_08_M.cpp">
       <Filter>Contents\UI\PlayUI</Filter>
     </ClCompile>
+    <ClCompile Include="yaBonusBackGround.cpp">
+      <Filter>Contents\Object\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSound.cpp" />
+    <ClCompile Include="yaSoundManager.cpp" />
   </ItemGroup>
 </Project>

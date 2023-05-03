@@ -2217,7 +2217,7 @@ namespace ya
 		Camera::SetTarget(mCh);
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Obstacle, true);
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Ground, true);
-		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Item, true);
+		//CollisionManager::SetLayer(eLayerType::Player, eLayerType::Item, true);
 	}
 	void MakeScene::OnExit()
 	{

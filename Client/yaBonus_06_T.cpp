@@ -12,6 +12,10 @@
 #include "yaCharacter01.h"
 #include "yaMakeScene.h"
 
+
+#include "yaSound.h"
+#include "yaResources.h"
+
 namespace ya
 {
 	Bonus_06_T::Bonus_06_T()
@@ -102,7 +106,11 @@ namespace ya
 
 	void Bonus_06_T::OnCollisionEnter(Collider* other)
 	{
-
+		if (dynamic_cast<Character01*>(other->GetOwner()))
+		{
+			Sound* mSound = Resources::Load<Sound>(L"Basic", L"..\\Resources\\Sound\\Item\\general.wav");
+			mSound->Play(false);
+		}
 	}
 
 	void Bonus_06_T::OnCollisionStay(Collider* other)

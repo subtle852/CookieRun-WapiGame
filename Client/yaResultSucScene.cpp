@@ -16,6 +16,9 @@
 #include "yaF_8.h" 
 #include "yaF_9.h"
 
+#include "yaSound.h"
+#include "yaResources.h"
+
 namespace ya
 {
 	ResultSucScene::ResultSucScene()

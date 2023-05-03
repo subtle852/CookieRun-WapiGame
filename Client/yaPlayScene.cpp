@@ -191,6 +191,9 @@
 #include "yaPlay_Silver.h"
 #include "yaPlay_Score.h"
 
+#include "yaSound.h"
+#include "yaResources.h"
+
 namespace ya
 {
 	Character01* PlayScene::mCh01 = nullptr;
@@ -233,670 +236,6 @@ namespace ya
 		object::Instantiate<Ground>(Vector2(-100.0f, 700.0f), eLayerType::Ground, Vector2(1000.0f, 50.0f));
 		object::Instantiate<UnderGround>(Vector2(-100.0f, 890.0f), eLayerType::Ground);
 
-		int temp = SelectCharScene::GetCharNumber();
-
-		if (temp == 1)
-		{
-			mCh01 = object::Instantiate<Character01>(Vector2(300.0f, 650.0f), eLayerType::Player);
-		}
-		else if (temp == 2)
-		{
-			mCh01 = object::Instantiate<Character02>(Vector2(300.0f, 650.0f), eLayerType::Player);
-		}
-		else if (temp == 3)
-		{
-			mCh01 = object::Instantiate<Character03>(Vector2(300.0f, 650.0f), eLayerType::Player);
-		}
-		else if (temp == 4)
-		{
-			mCh01 = object::Instantiate<Character04>(Vector2(300.0f, 650.0f), eLayerType::Player);
-		}
-		else if (temp == 5)
-		{
-			mCh01 = object::Instantiate<Character05>(Vector2(300.0f, 650.0f), eLayerType::Player);
-		}
-		else if (temp == 6)
-		{
-			mCh01 = object::Instantiate<Character06>(Vector2(300.0f, 650.0f), eLayerType::Player);
-		}
-		else if (temp == 7)
-		{
-			mCh01 = object::Instantiate<Character07>(Vector2(300.0f, 650.0f), eLayerType::Player);
-		}
-		else if (temp == 8)
-		{
-			mCh01 = object::Instantiate<Character08>(Vector2(300.0f, 650.0f), eLayerType::Player);
-		}
-
-		mPet01 = object::Instantiate<Pet01>(eLayerType::Pet);
-
-		//
-		object::Instantiate<Bonus_04_U>(Vector2(500.0f, 650.0f), eLayerType::Item);
-		object::Instantiate<Bonus_02_O>(Vector2(600.0f, 650.0f), eLayerType::Item);
-		object::Instantiate<Bonus_03_N>(Vector2(700.0f, 650.0f), eLayerType::Item);
-		object::Instantiate<Bonus_01_B>(Vector2(800.0f, 650.0f), eLayerType::Item);
-		object::Instantiate<Bonus_05_S>(Vector2(900.0f, 650.0f), eLayerType::Item);
-		object::Instantiate<Bonus_06_T>(Vector2(1000.0f, 650.0f), eLayerType::Item);
-		object::Instantiate<Bonus_07_I>(Vector2(1100.0f, 650.0f), eLayerType::Item);
-		object::Instantiate<Bonus_08_M>(Vector2(1400.0f, 650.0f), eLayerType::Item);
-		object::Instantiate<Bonus_09_E>(Vector2(1600.0f, 650.0f), eLayerType::Item);
-
-		object::Instantiate<Bonus_04_U>(Vector2(2200.0f, 650.0f), eLayerType::Item);
-		object::Instantiate<Bonus_02_O>(Vector2(2300.0f, 650.0f), eLayerType::Item);
-		object::Instantiate<Bonus_03_N>(Vector2(2400.0f, 650.0f), eLayerType::Item);
-		object::Instantiate<Bonus_01_B>(Vector2(2500.0f, 650.0f), eLayerType::Item);
-		object::Instantiate<Bonus_05_S>(Vector2(2600.0f, 650.0f), eLayerType::Item);
-		object::Instantiate<Bonus_06_T>(Vector2(2700.0f, 650.0f), eLayerType::Item);
-		object::Instantiate<Bonus_07_I>(Vector2(2800.0f, 650.0f), eLayerType::Item);
-		object::Instantiate<Bonus_08_M>(Vector2(2900.0f, 650.0f), eLayerType::Item);
-		object::Instantiate<Bonus_09_E>(Vector2(3000.0f, 650.0f), eLayerType::Item);
-
-		#pragma region Load
-		{
-			wchar_t szFilePath[256] = L"..\\Resources\\temp";
-			FILE* file = nullptr;
-			_wfopen_s(&file, szFilePath, L"rb");
-
-			if (file == nullptr)
-				return;
-
-			while (true)
-			{
-				TileInd id2;
-				id2.ind = -1;
-				//int index = -1;
-				//TilePos id;
-
-				if (fread(&id2.id2, sizeof(TileInd), 1, file) == NULL)
-					break;
-
-				if (fread(&id.id, sizeof(TilePos), 1, file) == NULL)
-					break;
-
-
-				if (id2.ind == 0)
-				{
-					mOb = object::Instantiate<Ground>(Vector2(id.x, id.y), eLayerType::Ground, Vector2((float)id2.width, 50.0f));
-					mObs.insert(std::make_pair(id.id, mOb));
-				}
-				if (id2.ind == 1)
-				{
-					mOb = object::Instantiate<OverGround>(Vector2(id.x, id.y), eLayerType::Ground, Vector2((float)id2.width, 50.0f));
-					mObs.insert(std::make_pair(id.id, mOb));
-				}
-				if (id2.ind == 2)
-				{
-					mOb = object::Instantiate<Flag>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));// width가 필요한 G, OG를 제외하고는 index를 넣는 걸로
-				}
-				if (id2.ind == 8)
-				{
-					mOb = object::Instantiate<FastItem>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-				}
-				if (id2.ind == 9)
-				{
-					mOb = object::Instantiate<BigItem>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-				}
-				if (id2.ind == 10)
-				{
-					mOb = object::Instantiate<SmItem>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-				}
-				if (id2.ind == 11)
-				{
-					mOb = object::Instantiate<BlackOutMItem>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-				}
-				if (id2.ind == 12)
-				{
-					mOb = object::Instantiate<HpItemI>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-				}
-				if (id2.ind == 13)
-				{
-					mOb = object::Instantiate<HpItemD>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-				}
-				if (id2.ind == 14)
-				{
-					mOb = object::Instantiate<InvincibleItem>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-				}
-				if (id2.ind == 15)
-				{
-					mOb = object::Instantiate<InputEItem>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-				}
-				if (id2.ind == 16)
-				{
-					mOb = object::Instantiate<BasicToBear>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-				}
-				if (id2.ind == 17)
-				{
-					mOb = object::Instantiate<ObstacleToCoin>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-				}
-				if (id2.ind == 18)
-				{
-					mOb = object::Instantiate<MagnetItem>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-				}
-
-				////////////////////////////////////////////////////////////////////////////////////////////// Bear
-				if (id2.ind == 24)
-				{
-					mOb = object::Instantiate<Bear_Big>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-				}
-				if (id2.ind == 25)
-				{
-					mOb = object::Instantiate<Bear_FlyingPink>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-				}
-				if (id2.ind == 26)
-				{
-					mOb = object::Instantiate<Bear_FlyingYellow>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-				}
-				if (id2.ind == 27)
-				{
-					mOb = object::Instantiate<Bear_Rainbow>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-				}
-				if (id2.ind == 28)
-				{
-					mOb = object::Instantiate<Bear_SmallBlue>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-				}
-				if (id2.ind == 29)
-				{
-					mOb = object::Instantiate<Bear_SmallPink>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-				}
-				if (id2.ind == 30)
-				{
-					mOb = object::Instantiate<Bear_SmallYellow>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-				}
-				if (id2.ind == 32)
-				{
-					mOb = object::Instantiate<Bear_StarBlue>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-				}
-				if (id2.ind == 33)
-				{
-					mOb = object::Instantiate<Bear_StarYellow>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-				}
-
-				////////////////////////////////////////////////////////////////////////////////////////////// Coin
-				if (id2.ind == 36)
-				{
-					mOb = object::Instantiate<Coin_Gold>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-				}
-				if (id2.ind == 37)
-				{
-					mOb = object::Instantiate<Coin_GoldB>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-				}
-				if (id2.ind == 38)
-				{
-					mOb = object::Instantiate<Coin_Silver>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-				}
-				if (id2.ind == 39)
-				{
-					mOb = object::Instantiate<Coin_SilverB>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-				}
-
-				/////////////////////////////////////////////////////////////////////////////////////////////// Basic
-				//if (ToolScene::mIndex == 32)
-				//{
-				//	mOb = object::Instantiate<Basic_Candy_B>(Vector2(pos.x, pos.y), eLayerType::Item);
-
-				//	int index = ToolScene::mIndex;
-				//	id2.ind = (UINT32)index;
-				//	//TilePos id;
-				//	id.x = (UINT32)pos.x;
-				//	id.y = (UINT32)pos.y;
-
-				//	mObs.insert(std::make_pair(id.id, mOb));
-				//	mTiles.insert(std::make_pair(id.id, id2.ind));// width가 필요한 G, OG를 제외하고는 index를 넣는 걸로
-				//	mBasicJelly.insert(std::make_pair(id.id, mOb));
-				//}
-				//if (ToolScene::mIndex == 33)
-				//{
-				//	mOb = object::Instantiate<Basic_Candy_G>(Vector2(pos.x, pos.y), eLayerType::Item);
-
-				//	int index = ToolScene::mIndex;
-				//	id2.ind = (UINT32)index;
-				//	//TilePos id;
-				//	id.x = (UINT32)pos.x;
-				//	id.y = (UINT32)pos.y;
-
-				//	mObs.insert(std::make_pair(id.id, mOb));
-				//	mTiles.insert(std::make_pair(id.id, id2.ind));// width가 필요한 G, OG를 제외하고는 index를 넣는 걸로
-				//	mBasicJelly.insert(std::make_pair(id.id, mOb));
-				//}
-				//if (ToolScene::mIndex == 34)
-				//{
-				//	mOb = object::Instantiate<Basic_Candy_R>(Vector2(pos.x, pos.y), eLayerType::Item);
-
-				//	int index = ToolScene::mIndex;
-				//	id2.ind = (UINT32)index;
-				//	//TilePos id;
-				//	id.x = (UINT32)pos.x;
-				//	id.y = (UINT32)pos.y;
-
-				//	mObs.insert(std::make_pair(id.id, mOb));
-				//	mTiles.insert(std::make_pair(id.id, id2.ind));// width가 필요한 G, OG를 제외하고는 index를 넣는 걸로
-				//	mBasicJelly.insert(std::make_pair(id.id, mOb));
-				//}
-				//if (ToolScene::mIndex == 35)
-				//{
-				//	mOb = object::Instantiate<Basic_Candy_Y>(Vector2(pos.x, pos.y), eLayerType::Item);
-
-				//	int index = ToolScene::mIndex;
-				//	id2.ind = (UINT32)index;
-				//	//TilePos id;
-				//	id.x = (UINT32)pos.x;
-				//	id.y = (UINT32)pos.y;
-
-				//	mObs.insert(std::make_pair(id.id, mOb));
-				//	mTiles.insert(std::make_pair(id.id, id2.ind));// width가 필요한 G, OG를 제외하고는 index를 넣는 걸로
-				//	mBasicJelly.insert(std::make_pair(id.id, mOb));
-				//}
-				//if (ToolScene::mIndex == 36)
-				//{
-				//	mOb = object::Instantiate<Basic_Candy_M1>(Vector2(pos.x, pos.y), eLayerType::Item);
-
-				//	int index = ToolScene::mIndex;
-				//	id2.ind = (UINT32)index;
-				//	//TilePos id;
-				//	id.x = (UINT32)pos.x;
-				//	id.y = (UINT32)pos.y;
-
-				//	mObs.insert(std::make_pair(id.id, mOb));
-				//	mTiles.insert(std::make_pair(id.id, id2.ind));// width가 필요한 G, OG를 제외하고는 index를 넣는 걸로
-				//	mBasicJelly.insert(std::make_pair(id.id, mOb));
-				//}
-				//if (ToolScene::mIndex == 37)
-				//{
-				//	mOb = object::Instantiate<Basic_Candy_M2>(Vector2(pos.x, pos.y), eLayerType::Item);
-
-				//	int index = ToolScene::mIndex;
-				//	id2.ind = (UINT32)index;
-				//	//TilePos id;
-				//	id.x = (UINT32)pos.x;
-				//	id.y = (UINT32)pos.y;
-
-				//	mObs.insert(std::make_pair(id.id, mOb));
-				//	mTiles.insert(std::make_pair(id.id, id2.ind));// width가 필요한 G, OG를 제외하고는 index를 넣는 걸로
-				//	mBasicJelly.insert(std::make_pair(id.id, mOb));
-				//}
-				if (id2.ind == 40)
-				{
-					mOb = object::Instantiate<Basic_Gummy_B>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-					mBasicJelly.insert(std::make_pair(id.id, mOb));
-				}
-				if (id2.ind == 41)
-				{
-					mOb = object::Instantiate<Basic_Gummy_G>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-					mBasicJelly.insert(std::make_pair(id.id, mOb));
-				}
-				if (id2.ind == 42)
-				{
-					mOb = object::Instantiate<Basic_Gummy_R>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-					mBasicJelly.insert(std::make_pair(id.id, mOb));
-				}
-				if (id2.ind == 43)
-				{
-					mOb = object::Instantiate<Basic_Gummy_Y>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-					mBasicJelly.insert(std::make_pair(id.id, mOb));
-				}
-				if (id2.ind == 44)
-				{
-					mOb = object::Instantiate<Basic_Gummy_M1>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-					mBasicJelly.insert(std::make_pair(id.id, mOb));
-				}
-				if (id2.ind == 45)
-				{
-					mOb = object::Instantiate<Basic_Gummy_M2>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-					mBasicJelly.insert(std::make_pair(id.id, mOb));
-				}
-
-				/////////////////////////////////////////////////////////////////////////////////////// Tile 47~
-				if (id2.ind == 47)
-				{
-					mOb = object::Instantiate<L1_GT01>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-				}
-				if (id2.ind == 48)
-				{
-					mOb = object::Instantiate<L1_GT02>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-				}
-				if (id2.ind == 49)
-				{
-					mOb = object::Instantiate<L1_GT03>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-				}
-				if (id2.ind == 50)
-				{
-					mOb = object::Instantiate<L1_OT01>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-				}
-				if (id2.ind == 51)
-				{
-					mOb = object::Instantiate<L1_OT02>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-				}
-				if (id2.ind == 52)
-				{
-					mOb = object::Instantiate<L1_OT03>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-				}
-
-				//////////////////////////////////////////////////////////////////////////// Obstacle 55~
-				if (id2.ind == 55)
-				{
-					mOb = object::Instantiate<L1_JP01>(Vector2(id.x, id.y), eLayerType::Obstacle);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-					mObstacle.insert(std::make_pair(id.id, mOb));
-				}
-				if (id2.ind == 56)
-				{
-					mOb = object::Instantiate<L1_JP02>(Vector2(id.x, id.y), eLayerType::Obstacle);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-					mObstacle.insert(std::make_pair(id.id, mOb));
-				}
-				if (id2.ind == 57)
-				{
-					mOb = object::Instantiate<L1_JP03>(Vector2(id.x, id.y), eLayerType::Obstacle);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-					mObstacle.insert(std::make_pair(id.id, mOb));
-				}
-				if (id2.ind == 58)
-				{
-					mOb = object::Instantiate<L1_JP04>(Vector2(id.x, id.y), eLayerType::Obstacle);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-					mObstacle.insert(std::make_pair(id.id, mOb));
-				}
-				if (id2.ind == 59)
-				{
-					mOb = object::Instantiate<L1_JP05>(Vector2(id.x, id.y), eLayerType::Obstacle);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-					mObstacle.insert(std::make_pair(id.id, mOb));
-				}
-				if (id2.ind == 60)
-				{
-					mOb = object::Instantiate<L1_JP06>(Vector2(id.x, id.y), eLayerType::Obstacle);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-					mObstacle.insert(std::make_pair(id.id, mOb));
-				}
-				if (id2.ind == 63)
-				{
-					mOb = object::Instantiate<L1_DP01>(Vector2(id.x, id.y), eLayerType::Obstacle);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-					mObstacle.insert(std::make_pair(id.id, mOb));
-				}
-				if (id2.ind == 64)
-				{
-					mOb = object::Instantiate<L1_DP02>(Vector2(id.x, id.y), eLayerType::Obstacle);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-					mObstacle.insert(std::make_pair(id.id, mOb));
-				}
-				if (id2.ind == 65)
-				{
-					mOb = object::Instantiate<L1_DP03>(Vector2(id.x, id.y), eLayerType::Obstacle);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-					mObstacle.insert(std::make_pair(id.id, mOb));
-				}
-				if (id2.ind == 66)
-				{
-					mOb = object::Instantiate<L1_DP04>(Vector2(id.x, id.y), eLayerType::Obstacle);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-					mObstacle.insert(std::make_pair(id.id, mOb));
-				}
-				if (id2.ind == 67)
-				{
-					mOb = object::Instantiate<L1_DP05>(Vector2(id.x, id.y), eLayerType::Obstacle);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-					mObstacle.insert(std::make_pair(id.id, mOb));
-				}
-				if (id2.ind == 68)
-				{
-					mOb = object::Instantiate<L1_DP06>(Vector2(id.x, id.y), eLayerType::Obstacle);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-					mObstacle.insert(std::make_pair(id.id, mOb));
-				}
-				if (id2.ind == 71)
-				{
-					mOb = object::Instantiate<L1_SL01>(Vector2(id.x, id.y), eLayerType::Obstacle);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-					mObstacle.insert(std::make_pair(id.id, mOb));
-				}
-				if (id2.ind == 72)
-				{
-					mOb = object::Instantiate<L1_SL02>(Vector2(id.x, id.y), eLayerType::Obstacle);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-					mObstacle.insert(std::make_pair(id.id, mOb));
-				}
-				if (id2.ind == 73)
-				{
-					mOb = object::Instantiate<L1_SL03>(Vector2(id.x, id.y), eLayerType::Obstacle);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-					mObstacle.insert(std::make_pair(id.id, mOb));
-				}
-				if (id2.ind == 74)
-				{
-					mOb = object::Instantiate<L1_SL04>(Vector2(id.x, id.y), eLayerType::Obstacle);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-					mObstacle.insert(std::make_pair(id.id, mOb));
-				}
-				if (id2.ind == 75)
-				{
-					mOb = object::Instantiate<L1_SL05>(Vector2(id.x, id.y), eLayerType::Obstacle);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-					mObstacle.insert(std::make_pair(id.id, mOb));
-				}
-				if (id2.ind == 76)
-				{
-					mOb = object::Instantiate<L1_SL06>(Vector2(id.x, id.y), eLayerType::Obstacle);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, id2.ind));
-					mObstacle.insert(std::make_pair(id.id, mOb));
-				}
-			}
-		}
-#pragma endregion
-
-		// mBasicJelly 싹다 지우고 그 위치에 딸기젤리로 생성 되야함
-		if (SelectCharScene::GetCharNumber() == 5)
-		{
-			std::unordered_map<UINT64, GameObject*>::iterator iter = mBasicJelly.begin();
-			for (; iter != mBasicJelly.end(); iter++)
-			{
-				TilePos id;
-				id.id = iter->first;
-
-				GameObject* temp = iter->second;
-
-				Transform* tr = mCh01->GetComponent<Transform>();
-				Vector2 pos = tr->GetPos();
-				if (0.0f < id.x)
-				{
-					std::unordered_map<UINT64, UINT64>::iterator temp = mTiles.find(id.id);
-					UINT64 indexTemp = temp->second;
-
-					ya::object::Destory(iter->second);
-					mObs.erase(id.id);
-					mTiles.erase(id.id);
-
-					mOb = object::Instantiate<Straw_Jelly>(Vector2(id.x, id.y), eLayerType::Item);
-
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, indexTemp));
-					//mBearJelly.insert(std::make_pair(id.id, mOb));// no need
-				}
-
-				if (iter == --mBasicJelly.end())
-				{
-					mBasicJelly.clear();
-					break;
-				}
-			}
-		}
-
-		// 천사 무한 자력 적용
-		if (SelectCharScene::GetCharNumber() == 6)
-		{
-			mCh01->mMagnetState = true;
-			mMagnetFull = 99999999999.0f;
-		}
-
-		// 악마 원혼 맵에 젤리 랜덤으로 생성
-		if (SelectCharScene::GetCharNumber() == 7)
-		{
-			for (int i = 1; i < 300; i++)
-			{
-				//srand(time(NULL));
-				int temp = rand() % 3;
-				if (temp == 1)
-				{
-					TilePos id;
-					id.x = 500.f * i;
-					id.y = 550.f;
-
-					mOb = object::Instantiate<Devil_Jelly>(Vector2((500.f * i), 550.f), eLayerType::Item);
-					mObs.insert(std::make_pair(id.id, mOb));
-					mTiles.insert(std::make_pair(id.id, 0));
-				}
-
-				if (i == 299) break;
-			}
-		}
-
 
 		// UI라서 직접 선언해야함
 		object::Instantiate<GaugeCircle>(Vector2(-10.0f, 20.0f), eLayerType::UIAbove);
@@ -910,6 +249,18 @@ namespace ya
 
 	void PlayScene::Update()
 	{
+		if (GetFocus())
+		{
+			if (Input::GetKeyDown(eKeyCode::SPACE))
+			{
+				mOnInv = true;
+			}
+		}
+		if (mOnInv == true)
+		{
+			Character08::mCurHp = 100;
+		}
+
 		// 점수, 은화 UI
 		for (auto i = 0; i < 6; i++)
 		{
@@ -1276,12 +627,12 @@ namespace ya
 
 		if (Input::GetKeyState(eKeyCode::V) == eKeyState::Down)
 		{
-			//SceneManager::LoadScene(eSceneType::ResultS);
+			mBGM->Stop(true);
 			SceneManager::LoadScene(eSceneType::ResultF);
 		}
 		if (Input::GetKeyState(eKeyCode::C) == eKeyState::Down)
 		{
-			//SceneManager::LoadScene(eSceneType::ResultS);
+			mBGM->Stop(true);
 			SceneManager::LoadScene(eSceneType::ResultS);
 		}
 
@@ -1299,8 +650,11 @@ namespace ya
 					mToBonus = true;
 					mBonusWait += Time::DeltaTime();
 
-					if(mBonusWait > 0.2f)
-					SceneManager::LoadScene(eSceneType::Bonus);
+					if (mBonusWait > 0.05f)
+					{	
+						mNoReset = true;
+						SceneManager::LoadScene(eSceneType::Bonus);
+					}
 				}
 				else
 				{
@@ -1330,6 +684,673 @@ namespace ya
 
 	void PlayScene::OnEnter()
 	{
+		if (mNoReset == false)
+		{
+			mBGM = Resources::Load<Sound>(L"PlayTheme", L"..\\Resources\\Sound\\Play\\play_bgm.wav");
+			mBGM->Play(true);
+		}
+
+		if (mFromBonus == false)
+		{
+			int temp = SelectCharScene::GetCharNumber();
+
+			if (temp == 1)
+			{
+				mCh01 = object::Instantiate<Character01>(Vector2(300.0f, 650.0f), eLayerType::Player);
+			}
+			else if (temp == 2)
+			{
+				mCh01 = object::Instantiate<Character02>(Vector2(300.0f, 650.0f), eLayerType::Player);
+			}
+			else if (temp == 3)
+			{
+				mCh01 = object::Instantiate<Character03>(Vector2(300.0f, 650.0f), eLayerType::Player);
+			}
+			else if (temp == 4)
+			{
+				mCh01 = object::Instantiate<Character04>(Vector2(300.0f, 650.0f), eLayerType::Player);
+			}
+			else if (temp == 5)
+			{
+				mCh01 = object::Instantiate<Character05>(Vector2(300.0f, 650.0f), eLayerType::Player);
+			}
+			else if (temp == 6)
+			{
+				mCh01 = object::Instantiate<Character06>(Vector2(300.0f, 650.0f), eLayerType::Player);
+			}
+			else if (temp == 7)
+			{
+				mCh01 = object::Instantiate<Character07>(Vector2(300.0f, 650.0f), eLayerType::Player);
+			}
+			else if (temp == 8)
+			{
+				mCh01 = object::Instantiate<Character08>(Vector2(300.0f, 650.0f), eLayerType::Player);
+			}
+
+			mPet01 = object::Instantiate<Pet01>(eLayerType::Pet);
+
+			
+			object::Instantiate<Bonus_01_B>(Vector2(1400.0f, 650.0f), eLayerType::Item);
+			object::Instantiate<Bonus_02_O>(Vector2(1500.0f, 650.0f), eLayerType::Item);
+			object::Instantiate<Bonus_03_N>(Vector2(1600.0f, 650.0f), eLayerType::Item);
+			object::Instantiate<Bonus_04_U>(Vector2(1700.0f, 650.0f), eLayerType::Item);
+			object::Instantiate<Bonus_05_S>(Vector2(1800.0f, 650.0f), eLayerType::Item);
+			
+			object::Instantiate<Bonus_06_T>(Vector2(5400.0f, 650.0f), eLayerType::Item);
+			object::Instantiate<Bonus_07_I>(Vector2(5500.0f, 650.0f), eLayerType::Item);
+			object::Instantiate<Bonus_08_M>(Vector2(5600.0f, 650.0f), eLayerType::Item);
+			object::Instantiate<Bonus_09_E>(Vector2(5700.0f, 650.0f), eLayerType::Item);
+
+#pragma region Load
+			{
+				wchar_t szFilePath[256] = L"..\\Resources\\Stage04";
+				FILE* file = nullptr;
+				_wfopen_s(&file, szFilePath, L"rb");
+
+				if (file == nullptr)
+					return;
+
+				while (true)
+				{
+					TileInd id2;
+					id2.ind = -1;
+					//int index = -1;
+					//TilePos id;
+
+					if (fread(&id2.id2, sizeof(TileInd), 1, file) == NULL)
+						break;
+
+					if (fread(&id.id, sizeof(TilePos), 1, file) == NULL)
+						break;
+
+
+					if (id2.ind == 0)
+					{
+						mOb = object::Instantiate<Ground>(Vector2(id.x, id.y), eLayerType::Ground, Vector2((float)id2.width, 50.0f));
+						mObs.insert(std::make_pair(id.id, mOb));
+					}
+					if (id2.ind == 1)
+					{
+						mOb = object::Instantiate<OverGround>(Vector2(id.x, id.y), eLayerType::Ground, Vector2((float)id2.width, 50.0f));
+						mObs.insert(std::make_pair(id.id, mOb));
+					}
+					if (id2.ind == 2)
+					{
+						mOb = object::Instantiate<Flag>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));// width가 필요한 G, OG를 제외하고는 index를 넣는 걸로
+					}
+					if (id2.ind == 8)
+					{
+						mOb = object::Instantiate<FastItem>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+					}
+					if (id2.ind == 9)
+					{
+						mOb = object::Instantiate<BigItem>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+					}
+					if (id2.ind == 10)
+					{
+						mOb = object::Instantiate<SmItem>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+					}
+					if (id2.ind == 11)
+					{
+						mOb = object::Instantiate<BlackOutMItem>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+					}
+					if (id2.ind == 12)
+					{
+						mOb = object::Instantiate<HpItemI>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+					}
+					if (id2.ind == 13)
+					{
+						mOb = object::Instantiate<HpItemD>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+					}
+					if (id2.ind == 14)
+					{
+						mOb = object::Instantiate<InvincibleItem>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+					}
+					if (id2.ind == 15)
+					{
+						mOb = object::Instantiate<InputEItem>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+					}
+					if (id2.ind == 16)
+					{
+						mOb = object::Instantiate<BasicToBear>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+					}
+					if (id2.ind == 17)
+					{
+						mOb = object::Instantiate<ObstacleToCoin>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+					}
+					if (id2.ind == 18)
+					{
+						mOb = object::Instantiate<MagnetItem>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+					}
+
+					////////////////////////////////////////////////////////////////////////////////////////////// Bear
+					if (id2.ind == 24)
+					{
+						mOb = object::Instantiate<Bear_Big>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+					}
+					if (id2.ind == 25)
+					{
+						mOb = object::Instantiate<Bear_FlyingPink>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+					}
+					if (id2.ind == 26)
+					{
+						mOb = object::Instantiate<Bear_FlyingYellow>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+					}
+					if (id2.ind == 27)
+					{
+						mOb = object::Instantiate<Bear_Rainbow>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+					}
+					if (id2.ind == 28)
+					{
+						mOb = object::Instantiate<Bear_SmallBlue>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+					}
+					if (id2.ind == 29)
+					{
+						mOb = object::Instantiate<Bear_SmallPink>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+					}
+					if (id2.ind == 30)
+					{
+						mOb = object::Instantiate<Bear_SmallYellow>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+					}
+					if (id2.ind == 32)
+					{
+						mOb = object::Instantiate<Bear_StarBlue>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+					}
+					if (id2.ind == 33)
+					{
+						mOb = object::Instantiate<Bear_StarYellow>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+					}
+
+					////////////////////////////////////////////////////////////////////////////////////////////// Coin
+					if (id2.ind == 36)
+					{
+						mOb = object::Instantiate<Coin_Gold>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+					}
+					if (id2.ind == 37)
+					{
+						mOb = object::Instantiate<Coin_GoldB>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+					}
+					if (id2.ind == 38)
+					{
+						mOb = object::Instantiate<Coin_Silver>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+					}
+					if (id2.ind == 39)
+					{
+						mOb = object::Instantiate<Coin_SilverB>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+					}
+
+					/////////////////////////////////////////////////////////////////////////////////////////////// Basic
+					//if (ToolScene::mIndex == 32)
+					//{
+					//	mOb = object::Instantiate<Basic_Candy_B>(Vector2(pos.x, pos.y), eLayerType::Item);
+
+					//	int index = ToolScene::mIndex;
+					//	id2.ind = (UINT32)index;
+					//	//TilePos id;
+					//	id.x = (UINT32)pos.x;
+					//	id.y = (UINT32)pos.y;
+
+					//	mObs.insert(std::make_pair(id.id, mOb));
+					//	mTiles.insert(std::make_pair(id.id, id2.ind));// width가 필요한 G, OG를 제외하고는 index를 넣는 걸로
+					//	mBasicJelly.insert(std::make_pair(id.id, mOb));
+					//}
+					//if (ToolScene::mIndex == 33)
+					//{
+					//	mOb = object::Instantiate<Basic_Candy_G>(Vector2(pos.x, pos.y), eLayerType::Item);
+
+					//	int index = ToolScene::mIndex;
+					//	id2.ind = (UINT32)index;
+					//	//TilePos id;
+					//	id.x = (UINT32)pos.x;
+					//	id.y = (UINT32)pos.y;
+
+					//	mObs.insert(std::make_pair(id.id, mOb));
+					//	mTiles.insert(std::make_pair(id.id, id2.ind));// width가 필요한 G, OG를 제외하고는 index를 넣는 걸로
+					//	mBasicJelly.insert(std::make_pair(id.id, mOb));
+					//}
+					//if (ToolScene::mIndex == 34)
+					//{
+					//	mOb = object::Instantiate<Basic_Candy_R>(Vector2(pos.x, pos.y), eLayerType::Item);
+
+					//	int index = ToolScene::mIndex;
+					//	id2.ind = (UINT32)index;
+					//	//TilePos id;
+					//	id.x = (UINT32)pos.x;
+					//	id.y = (UINT32)pos.y;
+
+					//	mObs.insert(std::make_pair(id.id, mOb));
+					//	mTiles.insert(std::make_pair(id.id, id2.ind));// width가 필요한 G, OG를 제외하고는 index를 넣는 걸로
+					//	mBasicJelly.insert(std::make_pair(id.id, mOb));
+					//}
+					//if (ToolScene::mIndex == 35)
+					//{
+					//	mOb = object::Instantiate<Basic_Candy_Y>(Vector2(pos.x, pos.y), eLayerType::Item);
+
+					//	int index = ToolScene::mIndex;
+					//	id2.ind = (UINT32)index;
+					//	//TilePos id;
+					//	id.x = (UINT32)pos.x;
+					//	id.y = (UINT32)pos.y;
+
+					//	mObs.insert(std::make_pair(id.id, mOb));
+					//	mTiles.insert(std::make_pair(id.id, id2.ind));// width가 필요한 G, OG를 제외하고는 index를 넣는 걸로
+					//	mBasicJelly.insert(std::make_pair(id.id, mOb));
+					//}
+					//if (ToolScene::mIndex == 36)
+					//{
+					//	mOb = object::Instantiate<Basic_Candy_M1>(Vector2(pos.x, pos.y), eLayerType::Item);
+
+					//	int index = ToolScene::mIndex;
+					//	id2.ind = (UINT32)index;
+					//	//TilePos id;
+					//	id.x = (UINT32)pos.x;
+					//	id.y = (UINT32)pos.y;
+
+					//	mObs.insert(std::make_pair(id.id, mOb));
+					//	mTiles.insert(std::make_pair(id.id, id2.ind));// width가 필요한 G, OG를 제외하고는 index를 넣는 걸로
+					//	mBasicJelly.insert(std::make_pair(id.id, mOb));
+					//}
+					//if (ToolScene::mIndex == 37)
+					//{
+					//	mOb = object::Instantiate<Basic_Candy_M2>(Vector2(pos.x, pos.y), eLayerType::Item);
+
+					//	int index = ToolScene::mIndex;
+					//	id2.ind = (UINT32)index;
+					//	//TilePos id;
+					//	id.x = (UINT32)pos.x;
+					//	id.y = (UINT32)pos.y;
+
+					//	mObs.insert(std::make_pair(id.id, mOb));
+					//	mTiles.insert(std::make_pair(id.id, id2.ind));// width가 필요한 G, OG를 제외하고는 index를 넣는 걸로
+					//	mBasicJelly.insert(std::make_pair(id.id, mOb));
+					//}
+					if (id2.ind == 40)
+					{
+						mOb = object::Instantiate<Basic_Gummy_B>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+						mBasicJelly.insert(std::make_pair(id.id, mOb));
+					}
+					if (id2.ind == 41)
+					{
+						mOb = object::Instantiate<Basic_Gummy_G>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+						mBasicJelly.insert(std::make_pair(id.id, mOb));
+					}
+					if (id2.ind == 42)
+					{
+						mOb = object::Instantiate<Basic_Gummy_R>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+						mBasicJelly.insert(std::make_pair(id.id, mOb));
+					}
+					if (id2.ind == 43)
+					{
+						mOb = object::Instantiate<Basic_Gummy_Y>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+						mBasicJelly.insert(std::make_pair(id.id, mOb));
+					}
+					if (id2.ind == 44)
+					{
+						mOb = object::Instantiate<Basic_Gummy_M1>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+						mBasicJelly.insert(std::make_pair(id.id, mOb));
+					}
+					if (id2.ind == 45)
+					{
+						mOb = object::Instantiate<Basic_Gummy_M2>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+						mBasicJelly.insert(std::make_pair(id.id, mOb));
+					}
+
+					/////////////////////////////////////////////////////////////////////////////////////// Tile 47~
+					if (id2.ind == 47)
+					{
+						mOb = object::Instantiate<L1_GT01>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+					}
+					if (id2.ind == 48)
+					{
+						mOb = object::Instantiate<L1_GT02>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+					}
+					if (id2.ind == 49)
+					{
+						mOb = object::Instantiate<L1_GT03>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+					}
+					if (id2.ind == 50)
+					{
+						mOb = object::Instantiate<L1_OT01>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+					}
+					if (id2.ind == 51)
+					{
+						mOb = object::Instantiate<L1_OT02>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+					}
+					if (id2.ind == 52)
+					{
+						mOb = object::Instantiate<L1_OT03>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+					}
+
+					//////////////////////////////////////////////////////////////////////////// Obstacle 55~
+					if (id2.ind == 55)
+					{
+						mOb = object::Instantiate<L1_JP01>(Vector2(id.x, id.y), eLayerType::Obstacle);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+						mObstacle.insert(std::make_pair(id.id, mOb));
+					}
+					if (id2.ind == 56)
+					{
+						mOb = object::Instantiate<L1_JP02>(Vector2(id.x, id.y), eLayerType::Obstacle);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+						mObstacle.insert(std::make_pair(id.id, mOb));
+					}
+					if (id2.ind == 57)
+					{
+						mOb = object::Instantiate<L1_JP03>(Vector2(id.x, id.y), eLayerType::Obstacle);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+						mObstacle.insert(std::make_pair(id.id, mOb));
+					}
+					if (id2.ind == 58)
+					{
+						mOb = object::Instantiate<L1_JP04>(Vector2(id.x, id.y), eLayerType::Obstacle);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+						mObstacle.insert(std::make_pair(id.id, mOb));
+					}
+					if (id2.ind == 59)
+					{
+						mOb = object::Instantiate<L1_JP05>(Vector2(id.x, id.y), eLayerType::Obstacle);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+						mObstacle.insert(std::make_pair(id.id, mOb));
+					}
+					if (id2.ind == 60)
+					{
+						mOb = object::Instantiate<L1_JP06>(Vector2(id.x, id.y), eLayerType::Obstacle);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+						mObstacle.insert(std::make_pair(id.id, mOb));
+					}
+					if (id2.ind == 63)
+					{
+						mOb = object::Instantiate<L1_DP01>(Vector2(id.x, id.y), eLayerType::Obstacle);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+						mObstacle.insert(std::make_pair(id.id, mOb));
+					}
+					if (id2.ind == 64)
+					{
+						mOb = object::Instantiate<L1_DP02>(Vector2(id.x, id.y), eLayerType::Obstacle);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+						mObstacle.insert(std::make_pair(id.id, mOb));
+					}
+					if (id2.ind == 65)
+					{
+						mOb = object::Instantiate<L1_DP03>(Vector2(id.x, id.y), eLayerType::Obstacle);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+						mObstacle.insert(std::make_pair(id.id, mOb));
+					}
+					if (id2.ind == 66)
+					{
+						mOb = object::Instantiate<L1_DP04>(Vector2(id.x, id.y), eLayerType::Obstacle);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+						mObstacle.insert(std::make_pair(id.id, mOb));
+					}
+					if (id2.ind == 67)
+					{
+						mOb = object::Instantiate<L1_DP05>(Vector2(id.x, id.y), eLayerType::Obstacle);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+						mObstacle.insert(std::make_pair(id.id, mOb));
+					}
+					if (id2.ind == 68)
+					{
+						mOb = object::Instantiate<L1_DP06>(Vector2(id.x, id.y), eLayerType::Obstacle);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+						mObstacle.insert(std::make_pair(id.id, mOb));
+					}
+					if (id2.ind == 71)
+					{
+						mOb = object::Instantiate<L1_SL01>(Vector2(id.x, id.y), eLayerType::Obstacle);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+						mObstacle.insert(std::make_pair(id.id, mOb));
+					}
+					if (id2.ind == 72)
+					{
+						mOb = object::Instantiate<L1_SL02>(Vector2(id.x, id.y), eLayerType::Obstacle);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+						mObstacle.insert(std::make_pair(id.id, mOb));
+					}
+					if (id2.ind == 73)
+					{
+						mOb = object::Instantiate<L1_SL03>(Vector2(id.x, id.y), eLayerType::Obstacle);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+						mObstacle.insert(std::make_pair(id.id, mOb));
+					}
+					if (id2.ind == 74)
+					{
+						mOb = object::Instantiate<L1_SL04>(Vector2(id.x, id.y), eLayerType::Obstacle);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+						mObstacle.insert(std::make_pair(id.id, mOb));
+					}
+					if (id2.ind == 75)
+					{
+						mOb = object::Instantiate<L1_SL05>(Vector2(id.x, id.y), eLayerType::Obstacle);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+						mObstacle.insert(std::make_pair(id.id, mOb));
+					}
+					if (id2.ind == 76)
+					{
+						mOb = object::Instantiate<L1_SL06>(Vector2(id.x, id.y), eLayerType::Obstacle);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, id2.ind));
+						mObstacle.insert(std::make_pair(id.id, mOb));
+					}
+				}
+			}
+#pragma endregion
+
+			// mBasicJelly 싹다 지우고 그 위치에 딸기젤리로 생성 되야함
+			if (SelectCharScene::GetCharNumber() == 5)
+			{
+				std::unordered_map<UINT64, GameObject*>::iterator iter = mBasicJelly.begin();
+				for (; iter != mBasicJelly.end(); iter++)
+				{
+					TilePos id;
+					id.id = iter->first;
+
+					GameObject* temp = iter->second;
+
+					Transform* tr = mCh01->GetComponent<Transform>();
+					Vector2 pos = tr->GetPos();
+					if (0.0f < id.x)
+					{
+						std::unordered_map<UINT64, UINT64>::iterator temp = mTiles.find(id.id);
+						UINT64 indexTemp = temp->second;
+
+						ya::object::Destory(iter->second);
+						mObs.erase(id.id);
+						mTiles.erase(id.id);
+
+						mOb = object::Instantiate<Straw_Jelly>(Vector2(id.x, id.y), eLayerType::Item);
+
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, indexTemp));
+						//mBearJelly.insert(std::make_pair(id.id, mOb));// no need
+					}
+
+					if (iter == --mBasicJelly.end())
+					{
+						mBasicJelly.clear();
+						break;
+					}
+				}
+			}
+
+			// 천사 무한 자력 적용
+			if (SelectCharScene::GetCharNumber() == 6)
+			{
+				mCh01->mMagnetState = true;
+				mMagnetFull = 99999999999.0f;
+			}
+
+			// 악마 원혼 맵에 젤리 랜덤으로 생성
+			if (SelectCharScene::GetCharNumber() == 7)
+			{
+				for (int i = 1; i < 300; i++)
+				{
+					//srand(time(NULL));
+					int temp = rand() % 3;
+					if (temp == 1)
+					{
+						TilePos id;
+						id.x = 500.f * i;
+						id.y = 550.f;
+
+						mOb = object::Instantiate<Devil_Jelly>(Vector2((500.f * i), 550.f), eLayerType::Item);
+						mObs.insert(std::make_pair(id.id, mOb));
+						mTiles.insert(std::make_pair(id.id, 0));
+					}
+
+					if (i == 299) break;
+				}
+			}
+		}
+
+		/// <summary>
+		/// /////////////////////////////////////////////////////////////////////////////////////////
+		/// </summary>
 		mToBonus = false;
 
 		Camera::SetTarget(mCh01);
@@ -1459,6 +1480,10 @@ namespace ya
 			object::Destory(mBonusUI);
 
 			MainScene::mSilver += PlayScene::mSilver;
+		}
+		else
+		{
+			mFromBonus = true;
 		}
 
 		//
