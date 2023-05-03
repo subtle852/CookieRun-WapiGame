@@ -2,6 +2,7 @@
 #include "yaTransform.h"
 #include "yaGameObject.h"
 #include "yaCamera.h"
+#include "yaSceneManager.h"
 
 namespace ya
 {
@@ -46,7 +47,12 @@ namespace ya
 		HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, brush);
 
 		Vector2 pos = Camera::CaluatePos(mPos);
-		Rectangle(hdc, pos.x, pos.y, pos.x + mSize.x, pos.y + mSize.y);
+
+		Scene* scn = SceneManager::GetActiveScene();
+		if (scn->GetName() == L"Make")
+		{
+			Rectangle(hdc, pos.x, pos.y, pos.x + mSize.x, pos.y + mSize.y);
+		}
 
 		(HPEN)SelectObject(hdc, oldPen);
 		(HBRUSH)SelectObject(hdc, oldBrush);

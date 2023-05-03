@@ -102,6 +102,8 @@
 #include "yaEatEffect.h"
 #include "yaCloudEffect.h"
 
+#include "yaSelectCharScene.h"
+
 #include "yaApplication.h"
 extern ya::Application application;
 
@@ -1560,7 +1562,7 @@ namespace ya
 
 		if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
 		{
-			SceneManager::LoadScene(eSceneType::Title);
+			SceneManager::LoadScene(eSceneType::Main);
 		}
 
 		if (Input::GetKeyState(eKeyCode::K) == eKeyState::Down)
@@ -2214,10 +2216,12 @@ namespace ya
 	}
 	void MakeScene::OnEnter()
 	{
+		SelectCharScene::mCharNumber = 1;
+
 		Camera::SetTarget(mCh);
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Obstacle, true);
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Ground, true);
-		//CollisionManager::SetLayer(eLayerType::Player, eLayerType::Item, true);
+		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Item, true);
 	}
 	void MakeScene::OnExit()
 	{

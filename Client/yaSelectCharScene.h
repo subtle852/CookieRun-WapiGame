@@ -22,6 +22,8 @@ namespace ya
 
 	private:
 		Image* mScenImage;
+
+	public:
 		static int mCharNumber;
 	};
 }

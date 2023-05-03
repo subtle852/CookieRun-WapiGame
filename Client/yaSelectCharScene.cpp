@@ -14,7 +14,7 @@
 
 namespace ya
 {
-	int SelectCharScene::mCharNumber = 8;
+	int SelectCharScene::mCharNumber = 1;
 
 	SelectCharScene::SelectCharScene()
 	{
