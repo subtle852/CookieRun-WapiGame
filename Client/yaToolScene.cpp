@@ -159,7 +159,7 @@ LRESULT CALLBACK AtlasWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPa
 			}
 			if (index == 94)
 			{
-				chapter = 0;
+				chapter = 0;//
 			}
 			if (index == 141)
 			{
