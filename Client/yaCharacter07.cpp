@@ -697,7 +697,7 @@ namespace ya
 
 		if (dynamic_cast<Devil_Jelly*>(other->GetOwner()))
 		{
-			if(mTransfState == false)
+			if(mTransfState == false && mBig == false)
 			mTransfItem += 1;
 		}
 	}

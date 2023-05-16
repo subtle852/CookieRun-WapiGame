@@ -437,6 +437,7 @@ namespace ya
 						mCurHp += 30.f;
 						mState = eChar02State::Run;
 						mZom = false;
+						mInv = true;
 					}
 				}
 				else

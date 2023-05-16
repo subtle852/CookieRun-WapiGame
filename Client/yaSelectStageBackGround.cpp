@@ -19,7 +19,7 @@ namespace ya
 
     void SelectStageBackGround::Initialize()
     {
-        mImage = Resources::Load<Image>(L"SelectStageBG", L"..\\Resources\\selectstage.bmp");
+        //mImage = Resources::Load<Image>(L"SelectStageBG", L"..\\Resources\\selectstage.bmp");
 
         GameObject::Initialize();
     }
@@ -31,11 +31,11 @@ namespace ya
 
     void SelectStageBackGround::Render(HDC hdc)
     {
-        Transform* tr = GetComponent<Transform>();
-        Vector2 pos = tr->GetPos();
-        //BitBlt(hdc, pos.x, pos.y, mImage->GetWidth(), mImage->GetHeight(), mImage->GetHdc(), 0, 0, SRCCOPY);
-        TransparentBlt(hdc, pos.x, pos.y, 1600, 900
-            , mImage->GetHdc(), 0, 0, mImage->GetWidth(), mImage->GetHeight(), RGB(170, 0, 0));
+        //Transform* tr = GetComponent<Transform>();
+        //Vector2 pos = tr->GetPos();
+        ////BitBlt(hdc, pos.x, pos.y, mImage->GetWidth(), mImage->GetHeight(), mImage->GetHdc(), 0, 0, SRCCOPY);
+        //TransparentBlt(hdc, pos.x, pos.y, 1600, 900
+        //    , mImage->GetHdc(), 0, 0, mImage->GetWidth(), mImage->GetHeight(), RGB(170, 0, 0));
 
         GameObject::Render(hdc);
     }

@@ -8,6 +8,9 @@
 #include "yaCollider.h"
 #include "yaScene.h"
 #include "yaCamera.h"
+#include "yaPlayScene.h"
+#include "yaObject.h"
+#include "yaCharacter08.h"
 
 namespace ya
 {
@@ -51,6 +54,10 @@ namespace ya
 	}
 	void L1_SL01::OnCollisionEnter(Collider* other)
 	{
+		if (dynamic_cast<Character08*>(PlayScene::mCh01)->mBig == true)
+		{
+			object::Destory(this);
+		}
 	}
 	void L1_SL01::OnCollisionStay(Collider* other)
 	{

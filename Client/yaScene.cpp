@@ -81,26 +81,26 @@ namespace ya
 
 	void Scene::SceneText(HDC hdc)
 	{
-		std::wstring tmp = Scene::GetName();
-		TextOut(hdc, 0, 0, tmp.c_str(), tmp.size());
+		//std::wstring tmp = Scene::GetName();
+		//TextOut(hdc, 0, 0, tmp.c_str(), tmp.size());
 	}
 
 	void Scene::PosText(HDC hdc)
 	{
-		::POINT mousePos = {};
-		::GetCursorPos(&mousePos);
-		::ScreenToClient(application.GetHwnd(), &mousePos);
+		//::POINT mousePos = {};
+		//::GetCursorPos(&mousePos);
+		//::ScreenToClient(application.GetHwnd(), &mousePos);
 
-		PosX = mousePos.x;
-		PosY = mousePos.y;
-		//if (x >= 1600.0f || x <= 0.0f)
-		//	return;
-		//if (y >= 900.0f || y <= 0.0f)
-		//	return;
+		//PosX = mousePos.x;
+		//PosY = mousePos.y;
+		////if (x >= 1600.0f || x <= 0.0f)
+		////	return;
+		////if (y >= 900.0f || y <= 0.0f)
+		////	return;
 
-		wsprintf(Postext, L" x : %d  y : %d", PosX, PosY);
+		//wsprintf(Postext, L" x : %d  y : %d", PosX, PosY);
 
-		TextOutW(hdc, 0, 16, Postext, lstrlen(Postext));
+		//TextOutW(hdc, 0, 16, Postext, lstrlen(Postext));
 	}
 
 	void Scene::AddGameObeject(GameObject* obj, eLayerType layer)

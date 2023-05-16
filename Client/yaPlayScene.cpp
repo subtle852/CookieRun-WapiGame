@@ -623,11 +623,11 @@ namespace ya
 		}
 		#pragma endregion
 
-		//if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
-		//{
-		//	//SceneManager::LoadScene(eSceneType::ResultS);
-		//	SceneManager::LoadScene(eSceneType::Make);
-		//}
+		if (Input::GetKeyState(eKeyCode::N) == eKeyState::Down)
+		{
+			//SceneManager::LoadScene(eSceneType::ResultS);
+			SceneManager::LoadScene(eSceneType::Make);
+		}
 
 		if (Input::GetKeyState(eKeyCode::V) == eKeyState::Down)
 		{
@@ -688,6 +688,11 @@ namespace ya
 
 	void PlayScene::OnEnter()
 	{
+		if (mCh01 != nullptr)
+		{
+			mCh01->mJmpcnt = 0;
+		}
+
 		if (mNoReset == false)
 		{
 			mBGM = Resources::Load<Sound>(L"PlayTheme", L"..\\Resources\\Sound\\Play\\play_bgm.wav");

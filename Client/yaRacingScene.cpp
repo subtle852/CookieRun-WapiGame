@@ -269,35 +269,35 @@ namespace ya
 						Sound* mSound = Resources::Load<Sound>(L"Gunshot", L"..\\Resources\\Sound\\Racing\\gunshot.wav");
 						mSound->Play(false);
 
-						mNumber = 1; mBenefit1 = 3.2f; MainScene::mSilver -= 1000;
+						mNumber = 1; mBenefit1 = 3.5f; MainScene::mSilver -= 1000;
 					}
 					if ((543.f <= mousPos.x && mousPos.x <= 611.f) && (520.f <= mousPos.y && mousPos.y <= 560.f))
 					{
 						Sound* mSound = Resources::Load<Sound>(L"Gunshot", L"..\\Resources\\Sound\\Racing\\gunshot.wav");
 						mSound->Play(false);
 
-						mNumber = 2; mBenefit2 = 3.2f; MainScene::mSilver -= 1000;
+						mNumber = 2; mBenefit2 = 3.5f; MainScene::mSilver -= 1000;
 					}
 					if ((543.f <= mousPos.x && mousPos.x <= 611.f) && (568.f <= mousPos.y && mousPos.y <= 609.f))
 					{
 						Sound* mSound = Resources::Load<Sound>(L"Gunshot", L"..\\Resources\\Sound\\Racing\\gunshot.wav");
 						mSound->Play(false);
 
-						mNumber = 3; mBenefit3 = 3.2f; MainScene::mSilver -= 1000;
+						mNumber = 3; mBenefit3 = 3.5f; MainScene::mSilver -= 1000;
 					}
 					if ((543.f <= mousPos.x && mousPos.x <= 611.f) && (619.f <= mousPos.y && mousPos.y <= 660.f))
 					{
 						Sound* mSound = Resources::Load<Sound>(L"Gunshot", L"..\\Resources\\Sound\\Racing\\gunshot.wav");
 						mSound->Play(false);
 
-						mNumber = 4; mBenefit4 = 3.2f; MainScene::mSilver -= 1000;
+						mNumber = 4; mBenefit4 = 3.5f; MainScene::mSilver -= 1000;
 					}
 					if ((543.f <= mousPos.x && mousPos.x <= 611.f) && (670.f <= mousPos.y && mousPos.y <= 721.f))
 					{
 						Sound* mSound = Resources::Load<Sound>(L"Gunshot", L"..\\Resources\\Sound\\Racing\\gunshot.wav");
 						mSound->Play(false);
 
-						mNumber = 5; mBenefit5 = 3.2f; MainScene::mSilver -= 1000;
+						mNumber = 5; mBenefit5 = 3.5f; MainScene::mSilver -= 1000;
 					}
 				}
 			}

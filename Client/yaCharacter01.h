@@ -65,7 +65,7 @@ namespace ya
 		void Transp2CompleteEvent();// 이거 필요없음
 
 
-	private:
+	public:
 		//eChar01State mState;
 		Animator* mAnimator;
 		Rigidbody* mRigidbody;

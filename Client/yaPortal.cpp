@@ -19,7 +19,7 @@ namespace ya
 
 	void Portal::Initialize()
 	{
-		mImage = Resources::Load<Image>(L"Portal00", L"..\\Resources\\Portal00.bmp");
+		//mImage = Resources::Load<Image>(L"Portal00", L"..\\Resources\\Portal00.bmp");
 
 		GameObject::Initialize();
 	}
@@ -33,11 +33,11 @@ namespace ya
 	{
 		GameObject::Render(hdc);
 
-		Transform* tr = GetComponent<Transform>();
-		Vector2 pos = tr->GetPos();
+		//Transform* tr = GetComponent<Transform>();
+		//Vector2 pos = tr->GetPos();
 
-		TransparentBlt(hdc, pos.x, pos.y, mImage->GetWidth() * 2.5, mImage->GetHeight() * 2.5
-			, mImage->GetHdc(), 0, 0, mImage->GetWidth(), mImage->GetHeight(), RGB(170, 0, 0));
+		//TransparentBlt(hdc, pos.x, pos.y, mImage->GetWidth() * 2.5, mImage->GetHeight() * 2.5
+		//	, mImage->GetHdc(), 0, 0, mImage->GetWidth(), mImage->GetHeight(), RGB(170, 0, 0));
 	}
 
 	void Portal::Release()
